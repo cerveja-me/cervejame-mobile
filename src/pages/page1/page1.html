@@ -13,7 +13,18 @@
   <p>caixa de info do preço</p>
 
 
-
-
-  <button ion-button secondary>Toggle Menu</button>
+  <ion-slides>
+    <ion-slide>
+      <h1>Slide 1</h1>
+      <button ion-button secondary (click)="openModal({charNum: 0})">Toggle Menu</button>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 2</h1>
+      <button ion-button secondary (click)="openModal({charNum: 0})">Toggle Menu</button>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 3</h1>
+      <button ion-button secondary (click)="openModal({charNum: 0})">Toggle Menu</button>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
