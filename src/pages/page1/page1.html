@@ -11,7 +11,26 @@
     <div class="table"></div>
   <h1 class="logo-dark"></h1>
 
-  <p class="choose__pricebox">
+    <ion-slides class="choose-slider">
+    <ion-slide>
+        <p class="choose__pricebox">
+      <span class="choose__pricebox__info">Caixa com 6 garrafas</span>
+      <span class="choose__pricebox__price">
+        <small class="choose__pricebox__price--currency">R$</small>21,50
+      </span>
+      <span class="free-shipping">Frete Grátis</span>
+      <span class="cold-beer">Gelada!</span>
+    </p>
+    <p class="choose__bottom">
+        <figure class="choose__picture">
+            <img src="assets/img/original.png">
+        </figure>
+          <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>    
+    </p>
+
+    </ion-slide>
+    <ion-slide>
+       <p class="choose__pricebox">
       <span class="choose__pricebox__info">Caixa com 12 latas</span>
       <span class="choose__pricebox__price">
         <small class="choose__pricebox__price--currency">R$</small>25,90
@@ -19,20 +38,28 @@
       <span class="free-shipping">Frete Grátis</span>
       <span class="cold-beer">Gelada!</span>
     </p>
-
-
-  <ion-slides>
-    <ion-slide>
-      <h1>Slide 1</h1>
-      <button ion-button secondary (click)="openModal({charNum: 0})">Toggle Menu</button>
+    <p class="choose__bottom">
+        <figure class="choose__picture">
+            <img src="assets/img/brahma.png">
+        </figure>
+          <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>    
+    </p>
     </ion-slide>
     <ion-slide>
-      <h1>Slide 2</h1>
-      <button ion-button secondary (click)="openModal({charNum: 0})">Toggle Menu</button>
-    </ion-slide>
-    <ion-slide>
-      <h1>Slide 3</h1>
-      <button ion-button secondary (click)="openModal({charNum: 0})">Toggle Menu</button>
+        <p class="choose__pricebox">
+      <span class="choose__pricebox__info">Caixa com 6 garrafas</span>
+      <span class="choose__pricebox__price">
+        <small class="choose__pricebox__price--currency">R$</small>18,90
+      </span>
+      <span class="free-shipping">Frete Grátis</span>
+      <span class="cold-beer">Gelada!</span>
+    </p>
+    <p class="choose__bottom">
+        <figure class="choose__picture">
+            <img src="assets/img/heineken.png">
+        </figure>
+          <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>    
+    </p>
     </ion-slide>
   </ion-slides>
 </ion-content>
