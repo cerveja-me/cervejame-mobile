@@ -1,3 +1,5 @@
+@import '../../app/_mixins';
+
 page-page1 {
     .bkg-choose {
         background-image: url(/assets/img/bkg-choose.jpg);
@@ -15,7 +17,51 @@ page-page1 {
     
     .choose {
         &__pricebox {
+            @include border-radius(30px);
+            
             border: 2px solid #fff;
+            width: 240px;
+            background: rgba(0,0,0,.5);
+            padding: 15px;
+            display: inline-block;
+            position: relative;
+            
+            &__info {
+                @extend .font-bold;
+                
+                color: white;
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+            
+            &__price {
+                @extend .font-bold;
+                
+                color: white;
+                font-size: 38px;
+                display: inline-block;
+                vertical-align: middle;
+            
+                &--currency {
+                     @extend .font-regular;
+                    
+                    font-size: 20px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 5px;
+                }
+            }
         }
+    }
+    
+    .free-shipping {
+        @extend .font-bold;
+        @include border-radius(100px);
+        
+        background: #D84040;
+        width: 66px;
+        height: 66px;
+        color: white;
+        text-align: center;
     }
 }   
