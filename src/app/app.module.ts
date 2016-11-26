@@ -5,6 +5,7 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
 import { ModalContentPage } from '../pages/modal-receipt/modal-receipt';
+import {MapPage} from '../pages/map/map';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { ModalContentPage } from '../pages/modal-receipt/modal-receipt';
   Page1,
   Page2,
   ModalContentPage,
-  LoginPage
+  LoginPage,
+  MapPage
   ],
   imports: [
   IonicModule.forRoot(MyApp)
@@ -23,7 +25,8 @@ import { ModalContentPage } from '../pages/modal-receipt/modal-receipt';
   Page1,
   Page2,
   ModalContentPage,
-  LoginPage
+  LoginPage,
+  MapPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

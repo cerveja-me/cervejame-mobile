@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { MapPage } from '../map/map';
 
 /*
   Generated class for the Login page.
@@ -18,6 +19,10 @@ import { NavController } from 'ionic-angular';
     ionViewDidLoad() {
 
       console.log('Hello LoginPage Page');
+    }
+
+    gotomap(){
+      this.navCtrl.push(MapPage);
     }
 
   }
