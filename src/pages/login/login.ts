@@ -6,17 +6,18 @@ import { NavController } from 'ionic-angular';
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
-*/
-@Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
-})
-export class LoginPage {
+  */
+  @Component({
+    selector: 'page-login',
+    templateUrl: 'login.html'
+  })
+  export class LoginPage {
 
-  constructor(public navCtrl: NavController) {}
+    constructor(public navCtrl: NavController) {}
 
-  ionViewDidLoad() {
-    console.log('Hello LoginPage Page');
+    ionViewDidLoad() {
+
+      console.log('Hello LoginPage Page');
+    }
+
   }
-
-}
