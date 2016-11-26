@@ -10,7 +10,10 @@ import { ModalController, Platform, NavParams } from 'ionic-angular';
 export class Page1 {
 
   constructor(public modalCtrl: ModalController) { };
-  
+  sliderOptions = {
+    slidesPerView:2,
+    centeredSlides:true
+  };
 
   openModal(characterNum){
     let modal = this.modalCtrl.create(ModalContentPage, characterNum);
