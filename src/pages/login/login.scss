@@ -7,3 +7,20 @@ page-login {
         display: inline-block;
     }
 }
+
+.btn-facebook {
+    @include border-radius(50px);
+    @extend .font-bold;
+    
+    position: absolute;
+    bottom: 0;
+    background: #4F5AAD;
+    border: 2px solid #583318;
+    font-size: 17px;
+    padding: 10px 30px;
+    height: auto;
+    left: 50%;
+    width: 290px;
+    margin-left: -145px;
+    transition: all .5s;
+}

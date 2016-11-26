@@ -31,6 +31,11 @@
     height: 66px;
     display: inline-block;
     margin-bottom: 80px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    margin-left: -100px;
+    z-index: 2;
 }
 
 .center {
@@ -62,10 +67,11 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -200px;
-    margin-top: -230px;
-    height: 460px;
-    width: 400px;
+    margin-left: -190px;
+    margin-top: -190px;
+    height: 380px;
+    width: 380px;
+    padding: 75px 0;
     
     &__icon {
     
@@ -87,15 +93,15 @@
         content: '';
         @include border-radius(50%);
         
-        width: 420px;
-        height: 420px;
+        width: 400px;
+        height: 400px;
         position: absolute;
         z-index: -1;
         background: #D5A86C;
         display: block;
         top: 50%;
         left: 50%;
-        margin-left: -210px;
-        margin-top: -210px;
+        margin-left: -200px;
+        margin-top: -200px;
     }
 }
