@@ -30,6 +30,8 @@ page-page1 {
             top: 0;
             left: 50%;
             margin-left: -112px;
+            opacity: 1;
+            transition: all .5s;
             
             &__info {
                 @extend .font-bold;
@@ -128,4 +130,36 @@ page-page1 {
     left: 50%;
     width: 200px;
     margin-left: -100px;
+    opacity: 1;
+    transition: all .5s;
+}
+
+.swiper-slide-next {
+    //margin-left: -150px;
+    
+    .choose__pricebox,
+    .btn-choose {
+        opacity: 0;
+    }
+    
+    .choose__figure {
+        
+    }
+}
+
+.swiper-slide-prev {
+    //margin-left: -150px;
+    
+    .choose__pricebox,
+    .btn-choose {
+        opacity: 0;
+    }
+    
+    .choose__figure {
+        
+    }
+}
+
+.swiper-slide-active {
+    margin-left: auto;
 }
