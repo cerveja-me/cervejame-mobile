@@ -12,7 +12,8 @@ export class Page1 {
   constructor(public modalCtrl: ModalController) { };
   sliderOptions = {
     slidesPerView:2,
-    centeredSlides:true
+    centeredSlides:true,
+    loop:true
   };
 
   openModal(characterNum){
