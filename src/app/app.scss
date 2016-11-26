@@ -15,3 +15,14 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.logo-dark {
+    background-image: url(/assets/icon/logo-dark.svg);
+    background-size: cover;
+    width: 200px;
+    height: 66px;
+    display: inline-block;
+}
+
+.center {
+    text-align: center;
+}

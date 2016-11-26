@@ -9,7 +9,8 @@ import { ModalController, Platform, NavParams } from 'ionic-angular';
 })
 export class Page1 {
 
-  constructor(public modalCtrl: ModalController) { }
+  constructor(public modalCtrl: ModalController) { };
+  
 
   openModal(characterNum){
     let modal = this.modalCtrl.create(ModalContentPage, characterNum);
