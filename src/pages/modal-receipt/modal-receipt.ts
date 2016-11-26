@@ -1,6 +1,7 @@
 
 import { Component } from '@angular/core';
 import {LoginPage} from '../login/login';
+import { MapPage } from '../map/map';
 
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
