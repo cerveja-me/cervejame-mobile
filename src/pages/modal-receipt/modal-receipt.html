@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <!--<ion-toolbar>
     <ion-title>
       Description
     </ion-title>
@@ -9,9 +9,22 @@
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
       </button>
     </ion-buttons>
-  </ion-toolbar>
+  </ion-toolbar>-->
 </ion-header>
 
-<ion-content>
-  <button ion-button secondary (click)="gotomap()">Traga minha cerveja</button>
+<ion-content class="receipt">
+    <div class="receipt__quantidade">
+        <h2 class="receipt__title">Quantas caixas?</h2>
+        <span class="btn-minus"></span>
+        <span class="quantidade-number">2</span>
+        <span class="btn-plus"></span>
+    </div>
+    <div class="receipt__total">
+        <h2 class="receipt__title">Total a pagar</h2>
+         <span class="total__pricebox">
+            <small class="total__pricebox--currency">R$</small>25,90
+          </span>
+    </div>
+    <p class="receipt__alert">Só aceitamos cartão de crédito/débito.</p>
+  <button ion-button secondary class="receipt__btn" (click)="gotomap()">Pedir</button>
 </ion-content>
