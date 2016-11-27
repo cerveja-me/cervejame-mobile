@@ -16,7 +16,7 @@
 // automatically applied to the <body> element in the app.
 
 .logo-home {
-    background-image: url(/assets/icon/logo-dark.svg);
+    background-image: url(../assets/icon/logo-dark.svg);
     background-size: cover;
     width: 200px;
     height: 66px;
@@ -25,7 +25,7 @@
 }
 
 .logo-dark {
-    background-image: url(/assets/icon/logo-dark.svg);
+    background-image: url(../assets/icon/logo-dark.svg);
     background-size: cover;
     width: 200px;
     height: 66px;
@@ -38,7 +38,7 @@
 }
 
 .logo-white {
-    background-image: url(/assets/icon/logo-white.svg);
+    background-image: url(../assets/icon/logo-white.svg);
     background-size: cover;
     width: 200px;
     height: 66px;
@@ -59,7 +59,7 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  src: local('Montserrat-Regular'), url(/assets/fonts/montserrat.woff2) format('woff2');
+  src: local('Montserrat-Regular'), url(../assets/fonts/montserrat.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 /* latin */
@@ -67,7 +67,7 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
-  src: local('Montserrat-Bold'), url(/assets/fonts/montserrat-bold.woff2) format('woff2');
+  src: local('Montserrat-Bold'), url(../assets/fonts/montserrat-bold.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
