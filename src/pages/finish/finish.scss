@@ -1,3 +1,28 @@
 page-finish {
+    .btn-finish {
+        @include border-radius(50px);
+        @extend .font-bold;
 
+        position: absolute;
+        bottom: 0;
+        background: #D5A86C;
+        border: 2px solid #FFFFDD;
+        font-size: 17px;
+        padding: 10px 30px;
+        height: auto;
+        left: 50%;
+        width: 290px;
+        margin-left: -145px;
+        transition: all .5s;
+        color: #573317;
+        text-transform: uppercase;
+    }
+    
+    .icone-shipping {
+        background-image: url(/assets/icon/shipping.svg);
+        background-size: cover;
+        width: 160px;
+        height: 98px;
+        display: inline-block;
+    }
 }

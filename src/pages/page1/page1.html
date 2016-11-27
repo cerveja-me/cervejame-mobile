@@ -9,12 +9,29 @@
 
 <ion-content class="bkg-choose center">
   <div class="table"></div>
-  <h1 class="logo-dark"></h1>
+  <h1 class="logo-home"></h1>
 
   <ion-slides class="choose-slider" [options]="sliderOptions">
+   
     <ion-slide>
+     <p class="choose__pricebox">
+      <span class="choose__pricebox__info">12 latas 350ml</span>
+      <span class="choose__pricebox__price">
+        <small class="choose__pricebox__price--currency">R$</small>25,90
+      </span>
+      <span class="free-shipping">Frete Grátis</span>
+      <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+    </p>
+    <p class="choose__bottom">
+      <figure class="choose__picture">
+        <img src="assets/img/brahma.png">
+      </figure>
+      <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>
+    </p>
+  </ion-slide>
+   <ion-slide>
       <p class="choose__pricebox">
-        <span class="choose__pricebox__info">Caixa com 6 garrafas</span>
+        <span class="choose__pricebox__info">6 garrafas 600ml</span>
         <span class="choose__pricebox__price">
           <small class="choose__pricebox__price--currency">R$</small>21,50
         </span>
@@ -29,25 +46,9 @@
       </p>
 
     </ion-slide>
-    <ion-slide>
-     <p class="choose__pricebox">
-      <span class="choose__pricebox__info">Caixa com 12 latas</span>
-      <span class="choose__pricebox__price">
-        <small class="choose__pricebox__price--currency">R$</small>25,90
-      </span>
-      <span class="free-shipping">Frete Grátis</span>
-      <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
-    </p>
-    <p class="choose__bottom">
-      <figure class="choose__picture">
-        <img src="assets/img/brahma.png">
-      </figure>
-      <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>
-    </p>
-  </ion-slide>
   <ion-slide>
     <p class="choose__pricebox">
-      <span class="choose__pricebox__info">Caixa com 6 garrafas</span>
+      <span class="choose__pricebox__info">6 garrafas 355ml</span>
       <span class="choose__pricebox__price">
         <small class="choose__pricebox__price--currency">R$</small>18,90
       </span>

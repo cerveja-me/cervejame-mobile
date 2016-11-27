@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="1238 70.611 20.08 23.976">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #d84040;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="path" class="cls-1" d="M0-819.2H20.08v23.976H0Z" transform="translate(0 819.199)"/>
+    </clipPath>
+  </defs>
+  <g id="group" transform="translate(1238 70.611)">
+    <g id="group-2" data-name="group" class="cls-2">
+      <g id="group-3" data-name="group" transform="translate(0 0)">
+        <path id="path-2" data-name="path" class="cls-3" d="M-410.038-410.038a3.3,3.3,0,0,1-4.645,0,3.3,3.3,0,0,1,0-4.645,3.3,3.3,0,0,1,4.645,0,3.3,3.3,0,0,1,0,4.645m4.8-9.441a10.13,10.13,0,0,0-14.236,0,10.13,10.13,0,0,0,0,14.236l6.593,6.593a.724.724,0,0,0,1.049,0l6.593-6.593a10.13,10.13,0,0,0,0-14.236" transform="translate(422.4 422.4)"/>
+      </g>
+    </g>
+  </g>
+</svg>
