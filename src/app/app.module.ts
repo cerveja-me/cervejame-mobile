@@ -17,7 +17,8 @@ import {FinishPage} from '../pages/finish/finish';
   ModalContentPage,
   LoginPage,
   MapPage,
-  FinishPage
+  FinishPage,
+  TourPage
   ],
   imports: [
   IonicModule.forRoot(MyApp)
@@ -30,7 +31,8 @@ import {FinishPage} from '../pages/finish/finish';
   ModalContentPage,
   LoginPage,
   MapPage,
-  FinishPage
+  FinishPage,
+  TourPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
