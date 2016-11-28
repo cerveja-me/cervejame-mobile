@@ -1,3 +1,57 @@
 page-tour {
+    .btn-start {
+        @include border-radius(50px);
+        @extend .font-bold;
 
+        position: absolute;
+        bottom: 0;
+        background: #D5A86C;
+        border: 2px solid #573317;
+        font-size: 17px;
+        padding: 10px 30px;
+        height: auto;
+        left: 50%;
+        width: 290px;
+        margin-left: -145px;
+        transition: all .5s;
+        color: #573317;
+        text-transform: uppercase;
+    }
+    
+    .icone-tour1 {
+        background-image: url(../assets/icon/tour1.svg);
+        background-size: cover;
+        width: 106px;
+        height: 150px;
+        display: inline-block;
+    }
+    
+    .icone-tour2 {
+        background-image: url(../assets/icon/tour2.svg);
+        background-size: cover;
+        width: 106px;
+        height: 145px;
+        display: inline-block;
+    }
+}
+
+.slider-nav {
+    width: 100%;
+    position: absolute;
+    bottom: 5%;
+    
+    &__item {
+        @include border-radius(50px);
+        
+        width: 10px;
+        height: 10px;
+        background: white;
+        display: inline-block;
+        margin: 0 2px;
+        opacity: 0.3;
+        
+        &.active {
+            opacity: 1;
+        }
+    }
 }
