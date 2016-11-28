@@ -20,37 +20,30 @@ declare var google;
 
     constructor(public navCtrl: NavController, public modalCtrl:ModalController) {}
 
-    // ionViewDidLoad() {
-      //   let characterNum = {charNum: 0};
-      //   // let modal = this.modalCtrl.create(ModalContentPage, characterNum);
-      //   // modal.present();
-      //   console.log('Hello MapPage Page');
-      //   // this.openModal({charNum: 0});
-      //   this.loadMap();
-      // }
-      ionViewLoaded(){
-        this.loadMap();
-      }
-
-      loadMap(){
-
-        let latLng = new google.maps.LatLng(-34.9290, 138.6010);
-
-        let mapOptions = {
-          center: latLng,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        console.log('mapaaaa');
-      }
-
-      finishRequest(){
-        // this.navCtrl.push(FinishPage);
-      }
-      openModal(characterNum){
-        let modal = this.modalCtrl.create(ModalContentPage, characterNum);
-        modal.present();
-      }
+    ionViewDidLoad() {
+      this.loadMap();
+      this.openModal({charNum: 0});
     }
+
+    loadMap(){
+
+      let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+    }
+
+    finishRequest(){
+      // this.navCtrl.push(FinishPage);
+    }
+    openModal(characterNum){
+      let modal = this.modalCtrl.create(ModalContentPage, characterNum);
+      modal.present();
+    }
+  }
