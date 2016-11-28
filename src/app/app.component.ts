@@ -6,6 +6,8 @@ import { TourPage } from '../pages/tour/tour';
 import { MapPage } from '../pages/map/map';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
+import {ModalMapPage} from '../pages/modal-map/modal-map';
+
 
 
 @Component({

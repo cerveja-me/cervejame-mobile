@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
 
-import { ModalContentPage } from '../modal-receipt/modal-receipt';
-import { NavController,ModalController, Platform, NavParams } from 'ionic-angular';
+import { ModalMapPage } from '../modal-map/modal-map';
+import { NavController, ModalController, Platform, NavParams } from 'ionic-angular';
 
 declare var google;
 /*
@@ -43,7 +43,7 @@ declare var google;
       // this.navCtrl.push(FinishPage);
     }
     openModal(characterNum){
-      let modal = this.modalCtrl.create(ModalContentPage, characterNum);
+      let modal = this.modalCtrl.create(ModalMapPage, characterNum);
       modal.present();
     }
   }
