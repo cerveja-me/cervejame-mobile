@@ -1,173 +1,177 @@
 @import '../../app/_mixins';
 
 page-page1 {
-    .bkg-choose {
-        background-image: url(../assets/img/bkg-choose.jpg);
-        background-size: cover;
-            background-position: center;
-    }
-    
-    .table {
-        background-image: url(../assets/img/table.png);
-        background-size: cover;
-            background-position: center;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 75%;
-    }
-    
-    .choose {
-        &__pricebox {
-            @include border-radius(30px);
-            
-            border: 2px solid #fff;
-            width: 215px;
-            background: rgba(0,0,0,.3);
-            padding: 15px;
-            display: inline-block;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            margin-left: -112px;
-            opacity: 0;
-            transition: all .5s;
-            z-index: 1;
-            
-            &__info {
-                @extend .font-bold;
-                
-                color: white;
-                text-transform: uppercase;
-                font-size: 14px;
-            }
-            
-            &__price {
-                @extend .font-bold;
-                
-                color: white;
-                font-size: 38px;
-                display: inline-block;
-                vertical-align: middle;
-            
-                &--currency {
-                     @extend .font-regular;
-                    
-                    font-size: 20px;
-                    display: inline-block;
-                    vertical-align: middle;
-                    margin-right: 5px;
-                }
-            }
-        }
-        
-        &__picture {
-            height: 58%;
-            width: 136%;
-            z-index: 2;
-            left: -18%;
-            display: block;
-            position: absolute;
-            bottom: 14%;
-            margin: 0;
-            z-index: 2;
-            transform: scale(0.8);
-            transition: all 0.5s;
-        }
-        
-        &__bottom {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-        }
-    }
-    
-    .free-shipping {
+  .receipt.content-ios {
+    background: none !important;
+  }
+
+  .bkg-choose {
+    background-image: url(../assets/img/bkg-choose.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .table {
+    background-image: url(../assets/img/table.png);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 75%;
+  }
+
+  .choose {
+    &__pricebox {
+      @include border-radius(30px);
+
+      border: 2px solid #fff;
+      width: 215px;
+      background: rgba(0,0,0,.3);
+      padding: 15px;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -112px;
+      opacity: 0;
+      transition: all .5s;
+      z-index: 1;
+
+      &__info {
         @extend .font-bold;
-        @include border-radius(100px);
-        
-        background: #D84040;
-        width: 66px;
-        height: 66px;
+
         color: white;
-        text-align: center;
-        display: block;
-        position: absolute;
-        bottom: -24px;
-        right: -28px;
-        padding: 17px 10px;
-        font-size: 12px;
         text-transform: uppercase;
-        z-index: 4;
-    }
-    
-    .cold-beer {
+        font-size: 14px;
+      }
+
+      &__price {
         @extend .font-bold;
-        @include border-radius(50px);
-        
-        background: #80BFFF;
+
         color: white;
-        text-align: center;
-        display: block;
-        position: absolute;
-        bottom: -46px;
-        right: -31px;
-        padding: 4px 11px;
-        font-size: 12px;
-        text-transform: uppercase;
-        z-index: 4;
-    }
-}   
+        font-size: 38px;
+        display: inline-block;
+        vertical-align: middle;
+
+        &--currency {
+         @extend .font-regular;
+
+         font-size: 20px;
+         display: inline-block;
+         vertical-align: middle;
+         margin-right: 5px;
+       }
+     }
+   }
+
+   &__picture {
+    height: 58%;
+    width: 136%;
+    z-index: 2;
+    left: -18%;
+    display: block;
+    position: absolute;
+    bottom: 14%;
+    margin: 0;
+    z-index: 2;
+    transform: scale(0.8);
+    transition: all 0.5s;
+  }
+
+  &__bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.free-shipping {
+  @extend .font-bold;
+  @include border-radius(100px);
+
+  background: #D84040;
+  width: 66px;
+  height: 66px;
+  color: white;
+  text-align: center;
+  display: block;
+  position: absolute;
+  bottom: -24px;
+  right: -28px;
+  padding: 17px 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  z-index: 4;
+}
+
+.cold-beer {
+  @extend .font-bold;
+  @include border-radius(50px);
+
+  background: #80BFFF;
+  color: white;
+  text-align: center;
+  display: block;
+  position: absolute;
+  bottom: -46px;
+  right: -31px;
+  padding: 4px 11px;
+  font-size: 12px;
+  text-transform: uppercase;
+  z-index: 4;
+}
+}
 
 .choose-slider {
-    height: 75%;
+  height: 75%;
 }
 
 .btn-choose {
-    @include border-radius(50px);
-    @extend .font-bold;
-    
-    position: absolute;
-    bottom: 0;
-    background: #D84040;
-    border: 2px solid white;
-    font-size: 24px;
-    padding: 10px 30px;
-    height: auto;
-    left: 50%;
-    width: 200px;
-    margin-left: -100px;
-    opacity: 0;
-    transition: all .5s;
+  @include border-radius(50px);
+  @extend .font-bold;
+
+  position: absolute;
+  bottom: 0;
+  background: #D84040;
+  border: 2px solid white;
+  font-size: 24px;
+  padding: 10px 30px;
+  height: auto;
+  left: 50%;
+  width: 200px;
+  margin-left: -100px;
+  opacity: 0;
+  transition: all .5s;
 }
 
 .swiper-slide-next {
     //margin-left: -150px;
-   
-}
 
-.swiper-slide-prev {
+  }
+
+  .swiper-slide-prev {
     //margin-left: -150px;
-    
-  
-}
 
-.swiper-slide-active {
+
+  }
+
+  .swiper-slide-active {
     margin-left: auto;
     z-index: 3;
-    
+
     .choose__pricebox,
     .btn-choose {
-        opacity: 1;
+      opacity: 1;
     }
-    
-    .choose__picture {
-        transform: scale(1);
-    }
-}
 
-.icon-cold {
+    .choose__picture {
+      transform: scale(1);
+    }
+  }
+
+  .icon-cold {
     background-image: url(../assets/icon/cold.svg);
     background-size: cover;
     width: 20px;
@@ -175,4 +179,4 @@ page-page1 {
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
-}
+  }

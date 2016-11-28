@@ -7,6 +7,10 @@ import { MapPage } from '../pages/map/map';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import {ModalMapPage} from '../pages/modal-map/modal-map';
+import { ModalTourPage } from '../pages/modal-tour/modal-tour';
+import { User } from '../providers/user';
+
+
 
 
 
@@ -16,7 +20,7 @@ import {ModalMapPage} from '../pages/modal-map/modal-map';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = TourPage;
+  rootPage: any = Page1;
 
   pages: Array<{title: string, component: any}>;
 
