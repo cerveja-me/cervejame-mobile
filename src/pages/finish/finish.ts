@@ -6,17 +6,20 @@ import { NavController } from 'ionic-angular';
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
-*/
-@Component({
-  selector: 'page-finish',
-  templateUrl: 'finish.html'
-})
-export class FinishPage {
+  */
+  @Component({
+    selector: 'page-finish',
+    templateUrl: 'finish.html'
+  })
+  export class FinishPage {
 
-  constructor(public navCtrl: NavController) {}
+    constructor(public navCtrl: NavController) {}
 
-  ionViewDidLoad() {
-    console.log('Hello FinishPage Page');
+    ionViewDidLoad() {
+      console.log('Hello FinishPage Page');
+    }
+    gotopage1(){
+
+    }
+
   }
-
-}
