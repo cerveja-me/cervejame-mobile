@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { TourPage } from '../pages/tour/tour';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
@@ -16,7 +17,8 @@ import {FinishPage} from '../pages/finish/finish';
   ModalContentPage,
   LoginPage,
   MapPage,
-  FinishPage
+  FinishPage,
+  TourPage
   ],
   imports: [
   IonicModule.forRoot(MyApp)
@@ -29,7 +31,8 @@ import {FinishPage} from '../pages/finish/finish';
   ModalContentPage,
   LoginPage,
   MapPage,
-  FinishPage
+  FinishPage,
+  TourPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
