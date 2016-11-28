@@ -17,6 +17,38 @@ page-finish {
         color: #573317;
         text-transform: uppercase;
     }
+    
+     .map {
+
+        &__box {
+          padding: 0 15px;
+          background: white;
+          width: 100%;
+          height: 60px;
+          z-index: 2;
+          box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+
+          &__input {
+            @extend .font-regular;
+
+            background: transparent;
+            color: #666;
+            border: 0;
+            height: 60px;
+            width: 70%;
+          }
+        }
+     }
+         
+    .icon-phone {
+        background-image: url(../assets/icon/map-pin.svg);
+        background-size: cover;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
 }
 
 .icone-shipping {
