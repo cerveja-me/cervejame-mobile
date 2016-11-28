@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import {LoginPage} from '../login/login';
 import { MapPage } from '../map/map';
+import { FinishPage } from '../finish/finish';
 
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
@@ -25,5 +26,8 @@ export class ModalContentPage {
   gotomap(){
     this.navCtrl.push(LoginPage);
     console.log('aqui vai pro mapa');
+  }
+  finishRequest(){
+    this.navCtrl.push(FinishPage);
   }
 }
