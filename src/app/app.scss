@@ -126,3 +126,20 @@
         background: #83DD7F;
     }
 }
+
+@keyframes overlay {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    z-index: 1;
+    animation: overlay 0.3s linear .3s 1 normal;
+    animation-fill-mode: both;
+}
