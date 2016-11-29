@@ -14,6 +14,7 @@ import { User } from '../providers/user';
 
 
 
+
 @Component({
   templateUrl: 'app.html'
 })

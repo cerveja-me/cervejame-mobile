@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
-import { Storage } from '@ionic/storage';
+import { Http,Response,Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+
+import { Device } from './device';
+
 
 
 
@@ -13,26 +15,65 @@ import { Storage } from '@ionic/storage';
     */
   @Injectable()
   export class User {
+    items: Array<{}>;
+    private _url:string = "http://192.168.0.104:1234/192.168.0.104:1337/";
+    private _deviceUrl:string = "device";
+    private _location:string  = "location";
 
-    constructor(public http: Http) {
+    constructor(private _http: Http,private _device:Device){ }
 
-    }
-    firstTimeApp(){
-      let storage =new Storage();
+    createDevice(){
       return new Promise((resolve, reject) => {
-        storage.get('ftime')
-        .then((val) => {
-          if(val){
-            resolve(false);
-          }else{
-            storage.set('ftime', 'false');
-            resolve(true);
-          }
+        // let device = new Device();
+        this._device.getPushToken()
+        .then(device=>{
+          let body = JSON.stringify({ "push_token":device});
+          let headers = new Headers({ 'Content-Type': 'application/json'});
+          let options = new RequestOptions({ headers: headers, method: "post" });
+          this._http.post(this._url+this._deviceUrl, body,options)
+          .toPromise()
+          .then((res)=>{
+            this._device.setDevice(res.json());
+            resolve(res.json());
+          })
+          .catch(this.handleError);
         });
       });
+    };
+    getProducts(){
+      return new Promise((resolve, reject) => {
+        this._device.getDevice()
+        .then((dev)=>{
+          this._device.getLocation()
+          .then((location)=>{
+
+            let body = JSON.stringify({ "device":dev['id'],"location":location[0]+","+location[1]});
+            let headers = new Headers({ 'Content-Type': 'application/json'});
+            let options = new RequestOptions({ headers: headers, method: "post" });
+            console.log('location->',body);
+            this._http.post(this._url+this._location, body,options)
+            .toPromise()
+            .then((res)=>{
+              this._device.setDevice(res.json());
+              resolve(res.json());
+            })
+            .catch(this.handleError);
+
+          })
 
 
+        })
+      });
+    }
 
+
+    private extractData(res: Response) {
+      let body = res.json();
+      this._device.setDevice(body.data);
+      return body.data || { };
+    }
+    private handleError (error: Response | any) {
+      console.log('err->',error);
     }
 
   }
