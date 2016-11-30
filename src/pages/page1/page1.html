@@ -11,8 +11,22 @@
   <div class="table"></div>
   <h1 class="logo-home"></h1>
   <!-- <h1 *ngFor="let p of products">oi</h1> -->
+ 
+    <ion-slides class="choose-slider">
+       <ion-slide>
+           <p class="msg-empty">Não vamos encher o seu copo hoje.<br/><br/>
 
-  <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="products.length">
+Ainda não atendemos sua região,
+mas já estamos trabalhando nisso.</p>
+        <p class="choose__bottom">
+          <figure class="choose__picture">
+            <img src="assets/img/empty.png">
+          </figure>
+        </p>
+        </ion-slide>
+    </ion-slides>
+    
+<ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="false">
     <ion-slide *ngIf="products[0]">
      <p class="choose__pricebox">
        <span class="choose__pricebox__info">{{products[0].product.description}} </span>

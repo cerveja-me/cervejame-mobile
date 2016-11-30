@@ -180,3 +180,16 @@ page-page1 {
     vertical-align: middle;
     margin-right: 5px;
   }
+
+
+.msg-empty {
+    @extend .font-bold;
+    
+    top: 0;
+    color: white;
+    position: absolute;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    padding: 0 15px;
+}
