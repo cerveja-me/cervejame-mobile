@@ -3,6 +3,7 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { ModalMapPage } from '../modal-map/modal-map';
 import { NavController, ModalController, Platform, NavParams } from 'ionic-angular';
 
+import { Device } from '../../providers/device';
 declare var google;
 /*
   Generated class for the Map page.
@@ -18,32 +19,31 @@ declare var google;
     @ViewChild('map') mapElement: ElementRef;
     map: any;
 
-    constructor(public navCtrl: NavController, public modalCtrl:ModalController) {}
+    constructor(public navCtrl: NavController, public modalCtrl:ModalController, private _device:Device) {}
 
     ionViewDidLoad() {
       this.loadMap();
-      this.openModal({charNum: 0});
     }
 
     loadMap(){
+      this._device.getLocation()
+      .then((location)=>{
+        console.log('location->',location);
+        let latLng = new google.maps.LatLng(location[0], location[1]);
 
-      let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+        let mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
 
-      let mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
-
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      })
     }
 
-    finishRequest(){
-      // this.navCtrl.push(FinishPage);
-    }
-    openModal(characterNum){
-      let modal = this.modalCtrl.create(ModalMapPage, characterNum);
+
+    openModal(){
+      let modal = this.modalCtrl.create(ModalMapPage);
       modal.present();
     }
   }
