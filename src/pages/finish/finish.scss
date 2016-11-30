@@ -4,7 +4,7 @@ page-finish {
         @extend .font-bold;
 
         position: absolute;
-        bottom: 0;
+        bottom: -25px;
         background: #D5A86C;
         border: 2px solid #FFFFDD;
         font-size: 17px;
@@ -18,7 +18,7 @@ page-finish {
         text-transform: uppercase;
     }
     
-     .map {
+     .phone {
 
         &__box {
           padding: 0 15px;
@@ -27,6 +27,7 @@ page-finish {
           height: 60px;
           z-index: 2;
           box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+            margin-bottom: 20px;
 
           &__input {
             @extend .font-regular;
@@ -41,7 +42,7 @@ page-finish {
      }
          
     .icon-phone {
-        background-image: url(../assets/icon/map-pin.svg);
+        background-image: url(../assets/icon/phone.svg);
         background-size: cover;
         width: 24px;
         height: 24px;
