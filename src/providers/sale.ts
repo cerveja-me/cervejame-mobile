@@ -20,11 +20,8 @@ import { Device } from './device';
     setProduct(p){
       this._storage.set('selected', p);
     }
-    getProduct(p){
-      this._storage.get('selected')
-      .then((prod)=>{
-        console.log('prod->',prod);
-      })
+    getProduct(){
+      return this._storage.get('selected');
     }
     increaseAmount(){
       console.log('mais cerveja');

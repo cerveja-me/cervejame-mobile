@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import {LoginPage} from '../login/login';
 import { MapPage } from '../map/map';
 import { FinishPage } from '../finish/finish';
+import { Sale } from '../../providers/sale';
 
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
@@ -18,8 +19,14 @@ export class ModalContentPage {
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
-    public navCtrl: NavController
-    ) {  }
+    public navCtrl: NavController,
+    private _sale:Sale
+    ) {
+    _sale.getProduct()
+    .then((prod)=>{
+      this.beer=prod;
+    })
+  }
 
   dismiss() {
     this.viewCtrl.dismiss();
@@ -33,9 +40,11 @@ export class ModalContentPage {
   }
 
   increaseAmount(){
-    console.log('mais cerveja');
+    this.beer.amount++;
   }
   decreaseAmount(){
-    console.log('Menos cerveja');
+    if(this.beer.amount>1){
+      this.beer.amount--;
+    }
   }
 }
