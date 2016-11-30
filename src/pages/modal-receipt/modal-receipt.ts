@@ -25,6 +25,8 @@ export class ModalContentPage {
     _sale.getProduct()
     .then((prod)=>{
       this.beer=prod;
+    }).catch((err)=>{
+      console.log('err->',err);
     })
   }
 

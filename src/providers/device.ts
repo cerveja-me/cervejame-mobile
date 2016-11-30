@@ -58,7 +58,6 @@ import {Geolocation} from 'ionic-native';
       });
     }
     setDevice(device){
-      console.log('device->',device);
       this.storage.set('device',device);
     }
     getDevice(){

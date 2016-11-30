@@ -27,6 +27,8 @@ export class Page1 {
         let modal = this.modalCtrl.create(ModalTourPage, {charNum: 0});
         modal.present();
       }
+    }).catch((err)=>{
+      console.log('err->',err);
     });
     this.loader.present();
     _user.createDevice()

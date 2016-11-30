@@ -13,9 +13,7 @@ import { Device } from './device';
   @Injectable()
   export class Sale {
 
-    constructor(public http: Http, private _storage:Storage, _device:Device) {
-      console.log('Hello Sale Provider');
-    }
+    constructor(public http: Http, private _storage:Storage, _device:Device) {}
 
     setProduct(p){
       this._storage.set('selected', p);
@@ -23,11 +21,4 @@ import { Device } from './device';
     getProduct(){
       return this._storage.get('selected');
     }
-    increaseAmount(){
-      console.log('mais cerveja');
-    }
-    decreaseAmount(){
-      console.log('menos cerveja');
-    }
-
   }
