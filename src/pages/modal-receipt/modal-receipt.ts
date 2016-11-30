@@ -12,6 +12,7 @@ import {NavController, Platform, NavParams, ViewController } from 'ionic-angular
 })
 export class ModalContentPage {
   character;
+  beer;
 
   constructor(
     public platform: Platform,
@@ -29,5 +30,12 @@ export class ModalContentPage {
   }
   finishRequest(){
     this.navCtrl.push(FinishPage);
+  }
+
+  increaseAmount(){
+    console.log('mais cerveja');
+  }
+  decreaseAmount(){
+    console.log('Menos cerveja');
   }
 }

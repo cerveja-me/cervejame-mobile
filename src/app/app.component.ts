@@ -9,6 +9,7 @@ import { Page2 } from '../pages/page2/page2';
 import {ModalMapPage} from '../pages/modal-map/modal-map';
 import { ModalTourPage } from '../pages/modal-tour/modal-tour';
 import { User } from '../providers/user';
+import { Sale } from '../providers/sale';
 
 
 

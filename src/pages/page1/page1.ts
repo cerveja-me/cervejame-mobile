@@ -7,7 +7,7 @@ import { ModalTourPage } from '../modal-tour/modal-tour';
 
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
-
+import { Sale } from '../../providers/sale';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class Page1 {
     content: "ta trincando"
   });
 
-  constructor(public modalCtrl: ModalController, private _device:Device, private _user:User, private _loading:LoadingController) {
+  constructor(public modalCtrl: ModalController, private _device:Device, private _user:User, private _loading:LoadingController,private _sale:Sale) {
     _device.firstTimeApp()
     .then((res)=>{
       if(res){
@@ -49,11 +49,10 @@ export class Page1 {
     //   loader.present();
     // }
     selectBeer(beer){
-      console.log('beer-> ',beer);
-
-      // let modal = this.modalCtrl.create(ModalContentPage, characterNum);
-      // modal.present();
+      beer.amount=1;
+      this._sale.setProduct(beer);
+      let modal = this.modalCtrl.create(ModalContentPage,beer);
+      modal.present();
     }
-
   }
 

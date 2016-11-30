@@ -26,5 +26,11 @@ import { Device } from './device';
         console.log('prod->',prod);
       })
     }
+    increaseAmount(){
+      console.log('mais cerveja');
+    }
+    decreaseAmount(){
+      console.log('menos cerveja');
+    }
 
   }

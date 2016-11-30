@@ -12,6 +12,7 @@ import {FinishPage} from '../pages/finish/finish';
 
 import { User } from '../providers/user';
 import { Device } from '../providers/device';
+import { Sale } from '../providers/sale';
 
 import { Storage } from '@ionic/storage';
 
@@ -28,6 +29,6 @@ import { Storage } from '@ionic/storage';
   MyApp,Page1,Page2,ModalContentPage,
   LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},User,Device,Storage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},User,Device,Sale,Storage]
 })
 export class AppModule {}
