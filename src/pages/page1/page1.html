@@ -26,7 +26,7 @@
       <figure class="choose__picture">
         <img [src]="'assets/img/'+products[0].product.img">
       </figure>
-      <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>
+      <button ion-button secondary class="btn-choose" (click)="selectBeer(products[0])">ESCOLHER</button>
     </p>
   </ion-slide>
   <ion-slide *ngIf="products[1]">
@@ -42,7 +42,7 @@
     <figure class="choose__picture">
       <img [src]="'assets/img/'+products[1].product.img">
     </figure>
-    <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>
+    <button ion-button secondary class="btn-choose" (click)="selectBeer(products[1])">ESCOLHER</button>
   </p>
 </ion-slide>
 <ion-slide *ngIf="products[2]">
@@ -58,7 +58,7 @@
   <figure class="choose__picture">
     <img [src]="'assets/img/'+products[2].product.img">
   </figure>
-  <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>
+  <button ion-button secondary class="btn-choose" (click)="selectBeer(products[2])">ESCOLHER</button>
 </p>
 </ion-slide>
 

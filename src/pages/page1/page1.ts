@@ -17,7 +17,7 @@ import { Device } from '../../providers/device';
 export class Page1 {
   products=[];
   loader = this._loading.create({
-    content: "Please wait..."
+    content: "ta trincando"
   });
 
   constructor(public modalCtrl: ModalController, private _device:Device, private _user:User, private _loading:LoadingController) {
@@ -48,9 +48,11 @@ export class Page1 {
   // presentLoading() {
     //   loader.present();
     // }
-    openModal(characterNum){
-      let modal = this.modalCtrl.create(ModalContentPage, characterNum);
-      modal.present();
+    selectBeer(beer){
+      console.log('beer-> ',beer);
+
+      // let modal = this.modalCtrl.create(ModalContentPage, characterNum);
+      // modal.present();
     }
 
   }
