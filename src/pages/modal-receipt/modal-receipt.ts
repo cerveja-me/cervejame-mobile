@@ -41,10 +41,12 @@ export class ModalContentPage {
 
   increaseAmount(){
     this.beer.amount++;
+    this._sale.setProduct(this.beer);
   }
   decreaseAmount(){
     if(this.beer.amount>1){
       this.beer.amount--;
+      this._sale.setProduct(this.beer);
     }
   }
 }
