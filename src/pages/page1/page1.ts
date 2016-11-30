@@ -15,7 +15,7 @@ import { Device } from '../../providers/device';
   templateUrl: 'page1.html'
 })
 export class Page1 {
-  products=null;
+  products=[];
   loader = this._loading.create({
     content: "Please wait..."
   });
@@ -33,9 +33,10 @@ export class Page1 {
     .then((res)=>{
       _user.getProducts()
       .then((_products)=>{
-        this.loader.dismiss();
+
         this.products=_products['products'];
         console.log('products->', _products['products']);
+        this.loader.dismiss();
       });
     });
   }
@@ -47,10 +48,10 @@ export class Page1 {
   // presentLoading() {
     //   loader.present();
     // }
-  openModal(characterNum){
-    let modal = this.modalCtrl.create(ModalContentPage, characterNum);
-    modal.present();
-  }
+    openModal(characterNum){
+      let modal = this.modalCtrl.create(ModalContentPage, characterNum);
+      modal.present();
+    }
 
-}
+  }
 

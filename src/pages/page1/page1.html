@@ -12,24 +12,55 @@
   <h1 class="logo-home"></h1>
   <!-- <h1 *ngFor="let p of products">oi</h1> -->
 
-  <ion-slides class="choose-slider" [options]="sliderOptions">
-
-    <ion-slide *ngFor="let p of products">
+  <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="products.length">
+    <ion-slide *ngIf="products[0]">
      <p class="choose__pricebox">
-       <span class="choose__pricebox__info">{{p.product.description}} </span>
+       <span class="choose__pricebox__info">{{products[0].product.description}} </span>
        <span class="choose__pricebox__price">
-        <small class="choose__pricebox__price--currency">R$</small>{{p.price}}
+        <small class="choose__pricebox__price--currency">R$</small>{{products[0].price}}
       </span>
       <span class="free-shipping">Frete Grátis</span>
       <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
     </p>
     <p class="choose__bottom">
       <figure class="choose__picture">
-        <img [src]="'assets/img/'+p.product.img">
+        <img [src]="'assets/img/'+products[0].product.img">
       </figure>
       <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>
     </p>
   </ion-slide>
+  <ion-slide *ngIf="products[1]">
+   <p class="choose__pricebox">
+     <span class="choose__pricebox__info">{{products[1].product.description}} </span>
+     <span class="choose__pricebox__price">
+      <small class="choose__pricebox__price--currency">R$</small>{{products[1].price}}
+    </span>
+    <span class="free-shipping">Frete Grátis</span>
+    <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+  </p>
+  <p class="choose__bottom">
+    <figure class="choose__picture">
+      <img [src]="'assets/img/'+products[1].product.img">
+    </figure>
+    <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>
+  </p>
+</ion-slide>
+<ion-slide *ngIf="products[2]">
+ <p class="choose__pricebox">
+   <span class="choose__pricebox__info">{{products[2].product.description}} </span>
+   <span class="choose__pricebox__price">
+    <small class="choose__pricebox__price--currency">R$</small>{{products[2].price}}
+  </span>
+  <span class="free-shipping">Frete Grátis</span>
+  <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+</p>
+<p class="choose__bottom">
+  <figure class="choose__picture">
+    <img [src]="'assets/img/'+products[2].product.img">
+  </figure>
+  <button ion-button secondary class="btn-choose" (click)="openModal({charNum: 0})">ESCOLHER</button>
+</p>
+</ion-slide>
 
 </ion-slides>
 </ion-content>
