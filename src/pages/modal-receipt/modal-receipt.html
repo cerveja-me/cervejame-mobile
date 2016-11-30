@@ -24,7 +24,7 @@
     <div class="receipt__total">
       <h2 class="receipt__title">Total a pagar</h2>
       <span class="total__pricebox" *ngIf="beer">
-        <small class="total__pricebox--currency" >R$</small>{{beer.price * beer.amount}}
+        <small class="total__pricebox--currency" >R$</small>{{beer.price * beer.amount | number:'2.2-2'}}
       </span>
     </div>
     <p class="receipt__alert">Só aceitamos cartão de crédito/débito.</p>

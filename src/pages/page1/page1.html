@@ -31,7 +31,7 @@ mas já estamos trabalhando nisso.</p>
          <p class="choose__pricebox">
            <span class="choose__pricebox__info">{{products[0].product.description}} </span>
            <span class="choose__pricebox__price">
-             <small class="choose__pricebox__price--currency">R$</small>{{products[0].price }}
+             <small class="choose__pricebox__price--currency">R$</small>{{products[0].price | number:'2.2-2'}}
            </span>
            <span class="free-shipping">Frete Grátis</span>
            <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
@@ -47,7 +47,7 @@ mas já estamos trabalhando nisso.</p>
        <p class="choose__pricebox">
          <span class="choose__pricebox__info">{{products[1].product.description}} </span>
          <span class="choose__pricebox__price">
-          <small class="choose__pricebox__price--currency">R$</small>{{products[1].price}}
+          <small class="choose__pricebox__price--currency">R$</small>{{products[1].price | number:'2.2-2'}}
         </span>
         <span class="free-shipping">Frete Grátis</span>
         <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
@@ -63,12 +63,12 @@ mas já estamos trabalhando nisso.</p>
      <p class="choose__pricebox">
        <span class="choose__pricebox__info">{{products[2].product.description}} </span>
        <span class="choose__pricebox__price">
-        <small class="choose__pricebox__price--currency">R$</small>{{products[2].price}}
-      </span>
-      <span class="free-shipping">Frete Grátis</span>
-      <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
-    </p>
-    <p class="choose__bottom">
+         <small class="choose__pricebox__price--currency">R$</small>{{products[2].price | number:'2.2-2'}}
+       </span>
+       <span class="free-shipping">Frete Grátis</span>
+       <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+     </p>
+     <p class="choose__bottom">
       <figure class="choose__picture">
         <img [src]="'assets/img/'+products[2].product.img">
       </figure>
