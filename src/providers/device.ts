@@ -44,7 +44,14 @@ import {Library} from './constants';
     }
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {
-        resolve("venancio aires 204, SP, SP")//TODO mudar para funcção do google
+        console.log('location->',location);
+        let url = Library.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
+        console.log('url->',url);
+        this.http.get(url).toPromise()
+        .then((res)=>{
+          let add = res.json()['results'];
+          resolve(add[0].formatted_address)
+        });
       })
     }
 

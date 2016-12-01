@@ -3,7 +3,7 @@
 <ion-content>
   <div class="map__adress">
    <span class="icon-map"></span>
-   <input class="map__adress__input" placeholder="Teste" type="text" [(ngModel)]="address" (ngModelChange)="addressChange(address)"/>
+   <input class="map__adress__input" placeholder="" type="text" [(ngModel)]="address" (ngModelChange)="addressChange(address)"/>
    <ul class="map__adress__autocomplete" *ngIf="addressOptions.length">
      <li class="map__adress__autocomplete__item" *ngFor="let ad of addressOptions" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
    </ul>

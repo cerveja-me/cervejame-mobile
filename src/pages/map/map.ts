@@ -43,6 +43,15 @@ declare var google;
         }
 
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.map.addListener('center_changed',()=>{
+          let _loc={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
+          this._device.getAddressFromLocation(_loc)
+          .then((address)=>{
+            console.log('address->>>>',address);
+            this.address = address;
+            console.log('address->>>>',this.address);
+          })
+        });
       })
     }
     addressChange(address){
