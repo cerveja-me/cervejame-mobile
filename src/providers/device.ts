@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation} from 'ionic-native';
 
-import {API} from './constants';
-import {PHRASES} from './constants';
+import {api} from './constants';
+import {phrases} from './constants';
 
 /*
   Generated class for the Device provider.
@@ -45,7 +45,7 @@ import {PHRASES} from './constants';
     }
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {
-        let url =API.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
+        let url =api.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
         this.http.get(url).toPromise()
         .then((res)=>{
           let add = res.json()['results'];
@@ -61,7 +61,7 @@ import {PHRASES} from './constants';
 
     getLocationsWithAddres(address){
       return new Promise((resolve, reject) => {
-        let url =API.GOOGLE_GEOCODE.replace('#',address);
+        let url =api.GOOGLE_GEOCODE.replace('#',address);
         this.http.get(url).toPromise()
         .then((res)=>{
           resolve(res.json());
@@ -99,6 +99,6 @@ import {PHRASES} from './constants';
     }
 
     getRandonLoading():string{
-      return PHRASES[Math.floor(Math.random()*(PHRASES.length-0+1)+0)];
+      return phrases[Math.floor(Math.random()*(phrases.length-0+1)+0)];
     }
   }

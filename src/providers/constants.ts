@@ -1,4 +1,4 @@
-export let PHRASES =[
+export let phrases =[
 "oi",
 "teste",
 "buscando gelo com o pé grande",
@@ -6,9 +6,9 @@ export let PHRASES =[
 "GELADAAAAAA",
 "Tira, tira, tira ...",
 "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa"
-];
+]
 
-export let API = {
+export let api= {
   URL:"http://api.cerveja.me/",
   DEVICE:"device",
   LOCATION:"location",
