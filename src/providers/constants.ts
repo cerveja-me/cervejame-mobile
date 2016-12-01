@@ -1,7 +1,16 @@
-export class Library {
-  public static get URL():string { return "http://localhost:1337/api.cerveja.me/"; }
-  public static get DEVICE():string { return "device"; }
-  public static get LOCATION():string { return "location"; }
-  public static get GOOGLE_GEOCODE():string { return "https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"}
-  public static get GOOGLE_ADDRESS():string { return "https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"}
-}
+export let API = {
+  URL:"http://api.cerveja.me/",
+  DEVICE:"device",
+  LOCATION:"location",
+  GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
+  GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
+};
+
+export let PHRASES =[
+"oi",
+"teste",
+"buscando gelo com o pé grande",
+"brigando com os tigres tibetanos pela sua cerveja",
+"GELADAAAAAA",
+"Tira, tira, tira ..."
+];

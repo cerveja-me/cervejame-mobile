@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Library} from './constants.ts';
+import {API} from './constants.ts';
 
 import { Device } from './device';
 
@@ -27,7 +27,7 @@ import { Device } from './device';
           let body = JSON.stringify({ "push_token":device});
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
-          this._http.post(Library.URL+Library.DEVICE, body,options)
+          this._http.post(API.URL+API.DEVICE, body,options)
           .toPromise()
           .then((res)=>{
             this._device.setDevice(res.json());
@@ -50,7 +50,7 @@ import { Device } from './device';
             let headers = new Headers({ 'Content-Type': 'application/json'});
             let options = new RequestOptions({ headers: headers, method: "post" });
 
-            this._http.post(Library.URL+Library.LOCATION, body,options)
+            this._http.post(API.URL+API.LOCATION, body,options)
             .toPromise()
             .then((res)=>{
               this._device.setDevice(res.json());

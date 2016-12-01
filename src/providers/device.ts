@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http,Response,Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation} from 'ionic-native';
 
-import {Library} from './constants';
+import {API} from './constants';
+import {PHRASES} from './constants';
 
 /*
   Generated class for the Device provider.
@@ -44,7 +45,7 @@ import {Library} from './constants';
     }
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {
-        let url = Library.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
+        let url =API.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
         this.http.get(url).toPromise()
         .then((res)=>{
           let add = res.json()['results'];
@@ -57,9 +58,10 @@ import {Library} from './constants';
 
     }
 
+
     getLocationsWithAddres(address){
       return new Promise((resolve, reject) => {
-        let url = Library.GOOGLE_GEOCODE.replace('#',address);
+        let url =API.GOOGLE_GEOCODE.replace('#',address);
         this.http.get(url).toPromise()
         .then((res)=>{
           resolve(res.json());
@@ -96,4 +98,7 @@ import {Library} from './constants';
       });
     }
 
+    getRandonLoading():string{
+      return PHRASES[Math.floor(Math.random()*(PHRASES.length-0+1)+0)];
+    }
   }

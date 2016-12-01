@@ -9,7 +9,6 @@ import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 
-
 @Component({
   selector: 'page-page1',
   templateUrl: 'page1.html'
@@ -17,9 +16,8 @@ import { Sale } from '../../providers/sale';
 export class Page1 {
   products=[];
   loader = this._loading.create({
-    content: "ta trincando"
+    content: this._device.getRandonLoading()
   });
-
   constructor(public modalCtrl: ModalController, private _device:Device, private _user:User, private _loading:LoadingController,private _sale:Sale) {
     _device.firstTimeApp()
     .then((res)=>{
