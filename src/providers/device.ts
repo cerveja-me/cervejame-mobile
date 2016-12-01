@@ -50,7 +50,7 @@ import {Library} from './constants';
         this.http.get(url).toPromise()
         .then((res)=>{
           let add = res.json()['results'];
-          resolve(add[0].formatted_address)
+          resolve(add[0])
         });
       })
     }
