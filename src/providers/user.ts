@@ -37,6 +37,8 @@ import { Device } from './device';
         });
       });
     };
+
+
     getProducts(){
       return new Promise((resolve, reject) => {
         this._device.getDevice()
@@ -69,5 +71,7 @@ import { Device } from './device';
     private handleError (error: Response | any) {
       console.log('err->',error);
     }
+
+
 
   }
