@@ -7,14 +7,8 @@
    <ul class="map__adress__autocomplete" *ngIf="addressOptions.length">
      <li class="map__adress__autocomplete__item" *ngFor="let ad of addressOptions" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
    </ul>
-
  </div>
-
  <div #map id="map"></div>
-
-
-
-
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
   <button ion-button secondary class="receipt__btn" (click)="openModal()">ENTREGAR AQUI</button>
