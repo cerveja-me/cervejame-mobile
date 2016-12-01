@@ -44,9 +44,7 @@ import {Library} from './constants';
     }
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {
-        console.log('location->',location);
         let url = Library.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
-        console.log('url->',url);
         this.http.get(url).toPromise()
         .then((res)=>{
           let add = res.json()['results'];
@@ -62,7 +60,6 @@ import {Library} from './constants';
     getLocationsWithAddres(address){
       return new Promise((resolve, reject) => {
         let url = Library.GOOGLE_GEOCODE.replace('#',address);
-        console.log('url->',url);
         this.http.get(url).toPromise()
         .then((res)=>{
           resolve(res.json());

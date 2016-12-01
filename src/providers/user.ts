@@ -63,6 +63,7 @@ import { Device } from './device';
     }
 
 
+
     private extractData(res: Response) {
       let body = res.json();
       this._device.setDevice(body.data);
