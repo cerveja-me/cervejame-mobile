@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component,NgZone } from '@angular/core';
 import {LoginPage} from '../login/login';
 import { MapPage } from '../map/map';
 import { FinishPage } from '../finish/finish';
@@ -20,15 +20,16 @@ export class ModalContentPage {
     public params: NavParams,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
-    private _sale:Sale
+    private _sale:Sale,
+    private zone:NgZone
     ) {
-    _sale.getProduct()
-    .then((prod)=>{
-      this.beer=prod;
-    }).catch((err)=>{
-      console.log('err->',err);
-    })
+    this.beer=this.params.get('beer');
+    this.beer.amount=1;
+    console.log('beer->',this.beer);
+    this.zone.run(()=>{});
+
   }
+
 
   dismiss() {
     this.viewCtrl.dismiss();
@@ -43,12 +44,14 @@ export class ModalContentPage {
 
   increaseAmount(){
     this.beer.amount++;
-    this._sale.setProduct(this.beer);
+    this.zone.run(()=>{});
+    // this._sale.setProduct(this.beer);
   }
   decreaseAmount(){
     if(this.beer.amount>1){
       this.beer.amount--;
-      this._sale.setProduct(this.beer);
+      this.zone.run(()=>{});
+      // this._sale.setProduct(this.beer);
     }
   }
 }

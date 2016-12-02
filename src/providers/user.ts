@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {api} from './constants.ts';
+
+
 
 import { Device } from './device';
 
@@ -27,7 +28,7 @@ import { Device } from './device';
           let body = JSON.stringify({ "push_token":device});
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
-          this._http.post(api.URL+api.DEVICE, body,options)
+          this._http.post(this.api.URL+this.api.DEVICE, body,options)
           .toPromise()
           .then((res)=>{
             this._device.setDevice(res.json());
@@ -49,7 +50,7 @@ import { Device } from './device';
             let headers = new Headers({ 'Content-Type': 'application/json'});
             let options = new RequestOptions({ headers: headers, method: "post" });
 
-            this._http.post(api.URL+api.LOCATION, body,options)
+            this._http.post(this.api.URL+this.api.LOCATION, body,options)
             .toPromise()
             .then((res)=>{
               this._device.setDevice(res.json());
@@ -71,6 +72,14 @@ import { Device } from './device';
     private handleError (error: Response | any) {
       console.log('err->',error);
     }
+    private api= {
+      URL:"http://api.cerveja.me/",
+      DEVICE:"device",
+      LOCATION:"location",
+      GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
+      GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
+    }
+
 
 
 

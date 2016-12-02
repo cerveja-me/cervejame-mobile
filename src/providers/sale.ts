@@ -16,9 +16,28 @@ import { Device } from './device';
     constructor(public http: Http, private _storage:Storage, _device:Device) {}
 
     setProduct(p){
-      this._storage.set('selected', p);
+      let obj ={
+        product:p
+      }
+      this._storage.set('selected',obj);
     }
     getProduct(){
-      return this._storage.get('selected');
+      return new Promise((resolve, reject) => {
+        this._storage.get('selected')
+        .then((prod)=>{
+          console.log('product',prod);
+          resolve(prod.product);
+        });
+      });
+
     }
+    private api= {
+      URL:"http://api.cerveja.me/",
+      DEVICE:"device",
+      LOCATION:"location",
+      GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
+      GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
+    }
+
+
   }

@@ -45,14 +45,11 @@ export class Page1 {
     centeredSlides:true,
     loop:true
   };
-  // presentLoading() {
-    //   loader.present();
-    // }
-    selectBeer(beer){
-      beer.amount=1;
-      this._sale.setProduct(beer);
-      let modal = this.modalCtrl.create(ModalContentPage,beer);
-      modal.present();
-    }
+  selectBeer(beer){
+    // beer['amount']=1;
+    // this._sale.setProduct(beer);
+    let modal = this.modalCtrl.create(ModalContentPage,{'beer':beer});
+    modal.present();
   }
+}
 

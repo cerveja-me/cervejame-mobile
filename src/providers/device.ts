@@ -5,8 +5,6 @@ import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation} from 'ionic-native';
 
-import {api} from './constants';
-import {phrases} from './constants';
 
 /*
   Generated class for the Device provider.
@@ -17,16 +15,16 @@ import {phrases} from './constants';
   @Injectable()
   export class Device {
 
+
     constructor(public http: Http,private storage:Storage) {}
     firstTimeApp(){
-      let storage =new Storage();
       return new Promise((resolve, reject) => {
-        storage.get('ftime')
+        this.storage.get('ftime')
         .then((val) => {
           if(val){
             resolve(false);
           }else{
-            storage.set('ftime', 'false');
+            this.storage.set('ftime', 'false');
             resolve(true);
           }
         });
@@ -45,7 +43,7 @@ import {phrases} from './constants';
     }
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {
-        let url =api.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
+        let url =this.api.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
         this.http.get(url).toPromise()
         .then((res)=>{
           let add = res.json()['results'];
@@ -61,7 +59,7 @@ import {phrases} from './constants';
 
     getLocationsWithAddres(address){
       return new Promise((resolve, reject) => {
-        let url =api.GOOGLE_GEOCODE.replace('#',address);
+        let url =this.api.GOOGLE_GEOCODE.replace('#',address);
         this.http.get(url).toPromise()
         .then((res)=>{
           resolve(res.json());
@@ -99,6 +97,24 @@ import {phrases} from './constants';
     }
 
     getRandonLoading():string{
-      return phrases[Math.floor(Math.random()*(phrases.length-0+1)+0)];
+      return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
     }
+    private phrases =[
+    "oi",
+    "teste",
+    "buscando gelo com o pé grande",
+    "brigando com os tigres tibetanos pela sua cerveja",
+    "GELADAAAAAA",
+    "Tira, tira, tira ...",
+    "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa"
+    ]
+    private api= {
+      URL:"http://api.cerveja.me/",
+      DEVICE:"device",
+      LOCATION:"location",
+      GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
+      GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
+    }
+
+
   }

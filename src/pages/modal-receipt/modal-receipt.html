@@ -17,9 +17,9 @@
   <div class="receipt__box">
     <div class="receipt__quantidade">
       <h2 class="receipt__title">Quantas caixas?</h2>
-      <span class="btn-minus" (click)="decreaseAmount()"></span>
+      <button class="btn-minus" (click)="decreaseAmount()"></button>
       <span class="quantidade-number" *ngIf="beer">{{beer.amount}}</span>
-      <span class="btn-plus" (click)="increaseAmount()"></span>
+      <button class="btn-plus" (click)="increaseAmount()"></button>
     </div>
     <div class="receipt__total">
       <h2 class="receipt__title">Total a pagar</h2>

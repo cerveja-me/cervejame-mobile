@@ -7,8 +7,8 @@ import { LoginPage } from '../pages/login/login';
 import { ModalContentPage } from '../pages/modal-receipt/modal-receipt';
 import { ModalTourPage } from '../pages/modal-tour/modal-tour';
 import { ModalMapPage } from '../pages/modal-map/modal-map';
-import {MapPage} from '../pages/map/map';
-import {FinishPage} from '../pages/finish/finish';
+import { MapPage } from '../pages/map/map';
+import { FinishPage } from '../pages/finish/finish';
 
 import { User } from '../providers/user';
 import { Device } from '../providers/device';
