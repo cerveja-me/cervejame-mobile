@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-
-
+import { Storage } from '@ionic/storage';
 
 import { Device } from './device';
-
-
-
 
 /*
   Generated class for the User provider.
@@ -19,7 +15,7 @@ import { Device } from './device';
   export class User {
     items: Array<{}>;
 
-    constructor(private _http: Http,private _device:Device){}
+    constructor(private _http: Http,private _device:Device,private _storage:Storage){}
 
     createDevice(){
       return new Promise((resolve, reject) => {
@@ -62,6 +58,28 @@ import { Device } from './device';
       });
     }
 
+    isUserLogged(){
+      this.getLoggedUser()
+      .then((user)=>{
+        if(user){
+          return true;
+        }else{
+          return false;
+        }
+      });
+    }
+    setLoggedUser(user){
+      this._storage.set('user_logged',user);
+    }
+
+    getLoggedUser(){
+      return new Promise((resolve, reject) => {
+        this._storage.get('user_logged')
+        .then((user)=>{
+          resolve(user);
+        });
+      });
+    }
 
 
     private extractData(res: Response) {

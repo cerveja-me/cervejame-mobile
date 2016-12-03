@@ -4,7 +4,7 @@ import {LoginPage} from '../login/login';
 import { MapPage } from '../map/map';
 import { FinishPage } from '../finish/finish';
 import { Sale } from '../../providers/sale';
-
+import { User } from '../../providers/user';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
@@ -21,7 +21,8 @@ export class ModalContentPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     private _sale:Sale,
-    private zone:NgZone
+    private zone:NgZone,
+    private _user:User
     ) {
     this.beer=this.params.get('beer');
     this.beer.amount=1;
@@ -34,12 +35,14 @@ export class ModalContentPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-  gotomap(){
-    this.navCtrl.push(LoginPage);
-    console.log('aqui vai pro mapa');
-  }
+
   finishRequest(){
-    this.navCtrl.push(FinishPage);
+    this._sale.setProduct(this.beer);
+    if(this._user.isUserLogged()){
+      this.navCtrl.push(FinishPage);
+    }else{
+      this.navCtrl.push(LoginPage);
+    }
   }
 
   increaseAmount(){
