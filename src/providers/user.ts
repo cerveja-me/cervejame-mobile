@@ -81,6 +81,23 @@ import { Device } from './device';
       });
     }
 
+    registerUser(user){
+      console.log('user received-> ',user);
+      this._device.getDevice()
+      .then((devi)=>{
+        let u ={
+          device:devi['device'],
+          name:user.name,
+          email:user.email,
+          password:user.id,
+          facebook_id:user.id,
+          facebook_token:user.id
+        }
+        console.log('user to send ->',u);
+      });
+    }
+
+
 
     private extractData(res: Response) {
       let body = res.json();

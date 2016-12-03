@@ -3,6 +3,10 @@ import { NavController } from 'ionic-angular';
 import { MapPage } from '../map/map';
 import { Facebook, NativeStorage } from 'ionic-native';
 
+import { User } from '../../providers/user';
+import { Device } from '../../providers/device';
+import { Sale } from '../../providers/sale';
+
 /*
   Generated class for the Login page.
 
@@ -15,7 +19,7 @@ import { Facebook, NativeStorage } from 'ionic-native';
   })
   export class LoginPage {
 
-    constructor(public navCtrl: NavController) {}
+    constructor(public navCtrl: NavController, private _user:User) {}
 
     ionViewDidLoad() {
 
@@ -27,9 +31,9 @@ import { Facebook, NativeStorage } from 'ionic-native';
     }
     doFbLogin(){
       let permissions = new Array();
-      let nav = this.navCtrl;
+
       //the permissions your facebook app needs from the user
-      permissions = ["public_profile"];
+      permissions = ["public_profile","email"];
 
 
       Facebook.login(permissions)
@@ -38,20 +42,17 @@ import { Facebook, NativeStorage } from 'ionic-native';
         let params = new Array();
 
         //Getting name and gender properties
-        Facebook.api("/me?fields=name,gender", params)
+        Facebook.api("/me?fields=name,gender,email", params)
         .then(function(user) {
           user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
-          //now we have the users info, let's save it in the NativeStorage
-          NativeStorage.setItem('user',
-          {
-            name: user.name,
-            gender: user.gender,
-            picture: user.picture
-          })
-          .then(function(){
-            // this.navCtrl.push(MapPage);
-          }, function (error) {
-            console.log(error);
+          user.auth=response.authResponse;
+          this._user.registerUser(user)
+          .then((result)=>{
+            if(this._user.isUserLogged()){
+              this.gotomap();
+            }else{
+              console.log("its somethig wrong");
+            }
           })
         })
       }, function(error){

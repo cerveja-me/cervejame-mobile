@@ -35,7 +35,7 @@ export class Page1 {
       .then((_products)=>{
 
         this.products=_products['products'];
-        console.log('products->', _products['products']);
+        // console.log('products->', _products['products']);
         this.loader.dismiss();
       });
     });
