@@ -19,6 +19,7 @@ export class Page1 {
     content: this._device.getRandonLoading()
   });
   constructor(public modalCtrl: ModalController, private _device:Device, private _user:User, private _loading:LoadingController,private _sale:Sale) {
+
     _device.firstTimeApp()
     .then((res)=>{
       if(res){
@@ -39,6 +40,7 @@ export class Page1 {
         this.loader.dismiss();
       });
     });
+    this._user.fakeuser();
   }
   sliderOptions = {
     slidesPerView:2,
@@ -46,8 +48,6 @@ export class Page1 {
     loop:true
   };
   selectBeer(beer){
-    // beer['amount']=1;
-    // this._sale.setProduct(beer);
     let modal = this.modalCtrl.create(ModalContentPage,{'beer':beer});
     modal.present();
   }

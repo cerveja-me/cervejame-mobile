@@ -59,13 +59,16 @@ import { Device } from './device';
     }
 
     isUserLogged(){
-      this.getLoggedUser()
-      .then((user)=>{
-        if(user){
-          return true;
-        }else{
-          return false;
-        }
+      return new Promise((resolve, reject) => {
+        this.getLoggedUser()
+        .then((o)=>{
+          console.log('ooooo->',o, o!=null);
+          if(o!=null){
+            resolve( true);
+          }else{
+            resolve(false);
+          }
+        });
       });
     }
     setLoggedUser(user){
@@ -73,9 +76,11 @@ import { Device } from './device';
     }
 
     getLoggedUser(){
+      console.log('user->>');
       return new Promise((resolve, reject) => {
         this._storage.get('user_logged')
         .then((user)=>{
+
           resolve(user);
         });
       });
@@ -117,6 +122,19 @@ import { Device } from './device';
         });
       })
     }
+    fakeuser(){
+      this._storage.set('user_logged', {
+        "device": "ae0d2c72-d438-4760-a021-164013a3457a",
+        "name": "Jeferson F Guardezi",
+        "email": "guardezi@cerveja.me",
+        "phone": "11930054332",
+        "password": "123123123",
+        "facebook_id": "guardezi",
+        "facebook_token": "123817237817238718273",
+        "id": "a4f60b88-7a8b-49a5-8ad4-7e138723ef7e"
+      })
+    }
+
 
 
 
@@ -138,6 +156,7 @@ import { Device } from './device';
       GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
       GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
     }
+
 
 
 

@@ -37,12 +37,22 @@ export class ModalContentPage {
   }
 
   finishRequest(){
+
     this._sale.setProduct(this.beer);
-    if(this._user.isUserLogged()){
-      this.navCtrl.push(FinishPage);
-    }else{
-      this.navCtrl.push(LoginPage);
-    }
+    console.log('ahahhaha->');
+    this._user.isUserLogged()
+    .then((res)=>{
+      console.log('is user loged? ',res);
+      if(res){
+        console.log('caiu no true');
+        this.navCtrl.push(MapPage);
+      }else{
+        console.log('caiu no false');
+        this.navCtrl.push(LoginPage);
+      }
+
+    })
+
   }
 
   increaseAmount(){
