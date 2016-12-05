@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, Platform, NavParams } from 'ionic-angular';
+import { ModalController} from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 import { ModalContentPage } from '../modal-receipt/modal-receipt';

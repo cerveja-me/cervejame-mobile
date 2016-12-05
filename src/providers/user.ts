@@ -80,22 +80,45 @@ import { Device } from './device';
         });
       });
     }
+    sendUser(u){
+      return new Promise((resolve, reject) => {
+        let body = JSON.stringify(u);
+        let headers = new Headers({ 'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers, method: "post" });
+
+        this._http.post(this.api.URL+this.api.COSTUMER, body,options)
+        .toPromise()
+        .then((res)=>{
+          this._device.setDevice(res.json());
+          resolve(res.json());
+        })
+        .catch(this.handleError);
+      })
+    }
 
     registerUser(user){
-      console.log('user received-> ',user);
-      this._device.getDevice()
-      .then((devi)=>{
-        let u ={
-          device:devi['device'],
-          name:user.name,
-          email:user.email,
-          password:user.id,
-          facebook_id:user.id,
-          facebook_token:user.id
-        }
-        console.log('user to send ->',u);
-      });
+      return new Promise((resolve, reject) => {
+        console.log('user received-> ',user);
+        this._device.getDevice()
+        .then((devi)=>{
+          let u ={
+            device:devi['device'],
+            name:user.name,
+            email:user.email,
+            password:user.id,
+            facebook_id:user.id,
+            facebook_token:user.auth.accessToken
+          }
+          this.sendUser(u)
+          .then((result)=>{
+            this.setLoggedUser(result);
+            resolve(result);
+          });
+        });
+      })
     }
+
+
 
 
 
@@ -111,6 +134,7 @@ import { Device } from './device';
       URL:"http://api.cerveja.me/",
       DEVICE:"device",
       LOCATION:"location",
+      COSTUMER: "costumer",
       GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
       GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
     }

@@ -29,34 +29,41 @@ import { Sale } from '../../providers/sale';
     gotomap(){
       this.navCtrl.push(MapPage);
     }
-    doFbLogin(){
-      let permissions = new Array();
-
-      //the permissions your facebook app needs from the user
-      permissions = ["public_profile","email"];
-
-
-      Facebook.login(permissions)
-      .then(function(response){
-        let userId = response.authResponse.userID;
-        let params = new Array();
-
-        //Getting name and gender properties
-        Facebook.api("/me?fields=name,gender,email", params)
-        .then(function(user) {
-          user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
-          user.auth=response.authResponse;
-          this._user.registerUser(user)
-          .then((result)=>{
-            if(this._user.isUserLogged()){
-              this.gotomap();
-            }else{
-              console.log("its somethig wrong");
-            }
-          })
+    public registerUser(){
+      this.doFbLogin()
+      .then((user)=>{
+        this._user.registerUser(user)
+        .then((result)=>{
+          this.gotomap();
         })
-      }, function(error){
-        console.log(error);
-      });
+      })
+
+    }
+
+    doFbLogin(){
+      return new Promise((resolve, reject) => {
+        let permissions = new Array();
+
+        //the permissions your facebook app needs from the user
+        permissions = ["public_profile","email"];
+        Facebook.login(permissions)
+        .then(function(response){
+          let userId = response.authResponse.userID;
+          let params = new Array();
+
+          //Getting name and gender properties
+          Facebook.api("/me?fields=name,gender,email", params)
+          .then(function(user) {
+            user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+            user.auth=response.authResponse;
+            console.log('user->',user);
+            resolve(user);
+          })
+        }, function(error){
+
+          console.log('erro->',error);
+          reject(error);
+        });
+      })
     }
   }
