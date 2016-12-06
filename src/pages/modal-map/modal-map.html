@@ -15,7 +15,7 @@
 <ion-content class="receipt">
   <div class="modal-overlay" (click)="dismiss()"></div>
   <div class="receipt__box">
-   <p class="receipt__address"><span class="icon-map"></span>Rua Venâncio Aires, 204 - Vila Pompeia</p>
+   
     <div class="receipt__quantidade">
       <h2 class="receipt__title">Seu pedido</h2>
       <span class="figure__pedido"><img src="assets/img/heineken.png"/></span>
@@ -27,7 +27,8 @@
         <small class="total__pricebox--currency">R$</small>25,90
       </span>
     </div>
-    <p class="receipt__alert">Só aceitamos cartão de crédito/débito.</p>
+    <p class="receipt__alert"><span class="icon-card"></span>Só aceitamos cartão de crédito/débito.</p>
+    <p class="receipt__address"><span class="icon-map"></span>Rua Venâncio Aires, 204 - Vila Pompeia</p>
     
     <button ion-button secondary class="receipt__btn" (click)="finishRequest()">CONFIRMAR PEDIDO</button>
 
