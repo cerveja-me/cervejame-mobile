@@ -36,8 +36,7 @@ export class ModalMapPage {
       this.user = u;
       console.log('user_>>>> ', this.user.phone);
       if(this.user.phone!=null){
-        //completar a venda aqui
-
+        this.completeSale();
       }else{
         this.doPrompt()
         .then((phone)=>{
@@ -45,19 +44,21 @@ export class ModalMapPage {
           if(phone!=null){
             console.log('com telefone');
             this.user.phone = phone;
-            this._user.registerUser(this.user)
+            this._user.updateUser(this.user)
             .then((un)=>{
-              console.log('novo usuario->',un);
+              this.user=un;
+              this.completeSale();
             })
-            //metodo para atualizar o telefone
           }else{
-            console.log('sem telefone');
+            this.completeSale();
           }
         })
       }
     });
   }
+  completeSale(){
 
+  }
   doPrompt() {
     return new Promise((resolve, reject) => {
       let prompt = this.alertCtrl.create({

@@ -98,7 +98,18 @@ import { Device } from './device';
       })
     }
 
-
+    updateUser(user){
+      return new Promise((resolve, reject) => {
+        this._device.getDevice()
+        .then((devi)=>{
+          this.sendUser(user)
+          .then((result)=>{
+            this.setLoggedUser(result);
+            resolve(result);
+          });
+        });
+      })
+    }
     registerUser(user){
       return new Promise((resolve, reject) => {
         this._device.getDevice()
