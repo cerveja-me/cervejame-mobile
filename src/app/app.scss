@@ -144,3 +144,16 @@
     animation: overlay 0.3s linear .3s 1 normal;
     animation-fill-mode: both;
 }
+
+.loading-wrapper {
+    background: transparent !important;
+}
+
+.loading-content {
+    @extend .font-bold;
+    
+    color: white;
+    display: block !important;
+    margin-top: 15px;
+    text-align: center;
+}
