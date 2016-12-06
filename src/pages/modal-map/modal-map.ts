@@ -3,6 +3,9 @@ import {LoginPage} from '../login/login';
 import { MapPage } from '../map/map';
 import { FinishPage } from '../finish/finish';
 
+import { User } from '../../providers/user';
+import { Sale } from '../../providers/sale';
+
 
 import {NavController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
 
@@ -11,48 +14,78 @@ import {NavController, Platform, NavParams, ViewController,AlertController } fro
 })
 export class ModalMapPage {
   character;
+  user;
+  request;
 
   constructor(
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
-    private alertCtrl:AlertController
+    private alertCtrl:AlertController,
+    private _user: User,
+    private _sale:Sale
     ) {  }
 
   dismiss() {
     this.viewCtrl.dismiss();
   }
   finishRequest(){
-    this.navCtrl.push(FinishPage);
+    this._user.getLoggedUser()
+    .then((u)=>{
+      this.user = u;
+      console.log('user_>>>> ', this.user.phone);
+      if(this.user.phone!=null){
+        //completar a venda aqui
+
+      }else{
+        this.doPrompt()
+        .then((phone)=>{
+          console.log('phone->',phone);
+          if(phone!=null){
+            console.log('com telefone');
+            this.user.phone = phone;
+            this._user.registerUser(this.user)
+            .then((un)=>{
+              console.log('novo usuario->',un);
+            })
+            //metodo para atualizar o telefone
+          }else{
+            console.log('sem telefone');
+          }
+        })
+      }
+    });
   }
 
   doPrompt() {
-    let prompt = this.alertCtrl.create({
-      title: 'Telefone',
-      message: "Por favor, Informe-nos o seu telefone para que possamos entrar em contato caso ocorra algum problema com sua cerveja",
-      inputs: [
-      {
-        name: 'phone',
-        placeholder: 'telefone'
-      },
-      ],
-      buttons: [
-      {
-        text: 'Cancel',
-        handler: data => {
-          console.log('Cancel clicked', data);
-
+    return new Promise((resolve, reject) => {
+      let prompt = this.alertCtrl.create({
+        title: 'Telefone',
+        message: "Por favor, Informe-nos o seu telefone para que possamos entrar em contato caso ocorra algum problema com sua cerveja",
+        inputs: [
+        {
+          name: 'phone',
+          placeholder: 'telefone'
+        },
+        ],
+        buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked', data);
+            resolve(null);
+          }
+        },
+        {
+          text: 'Continuar',
+          handler: data => {
+            resolve(data.phone);
+          }
         }
-      },
-      {
-        text: 'Continuar',
-        handler: data => {
-          console.log('Saved clicked->',data);
-        }
-      }
-      ]
+        ]
+      });
+      prompt.present();
     });
-    prompt.present();
   }
 }

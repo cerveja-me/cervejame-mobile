@@ -62,7 +62,6 @@ import { Device } from './device';
       return new Promise((resolve, reject) => {
         this.getLoggedUser()
         .then((o)=>{
-          console.log('ooooo->',o, o!=null);
           if(o!=null){
             resolve( true);
           }else{
@@ -76,11 +75,9 @@ import { Device } from './device';
     }
 
     getLoggedUser(){
-      console.log('user->>');
       return new Promise((resolve, reject) => {
         this._storage.get('user_logged')
         .then((user)=>{
-
           resolve(user);
         });
       });
@@ -94,16 +91,16 @@ import { Device } from './device';
         this._http.post(this.api.URL+this.api.COSTUMER, body,options)
         .toPromise()
         .then((res)=>{
-          this._device.setDevice(res.json());
+          // this._device.setDevice(res.json());
           resolve(res.json());
         })
         .catch(this.handleError);
       })
     }
 
+
     registerUser(user){
       return new Promise((resolve, reject) => {
-        console.log('user received-> ',user);
         this._device.getDevice()
         .then((devi)=>{
           let u ={
@@ -127,7 +124,6 @@ import { Device } from './device';
         "device": "ae0d2c72-d438-4760-a021-164013a3457a",
         "name": "Jeferson F Guardezi",
         "email": "guardezi@cerveja.me",
-        "phone": "11930054332",
         "password": "123123123",
         "facebook_id": "guardezi",
         "facebook_token": "123817237817238718273",
