@@ -73,12 +73,12 @@ export class ModalMapPage {
   doPrompt() {
     return new Promise((resolve, reject) => {
       let prompt = this.alertCtrl.create({
-        title: 'Telefone',
-        message: "Por favor, Informe-nos o seu telefone para que possamos entrar em contato caso ocorra algum problema com sua cerveja",
+        title: 'Telefone para contato',
+        message: "Para melhorar sua entrega, passa aí seu telefone.",
         inputs: [
         {
           name: 'phone',
-          placeholder: 'telefone'
+          placeholder: 'Seu Telefone'
         },
         ],
         buttons: [
