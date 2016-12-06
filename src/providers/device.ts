@@ -37,9 +37,13 @@ import {Geolocation} from 'ionic-native';
           let lat={};
           lat[0]=pos.coords.latitude;
           lat[1]=pos.coords.longitude;
+          this.setLocation(lat);
           resolve(lat);
         });
       });
+    }
+    setLocation(location){
+
     }
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {

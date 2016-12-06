@@ -5,6 +5,7 @@ import { FinishPage } from '../finish/finish';
 
 import { User } from '../../providers/user';
 import { Sale } from '../../providers/sale';
+import { Device } from '../../providers/device'
 
 
 import {NavController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
@@ -24,7 +25,8 @@ export class ModalMapPage {
     public navCtrl: NavController,
     private alertCtrl:AlertController,
     private _user: User,
-    private _sale:Sale
+    private _sale:Sale,
+    private _device:Device
     ) {  }
 
   dismiss() {
@@ -57,7 +59,16 @@ export class ModalMapPage {
     });
   }
   completeSale(){
+    this._sale.getProduct()
+    .then( p=>{
+      this._user.getLoggedUser()
+      .then( u =>{
+        this._device.getLocation()
+        .then( d =>{
 
+        })
+      })
+    })
   }
   doPrompt() {
     return new Promise((resolve, reject) => {
