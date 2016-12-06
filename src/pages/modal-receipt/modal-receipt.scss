@@ -2,13 +2,12 @@ modal-receipt{
 
   ion-modal {
     height: 100%;
-
-
   }
 
   modal-wrapper{
     height:40%;
   }
+    
   ion-modal {
     position: absolute;
     bottom: 0;
@@ -19,10 +18,6 @@ modal-receipt{
     height: 40%;
   }
 }
-
-
-
-
 
 .receipt {
   background:none;
@@ -90,6 +85,7 @@ modal-receipt{
  height: 36px;
  display: inline-block;
  vertical-align: middle;
+ background-color: transparent;
 }
 
 .btn-plus {
@@ -99,6 +95,7 @@ modal-receipt{
  height: 36px;
  display: inline-block;
  vertical-align: middle;
+ background-color: transparent;
 }
 
 .quantidade-number {

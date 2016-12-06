@@ -15,11 +15,11 @@
 <ion-content class="receipt">
   <div class="modal-overlay" (click)="dismiss()"></div>
   <div class="receipt__box">
+   <p class="receipt__address"><span class="icon-map"></span>Rua Venâncio Aires, 204 - Vila Pompeia</p>
     <div class="receipt__quantidade">
-      <h2 class="receipt__title">Quantas caixas?</h2>
-      <span class="btn-minus"></span>
-      <span class="quantidade-number">2</span>
-      <span class="btn-plus"></span>
+      <h2 class="receipt__title">Seu pedido</h2>
+      <span class="figure__pedido"><img src="assets/img/heineken.png"/></span>
+      <span class="quantidade-pedido">2 Caixas de Heineken</span>
     </div>
     <div class="receipt__total">
       <h2 class="receipt__title teste">Total a pagar</h2>
@@ -28,7 +28,8 @@
       </span>
     </div>
     <p class="receipt__alert">Só aceitamos cartão de crédito/débito.</p>
-    <button ion-button secondary class="receipt__btn" (click)="finishRequest()">Entregar</button>
+    
+    <button ion-button secondary class="receipt__btn" (click)="finishRequest()">CONFIRMAR PEDIDO</button>
 
   </div>
 

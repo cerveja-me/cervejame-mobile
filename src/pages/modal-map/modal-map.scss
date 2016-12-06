@@ -1,3 +1,29 @@
-page-modal-map {
-
+modal-map {
+    .quantidade-pedido {
+        @extend .font-bold;
+        
+        font-size: 14px;
+        color: #583318;
+    }
+    
+    .receipt__address {
+        text-align: center;
+        
+         @extend .font-regular;
+        
+        font-size: 16px;
+        color: #583318;
+    }
+    
+    .figure__pedido {
+        float: left;
+        width: 40px;
+        height: 70px;
+        text-align: center;
+        
+        img {
+            width: auto;
+            height: 100%;
+        }
+    }
 }
