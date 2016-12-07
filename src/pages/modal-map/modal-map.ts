@@ -44,7 +44,9 @@ export class ModalMapPage {
     })
   }
 
-
+  complete(){
+    this.navCtrl.push(FinishPage);
+  }
   dismiss() {
     this.viewCtrl.dismiss();
   }
@@ -94,6 +96,12 @@ export class ModalMapPage {
               amount:p["amount"],
               id:p['id']
             }
+          })
+          .then(r =>{
+            this.complete();
+          })
+          .catch(e =>{
+            console.log('erro ->', e);
           });
 
         })
