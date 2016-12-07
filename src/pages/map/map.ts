@@ -35,6 +35,7 @@ declare var google;
       private _loading:LoadingController) {}
 
     ionViewDidLoad() {
+      this.loader.present();
       this.loadMap();
     }
 
