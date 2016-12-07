@@ -40,7 +40,7 @@ export class Page1 {
         this.loader.dismiss();
       });
     });
-    this._user.fakeuser();
+    // this._user.fakeuser();
   }
   sliderOptions = {
     slidesPerView:2,

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { Page1 } from '../page1/page1';
+
 /*
   Generated class for the Finish page.
 
@@ -19,7 +21,7 @@ import { NavController } from 'ionic-angular';
       console.log('Hello FinishPage Page');
     }
     gotopage1(){
-
+      this.navCtrl.push(Page1);
     }
 
   }
