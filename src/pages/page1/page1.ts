@@ -37,7 +37,7 @@ export class Page1 {
 
         this.products=_products['products'];
         // console.log('products->', _products['products']);
-        //this.loader.dismiss();
+        this.loader.dismiss();
       });
     });
     this._user.fakeuser();

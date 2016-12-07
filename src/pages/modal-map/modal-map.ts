@@ -18,6 +18,7 @@ export class ModalMapPage {
   user;
   request;
   product;
+  address;
 
   constructor(
     public platform: Platform,
@@ -31,8 +32,15 @@ export class ModalMapPage {
     ) {
     this._sale.getProduct()
     .then( p=>{
-      console.log('prod->',p);
+
+      this.address=this.params.get("address");
+      console.log('prod->',p,this.address);
+
       this.product=p;
+      this._device.getDevice()
+      .then(d =>{
+        console.log('device->',d);
+      })
     })
   }
 
@@ -71,8 +79,22 @@ export class ModalMapPage {
     .then( p=>{
       this._user.getLoggedUser()
       .then( u =>{
-        this._device.getLocation()
+        this._device.getDevice()
         .then( d =>{
+          console.log('p->',p);
+          console.log('u->',u);
+          console.log('d->',d);
+          this._sale.createSale({
+
+            location:d['id'],
+            device:d['device'],
+            costumer:u['id'],
+            payment:"money",
+            product:{
+              amount:p["amount"],
+              id:p['id']
+            }
+          });
 
         })
       })

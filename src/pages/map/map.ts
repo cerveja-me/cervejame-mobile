@@ -101,7 +101,9 @@ declare var google;
 
 
     openModal(){
-      let modal = this.modalCtrl.create(ModalMapPage);
+      let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
+      console.log('address que foi enviad->',this.address);
+      let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.address});
       modal.present();
     }
   }
