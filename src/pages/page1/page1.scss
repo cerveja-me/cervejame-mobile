@@ -1,8 +1,8 @@
 @import '../../app/_mixins';
 
-ion-backdrop { 
-    background: #583318; 
-    opacity: 0.8 !important; 
+ion-backdrop {
+  background: #583318;
+  opacity: 0.8 !important;
 }
 
 page-page1 {
@@ -187,9 +187,9 @@ page-page1 {
   }
 
 
-.msg-empty {
+  .msg-empty {
     @extend .font-bold;
-    
+
     top: 0;
     color: white;
     position: absolute;
@@ -197,4 +197,4 @@ page-page1 {
     width: 100%;
     text-align: center;
     padding: 0 15px;
-}
+  }

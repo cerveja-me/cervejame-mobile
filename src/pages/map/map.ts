@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LoadingController } from 'ionic-angular';
 
 import { ModalMapPage } from '../modal-map/modal-map';
 import { NavController, ModalController, Platform, NavParams } from 'ionic-angular';
@@ -20,6 +21,9 @@ declare var google;
   export class MapPage {
     @ViewChild('map') mapElement: ElementRef;
     map: any;
+    loader = this._loading.create({
+      content: this._device.getRandonLoading()
+    });
 
     address;
     addressOptions=[];
@@ -27,19 +31,23 @@ declare var google;
       public modalCtrl:ModalController,
       private _device:Device,
       private zone:NgZone,
-      private _user:User) {}
+      private _user:User,
+      private _loading:LoadingController) {}
 
     ionViewDidLoad() {
       this.loadMap();
     }
 
     loadMap(){
+      this.loader.present();
       this._device.getLocation()
       .then((location)=>{
         let latLng = new google.maps.LatLng(location[0], location[1]);
         this._device.getAddressFromLocation(location)
         .then((address)=>{
           this.setAddressNew(address);
+          let endereco = address['formatted_address'];
+          this._user.getNewLocation(location,endereco);
         })
         let mapOptions = {
           center: latLng,
@@ -59,6 +67,7 @@ declare var google;
         }
 
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.loader.dismiss();
         this.map.addListener('center_changed',()=>{
 
           let _loc={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}

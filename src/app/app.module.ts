@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler,LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
@@ -29,6 +29,6 @@ import { Storage } from '@ionic/storage';
   MyApp,Page1,Page2,ModalContentPage,
   LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},User,Device,Sale,Storage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },User,Device,Sale,Storage]
 })
 export class AppModule {}

@@ -45,10 +45,11 @@ import { Device } from './device';
             let body = JSON.stringify({ "device":dev['id'],"location":location[0]+","+location[1]});
             let headers = new Headers({ 'Content-Type': 'application/json'});
             let options = new RequestOptions({ headers: headers, method: "post" });
-
+            console.log('pre chamada');
             this._http.post(this.api.URL+this.api.LOCATION, body,options)
             .toPromise()
             .then((res)=>{
+              console.log('reultado->', res);
               this._device.setDevice(res.json());
               resolve(res.json());
             })
@@ -82,6 +83,7 @@ import { Device } from './device';
       return new Promise((resolve, reject) => {
         this.getLoggedUser()
         .then((o)=>{
+          console.log('pre erro');
           if(o!=null){
             resolve( true);
           }else{
