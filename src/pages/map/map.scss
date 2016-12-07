@@ -4,15 +4,15 @@ page-map {
     height: 100%;
   }
   #map:after {
-    width: 22px;
+    width: 34px;
     height: 40px;
     display: block;
     content: ' ';
     position: absolute;
     top: 50%; left: 50%;
-    margin: -40px 0 0 -11px;
+    margin: -40px 0 0 -17px;
     background: url(../assets/icon/map-pin.svg);
-    background-size: 22px 40px; /* Since I used the HiDPI marker version this compensates for the 2x size */
+    background-size: contain;
     pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
   }
   .map {
