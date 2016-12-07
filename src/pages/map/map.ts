@@ -5,6 +5,7 @@ import { ModalMapPage } from '../modal-map/modal-map';
 import { NavController, ModalController, Platform, NavParams } from 'ionic-angular';
 import { Injectable, NgZone } from '@angular/core';
 import { Device } from '../../providers/device';
+import { User } from '../../providers/user';
 declare var google;
 /*
   Generated class for the Map page.
@@ -22,7 +23,11 @@ declare var google;
 
     address;
     addressOptions=[];
-    constructor(public navCtrl: NavController, public modalCtrl:ModalController, private _device:Device,private zone:NgZone) {}
+    constructor(public navCtrl: NavController,
+      public modalCtrl:ModalController,
+      private _device:Device,
+      private zone:NgZone,
+      private _user:User) {}
 
     ionViewDidLoad() {
       this.loadMap();
@@ -61,6 +66,8 @@ declare var google;
           .then((address)=>{
 
             this.setAddressNew(address);
+            let endereco = address['formatted_address'];
+            this._user.getNewLocation(_loc,endereco);
           })
         });
       })

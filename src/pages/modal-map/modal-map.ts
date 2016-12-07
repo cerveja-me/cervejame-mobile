@@ -17,6 +17,7 @@ export class ModalMapPage {
   character;
   user;
   request;
+  product;
 
   constructor(
     public platform: Platform,
@@ -27,7 +28,14 @@ export class ModalMapPage {
     private _user: User,
     private _sale:Sale,
     private _device:Device
-    ) {  }
+    ) {
+    this._sale.getProduct()
+    .then( p=>{
+      console.log('prod->',p);
+      this.product=p;
+    })
+  }
+
 
   dismiss() {
     this.viewCtrl.dismiss();
