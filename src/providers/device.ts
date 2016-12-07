@@ -45,6 +45,11 @@ import {Geolocation} from 'ionic-native';
     setLocation(location){
 
     }
+    getStoredLocation(){
+      return new Promise((resolve, reject) => {
+
+      })
+    }
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {
         let url =this.api.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
@@ -104,9 +109,9 @@ import {Geolocation} from 'ionic-native';
       return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
     }
     private phrases =[
-    "oi",
-    "teste",
     "buscando gelo com o pé grande",
+    "uma cerveja antes do almoço é muito bom para ficar pensando melhor",
+    "Senhor, dai me café para mudar o que posso e cerveja para mudar as que não posso",
     "brigando com os tigres tibetanos pela sua cerveja",
     "GELADAAAAAA",
     "Tira, tira, tira ...",

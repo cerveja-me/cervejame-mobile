@@ -58,6 +58,26 @@ import { Device } from './device';
       });
     }
 
+    getNewLocation(loc, address){
+      return new Promise((resolve, reject) => {
+        this._device.getDevice()
+        .then((dev)=>{
+          console.log('device-> ',dev);
+          let body = JSON.stringify({ "device":dev['device'],"location":loc[0]+","+loc[1], "address":address});
+          let headers = new Headers({ 'Content-Type': 'application/json'});
+          let options = new RequestOptions({ headers: headers, method: "post" });
+          console.log('bodu->',body);
+          this._http.post(this.api.URL+this.api.LOCATION, body,options)
+          .toPromise()
+          .then((res)=>{
+            this._device.setDevice(res.json());
+            resolve(res.json());
+          })
+          .catch(this.handleError);
+        })
+      });
+    }
+
     isUserLogged(){
       return new Promise((resolve, reject) => {
         this.getLoggedUser()
