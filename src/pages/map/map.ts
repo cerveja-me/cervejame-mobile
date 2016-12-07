@@ -47,7 +47,10 @@ declare var google;
         .then((address)=>{
           this.setAddressNew(address);
           let endereco = address['formatted_address'];
-          this._user.getNewLocation(location,endereco);
+          this._user.getNewLocation(location,endereco)
+          .then( r =>{
+            this.loader.dismiss();
+          });
         })
         let mapOptions = {
           center: latLng,
@@ -67,7 +70,7 @@ declare var google;
         }
 
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        this.loader.dismiss();
+
         this.map.addListener('center_changed',()=>{
 
           let _loc={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
@@ -78,6 +81,9 @@ declare var google;
             let endereco = address['formatted_address'];
             this._user.getNewLocation(_loc,endereco);
           })
+        });
+        this.map.addListener('domready',e =>{
+          console.log('mapread');
         });
       })
     }
