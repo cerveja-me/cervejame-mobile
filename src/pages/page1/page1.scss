@@ -1,5 +1,10 @@
 @import '../../app/_mixins';
 
+ion-backdrop { 
+    background: #583318; 
+    opacity: 0.8 !important; 
+}
+
 page-page1 {
   .receipt.content-ios {
     background: none !important;
