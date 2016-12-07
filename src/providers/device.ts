@@ -109,12 +109,18 @@ import {Geolocation} from 'ionic-native';
       return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
     }
     private phrases =[
-    "buscando gelo com o pé grande",
+    "Negociando gelo com o pé grande",
+    "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa.",
+    "Não deixe pra amanhã a cerveja que você pode beber hoje.",
+    "Se dirigir não beba, se beber chame o Cerveja.me!",
+    "Nunca fiz um amigo bebendo leite.",
+    "Diga-me com quem tu andas, que te direi quantas cervejas levar.",
+    "Previsão do tempo: 100% propício para uma cerveja.",
+    "O líquido mais precioso do mundo é a água, pois com ela dá pra fazer cerveja.",
+    "",
     "uma cerveja antes do almoço é muito bom para ficar pensando melhor",
     "Senhor, dai me café para mudar o que posso e cerveja para mudar as que não posso",
-    "brigando com os tigres tibetanos pela sua cerveja",
     "GELADAAAAAA",
-    "Tira, tira, tira ...",
     "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa"
     ]
     private api= {
