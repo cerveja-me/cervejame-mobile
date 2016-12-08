@@ -8,7 +8,6 @@ import { ModalTourPage } from '../modal-tour/modal-tour';
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
-import { MyCurrencyPipe } from '../providers/my-currency.pipe';
 
 @Component({
   selector: 'page-page1',
