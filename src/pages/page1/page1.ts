@@ -33,10 +33,16 @@ export class Page1 {
     this.loader.present();
     _user.createDevice()
     .then((res)=>{
+
       _user.getProducts()
       .then((_products)=>{
+        console.log('res->',_products);
+        if(_products['zone'] !=null){
+          this.products=_products['products'];
+        }else{
+          this.products=[];
+        }
 
-        this.products=_products['products'];
         // console.log('products->', _products['products']);
         this.loader.dismiss();
       });
