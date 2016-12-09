@@ -9,11 +9,16 @@ cordova build --release android
 ```
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cervejame.keystore -storepass cervejame platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame
 
-
+### signed apk
 ```
 /Users/guardezi/Library/Android/sdk/build-tools/23.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame.apk
 ```
 
+### keyhash for facebook
+```
+keytool -exportcert -alias cervejame -keystore cervejame.keystore -storepass cervejame | openssl sha1 -binary | openssl base64
+
+```
 
 
 

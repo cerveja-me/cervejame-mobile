@@ -4,6 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation} from 'ionic-native';
+import {Platform} from 'ionic-angular';
 
 
 /*
@@ -16,7 +17,7 @@ import {Geolocation} from 'ionic-native';
   export class Device {
 
 
-    constructor(public http: Http,private storage:Storage) {}
+    constructor(public http: Http,private storage:Storage, private platform:Platform) {}
     firstTimeApp(){
       return new Promise((resolve, reject) => {
         this.storage.get('ftime')
@@ -33,13 +34,28 @@ import {Geolocation} from 'ionic-native';
 
     getLocation(){
       return new Promise((resolve, reject) => {
-        Geolocation.getCurrentPosition().then(pos => {
-          let lat={};
-          lat[0]=pos.coords.latitude;
-          lat[1]=pos.coords.longitude;
-          this.setLocation(lat);
-          resolve(lat);
+        console.log('aqui');
+        this.platform.ready().then(() => {
+          console.log('aqui');
+          let opt = {
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 0
+          };
+          Geolocation.getCurrentPosition(opt)
+          .then((pos) => {
+            console.log('aqui no sucesso',pos);
+            let lat={};
+            lat[0]=pos.coords.latitude;
+            lat[1]=pos.coords.longitude;
+            this.setLocation(lat);
+            resolve(lat);
+          })
+          .catch((er) => {
+            console.log('aqui no erro',er);
+          });
         });
+
       });
     }
     setLocation(location){
