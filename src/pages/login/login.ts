@@ -66,4 +66,7 @@ import { Sale } from '../../providers/sale';
         });
       })
     }
+    newUserRegister(){
+      console.log('vai abrir o modal de cadastro');
+    }
   }
