@@ -6,21 +6,71 @@ page-login {
         height: 147px;
         display: inline-block;
     }
+    
+    .login {
+
+
+        &__box {
+          padding: 0 15px;
+          background: white;
+          width: 100%;
+          height: 60px;
+          left: 0;
+          z-index: 2;
+          box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+            margin-bottom: 2px;
+
+          &__input {
+            @extend .font-regular;
+
+            background: transparent;
+            color: #666;
+            border: 0;
+            height: 60px;
+            width: 85%;
+          }
+    }
+    }
 }
 
 .btn-facebook {
     @include border-radius(50px);
     @extend .font-bold;
     
-    position: absolute;
-    bottom: 0;
     background: #4F5AAD;
     border: 2px solid #583318;
     font-size: 17px;
     padding: 10px 30px;
     height: auto;
-    left: 50%;
     width: 290px;
-    margin-left: -145px;
     transition: all .5s;
+}
+
+.btn-submit {
+    @include border-radius(50px);
+    @extend .font-bold;
+    
+    background: #583318;
+    border: 2px solid white;
+    font-size: 14px;
+    padding: 10px 30px;
+    height: auto;
+    width: 140px;
+    transition: all .5s;
+    text-transform: uppercase;
+    color: white;
+    margin-top: 20px;
+}
+
+.btn-signup {
+    @extend .font-bold;
+    
+    font-size: 13px;
+    height: auto;
+    transition: all .5s;
+    color: white;
+    margin-top: 20px;
+    margin-top: 20px;
+    background: transparent;
+    border-bottom: 2px solid white;
 }
