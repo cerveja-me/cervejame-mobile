@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ModalController } from 'ionic-angular';
 import { MapPage } from '../map/map';
+import { ModalRegisterPage } from '../modal-register/modal-register';
 import { Facebook, NativeStorage } from 'ionic-native';
+
 
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
@@ -19,10 +21,14 @@ import { Sale } from '../../providers/sale';
   })
   export class LoginPage {
 
-    constructor(public navCtrl: NavController, private _user:User) {}
+    constructor(
+      public navCtrl: NavController,
+      private modalCtrl:ModalController,
+      private _user:User) {
+
+    }
 
     ionViewDidLoad() {
-
       console.log('Hello LoginPage Page');
     }
 
@@ -67,6 +73,8 @@ import { Sale } from '../../providers/sale';
       })
     }
     newUserRegister(){
+      let modal = this.modalCtrl.create(ModalRegisterPage);
+      modal.present();
       console.log('vai abrir o modal de cadastro');
     }
   }

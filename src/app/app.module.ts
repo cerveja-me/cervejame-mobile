@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import { ModalContentPage } from '../pages/modal-receipt/modal-receipt';
 import { ModalTourPage } from '../pages/modal-tour/modal-tour';
 import { ModalMapPage } from '../pages/modal-map/modal-map';
+import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { MapPage } from '../pages/map/map';
 import { FinishPage } from '../pages/finish/finish';
 
@@ -19,7 +20,8 @@ import { Storage } from '@ionic/storage';
 @NgModule({
   declarations: [
   MyApp,Page1,Page2,ModalContentPage,LoginPage,
-  MapPage,FinishPage,ModalTourPage,ModalMapPage
+  MapPage,FinishPage,ModalTourPage,ModalMapPage,
+  ModalRegisterPage
   ],
   imports: [
   IonicModule.forRoot(MyApp)
@@ -27,7 +29,7 @@ import { Storage } from '@ionic/storage';
   bootstrap: [IonicApp],
   entryComponents: [
   MyApp,Page1,Page2,ModalContentPage,
-  LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage
+  LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage,ModalRegisterPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },User,Device,Sale,Storage]
 })
