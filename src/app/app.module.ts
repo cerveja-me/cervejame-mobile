@@ -14,6 +14,7 @@ import { FinishPage } from '../pages/finish/finish';
 import { User } from '../providers/user';
 import { Device } from '../providers/device';
 import { Sale } from '../providers/sale';
+import {ConstantService} from  '../providers/constant-service';
 
 import { Storage } from '@ionic/storage';
 
@@ -31,6 +32,6 @@ import { Storage } from '@ionic/storage';
   MyApp,Page1,Page2,ModalContentPage,
   LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage,ModalRegisterPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },User,Device,Sale,Storage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },User,Device,Sale,Storage,ConstantService]
 })
 export class AppModule {}

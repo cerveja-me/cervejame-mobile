@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Storage } from '@ionic/storage';
+import {SHA256} from 'crypto-js/sha256"';
 
 import { Device } from './device';
+import {ConstantService} from  './constant-service'; //This is my Constant Service
+
 
 /*
   Generated class for the User provider.
@@ -15,7 +18,7 @@ import { Device } from './device';
   export class User {
     items: Array<{}>;
 
-    constructor(private _http: Http,private _device:Device,private _storage:Storage){}
+    constructor(private _http: Http,private _device:Device,private _storage:Storage, private cs: ConstantService){}
 
     createDevice(){
       return new Promise((resolve, reject) => {
@@ -24,7 +27,7 @@ import { Device } from './device';
           let body = JSON.stringify({ "push_token":device});
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
-          this._http.post(this.api.URL+this.api.DEVICE, body,options)
+          this._http.post(this.cs.API+this.cs.DEVICE, body,options)
           .toPromise()
           .then((res)=>{
             this._device.setDevice(res.json());
@@ -46,7 +49,7 @@ import { Device } from './device';
             let headers = new Headers({ 'Content-Type': 'application/json'});
             let options = new RequestOptions({ headers: headers, method: "post" });
             console.log('pre chamada');
-            this._http.post(this.api.URL+this.api.LOCATION, body,options)
+            this._http.post(this.cs.API+this.cs.LOCATION, body,options)
             .toPromise()
             .then((res)=>{
               console.log('reultado->', res);
@@ -68,7 +71,7 @@ import { Device } from './device';
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
           console.log('bodu->',body);
-          this._http.post(this.api.URL+this.api.LOCATION, body,options)
+          this._http.post(this.cs.API+this.cs.LOCATION, body,options)
           .toPromise()
           .then((res)=>{
             this._device.setDevice(res.json());
@@ -80,6 +83,7 @@ import { Device } from './device';
     }
 
     isUserLogged(){
+      console.log('cs -> ',this.cs.API);
       return new Promise((resolve, reject) => {
         this.getLoggedUser()
         .then((o)=>{
@@ -104,13 +108,29 @@ import { Device } from './device';
         });
       });
     }
-    sendUser(u){
+
+    createUser(u){
       return new Promise((resolve, reject) => {
         let body = JSON.stringify(u);
         let headers = new Headers({ 'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers, method: "post" });
 
-        this._http.post(this.api.URL+this.api.COSTUMER, body,options)
+        this._http.post(this.cs.API+this.cs.COSTUMER, body,options)
+        .toPromise()
+        .then((res)=>{
+          resolve(res.json());
+        })
+        .catch(this.handleError);
+      })
+    }
+
+    loginUser(u){
+      return new Promise((resolve, reject) => {
+        let body = JSON.stringify(u);
+        let headers = new Headers({ 'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers, method: "post" });
+
+        this._http.post(this.cs.API+this.cs.COSTUMER+'/login', body,options)
         .toPromise()
         .then((res)=>{
           // this._device.setDevice(res.json());
@@ -120,74 +140,92 @@ import { Device } from './device';
       })
     }
 
+    facebookRegister(fu){
+      return new Promise((resolve, reject) => {
+        console.log('facebook register');
+      });
+    }
+
+
     updateUser(user){
       return new Promise((resolve, reject) => {
         this._device.getDevice()
         .then((devi)=>{
-          this.sendUser(user)
-          .then((result)=>{
-            this.setLoggedUser(result);
-            resolve(result);
-          });
+          // this.sendUser(user)
+          // .then((result)=>{
+            //   this.setLoggedUser(result);
+            //   resolve(result);
+            // });
         });
       })
     }
-    registerUser(user){
-      return new Promise((resolve, reject) => {
-        this._device.getDevice()
-        .then((devi)=>{
-          let u ={
-            device:devi['device'],
-            name:user.name,
-            email:user.email,
-            password:user.id,
-            facebook_id:user.id,
-            facebook_token:user.auth.accessToken
-          }
-          this.sendUser(u)
-          .then((result)=>{
-            this.setLoggedUser(result);
-            resolve(result);
-          });
-        });
-      })
-    }
-    fakeuser(){
-      this._storage.set('user_logged', {
-        "device": "ae0d2c72-d438-4760-a021-164013a3457a",
-        "name": "Jeferson F Guardezi",
-        "email": "guardezi@cerveja.me",
-        "password": "123123123",
-        "facebook_id": "guardezi",
-        "facebook_token": "123817237817238718273",
-        "id": "a4f60b88-7a8b-49a5-8ad4-7e138723ef7e"
-      })
-    }
+    // sendUser(u){
+      //   return new Promise((resolve, reject) => {
+        //     let body = JSON.stringify(u);
+        //     let headers = new Headers({ 'Content-Type': 'application/json'});
+        //     let options = new RequestOptions({ headers: headers, method: "post" });
+
+        //     this._http.post(this.cs.API+this.cs.COSTUMER, body,options)
+        //     .toPromise()
+        //     .then((res)=>{
+          //       // this._device.setDevice(res.json());
+          //       resolve(res.json());
+          //     })
+          //     .catch(this.handleError);
+          //   })
+          // }
+
+
+          // registerUser(user){
+            //   return new Promise((resolve, reject) => {
+              //     this._device.getDevice()
+              //     .then((devi)=>{
+                //       let u ={
+                  //         device:devi['device'],
+                  //         name:user.name,
+                  //         email:user.email,
+                  //         password:user.id,
+                  //         facebook_id:user.id,
+                  //         facebook_token:user.auth.accessToken
+                  //       }
+                  //       this.sendUser(u)
+                  //       .then((result)=>{
+                    //         this.setLoggedUser(result);
+                    //         resolve(result);
+                    //       });
+                    //     });
+                    //   })
+                    // }
+                    fakeuser(){
+                      this._storage.set('user_logged', {
+                        "device": "ae0d2c72-d438-4760-a021-164013a3457a",
+                        "name": "Jeferson F Guardezi",
+                        "email": "guardezi@cerveja.me",
+                        "password": "123123123",
+                        "facebook_id": "guardezi",
+                        "facebook_token": "123817237817238718273",
+                        "id": "a4f60b88-7a8b-49a5-8ad4-7e138723ef7e"
+                      })
+                    }
 
 
 
 
 
 
-    private extractData(res: Response) {
-      let body = res.json();
-      this._device.setDevice(body.data);
-      return body.data || { };
-    }
-    private handleError (error: Response | any) {
-      console.log('err->',error);
-    }
-    private api= {
-      URL:"http://api.cerveja.me/",
-      DEVICE:"device",
-      LOCATION:"location",
-      COSTUMER: "costumer",
-      GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
-      GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
-    }
+                    private extractData(res: Response) {
+                      let body = res.json();
+                      this._device.setDevice(body.data);
+                      return body.data || { };
+                    }
+                    private handleError (error: Response | any) {
+                      console.log('err->',error);
+                    }
+                    private api= {
+                    }
 
 
 
 
 
-  }
+                  }

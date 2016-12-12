@@ -9,24 +9,24 @@
 <ion-content padding class="background-dark">
  <div class="logo-white"></div>
  <div class="msg">
-  <button ion-button secondary class="btn-facebook" (click)="registerUser()">CONECTAR COM FACEBOOK</button>
+   <button ion-button secondary class="btn-facebook" (click)="facebookRegister()">CONECTAR COM FACEBOOK</button>
 
-  <!--<span class="msg__icon icone-login"></span>-->
-  <span class="msg__text">Acesse sua conta.</span>
-  
-  <form>
-       <div class="login__box">
-           <span class="icon-map"></span>
-           <input name="login" class="login__box__input" placeholder="Login" type="text"/>
-       </div>
-        <div class="login__box">
-           <span class="icon-map"></span>
-           <input name="senha" class="login__box__input" placeholder="Senha" type="password"/>
-       </div>
-    <input type="button" class="btn-submit" name="" value="Acessar" />
-  </form>
-  <button class="btn-signup" (click)="newUserRegister()" >Criar conta</button>
+   <!--<span class="msg__icon icone-login"></span>-->
+   <span class="msg__text">Acesse sua conta.</span>
 
-  </div>
-  
+   <form>
+     <div class="login__box">
+       <span class="icon-map"></span>
+       <input name="login" class="login__box__input" placeholder="Login" type="text"/>
+     </div>
+     <div class="login__box">
+       <span class="icon-map"></span>
+       <input name="senha" class="login__box__input" placeholder="Senha" type="password"/>
+     </div>
+     <input type="button" class="btn-submit" name="" value="Acessar" (click)="doLoginForm()" />
+   </form>
+   <button class="btn-signup" (click)="openModalRegister()" >Criar conta</button>
+
+ </div>
+
 </ion-content>

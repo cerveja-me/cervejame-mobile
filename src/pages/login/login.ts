@@ -36,17 +36,11 @@ import { Sale } from '../../providers/sale';
       this.navCtrl.push(MapPage);
     }
     public registerUser(){
-      this.doFbLogin()
-      .then((user)=>{
-        this._user.registerUser(user)
-        .then((result)=>{
-          this.gotomap();
-        })
-      })
+
 
     }
 
-    doFbLogin(){
+    private doFbLogin(){
       return new Promise((resolve, reject) => {
         let permissions = new Array();
 
@@ -72,9 +66,23 @@ import { Sale } from '../../providers/sale';
         });
       })
     }
-    newUserRegister(){
+    doLoginForm(){
+
+    }
+    facebookRegister(){
+      this.doFbLogin()
+      .then((user)=>{
+        this._user.facebookRegister(user)
+        .then((result)=>{
+          this.gotomap();
+        })
+      })
+    }
+    openModalRegister(){
       let modal = this.modalCtrl.create(ModalRegisterPage);
       modal.present();
-      console.log('vai abrir o modal de cadastro');
+      modal.onWillDismiss(f =>{
+        console.log('willdismiss->',f);
+      })
     }
   }
