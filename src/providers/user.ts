@@ -20,23 +20,6 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
 
     constructor(private _http: Http,private _device:Device,private _storage:Storage, private cs: ConstantService){}
 
-    createDevice(){
-      return new Promise((resolve, reject) => {
-        this._device.getPushToken()
-        .then(device=>{
-          let body = JSON.stringify({ "push_token":device});
-          let headers = new Headers({ 'Content-Type': 'application/json'});
-          let options = new RequestOptions({ headers: headers, method: "post" });
-          this._http.post(this.cs.API+this.cs.DEVICE, body,options)
-          .toPromise()
-          .then((res)=>{
-            this._device.setDevice(res.json());
-            resolve(res.json());
-          })
-          .catch(this.handleError);
-        });
-      });
-    };
 
     getProducts(){
       return new Promise((resolve, reject) => {
@@ -156,7 +139,7 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
             //   this.setLoggedUser(result);
             //   resolve(result);
             // });
-        });
+          });
       })
     }
     // sendUser(u){

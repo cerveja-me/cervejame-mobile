@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation} from 'ionic-native';
 import {Platform} from 'ionic-angular';
+
+import {ConstantService} from './constant-service';
 
 
 /*
@@ -17,7 +19,7 @@ import {Platform} from 'ionic-angular';
   export class Device {
 
 
-    constructor(public http: Http,private storage:Storage, private platform:Platform) {}
+    constructor(public http: Http,private storage:Storage, private platform:Platform, private cs :ConstantService, private _http:Http) {}
     firstTimeApp(){
       return new Promise((resolve, reject) => {
         this.storage.get('ftime')
@@ -31,7 +33,24 @@ import {Platform} from 'ionic-angular';
         });
       });
     }
-
+    createDevice(){
+      return new Promise((resolve, reject) => {
+        this.getPushToken()
+        .then(device=>{
+          let body = JSON.stringify({ "push_token":device});
+          let headers = new Headers({ 'Content-Type': 'application/json'});
+          let options = new RequestOptions({ headers: headers, method: "post" });
+          console.log('device->',device);
+          this._http.post(this.cs.API+this.cs.DEVICE, body,options)
+          .toPromise()
+          .then((res)=>{
+            this.setDevice(res.json());
+            resolve(res.json());
+          })
+          .catch(this.handleError);
+        });
+      });
+    };
     getLocation(){
       return new Promise((resolve, reject) => {
         console.log('aqui');
@@ -68,7 +87,7 @@ import {Platform} from 'ionic-angular';
     }
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {
-        let url =this.api.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
+        let url =this.cs.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
         this.http.get(url).toPromise()
         .then((res)=>{
           let add = res.json()['results'];
@@ -77,14 +96,9 @@ import {Platform} from 'ionic-angular';
       })
     }
 
-    getLocationFromAddress(address){
-
-    }
-
-
     getLocationsWithAddres(address){
       return new Promise((resolve, reject) => {
-        let url =this.api.GOOGLE_GEOCODE.replace('#',address);
+        let url =this.cs.GOOGLE_GEOCODE.replace('#',address);
         this.http.get(url).toPromise()
         .then((res)=>{
           resolve(res.json());
@@ -120,6 +134,9 @@ import {Platform} from 'ionic-angular';
         });
       });
     }
+    private handleError (error: Response | any) {
+      console.log('err->',error);
+    }
 
     getRandonLoading():string{
       return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
@@ -133,17 +150,8 @@ import {Platform} from 'ionic-angular';
     "Diga-me com quem tu andas, que te direi quantas cervejas levar.",
     "Previsão do tempo: 100% propício para uma cerveja.",
     "O líquido mais precioso do mundo é a água, pois com ela dá pra fazer cerveja.",
-    "",,
     "Senhor, dai-me café para mudar o que posso e cerveja para mudar as que não posso.",
     "GELADAAAAAA!",
+    "Nã Nã Nã",
     ]
-    private api= {
-      URL:"http://api.cerveja.me/",
-      DEVICE:"device",
-      LOCATION:"location",
-      GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
-      GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
-    }
-
-
   }

@@ -30,7 +30,7 @@ export class Page1 {
       console.log('err->',err);
     });
     this.loader.present();
-    _user.createDevice()
+    _device.createDevice()
     .then((res)=>{
 
       _user.getProducts()
@@ -53,6 +53,7 @@ export class Page1 {
     loop:true
   };
   selectBeer(beer){
+    console.log('beer->',beer);
     let modal = this.modalCtrl.create(ModalContentPage,{'beer':beer});
     modal.present();
   }

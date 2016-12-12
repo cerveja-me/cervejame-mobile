@@ -10,7 +10,7 @@ export class ConstantService {
   GOOGLE_GEOCODE: string;
   GOOGLE_ADDRESS: string;
   constructor() {
-    this.API = 'https://api.cerveja.me/';
+    this.API = 'http://api.cerveja.me/';
     this.DEVICE = 'device';
     this.LOCATION = 'location';
     this.COSTUMER = 'costumer';
