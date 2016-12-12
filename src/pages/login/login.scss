@@ -6,8 +6,9 @@ page-login {
         height: 147px;
         display: inline-block;
     }
-    
-    .login {
+}
+
+ .login {
 
 
         &__box {
@@ -30,7 +31,6 @@ page-login {
           }
     }
     }
-}
 
 .btn-facebook {
     @include border-radius(50px);
@@ -54,7 +54,7 @@ page-login {
     font-size: 14px;
     padding: 10px 30px;
     height: auto;
-    width: 140px;
+    width: 160px;
     transition: all .5s;
     text-transform: uppercase;
     color: white;
