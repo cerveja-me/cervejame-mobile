@@ -90,20 +90,20 @@
     width: 380px;
     padding: 75px 0;
     
-    &__icon {
-    
-    }
-    
     &__text {
         @extend .font-bold;
         
         color: #573317;
-        font-size: 25px;
+        font-size: 20px;
         position: relative;
         z-index: 2;
         padding: 0 57px;
         display: block;
         margin: 20px 0;
+        
+        &.white {
+            color: white;
+        }
     }
     
     &:after {
@@ -124,6 +124,14 @@
     
     &.success:after {
         background: #83DD7F;
+    }
+    
+    &.transparent:after {
+        background: transparent;
+    }
+    
+    &.transparent {
+        padding: 15px 0;
     }
 }
 
@@ -199,4 +207,8 @@ ion-spinner {
         animation-fill-mode: both;
         
     }
+}
+
+.toolbar-background {
+    background: transparent !important;
 }

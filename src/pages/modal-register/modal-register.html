@@ -7,17 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>modal-register</ion-title>
+   <!--<ion-nav-back-button></ion-nav-back-button>-->
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
-  <div>
-    <form>
-      <input type="text" name="login" placeholder="Login" />
-      <input type="text" name="senha" placeholder="senha" />
-      <input type="button" name="" value="enviar" />
-    </form>
-  </div>
+<ion-content class="background-dark">
+  
+  <div class="msg transparent">
+   <span class="msg__text white">Crie sua conta no Cerveja.me</span>
+  
+  <form>
+      <div class="login__box">
+           <span class="icon-user"></span>
+           <input name="nome" class="login__box__input" placeholder="Seu Nome" type="text"/>
+       </div>
+       <div class="login__box">
+           <span class="icon-user"></span>
+           <input name="login" class="login__box__input" placeholder="E-mail" type="text"/>
+       </div>
+        <div class="login__box">
+           <span class="icon-pass"></span>
+           <input name="senha" class="login__box__input" placeholder="Senha" type="password"/>
+       </div>
+    <input type="button" class="btn-submit" name="" value="Criar conta" />
+  </form>
+    </div>
 </ion-content>
