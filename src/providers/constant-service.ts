@@ -11,8 +11,7 @@ export class ConstantService {
   GOOGLE_ADDRESS: string;
   AUTH:string;
   constructor() {
-    // this.API = 'http://api.cerveja.me/';
-    this.API = 'http://localhost:1337/';
+    this.API = 'http://api.cerveja.me/';
     this.DEVICE = 'device';
     this.AUTH='auth/login';
     this.LOCATION = 'location';
