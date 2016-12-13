@@ -32,6 +32,9 @@ export class Page1 {
 
     this.getProducts();
   }
+  ionViewDidLoad() {
+    this.getProducts();
+  }
   getProducts(){
     this.loader.present();
     this._device.createDevice()

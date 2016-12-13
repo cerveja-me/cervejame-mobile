@@ -105,16 +105,21 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
 
     createUser(u){
       return new Promise((resolve, reject) => {
-        let body = JSON.stringify(u);
-        let headers = new Headers({ 'Content-Type': 'application/json'});
-        let options = new RequestOptions({ headers: headers, method: "post" });
-
-        this._http.post(this.cs.API+this.cs.COSTUMER, body,options)
-        .toPromise()
-        .then((res)=>{
-          resolve(res.json());
+        this._device.getDevice()
+        .then((devi)=>{
+          u.device=devi['device'];
+          let body = JSON.stringify(u);
+          let headers = new Headers({ 'Content-Type': 'application/json'});
+          let options = new RequestOptions({ headers: headers, method: "post" });
+          console.log('body->',body);
+          this._http.post(this.cs.API+this.cs.COSTUMER, body,options)
+          .toPromise()
+          .then((res)=>{
+            console.log(res);
+            resolve(res.json());
+          })
+          .catch(this.handleError);
         })
-        .catch(this.handleError);
       })
     }
 

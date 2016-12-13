@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController,AlertController } from 'ionic-angular';
+import { NavController,ModalController,AlertController,LoadingController } from 'ionic-angular';
 import { MapPage } from '../map/map';
 import { ModalRegisterPage } from '../modal-register/modal-register';
 import { Facebook, NativeStorage } from 'ionic-native';
-import { LoadingController } from 'ionic-angular';
+
 
 
 
@@ -45,10 +45,6 @@ import { Sale } from '../../providers/sale';
 
     gotomap(){
       this.navCtrl.push(MapPage);
-    }
-    public registerUser(){
-
-
     }
 
     private doFbLogin(){
