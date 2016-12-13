@@ -86,11 +86,12 @@ export class ModalMapPage {
           console.log('p->',p);
           console.log('u->',u);
           console.log('d->',d);
+          let csa=u['costumer'];
           this._sale.createSale({
 
             location:d['id'],
             device:d['device'],
-            costumer:u['id'],
+            costumer:csa['id'],
             payment:"money",
             product:{
               amount:p["amount"],
