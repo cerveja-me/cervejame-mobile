@@ -18,6 +18,7 @@ import {ConstantService} from  '../providers/constant-service';
 
 import { Storage } from '@ionic/storage';
 
+
 @NgModule({
   declarations: [
   MyApp,Page1,Page2,ModalContentPage,LoginPage,

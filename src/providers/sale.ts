@@ -27,14 +27,14 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
       return new Promise((resolve, reject) => {
         this._storage.get('selected')
         .then((prod)=>{
-          console.log('product',prod);
+
           resolve(prod.product);
         });
       });
 
     }
     createSale(data){
-      console.log('sale sata',data);
+
       return new Promise((resolve, reject) => {
         let body = JSON.stringify(data);
         let headers = new Headers({ 'Content-Type': 'application/json'});

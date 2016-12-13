@@ -96,6 +96,7 @@ import { Sale } from '../../providers/sale';
       .then((user)=>{
         this._user.facebookRegister(user)
         .then((result)=>{
+          this._user.setLoggedUser(result);
           this.gotomap();
         })
       })

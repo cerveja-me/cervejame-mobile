@@ -18,22 +18,26 @@ export class Page1 {
   loader = this._loading.create({
     content: this._device.getRandonLoading()
   });
-  constructor(public modalCtrl: ModalController, private _device:Device, private _user:User, private _loading:LoadingController,private _sale:Sale,private alertCtrl:AlertController) {
+  constructor(public modalCtrl: ModalController, private _device:Device,
+    private _user:User,
+    private _loading:LoadingController,
+    private _sale:Sale,
+    private alertCtrl:AlertController,
+    private platform:Platform) {
+    platform.ready().then((readySource) => {
+      _device.firstTimeApp()
+      .then((res)=>{
+        if(res){
+          let modal = this.modalCtrl.create(ModalTourPage, {charNum: 0});
+          modal.present();
+        }
+        this.getProducts();
+      }).catch((err)=>{
+        console.log('err->',err);
+      });
 
-    _device.firstTimeApp()
-    .then((res)=>{
-      if(res){
-        let modal = this.modalCtrl.create(ModalTourPage, {charNum: 0});
-        modal.present();
-      }
-    }).catch((err)=>{
-      console.log('err->',err);
     });
 
-    this.getProducts();
-  }
-  ionViewDidLoad() {
-    this.getProducts();
   }
   getProducts(){
     this.loader.present();

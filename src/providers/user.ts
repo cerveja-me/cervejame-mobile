@@ -60,11 +60,9 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
       return new Promise((resolve, reject) => {
         this._device.getDevice()
         .then((dev)=>{
-          console.log('device-> ',dev);
           let body = JSON.stringify({ "device":dev['device'],"location":loc[0]+","+loc[1], "address":address});
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
-          console.log('bodu->',body);
           this._http.post(this.cs.API+this.cs.LOCATION, body,options)
           .toPromise()
           .then((res)=>{
@@ -77,11 +75,11 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
     }
 
     isUserLogged(){
-      console.log('cs -> ',this.cs.API);
+
       return new Promise((resolve, reject) => {
         this.getLoggedUser()
         .then((o)=>{
-          console.log('pre erro');
+
           if(o!=null){
             resolve( true);
           }else{
@@ -111,11 +109,9 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
           let body = JSON.stringify(u);
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
-          console.log('body->',body);
           this._http.post(this.cs.API+this.cs.COSTUMER, body,options)
           .toPromise()
           .then((res)=>{
-            console.log(res);
             resolve(res.json());
           })
           .catch(this.handleError);
@@ -144,7 +140,28 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
 
     facebookRegister(fu){
       return new Promise((resolve, reject) => {
-        console.log('facebook register');
+        let u ={
+          name:fu.name,
+          email:fu.email,
+          password:fu.id,
+          facebook_id:fu.id,
+          facebook_token:fu.auth.accessToken
+        }
+        this.loginUser(u)
+        .then(res =>{
+          if(res['err']==null){
+            resolve(res);
+          }else{
+            this.createUser(u)
+            .then(re =>{
+              if(res['err']==null){
+                resolve(res);
+              }else{
+                reject();
+              }
+            });
+          }
+        });
       });
     }
 

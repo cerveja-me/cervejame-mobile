@@ -26,9 +26,7 @@ export class ModalContentPage {
     ) {
     this.beer=this.params.get('beer');
     this.beer.amount=1;
-    console.log('beer->',this.beer);
     this.zone.run(()=>{});
-
   }
 
 
@@ -39,32 +37,25 @@ export class ModalContentPage {
   finishRequest(){
 
     this._sale.setProduct(this.beer);
-    console.log('ahahhaha->');
+
     this._user.isUserLogged()
     .then((res)=>{
-      console.log('is user loged? ',res);
       if(res){
-        console.log('caiu no true');
         this.navCtrl.push(MapPage);
       }else{
-        console.log('caiu no false');
         this.navCtrl.push(LoginPage);
       }
-
     })
-
   }
 
   increaseAmount(){
     this.beer.amount++;
     this.zone.run(()=>{});
-    // this._sale.setProduct(this.beer);
   }
   decreaseAmount(){
     if(this.beer.amount>1){
       this.beer.amount--;
       this.zone.run(()=>{});
-      // this._sale.setProduct(this.beer);
     }
   }
 }
