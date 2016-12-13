@@ -36,7 +36,6 @@ export class Page1 {
     this.loader.present();
     this._device.createDevice()
     .then((res)=>{
-      this.getProducts();
       this._user.getProducts()
       .then((_products)=>{
         if(_products['zone'] !=null){
@@ -47,32 +46,30 @@ export class Page1 {
         this.loader.dismiss();
       })
       .catch(e=>{
+        this.loader.dismiss();
         this.doConfirm();
       });
     })
     .catch(e=>{
-      console.log()
+      this.loader.dismiss();
       this.doConfirm();
     });
   }
   doConfirm() {
-    console.log('pelo menos entrou aqui');
     let confirm = this.alertCtrl.create({
-      title: 'Use this lightsaber?',
-      message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+      title: 'Ops!',
+      message: 'Parece que tivemos um erro com o GPS ou a conexão com a internet!',
       buttons: [
       {
-        text: 'Disagree',
+        text: 'Cancelar',
         handler: () => {
           this.loader.dismiss();
-          console.log('Disagree clicked');
         }
       },
       {
-        text: 'Agree',
+        text: 'Tentar novamente',
         handler: () => {
           this.getProducts();
-          console.log('Agree clicked');
         }
       }
       ]
