@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ModalController} from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
+
+import { LoadingController,AlertController ,ModalController,Platform} from 'ionic-angular';
 
 import { ModalContentPage } from '../modal-receipt/modal-receipt';
 import { ModalTourPage } from '../modal-tour/modal-tour';
@@ -18,7 +18,7 @@ export class Page1 {
   loader = this._loading.create({
     content: this._device.getRandonLoading()
   });
-  constructor(public modalCtrl: ModalController, private _device:Device, private _user:User, private _loading:LoadingController,private _sale:Sale) {
+  constructor(public modalCtrl: ModalController, private _device:Device, private _user:User, private _loading:LoadingController,private _sale:Sale,private alertCtrl:AlertController) {
 
     _device.firstTimeApp()
     .then((res)=>{
@@ -29,31 +29,63 @@ export class Page1 {
     }).catch((err)=>{
       console.log('err->',err);
     });
-    this.loader.present();
-    _device.createDevice()
-    .then((res)=>{
 
-      _user.getProducts()
+    this.getProducts();
+  }
+  getProducts(){
+    this.loader.present();
+    this._device.createDevice()
+    .then((res)=>{
+      this.getProducts();
+      this._user.getProducts()
       .then((_products)=>{
-        console.log('res->',_products);
         if(_products['zone'] !=null){
           this.products=_products['products'];
         }else{
           this.products=[];
         }
-
-        // console.log('products->', _products['products']);
         this.loader.dismiss();
+      })
+      .catch(e=>{
+        this.doConfirm();
       });
+    })
+    .catch(e=>{
+      console.log()
+      this.doConfirm();
     });
   }
+  doConfirm() {
+    console.log('pelo menos entrou aqui');
+    let confirm = this.alertCtrl.create({
+      title: 'Use this lightsaber?',
+      message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+      buttons: [
+      {
+        text: 'Disagree',
+        handler: () => {
+          this.loader.dismiss();
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'Agree',
+        handler: () => {
+          this.getProducts();
+          console.log('Agree clicked');
+        }
+      }
+      ]
+    });
+    confirm.present();
+  }
+
   sliderOptions = {
     slidesPerView:2,
     centeredSlides:true,
     loop:true
   };
   selectBeer(beer){
-    console.log('beer->',beer);
     let modal = this.modalCtrl.create(ModalContentPage,{'beer':beer});
     modal.present();
   }

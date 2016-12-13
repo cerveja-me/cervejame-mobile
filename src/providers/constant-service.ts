@@ -9,9 +9,12 @@ export class ConstantService {
   COSTUMER: string;
   GOOGLE_GEOCODE: string;
   GOOGLE_ADDRESS: string;
+  AUTH:string;
   constructor() {
-    this.API = 'http://api.cerveja.me/';
+    // this.API = 'http://api.cerveja.me/';
+    this.API = 'http://localhost:1337/';
     this.DEVICE = 'device';
+    this.AUTH='auth/login';
     this.LOCATION = 'location';
     this.COSTUMER = 'costumer';
     this.GOOGLE_GEOCODE ='https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';

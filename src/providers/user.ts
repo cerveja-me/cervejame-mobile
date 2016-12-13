@@ -31,17 +31,28 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
             let body = JSON.stringify({ "device":dev['id'],"location":location[0]+","+location[1]});
             let headers = new Headers({ 'Content-Type': 'application/json'});
             let options = new RequestOptions({ headers: headers, method: "post" });
-            console.log('pre chamada');
+
             this._http.post(this.cs.API+this.cs.LOCATION, body,options)
             .toPromise()
             .then((res)=>{
-              console.log('reultado->', res);
+
               this._device.setDevice(res.json());
               resolve(res.json());
             })
-            .catch(this.handleError);
+            .catch(e=>{
+              console.log('err');
+              reject(e);
+            });
           })
+          .catch(e=>{
+            console.log('err');
+            reject();
+          });
         })
+        .catch(e=>{
+          console.log('err');
+          reject();
+        });
       });
     }
 
@@ -109,17 +120,20 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
 
     loginUser(u){
       return new Promise((resolve, reject) => {
-        let body = JSON.stringify(u);
-        let headers = new Headers({ 'Content-Type': 'application/json'});
-        let options = new RequestOptions({ headers: headers, method: "post" });
+        this._device.getDevice()
+        .then(d=>{
+          u.device =d['device'];
+          let body = JSON.stringify(u);
+          let headers = new Headers({ 'Content-Type': 'application/json'});
+          let options = new RequestOptions({ headers: headers, method: "post" });
 
-        this._http.post(this.cs.API+this.cs.COSTUMER+'/login', body,options)
-        .toPromise()
-        .then((res)=>{
-          // this._device.setDevice(res.json());
-          resolve(res.json());
+          this._http.post(this.cs.API+this.cs.AUTH, body,options)
+          .toPromise()
+          .then((res)=>{
+            resolve(res.json());
+          })
+          .catch(this.handleError);
         })
-        .catch(this.handleError);
       })
     }
 

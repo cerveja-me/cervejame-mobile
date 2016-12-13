@@ -40,22 +40,24 @@ import {ConstantService} from './constant-service';
           let body = JSON.stringify({ "push_token":device});
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
-          console.log('device->',device);
           this._http.post(this.cs.API+this.cs.DEVICE, body,options)
           .toPromise()
-          .then((res)=>{
+          .then( res =>{
             this.setDevice(res.json());
             resolve(res.json());
           })
-          .catch(this.handleError);
+          .catch(err=>{
+            reject(err.json());
+          });
+        })
+        .catch(err=>{
+          reject(err.json());
         });
       });
     };
     getLocation(){
       return new Promise((resolve, reject) => {
-        console.log('aqui');
         this.platform.ready().then(() => {
-          console.log('aqui');
           let opt = {
             enableHighAccuracy: true,
             timeout: 20000,
@@ -63,15 +65,15 @@ import {ConstantService} from './constant-service';
           };
           Geolocation.getCurrentPosition(opt)
           .then((pos) => {
-            console.log('aqui no sucesso',pos);
             let lat={};
             lat[0]=pos.coords.latitude;
             lat[1]=pos.coords.longitude;
             this.setLocation(lat);
             resolve(lat);
           })
-          .catch((er) => {
-            console.log('aqui no erro',er);
+          .catch(e=>{
+            console.log('err');
+            reject();
           });
         });
 
@@ -136,6 +138,7 @@ import {ConstantService} from './constant-service';
     }
     private handleError (error: Response | any) {
       console.log('err->',error);
+
     }
 
     getRandonLoading():string{
