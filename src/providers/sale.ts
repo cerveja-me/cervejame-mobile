@@ -4,6 +4,8 @@ import 'rxjs/add/operator/toPromise';
 import { Storage } from '@ionic/storage';
 
 import { Device } from './device';
+import {ConstantService} from  './constant-service'; //This is my Constant Service
+
 /*
   Generated class for the Sale provider.
 
@@ -13,7 +15,7 @@ import { Device } from './device';
   @Injectable()
   export class Sale {
 
-    constructor(public http: Http, private _storage:Storage, _device:Device, private _http:Http) {}
+    constructor(public http: Http, private _storage:Storage, _device:Device, private _http:Http, private cs: ConstantService) {}
 
     setProduct(p){
       let obj ={
@@ -25,20 +27,20 @@ import { Device } from './device';
       return new Promise((resolve, reject) => {
         this._storage.get('selected')
         .then((prod)=>{
-          console.log('product',prod);
+
           resolve(prod.product);
         });
       });
 
     }
     createSale(data){
-      console.log('sale sata',data);
+
       return new Promise((resolve, reject) => {
         let body = JSON.stringify(data);
         let headers = new Headers({ 'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers, method: "post" });
 
-        this._http.post(this.api.URL+this.api.SALE, body,options)
+        this._http.post(this.cs.API+this.cs.SALE, body,options)
         .toPromise()
         .then((res)=>{
           // this._device.setDevice(res.json());
@@ -50,14 +52,6 @@ import { Device } from './device';
 
     private handleError (error: Response | any) {
       console.log('err->',error);
-    }
-    private api= {
-      URL:"http://api.cerveja.me/",
-      DEVICE:"device",
-      LOCATION:"location",
-      SALE:"sale",
-      GOOGLE_GEOCODE:"https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg",
-      GOOGLE_ADDRESS:"https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg"
     }
 
 

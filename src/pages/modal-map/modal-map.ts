@@ -32,15 +32,8 @@ export class ModalMapPage {
     ) {
     this._sale.getProduct()
     .then( p=>{
-
       this.address=this.params.get("address");
-      console.log('prod->',p,this.address);
-
       this.product=p;
-      this._device.getDevice()
-      .then(d =>{
-        console.log('device->',d);
-      })
     })
   }
 
@@ -54,23 +47,25 @@ export class ModalMapPage {
     this._user.getLoggedUser()
     .then((u)=>{
       this.user = u;
-      console.log('user_>>>> ', this.user.phone);
-      if(this.user.phone!=null){
+      if(this.user.costumer.phone!=null){
         this.completeSale();
       }else{
         this.doPrompt()
         .then((phone)=>{
-          console.log('phone->',phone);
           if(phone!=null){
-            console.log('com telefone');
-            this.user.phone = phone;
-            this._user.updateUser(this.user)
+            this.user.costumer.phone = phone;
+            this._user.updateUser(this.user.costumer)
             .then((un)=>{
-              this.user=un;
-              this.completeSale();
+              this._user.getLoggedUser()
+              .then(uu =>{
+                uu['costumer']=un;
+                this.user=uu;
+                this._user.setLoggedUser(this.user);
+                this.completeSale();
+              })
             })
           }else{
-            this.completeSale();
+            // this.completeSale();
           }
         })
       }
@@ -83,14 +78,12 @@ export class ModalMapPage {
       .then( u =>{
         this._device.getDevice()
         .then( d =>{
-          console.log('p->',p);
-          console.log('u->',u);
-          console.log('d->',d);
+          let csa=u['costumer'];
           this._sale.createSale({
 
             location:d['id'],
             device:d['device'],
-            costumer:u['id'],
+            costumer:csa['id'],
             payment:"money",
             product:{
               amount:p["amount"],

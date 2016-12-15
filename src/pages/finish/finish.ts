@@ -18,7 +18,7 @@ import { Page1 } from '../page1/page1';
     constructor(public navCtrl: NavController) {}
 
     ionViewDidLoad() {
-      console.log('Hello FinishPage Page');
+
     }
     gotopage1(){
       this.navCtrl.push(Page1);

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController } from 'ionic-angular';
+import { NavController,ModalController,AlertController,LoadingController } from 'ionic-angular';
 import { MapPage } from '../map/map';
 import { ModalRegisterPage } from '../modal-register/modal-register';
 import { Facebook, NativeStorage } from 'ionic-native';
+
+
 
 
 import { User } from '../../providers/user';
@@ -20,11 +22,20 @@ import { Sale } from '../../providers/sale';
     templateUrl: 'login.html'
   })
   export class LoginPage {
-
+    login = {
+      email:'',
+      password:''
+    }
+    loader = this._loading.create({
+      content: this._device.getRandonLoading()
+    });
     constructor(
       public navCtrl: NavController,
       private modalCtrl:ModalController,
-      private _user:User) {
+      private _user:User,
+      private _loading:LoadingController,
+      private _device:Device,
+      public alerCtrl: AlertController) {
 
     }
 
@@ -35,18 +46,8 @@ import { Sale } from '../../providers/sale';
     gotomap(){
       this.navCtrl.push(MapPage);
     }
-    public registerUser(){
-      this.doFbLogin()
-      .then((user)=>{
-        this._user.registerUser(user)
-        .then((result)=>{
-          this.gotomap();
-        })
-      })
 
-    }
-
-    doFbLogin(){
+    private doFbLogin(){
       return new Promise((resolve, reject) => {
         let permissions = new Array();
 
@@ -72,9 +73,39 @@ import { Sale } from '../../providers/sale';
         });
       })
     }
-    newUserRegister(){
+    doLoginForm(){
+      this.loader.present();
+      this._user.loginUser(this.login)
+      .then(u =>{
+        this.loader.dismiss();
+        if(u['err'] == null ){
+          this._user.setLoggedUser(u);
+        }else{
+          let alert = this.alerCtrl.create({
+            title: 'Dados Invalidos',
+            message: 'Parece que você errou sua senha, cuidado quando for utilizar o aplicativo enquanto estiver alcoolizado.',
+            buttons: ['Ok']
+          });
+          alert.present();
+        }
+      })
+
+    }
+    facebookRegister(){
+      this.doFbLogin()
+      .then((user)=>{
+        this._user.facebookRegister(user)
+        .then((result)=>{
+          this._user.setLoggedUser(result);
+          this.gotomap();
+        })
+      })
+    }
+    openModalRegister(){
       let modal = this.modalCtrl.create(ModalRegisterPage);
       modal.present();
-      console.log('vai abrir o modal de cadastro');
+      modal.onWillDismiss(f =>{
+        console.log('willdismiss->',f);
+      })
     }
   }

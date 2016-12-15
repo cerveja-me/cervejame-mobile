@@ -97,7 +97,7 @@ declare var google;
       if(address.length >3){
         this._device.getLocationsWithAddres(address)
         .then((listAddress)=>{
-          console.log('address->',listAddress['results']);
+
           this.addressOptions=listAddress['results'];
         })
       }
@@ -118,7 +118,6 @@ declare var google;
 
     openModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-      console.log('address que foi enviad->',this.address);
       let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.address});
       modal.present();
     }
