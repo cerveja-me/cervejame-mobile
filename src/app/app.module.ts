@@ -18,6 +18,9 @@ import {ConstantService} from  '../providers/constant-service';
 
 import { Storage } from '@ionic/storage';
 
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
+
 
 @NgModule({
   declarations: [
