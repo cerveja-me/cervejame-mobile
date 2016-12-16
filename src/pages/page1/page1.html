@@ -12,6 +12,7 @@
       mas já estamos trabalhando nisso.</p>
       <p class="choose__bottom">
         <figure class="choose__picture">
+
           <img src="assets/img/empty.png">
         </figure>
       </p>
@@ -30,7 +31,7 @@
      </p>
      <p class="choose__bottom">
       <figure class="choose__picture">
-        <img [src]="'assets/img/'+products[0].product.img">
+        <img-loader [src]="'http://cerveja.me/img/mobile/'+products[0].product.img"></img-loader>
       </figure>
       <button ion-button secondary class="btn-choose" (click)="selectBeer(products[0])">ESCOLHER</button>
     </p>
@@ -46,7 +47,7 @@
   </p>
   <p class="choose__bottom">
     <figure class="choose__picture">
-      <img [src]="'assets/img/'+products[1].product.img">
+      <img-loader [src]="'http://cerveja.me/img/mobile/'+products[1].product.img"></img-loader>
     </figure>
     <button ion-button secondary class="btn-choose" (click)="selectBeer(products[1])">ESCOLHER</button>
   </p>
@@ -62,9 +63,60 @@
  </p>
  <p class="choose__bottom">
   <figure class="choose__picture">
-    <img [src]="'assets/img/'+products[2].product.img">
+    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[2].product.img"></img-loader>
   </figure>
   <button ion-button secondary class="btn-choose" (click)="selectBeer(products[2])">ESCOLHER</button>
+</p>
+</ion-slide>
+
+<ion-slide *ngIf="products[3]">
+ <p class="choose__pricebox">
+   <span class="choose__pricebox__info">{{products[3].product.description}} </span>
+   <span class="choose__pricebox__price">
+     <small class="choose__pricebox__price--currency">R$</small>{{products[3].price | number:'2.2-2'}}
+   </span>
+   <span class="free-shipping">Frete Grátis</span>
+   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+ </p>
+ <p class="choose__bottom">
+  <figure class="choose__picture">
+    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[3].product.img"></img-loader>
+  </figure>
+  <button ion-button secondary class="btn-choose" (click)="selectBeer(products[3])">ESCOLHER</button>
+</p>
+</ion-slide>
+
+<ion-slide *ngIf="products[4]">
+ <p class="choose__pricebox">
+   <span class="choose__pricebox__info">{{products[4].product.description}} </span>
+   <span class="choose__pricebox__price">
+     <small class="choose__pricebox__price--currency">R$</small>{{products[4].price | number:'2.2-2'}}
+   </span>
+   <span class="free-shipping">Frete Grátis</span>
+   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+ </p>
+ <p class="choose__bottom">
+  <figure class="choose__picture">
+    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[4].product.img"></img-loader>
+  </figure>
+  <button ion-button secondary class="btn-choose" (click)="selectBeer(products[4])">ESCOLHER</button>
+</p>
+</ion-slide>
+
+<ion-slide *ngIf="products[5]">
+ <p class="choose__pricebox">
+   <span class="choose__pricebox__info">{{products[5].product.description}} </span>
+   <span class="choose__pricebox__price">
+     <small class="choose__pricebox__price--currency">R$</small>{{products[5].price | number:'2.2-2'}}
+   </span>
+   <span class="free-shipping">Frete Grátis</span>
+   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+ </p>
+ <p class="choose__bottom">
+  <figure class="choose__picture">
+    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[5].product.img"></img-loader>
+  </figure>
+  <button ion-button secondary class="btn-choose" (click)="selectBeer(products[5])">ESCOLHER</button>
 </p>
 </ion-slide>
 
