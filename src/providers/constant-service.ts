@@ -14,7 +14,6 @@ export class ConstantService {
   SALE:string;
   constructor() {
     this.API = 'http://api.cerveja.me/';
-    this.API = 'http://192.168.0.103:1337/';
     this.DEVICE = 'device/';
     this.AUTH='auth/login';
     this.LOCATION = 'location/';
