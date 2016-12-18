@@ -7,3 +7,6 @@ cordova plugin add cordova-plugin-facebook4 --save --variable APP_ID="2897674780
 
 ###image loader
 https://www.npmjs.com/package/ionic-image-loader
+
+###push
+http://nishanthkabra.com/ionic2push.html

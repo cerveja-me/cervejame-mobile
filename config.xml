@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.cerveja.me" version="0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.cerveja.me" version="0.4.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Cerveja.me</name>
   <description>O melhor aplicativo para pedir sua cerveja</description>
   <author email="social@cerveja.me" href="http://cerveja.me/">Cerveja.me inc</author>
@@ -92,4 +92,7 @@
   <allow-navigation href="http://10.10.2.136:8000" />
   <plugin name="cordova-plugin-file" spec="~4.3.1" />
   <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
+  <plugin name="phonegap-plugin-push" spec="~1.9.2">
+    <variable name="SENDER_ID" value="10339294539" />
+  </plugin>
 </widget>

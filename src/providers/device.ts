@@ -4,7 +4,8 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation} from 'ionic-native';
-import {Platform} from 'ionic-angular';
+import {Platform,AlertController} from 'ionic-angular';
+import {Push} from 'ionic-native';
 
 import {ConstantService} from './constant-service';
 
@@ -19,7 +20,7 @@ import {ConstantService} from './constant-service';
   export class Device {
 
 
-    constructor(public http: Http,private storage:Storage, private platform:Platform, private cs :ConstantService, private _http:Http) {}
+    constructor(public http: Http,private storage:Storage, private platform:Platform, private cs :ConstantService, private _http:Http,private alerCtrl: AlertController) {}
     firstTimeApp(){
       return new Promise((resolve, reject) => {
         this.storage.get('ftime')
@@ -107,21 +108,43 @@ import {ConstantService} from './constant-service';
         });
       })
     }
-
+    doAlert(data) {
+      let alert = this.alerCtrl.create({
+        title: data.title,
+        message: data.message,
+        buttons: ['Ok']
+      });
+      alert.present()
+    }
     getPushToken(){
       /*
       esse metodo vai verificar se já tem o token
       caso ele já exista ele retorna, se nao ele vai tentar gerar
       */
       return new Promise((resolve, reject) => {
-        this.storage.get('fcmtoken')
-        .then((val) => {
-          if(val){
-            resolve(val);
-          }else{
-            this.storage.set('fcmtoken', '9108390810ASDAAASDASD2938091829038901823');
-            resolve('9108390810ASDAAASDASD2938091829038901823');
+        var push = Push.init({
+          android: {
+            senderID: "10339294539",
+            sound: 'false',
+            icon:'icon'
+          },
+          ios: {
+            senderID: "10339294539",
+            alert: "true",
+            badge: true,
+            sound: 'false'
           }
+        });
+        push.on('registration', (data) => {
+          this.storage.set('fcmtoken', data.registrationId);
+          resolve(data.registrationId);
+        });
+        push.on('notification', (data) => {
+          console.log(data);
+          this.doAlert(data);
+        });
+        push.on('error', (e) => {
+          console.log(e.message);
         });
       });
     }

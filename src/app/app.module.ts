@@ -18,6 +18,8 @@ import { Sale } from '../providers/sale';
 import {ConstantService} from  '../providers/constant-service';
 
 import { Storage } from '@ionic/storage';
+import {Push} from 'ionic-native';
+
 
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
