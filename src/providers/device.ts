@@ -44,15 +44,18 @@ import {ConstantService} from './constant-service';
           this._http.post(this.cs.API+this.cs.DEVICE, body,options)
           .toPromise()
           .then( res =>{
+            console.log("aquiiii");
             this.setDevice(res.json());
             resolve(res.json());
           })
           .catch(err=>{
-            reject(err.json());
+            console.log("aquiiii2");
+            reject(err);
           });
         })
         .catch(err=>{
-          reject(err.json());
+          console.log("aquiiii3");
+          reject(err);
         });
       });
     };
@@ -145,6 +148,8 @@ import {ConstantService} from './constant-service';
         });
         push.on('error', (e) => {
           console.log(e.message);
+          reject(e);
+
         });
       });
     }
