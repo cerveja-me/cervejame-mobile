@@ -20,8 +20,19 @@ export class ModalNotificationPage {
     ) {  }
 
   accept() {
-    //pegar os dados necessarios para o push
-    this.viewCtrl.dismiss({push:true});
+    this._device.getPushToken()
+    .then(token =>{
+      if(token){
+        this.viewCtrl.dismiss({push:true});
+      }else{
+        this._device.setFcmToken('userDeniedPush');
+        this.viewCtrl.dismiss({push:false});
+      }
+    })
+    .catch(e =>{
+      this._device.setFcmToken('userDeniedPush');
+      this.viewCtrl.dismiss({push:false});
+    })
   }
   deny() {
     this._device.setFcmToken('userDeniedPush');

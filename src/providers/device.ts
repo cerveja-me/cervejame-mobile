@@ -68,17 +68,14 @@ import {ConstantService} from './constant-service';
           this._http.post(this.cs.API+this.cs.DEVICE, body,options)
           .toPromise()
           .then( res =>{
-            console.log("aquiiii");
             this.setDevice(res.json());
             resolve(res.json());
           })
           .catch(err=>{
-            console.log("aquiiii2");
             reject(err);
           });
         })
         .catch(err=>{
-          console.log("aquiiii3");
           reject(err);
         });
       });
@@ -143,11 +140,8 @@ import {ConstantService} from './constant-service';
       });
       alert.present()
     }
+    /** esse metodo vai verificar se já tem o token caso ele já exista ele retorna, se nao ele vai tentar gerar*/
     getPushToken(){
-      /*
-      esse metodo vai verificar se já tem o token
-      caso ele já exista ele retorna, se nao ele vai tentar gerar
-      */
       return new Promise((resolve, reject) => {
         var push = Push.init({
           android: {
@@ -163,7 +157,7 @@ import {ConstantService} from './constant-service';
           }
         });
         push.on('registration', (data) => {
-          this.storage.set('fcmtoken', data.registrationId);
+          this.setFcmToken(data.registrationId);
           resolve(data.registrationId);
         });
         push.on('notification', (data) => {
@@ -173,7 +167,6 @@ import {ConstantService} from './constant-service';
         push.on('error', (e) => {
           console.log(e.message);
           reject(e);
-
         });
       });
     }
