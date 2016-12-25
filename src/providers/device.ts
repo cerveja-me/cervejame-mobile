@@ -20,19 +20,43 @@ import {ConstantService} from './constant-service';
   export class Device {
 
 
-    constructor(public http: Http,private storage:Storage, private platform:Platform, private cs :ConstantService, private _http:Http,private alerCtrl: AlertController) {}
+    constructor(
+      public http: Http,
+      private storage:Storage,
+      private platform:Platform,
+      private cs :ConstantService,
+      private _http:Http,
+      private alerCtrl: AlertController) {}
+
     firstTimeApp(){
       return new Promise((resolve, reject) => {
-        this.storage.get('ftime')
+        this.storage.get(this.cs.FIRSTIME)
         .then((val) => {
           if(val){
             resolve(false);
           }else{
-            this.storage.set('ftime', 'false');
+            this.storage.set(this.cs.FIRSTIME, 'false');
             resolve(true);
           }
         });
       });
+    }
+
+    getFcmToken(){
+      return new Promise((resolve, reject) => {
+        this.storage.get(this.cs.PUSH)
+        .then(tk =>{
+          if(tk != null){
+            resolve(tk);
+          }else{
+            resolve(false);
+          }
+        })
+      })
+    }
+
+    setFcmToken(token){
+      this.storage.set(this.cs.PUSH,token);
     }
     createDevice(){
       return new Promise((resolve, reject) => {

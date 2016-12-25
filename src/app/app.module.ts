@@ -7,6 +7,7 @@ import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
 import { ModalContentPage } from '../pages/modal-receipt/modal-receipt';
 import { ModalTourPage } from '../pages/modal-tour/modal-tour';
+import { ModalNotificationPage } from '../pages/modal-notification/modal-notification';
 import { ModalMapPage } from '../pages/modal-map/modal-map';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { MapPage } from '../pages/map/map';
@@ -29,7 +30,7 @@ import 'intl/locale-data/jsonp/pt-BR';
   declarations: [
   MyApp,Page1,Page2,ModalContentPage,LoginPage,
   MapPage,FinishPage,ModalTourPage,ModalMapPage,
-  ModalRegisterPage
+  ModalRegisterPage,ModalNotificationPage
   ],
   imports: [
   IonicModule.forRoot(MyApp),
@@ -38,7 +39,7 @@ import 'intl/locale-data/jsonp/pt-BR';
   bootstrap: [IonicApp],
   entryComponents: [
   MyApp,Page1,Page2,ModalContentPage,
-  LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage,ModalRegisterPage
+  LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage,ModalRegisterPage,ModalNotificationPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },User,Device,Sale,Storage,ConstantService]
 })

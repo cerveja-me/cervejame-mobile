@@ -4,6 +4,7 @@ import { LoadingController,AlertController ,ModalController,Platform} from 'ioni
 
 import { ModalContentPage } from '../modal-receipt/modal-receipt';
 import { ModalTourPage } from '../modal-tour/modal-tour';
+import { ModalNotificationPage } from '../modal-notification/modal-notification';
 
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
@@ -25,20 +26,40 @@ export class Page1 {
     private alertCtrl:AlertController,
     private platform:Platform) {
     platform.ready().then((readySource) => {
-      _device.firstTimeApp()
-      .then((res)=>{
-        if(res){
-          let modal = this.modalCtrl.create(ModalTourPage, {charNum: 0});
-          modal.present();
-        }
-        this.getProducts();
-      }).catch((err)=>{
-        console.log('err->',err);
-      });
-
+      this.verifyFirstTime();
     });
-
   }
+  verifyFirstTime(){
+    this._device.firstTimeApp()
+    .then((res)=>{
+      if(res){
+        let firstTimeModal = this.modalCtrl.create(ModalTourPage, {charNum: 0});
+        firstTimeModal.present();
+        firstTimeModal.onDidDismiss(a =>{
+          this.verifyPush();
+        })
+      }else{
+        this.verifyPush();
+      }
+    }).catch((err)=>{
+      console.log('err->',err);
+    });
+  }
+  verifyPush(){
+    this._device.getFcmToken()
+    .then(tk =>{
+      if(tk){
+        console.log('segue a vida ->>',tk);
+      }else{
+        let notificationModal = this.modalCtrl.create(ModalNotificationPage, {charNum: 0});
+        notificationModal.present();
+        notificationModal.onDidDismiss(a =>{
+          this.verifyPush();
+        });
+      }
+    })
+  }
+  // this.getProducts();
   getProducts(){
     this.loader.present();
     this._device.createDevice()

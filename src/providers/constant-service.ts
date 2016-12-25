@@ -12,6 +12,8 @@ export class ConstantService {
   AUTH:string;
   COSTUMER_UPDATE:string;
   SALE:string;
+  FIRSTIME:string;
+  PUSH:string;
   constructor() {
     this.API = 'http://api.cerveja.me/';
     this.DEVICE = 'device/';
@@ -22,5 +24,7 @@ export class ConstantService {
     this.SALE = 'sale/';
     this.GOOGLE_GEOCODE ='https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
     this.GOOGLE_ADDRESS = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
+    this.FIRSTIME = 'ftime';
+    this.PUSH='fcm_token';
   }
 }
