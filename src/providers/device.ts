@@ -3,9 +3,8 @@ import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
-import {Geolocation} from 'ionic-native';
+import {Geolocation, Push} from 'ionic-native';
 import {Platform,AlertController} from 'ionic-angular';
-import {Push} from 'ionic-native';
 
 import {ConstantService} from './constant-service';
 
