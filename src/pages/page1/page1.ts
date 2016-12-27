@@ -49,7 +49,7 @@ export class Page1 {
     this._device.getFcmToken()
     .then(tk =>{
       if(tk){
-        console.log('segue a vida ->>',tk);
+        this.getProducts();
       }else{
         let notificationModal = this.modalCtrl.create(ModalNotificationPage, {charNum: 0});
         notificationModal.present();
@@ -59,7 +59,7 @@ export class Page1 {
       }
     })
   }
-  // this.getProducts();
+
   getProducts(){
     this.loader.present();
     this._device.createDevice()
