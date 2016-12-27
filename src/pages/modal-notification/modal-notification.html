@@ -1,8 +1,16 @@
 
 <ion-content class="background-dark">
   <div class="logo-white"></div>
-  <h1>Precisamos te enviar notificações</h1>
+  <ion-slides>
 
-  <button (click)="accept()">ACEITAR</button>
-  <button (click)="deny()">NEGAR</button>
+    <ion-slide>
+     <div class="msg">
+      <span class="msg__icon icone-notification"></span>
+      <span class="msg__text">Receba novidades
+e status do seu pedido.</span>
+          <button class="btn-notification" (click)="accept()">Liberar Notificações</button>
+  <button class="btn-skip" (click)="deny()">Pular</button>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
