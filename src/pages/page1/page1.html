@@ -119,6 +119,37 @@
   <button ion-button secondary class="btn-choose" (click)="selectBeer(products[5])">ESCOLHER</button>
 </p>
 </ion-slide>
-
+<ion-slide *ngIf="products[6]">
+ <p class="choose__pricebox">
+   <span class="choose__pricebox__info">{{products[6].product.description}} </span>
+   <span class="choose__pricebox__price">
+     <small class="choose__pricebox__price--currency">R$</small>{{products[6].price | number:'2.2-2'}}
+   </span>
+   <span class="free-shipping">Frete Grátis</span>
+   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+ </p>
+ <p class="choose__bottom">
+  <figure class="choose__picture">
+    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[6].product.img"></img-loader>
+  </figure>
+  <button ion-button secondary class="btn-choose" (click)="selectBeer(products[6])">ESCOLHER</button>
+</p>
+</ion-slide>
+<ion-slide *ngIf="products[7]">
+ <p class="choose__pricebox">
+   <span class="choose__pricebox__info">{{products[7].product.description}} </span>
+   <span class="choose__pricebox__price">
+     <small class="choose__pricebox__price--currency">R$</small>{{products[7].price | number:'2.2-2'}}
+   </span>
+   <span class="free-shipping">Frete Grátis</span>
+   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+ </p>
+ <p class="choose__bottom">
+  <figure class="choose__picture">
+    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[7].product.img"></img-loader>
+  </figure>
+  <button ion-button secondary class="btn-choose" (click)="selectBeer(products[7])">ESCOLHER</button>
+</p>
+</ion-slide>
 </ion-slides>
 </ion-content>
