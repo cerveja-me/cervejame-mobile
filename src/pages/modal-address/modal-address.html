@@ -3,13 +3,16 @@
   <h1> Seu Endereço.</h1>
   <div class="map__adress">
     <span class="icon-map"></span>
-    <input  placeholder="Rua" type="text">
+    <input  placeholder="Rua" type="text" [(ngModel)]="address" >
   </div>
   <br>
-  <input  placeholder="Número" type="text">
+  <input  placeholder="Número" type="text" [(ngModel)]="number">
   <br>
 
-  <input  placeholder="Complemento" type="text">
+  <input  placeholder="Complemento" type="text" [(ngModel)]="complement">
 
 
 </ion-content>
+<ion-footer align-title="left" class="bar-assertive">
+  <button ion-button secondary class="receipt__btn" (click)="openModal()">ENTREGAR AQUI</button>
+</ion-footer>
