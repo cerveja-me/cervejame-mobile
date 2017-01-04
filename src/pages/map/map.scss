@@ -84,3 +84,25 @@ page-map {
     margin-right: 10px;
   }
 
+ .map__adress__autocomplete {
+        background: white;
+        position: absolute;
+        top: auto;
+        width: 100%;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+
+        &__item {
+          @extend .font-regular;
+
+          color: #666;
+          font-size: 14px;
+          padding: 15px;
+          border-bottom: 1px solid #ccc;
+          margin: 0;
+            text-align: left;
+        }
+ }
