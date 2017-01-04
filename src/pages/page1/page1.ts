@@ -61,6 +61,7 @@ export class Page1 {
   }
 
   getProducts(){
+    console.log('getproducts');
     this.loader.present();
     this._device.createDevice()
     .then((res)=>{
@@ -74,11 +75,13 @@ export class Page1 {
         this.loader.dismiss();
       })
       .catch(e=>{
+        console.log('erro ao buscar produtos');
         this.loader.dismiss();
         this.doConfirm();
       });
     })
     .catch(e=>{
+      console.log('erro ao criar device');
       this.loader.dismiss();
       this.doConfirm();
     });

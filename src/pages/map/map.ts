@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
 
 import { ModalMapPage } from '../modal-map/modal-map';
+import { ModalAddressPage } from '../modal-address/modal-address';
 import { NavController, ModalController, Platform, NavParams } from 'ionic-angular';
 import { Injectable, NgZone } from '@angular/core';
 import { Device } from '../../providers/device';
@@ -119,6 +120,11 @@ declare var google;
     openModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
       let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.address});
+      modal.present();
+    }
+    openAddressModal(){
+      let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
+      let modal = this.modalCtrl.create(ModalAddressPage,{"location":loca,"address":this.address});
       modal.present();
     }
   }

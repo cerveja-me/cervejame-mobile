@@ -43,6 +43,7 @@ import {ConstantService} from './constant-service';
 
     getFcmToken(){
       return new Promise((resolve, reject) => {
+        console.log('device');
         this.storage.get(this.cs.PUSH)
         .then(tk =>{
           if(tk != null){
@@ -64,6 +65,7 @@ import {ConstantService} from './constant-service';
           let body = JSON.stringify({ "push_token":device});
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
+          console.log('body -> ', body);
           this._http.post(this.cs.API+this.cs.DEVICE, body,options)
           .toPromise()
           .then( res =>{
@@ -81,7 +83,26 @@ import {ConstantService} from './constant-service';
     };
     getLocation(){
       return new Promise((resolve, reject) => {
-        this.platform.ready().then(() => {
+        if(this.platform.is('cordova')){
+          this.platform.ready().then(() => {
+            let opt = {
+              enableHighAccuracy: true,
+              timeout: 20000,
+              maximumAge: 0
+            };
+            Geolocation.getCurrentPosition(opt)
+            .then((pos) => {
+              let lat={};
+              lat[0]=pos.coords.latitude;
+              lat[1]=pos.coords.longitude;
+              this.setLocation(lat);
+              resolve(lat);
+            })
+            .catch(e=>{
+              reject();
+            });
+          });
+        }else{
           let opt = {
             enableHighAccuracy: true,
             timeout: 20000,
@@ -96,10 +117,10 @@ import {ConstantService} from './constant-service';
             resolve(lat);
           })
           .catch(e=>{
-            console.log('err');
             reject();
           });
-        });
+        }
+
 
       });
     }
@@ -142,31 +163,34 @@ import {ConstantService} from './constant-service';
     /** esse metodo vai verificar se já tem o token caso ele já exista ele retorna, se nao ele vai tentar gerar*/
     getPushToken(){
       return new Promise((resolve, reject) => {
-        var push = Push.init({
-          android: {
-            senderID: "10339294539",
-            sound: 'false',
-            icon:'icon'
-          },
-          ios: {
-            senderID: "10339294539",
-            alert: "true",
-            badge: true,
-            sound: 'false'
-          }
-        });
-        push.on('registration', (data) => {
-          this.setFcmToken(data.registrationId);
-          resolve(data.registrationId);
-        });
-        push.on('notification', (data) => {
-          console.log(data);
-          this.doAlert(data);
-        });
-        push.on('error', (e) => {
-          console.log(e.message);
-          reject(e);
-        });
+        if(this.platform.is('cordova')){
+          var push = Push.init({
+            android: {
+              senderID: "10339294539",
+              sound: 'false',
+              icon:'icon'
+            },
+            ios: {
+              senderID: "10339294539",
+              alert: "true",
+              badge: true,
+              sound: 'false'
+            }
+          });
+          push.on('registration', (data) => {
+            this.setFcmToken(data.registrationId);
+            resolve(data.registrationId);
+          });
+          push.on('notification', (data) => {
+            this.doAlert(data);
+          });
+          push.on('error', (e) => {
+            reject(e);
+          });
+        }else{
+          this.setFcmToken('developmenttoken');
+          resolve('developmenttoken');
+        }
       });
     }
     setDevice(device){
