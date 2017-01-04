@@ -1,16 +1,22 @@
 
 <ion-content class="background-dark">
-  <h1> Seu Endereço.</h1>
-  <div class="map__adress">
-    <span class="icon-map"></span>
-    <input  placeholder="Rua" type="text" [(ngModel)]="address" >
-  </div>
-  <br>
-  <input  placeholder="Número" type="text" [(ngModel)]="number">
-  <br>
+    <div class="msg transparent">
+        <span class="msg__text white">Seu endereço.</span>
+      <div class="login__box">
+        <span class="icon-map"></span>
+        <input class="login__box__input" placeholder="Rua" type="text" [(ngModel)]="address" >
+      </div>
+        <div class="login__box">
+            <span class="icon-map"></span>
+       <input class="login__box__input" placeholder="Número" type="text" [(ngModel)]="number">
+        </div>
+        <div class="login__box space">
+            <span class="icon-map"></span>
+      <input class="login__box__input"  placeholder="Complemento" type="text" [(ngModel)]="complement">
+        </div>
 
-  <input  placeholder="Complemento" type="text" [(ngModel)]="complement">
-
+    </div>
+ 
 
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
