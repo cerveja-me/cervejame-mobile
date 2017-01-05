@@ -1,27 +1,27 @@
 
 <ion-content class="background-dark">
-    <div class="msg transparent">
-        <span class="msg__text white">Seu endereço.</span>
-      <div class="login__box">
-        <span class="icon-map"></span>
-        <input class="login__box__input" placeholder="Rua" type="text" [(ngModel)]="address" >
-      </div>
-           <ul class="map__adress__autocomplete" >
-     <li class="map__adress__autocomplete__item" >TEste</li>
-                <li class="map__adress__autocomplete__item" >TEste</li>
+  <div class="msg transparent">
+    <span class="msg__text white">Seu endereço.</span>
+    <div class="login__box">
+      <span class="icon-map"></span>
+      <input #address class="login__box__input" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
+    </div>
+    <ul class="map__adress__autocomplete" *ngIf="addressOptions.length">
+     <li class="map__adress__autocomplete__item" *ngFor="let ad of addressOptions" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
    </ul>
 
-        <div class="login__box">
-            <span class="icon-map"></span>
-       <input class="login__box__input" placeholder="Número" type="text" [(ngModel)]="number">
-        </div>
-        <div class="login__box space">
-            <span class="icon-map"></span>
-      <input class="login__box__input"  placeholder="Complemento" type="text" [(ngModel)]="complement">
-        </div>
+   <div class="login__box">
+    <span class="icon-map"></span>
+    <input class="login__box__input" placeholder="Número" type="text" [(ngModel)]="number" *ngIf="address.length">
+  </div>
+  <div class="login__box space">
+    <span class="icon-map"></span>
+    <input class="login__box__input"  placeholder="Complemento" type="text" [(ngModel)]="complement" *ngIf="number.length">
+  </div>
 
-    </div>
- 
+
+</div>
+
 
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
