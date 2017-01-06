@@ -17,6 +17,7 @@ import { Analytics } from '../../providers/analytics';
 })
 export class Page1 {
   products=[];
+  startTime;
   loader = this._loading.create({
     content: this._device.getRandonLoading()
   });
@@ -30,6 +31,7 @@ export class Page1 {
     platform.ready().then((readySource) => {
       an.trackView('home','none');
       this.verifyFirstTime();
+
     });
   }
   verifyFirstTime(){
@@ -64,7 +66,6 @@ export class Page1 {
   }
 
   getProducts(){
-    console.log('getproducts');
     this.loader.present();
     this._device.createDevice()
     .then((res)=>{
@@ -72,6 +73,7 @@ export class Page1 {
       .then((_products)=>{
         if(_products['zone'] !=null){
           this.products=_products['products'];
+          this.startTime = new Date().getMilliseconds();
         }else{
           this.products=[];
         }
@@ -119,6 +121,9 @@ export class Page1 {
   selectBeer(beer){
     let modal = this.modalCtrl.create(ModalContentPage,{'beer':beer});
     modal.present();
+    let time =new Date().getMilliseconds()-this.startTime;
+    this.an.time('TimeToChooseBeer',time,'','');
+    this.an.button('selected_beer',beer.zone,beer.product.name,beer.price);
   }
 }
 
