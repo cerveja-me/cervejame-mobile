@@ -15,7 +15,7 @@ import {NavController, Platform, NavParams, ViewController } from 'ionic-angular
 export class ModalContentPage {
   character;
   beer;
-
+  timeStart;
   constructor(
     public platform: Platform,
     public params: NavParams,
@@ -30,6 +30,11 @@ export class ModalContentPage {
     this.beer=this.params.get('beer');
     this.beer.amount=1;
     this.zone.run(()=>{});
+
+    this.timeStart =new Date().getMilliseconds()-this.startTime;
+    // let time =new Date().getMilliseconds()-this.startTime;
+    // this.an.time('TimeToChooseBeer',time,'','');
+    // this.an.button('selected_beer',beer.zone,beer.product.name,beer.price);
   }
 
 
@@ -38,7 +43,8 @@ export class ModalContentPage {
   }
 
   finishRequest(){
-
+    let time = new Date().getMilliseconds()-this.timeStart;
+    this.an.time('TimeToChooseQuantity',time,'','');
     this._sale.setProduct(this.beer);
 
     this._user.isUserLogged()
@@ -52,10 +58,12 @@ export class ModalContentPage {
   }
 
   increaseAmount(){
+    this.an.button('increase_quantity_modal',this.beer.zone,this.beer.product.name,this.beer.price);
     this.beer.amount++;
     this.zone.run(()=>{});
   }
   decreaseAmount(){
+    this.an.button('decrease_quantity_modal',this.beer.zone,this.beer.product.name,this.beer.price);
     if(this.beer.amount>1){
       this.beer.amount--;
       this.zone.run(()=>{});
