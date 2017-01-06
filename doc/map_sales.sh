@@ -21,3 +21,7 @@ mysql --host=cervejame.coxgsmepqodf.sa-east-1.rds.amazonaws.com --user=cervejame
 echo 'vendas por dia',
 mysql --host=cervejame.coxgsmepqodf.sa-east-1.rds.amazonaws.com --user=cervejame --password=cervejame cervejame --execute="select sum(amount) as caixas,count(*) as entregas,(sum(amount)/count(*)) as media, date((createdAt-interval 4 hour)) from sale where costumer <>'8fc4966e-e7e2-4048-9741-114e50df7f59' and costumer<>'27e69e14-4529-42ca-b902-aaa830da101d' and costumer <> '32eedda0-1704-4540-94e5-9f1ebf4c3b84' group by date((createdAt-interval 4 hour));" | tr "\\t" "," > /Users/guardezi/GDrive/Cerveja.me/sales.csv
 
+echo 'Aberturas Ultimos 10 dias'
+mysql --host=cervejame.coxgsmepqodf.sa-east-1.rds.amazonaws.com --user=cervejame --password=cervejame cervejame --execute="select * from location l where l.id not in (select sale.location from sale) and Date(createdAt - interval 3 hour) > Date(now()-interval 10 day) order by createdAt desc;" | tr "\\t" ","  > /Users/guardezi/GDrive/Cerveja.me/last10_place_no_sale.csv
+
+

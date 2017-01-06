@@ -1,4 +1,4 @@
-import { Component,Input,ViewChild } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { ModalMapPage } from '../modal-map/modal-map';
 import { Device } from '../../providers/device';
 
@@ -14,7 +14,7 @@ export class ModalAddressPage {
   number;
   complement;
   addressOptions = [];
-  @ViewChild('input') addressInput ;
+  // @ViewChild('address') addressInput ;
 
   constructor(
     public platform: Platform,
@@ -24,14 +24,13 @@ export class ModalAddressPage {
     public modalCtrl : ModalController,
     public _device : Device
 
-    ) {
+    ) {}
 
-  }
   ionViewLoaded() {
 
-    setTimeout(() => {
-      this.address.setFocus();
-    },150);
+    // setTimeout(() => {
+      //   this.address.setFocus();
+      // },150);
 
   }
 

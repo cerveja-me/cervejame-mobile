@@ -4,7 +4,7 @@
     <span class="msg__text white">Seu endereço.</span>
     <div class="login__box">
       <span class="icon-map"></span>
-      <input #address class="login__box__input" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
+      <input  class="login__box__input" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
     </div>
     <ul class="map__adress__autocomplete" *ngIf="addressOptions.length">
      <li class="map__adress__autocomplete__item" *ngFor="let ad of addressOptions" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
