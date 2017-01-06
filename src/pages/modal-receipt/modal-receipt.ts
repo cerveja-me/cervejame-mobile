@@ -5,6 +5,7 @@ import { MapPage } from '../map/map';
 import { FinishPage } from '../finish/finish';
 import { Sale } from '../../providers/sale';
 import { User } from '../../providers/user';
+import { Analytics } from '../../providers/analytics';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
@@ -22,8 +23,10 @@ export class ModalContentPage {
     public navCtrl: NavController,
     private _sale:Sale,
     private zone:NgZone,
-    private _user:User
-    ) {
+    private _user:User,
+    private an:Analytics) {
+    an.trackView('modal_receip','none');
+
     this.beer=this.params.get('beer');
     this.beer.amount=1;
     this.zone.run(()=>{});

@@ -5,60 +5,59 @@ import { MapPage } from '../map/map';
 
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
-/*
-  Generated class for the ModalRegister page.
+import { Analytics } from '../../providers/analytics';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-  */
-  @Component({
-    templateUrl: 'modal-register.html'
-  })
-  export class ModalRegisterPage {
-    register={
-      name:'',
-      email:'',
-      password:''
-    }
+@Component({
+  templateUrl: 'modal-register.html'
+})
+export class ModalRegisterPage {
+  register={
+    name:'',
+    email:'',
+    password:''
+  }
 
-    loader = this._loading.create({
-      content: this._device.getRandonLoading()
-    });
-    constructor(
-      public platform: Platform,
-      public params: NavParams,
-      public viewCtrl: ViewController,
-      public navCtrl: NavController,
-      private _user:User,
-      private _loading:LoadingController,
-      private _device:Device,
-      public alerCtrl: AlertController) {}
+  loader = this._loading.create({
+    content: this._device.getRandonLoading()
+  });
+  constructor(
+    public platform: Platform,
+    public params: NavParams,
+    public viewCtrl: ViewController,
+    public navCtrl: NavController,
+    private _user:User,
+    private _loading:LoadingController,
+    private _device:Device,
+    public alerCtrl: AlertController,
+    private an:Analytics) {
+    an.trackView('modal_register','none');
+  }
 
-    ionViewDidLoad() {
-
-    }
-    createUser(){
-      this.loader.present();
-      this._user.createUser(this.register)
-      .then(re =>{
-
-        if(re['err']==null){
-
-          this._user.setLoggedUser(re);
-
-          this.loader.dismiss();
-          this.navCtrl.push(MapPage);
-
-          this.dismiss();
-        }else{
-          this.loader.dismiss();
-          console.log('cadastro com sucesso ->',re);
-        }
-      })
-    }
-
-    dismiss() {
-      this.viewCtrl.dismiss();
-    }
+  ionViewDidLoad() {
 
   }
+  createUser(){
+    this.loader.present();
+    this._user.createUser(this.register)
+    .then(re =>{
+
+      if(re['err']==null){
+
+        this._user.setLoggedUser(re);
+
+        this.loader.dismiss();
+        this.navCtrl.push(MapPage);
+
+        this.dismiss();
+      }else{
+        this.loader.dismiss();
+        console.log('cadastro com sucesso ->',re);
+      }
+    })
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Analytics } from '../../providers/analytics';
+
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
@@ -13,8 +15,11 @@ export class ModalTourPage {
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
-    public navCtrl: NavController
-    ) {  }
+    public navCtrl: NavController,
+    private an : Analytics
+    ) {
+    an.trackView('modal_tour','none');
+  }
 
   dismiss() {
     this.viewCtrl.dismiss();

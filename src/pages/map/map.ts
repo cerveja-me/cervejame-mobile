@@ -8,6 +8,7 @@ import { NavController, ModalController, Platform, NavParams } from 'ionic-angul
 import { Injectable, NgZone } from '@angular/core';
 import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
+import { Analytics } from '../../providers/analytics';
 declare var google;
 /*
   Generated class for the Map page.
@@ -33,7 +34,10 @@ declare var google;
       private _device:Device,
       private zone:NgZone,
       private _user:User,
-      private _loading:LoadingController) {}
+      private _loading:LoadingController,
+      private an:Analytics) {
+      an.trackView('map','none');
+    }
 
     ionViewDidLoad() {
       this.loader.present();

@@ -3,7 +3,7 @@ import { NavController,ModalController,AlertController,LoadingController } from 
 import { MapPage } from '../map/map';
 import { ModalRegisterPage } from '../modal-register/modal-register';
 import { Facebook, NativeStorage } from 'ionic-native';
-
+import { Analytics } from '../../providers/analytics';
 
 
 
@@ -35,8 +35,9 @@ import { Sale } from '../../providers/sale';
       private _user:User,
       private _loading:LoadingController,
       private _device:Device,
-      public alerCtrl: AlertController) {
-
+      public alerCtrl: AlertController,
+      private an:Analytics) {
+      an.trackView('Login','none');
     }
 
     ionViewDidLoad() {

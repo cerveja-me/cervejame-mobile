@@ -9,6 +9,7 @@ import { ModalNotificationPage } from '../modal-notification/modal-notification'
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
+import { Analytics } from '../../providers/analytics';
 
 @Component({
   selector: 'page-page1',
@@ -24,8 +25,10 @@ export class Page1 {
     private _loading:LoadingController,
     private _sale:Sale,
     private alertCtrl:AlertController,
-    private platform:Platform) {
+    private platform:Platform,
+    private an:Analytics) {
     platform.ready().then((readySource) => {
+      an.trackView('home','none');
       this.verifyFirstTime();
     });
   }

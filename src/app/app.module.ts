@@ -17,10 +17,11 @@ import { FinishPage } from '../pages/finish/finish';
 import { User } from '../providers/user';
 import { Device } from '../providers/device';
 import { Sale } from '../providers/sale';
-import {ConstantService} from  '../providers/constant-service';
+import { ConstantService } from  '../providers/constant-service';
+import { Analytics } from '../providers/analytics';
 
 import { Storage } from '@ionic/storage';
-import {Push} from 'ionic-native';
+import {Push,GoogleAnalytics} from 'ionic-native';
 
 
 import 'intl';
@@ -42,6 +43,10 @@ import 'intl/locale-data/jsonp/pt-BR';
   MyApp,Page1,Page2,ModalContentPage,
   LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage,ModalRegisterPage,ModalNotificationPage,ModalAddressPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },User,Device,Sale,Storage,ConstantService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },Analytics,User,Device,Sale,Storage,ConstantService]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(public _an:Analytics) {
+    _an.startTrack();
+  }
+}

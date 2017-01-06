@@ -1,6 +1,7 @@
 import { Component,ViewChild } from '@angular/core';
 import { ModalMapPage } from '../modal-map/modal-map';
 import { Device } from '../../providers/device';
+import { Analytics } from '../../providers/analytics';
 
 import {NavController, Platform, NavParams, ViewController,ModalController } from 'ionic-angular';
 
@@ -21,9 +22,10 @@ export class ModalAddressPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public modalCtrl : ModalController,
-    public _device : Device
-
-    ) {}
+    public _device : Device,
+    private an:Analytics) {
+    an.trackView('modal_address','none');
+  }
 
   ionViewLoaded() {
 

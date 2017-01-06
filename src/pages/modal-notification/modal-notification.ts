@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Device } from '../../providers/device';
+import { Analytics } from '../../providers/analytics';
 
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
@@ -16,8 +17,10 @@ export class ModalNotificationPage {
     public params: NavParams,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
-    private _device : Device
-    ) {  }
+    private _device : Device,
+    private an:Analytics) {
+    an.trackView('modal_notification','none');
+  }
 
   accept() {
     this._device.getPushToken()

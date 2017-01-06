@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { Page1 } from '../page1/page1';
+import { Analytics } from '../../providers/analytics';
 
 /*
   Generated class for the Finish page.
@@ -15,7 +16,10 @@ import { Page1 } from '../page1/page1';
   })
   export class FinishPage {
 
-    constructor(public navCtrl: NavController) {}
+    constructor(public navCtrl: NavController,
+      private an:Analytics) {
+      an.trackView('Finish','none');
+    }
 
     ionViewDidLoad() {
 

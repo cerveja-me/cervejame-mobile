@@ -6,6 +6,7 @@ import { FinishPage } from '../finish/finish';
 import { User } from '../../providers/user';
 import { Sale } from '../../providers/sale';
 import { Device } from '../../providers/device'
+import { Analytics } from '../../providers/analytics';
 
 
 import {NavController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
@@ -28,8 +29,10 @@ export class ModalMapPage {
     private alertCtrl:AlertController,
     private _user: User,
     private _sale:Sale,
-    private _device:Device
-    ) {
+    private _device:Device,
+    private an:Analytics) {
+    an.trackView('modal_map','none');
+
     this._sale.getProduct()
     .then( p=>{
       this.address=this.params.get("address");
