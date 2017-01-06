@@ -14,7 +14,6 @@ export class ModalAddressPage {
   number;
   complement;
   addressOptions = [];
-  // @ViewChild('address') addressInput ;
 
   constructor(
     public platform: Platform,
@@ -28,9 +27,6 @@ export class ModalAddressPage {
 
   ionViewLoaded() {
 
-    // setTimeout(() => {
-      //   this.address.setFocus();
-      // },150);
 
   }
 
