@@ -31,7 +31,7 @@ export class ModalContentPage {
     this.beer.amount=1;
     this.zone.run(()=>{});
 
-    this.timeStart =new Date().getMilliseconds()-this.startTime;
+    this.timeStart =new Date().getMilliseconds();
     // let time =new Date().getMilliseconds()-this.startTime;
     // this.an.time('TimeToChooseBeer',time,'','');
     // this.an.button('selected_beer',beer.zone,beer.product.name,beer.price);
@@ -39,6 +39,7 @@ export class ModalContentPage {
 
 
   dismiss() {
+    this.an.button('select_canceled',this.beer.zone,this.beer.product.name,this.beer.price);
     this.viewCtrl.dismiss();
   }
 
