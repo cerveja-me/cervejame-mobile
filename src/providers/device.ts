@@ -32,6 +32,7 @@ import {ConstantService} from './constant-service';
         this.storage.get(this.cs.FIRSTIME)
         .then((val) => {
           if(val){
+            this.updateDevice();
             resolve(false);
           }else{
             this.storage.set(this.cs.FIRSTIME, 'false');
@@ -43,7 +44,6 @@ import {ConstantService} from './constant-service';
 
     getFcmToken(){
       return new Promise((resolve, reject) => {
-        console.log('device');
         this.storage.get(this.cs.PUSH)
         .then(tk =>{
           if(tk != null){
@@ -58,11 +58,41 @@ import {ConstantService} from './constant-service';
     setFcmToken(token){
       this.storage.set(this.cs.PUSH,token);
     }
+    updateDevice(){
+      this.getDevice()
+      .then(d =>{
+        console.log('device -> ',d);
+        if(d['type']==null){
+          let pat = d;
+          if(this.platform.is('ios')){
+            pat['type']='ios';
+          }else{
+            pat['type']='android';
+          }
+          let body = JSON.stringify(pat);
+          let headers = new Headers({ 'Content-Type': 'application/json'});
+          let options = new RequestOptions({ headers: headers, method: "put" });
+          console.log('body -> ', body);
+          let url =this.cs.API+this.cs.DEVICE+d['id'];
+          this._http.put(url, body,options)
+          .toPromise()
+          .then( res =>{
+            this.setDevice(res.json());
+          });
+        }
+      })
+    }
     createDevice(){
       return new Promise((resolve, reject) => {
         this.getPushToken()
         .then(device=>{
-          let body = JSON.stringify({ "push_token":device});
+          let pat = { type:'',push_token:device};
+          if(this.platform.is('ios')){
+            pat.type='ios';
+          }else{
+            pat.type='android';
+          }
+          let body = JSON.stringify(pat);
           let headers = new Headers({ 'Content-Type': 'application/json'});
           let options = new RequestOptions({ headers: headers, method: "post" });
           console.log('body -> ', body);

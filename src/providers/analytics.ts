@@ -26,5 +26,12 @@ import { GoogleAnalytics } from 'ionic-native';
       GoogleAnalytics.trackView(v, campaing, false);
     }
 
+    time(category, intervalInMilliseconds, variable, label){
+      GoogleAnalytics.trackTiming(category, intervalInMilliseconds, variable, label)
+    }
+    button(category: string, action: string, label?: string, value?: number, newSession?: boolean){
+      GoogleAnalytics.trackEvent(category, action, label, value, newSession);
+    }
+
 
   }
