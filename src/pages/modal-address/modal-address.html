@@ -1,29 +1,53 @@
 
-<ion-content class="background-dark">
-  <div class="msg transparent">
-    <span class="msg__text white">Seu endereço.</span>
+<ion-content class="background-light">
+      <div class="receipt">
+    <div class="receipt__quantidade">
+      <h2 class="receipt__title">Quantas caixas?</h2>
+      <button class="btn-minus" (click)="decreaseAmount()"></button>
+      <span class="quantidade-number">2</span>
+      <button class="btn-plus" (click)="increaseAmount()"></button>
+    </div>
+    <div class="receipt__total">
+      <h2 class="receipt__title">Total a pagar</h2>
+      <span class="total__pricebox">
+        <small class="total__pricebox--currency" >R$</small>29,00
+      </span>
+    </div>
+
+  </div>
+    
     <div class="login__box">
       <span class="icon-map"></span>
-      <input  class="login__box__input" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
+      <input  class="login__box__input input-street" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
+         <input class="login__box__input input-number" placeholder="Número" type="text" [(ngModel)]="number" >
     </div>
     <ul class="map__adress__autocomplete" *ngIf="addressOptions && addressOptions.length ">
      <li class="map__adress__autocomplete__item" *ngFor="let ad of addressOptions" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
    </ul>
 
-   <div class="login__box" >
-    <span class="icon-map"></span>
-    <input class="login__box__input" placeholder="Número" type="text" [(ngModel)]="number" >
-  </div>
-  <div class="login__box space" >
+  <div class="login__box" >
     <span class="icon-map"></span>
     <input class="login__box__input"  placeholder="Complemento" type="text" [(ngModel)]="complement" >
   </div>
 
-
-</div>
-
+  <!--<p class="receipt__alert"><span class="icon-card"></span>Só aceitamos cartão de crédito/débito.</p>-->
+    
+    <div class="payment">
+        <button class="payment__option active">
+            <span class="icon-maquina"></span>
+            <label class="payment__option__label">Máquina cartão</label>
+        </button>
+         <button class="payment__option">
+            <span class="icon-money"></span>
+            <label class="payment__option__label">Dinheiro</label>
+        </button>
+        <button class="payment__option">
+            <span class="icon-card"></span>
+            <label class="payment__option__label">Via app</label>
+        </button>
+    </div>
 
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
-  <button ion-button secondary class="receipt__btn" (click)="openModal()">ENTREGAR AQUI</button>
+  <button ion-button secondary class="receipt__btn" (click)="openModal()">Concluir pedido</button>
 </ion-footer>
