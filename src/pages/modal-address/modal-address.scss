@@ -136,3 +136,28 @@ page-modal-tour {
     vertical-align: middle;
     background-color: transparent;
 }
+
+.icon-splash {
+    background-image: url('../assets/icon/icon-splash.svg');
+    background-size: cover;
+    width: 120px;
+    height: 120px;
+    vertical-align: middle;
+    background-color: transparent;
+    margin: 20px auto 10px;
+    text-align: center;
+    
+    img {
+        height: 100%;
+        width: auto;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    .icon-splash {
+        width: 40px;
+        height: 40px;
+        border-bottom: 1px solid #583318;
+        background-image: none;
+    }
+}
