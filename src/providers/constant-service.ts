@@ -22,7 +22,7 @@ export class ConstantService {
     this.COSTUMER = 'costumer/';
     this.COSTUMER_UPDATE = 'update/';
     this.SALE = 'sale/';
-    this.GOOGLE_GEOCODE ='https://maps.googleapis.com/maps/api/geocode/json?address=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
+    this.GOOGLE_GEOCODE ='https://maps.googleapis.com/maps/api/geocode/json?address=#&rankby=distance&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
     this.GOOGLE_ADDRESS = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
     this.FIRSTIME = 'ftime';
     this.PUSH='fcm_token';

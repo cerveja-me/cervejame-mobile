@@ -57,7 +57,7 @@ import {ConstantService} from './constant-service';
     setFcmToken(token){
       this.storage.set(this.cs.PUSH,token);
     }
-    
+
     createDevice(){
       return new Promise((resolve, reject) => {
         this.getPushToken()
@@ -208,6 +208,28 @@ import {ConstantService} from './constant-service';
           resolve(val);
         });
       });
+    }
+    convertAddress(place){
+      let  componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+      let address={};
+      for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (componentForm[addressType]) {
+          var val = place.address_components[i][componentForm[addressType]];
+          address[addressType]=val;
+        }
+      }
+      return address;
+    }
+    formatAddress(address){
+      return address.route+","+address.street_number+","+address.locality+","+address.administrative_area_level_1;
     }
     private handleError (error: Response | any) {
       console.log('err->',error);

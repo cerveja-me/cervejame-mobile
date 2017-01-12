@@ -28,6 +28,7 @@ declare var google;
     });
 
     address;
+    fullAddress;
     addressOptions=[];
     constructor(public navCtrl: NavController,
       public modalCtrl:ModalController,
@@ -52,6 +53,7 @@ declare var google;
         this._device.getAddressFromLocation(location)
         .then((address)=>{
           this.setAddressNew(address);
+          this.fullAddress=this._device.convertAddress(address);
           let endereco = address['formatted_address'];
           this._user.getNewLocation(location,endereco)
           .then( r =>{
@@ -82,9 +84,9 @@ declare var google;
           let _loc={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
           this._device.getAddressFromLocation(_loc)
           .then((address)=>{
-
             this.setAddressNew(address);
-            let endereco = address['formatted_address'];
+            console.log(this._device.formatAddress(this._device.convertAddress(address)));
+            let endereco = this._device.formatAddress(this._device.convertAddress(address));
             this._user.getNewLocation(_loc,endereco);
           })
         });
@@ -94,7 +96,8 @@ declare var google;
       })
     }
     setAddressNew(address){
-      this.address=address['formatted_address'];
+      this.fullAddress=this._device.convertAddress(address);
+      this.address=this._device.formatAddress(this.fullAddress);
       this.addressOptions=[];
       this.zone.run(()=>{});
     }
@@ -108,7 +111,8 @@ declare var google;
       }
     }
     setAddress(address){
-      this.address=address['formatted_address'];
+      this.fullAddress=this._device.convertAddress(address);
+      this.address=this._device.formatAddress(this.fullAddress);
       this.addressOptions=[];
       // new google.maps.LatLng(address, location[1]);
       this.map.setCenter(address['geometry'].location);
@@ -128,7 +132,7 @@ declare var google;
     }
     openAddressModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-      let modal = this.modalCtrl.create(ModalAddressPage,{"location":loca,"address":this.address});
+      let modal = this.modalCtrl.create(ModalAddressPage,{"location":loca,"address":this.fullAddress});
       modal.present();
     }
   }
