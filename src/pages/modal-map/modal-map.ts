@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {LoginPage} from '../login/login';
 import { MapPage } from '../map/map';
 import { FinishPage } from '../finish/finish';
+import { ModalAddressPage } from '../modal-address/modal-address';
 
 import { User } from '../../providers/user';
 import { Sale } from '../../providers/sale';
@@ -9,7 +10,7 @@ import { Device } from '../../providers/device'
 import { Analytics } from '../../providers/analytics';
 
 
-import {NavController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
+import {NavController,ModalController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'modal-map.html'
@@ -22,6 +23,7 @@ export class ModalMapPage {
   address;
 
   constructor(
+    public modalCtrl:ModalController,
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
@@ -46,17 +48,23 @@ export class ModalMapPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
+  openAddressModal(){
+    let loca={0:0,1:0}
+    let modal = this.modalCtrl.create(ModalAddressPage,{"location":loca,"address":this.address});
+    modal.present();
+  }
+
   finishRequest(){
     this._user.getLoggedUser()
     .then((u)=>{
       this.user = u;
-      if(this.user.costumer.phone!=null){
+      if(this.user.costumer.phone!=null && 5>6){
         this.completeSale();
       }else{
         this.doPrompt()
-        .then((phone)=>{
-          if(phone!=null){
-            this.user.costumer.phone = phone;
+        .then((data)=>{
+          if(data && data['phone']!=null){
+            this.user.costumer.phone = data['phone'];
             this._user.updateUser(this.user.costumer)
             .then((un)=>{
               this._user.getLoggedUser()
@@ -107,13 +115,18 @@ export class ModalMapPage {
   doPrompt() {
     return new Promise((resolve, reject) => {
       let prompt = this.alertCtrl.create({
-        title: 'Telefone para contato',
-        message: "Para melhorar sua entrega, passa aí seu telefone.",
+        title: 'Complemento',
+        message: "Para melhorar sua entrega, passa aí seu compĺemento e telefone.",
         inputs: [
         {
-          name: 'phone',
-          placeholder: 'Seu Telefone'
+          name: 'complement',
+          placeholder: 'Complemento do endereço'
         },
+        {
+          name: 'phone',
+          placeholder: 'Seu Telefone',
+          value:this.user.costumer.phone
+        }
         ],
         buttons: [
         {
@@ -126,7 +139,7 @@ export class ModalMapPage {
         {
           text: 'Continuar',
           handler: data => {
-            resolve(data.phone);
+            resolve(data);
           }
         }
         ]

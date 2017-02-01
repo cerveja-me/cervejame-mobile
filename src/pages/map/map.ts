@@ -127,7 +127,7 @@ declare var google;
 
     openModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-      let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.address});
+      let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.fullAddress});
       modal.present();
     }
     openAddressModal(){

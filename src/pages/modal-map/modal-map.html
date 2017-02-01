@@ -17,9 +17,9 @@
       </span>
     </div>
     <p class="receipt__alert"><span class="icon-card"></span>Só aceitamos cartão de crédito/débito.</p>
-    <p class="receipt__address"><span class="icon-map" *ngIf="address"></span>{{address}}</p>
+    <p class="receipt__address"><span class="icon-map" (click)="dismiss()" *ngIf="address"></span>{{address}}</p>
 
-    <button ion-button secondary class="receipt__btn" (click)="finishRequest()">CONFIRMAR PEDIDO</button>
+    <button ion-button secondary class="receipt__btn" (click)="finishRequest()">OK</button>
 
   </div>
 
