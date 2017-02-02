@@ -25,15 +25,15 @@
       <div class="payment">
   <button class="payment__option" [ngClass]="payment=='card'?'active':''" (click)="payment='card'">
     <span class="icon-maquina"></span>
-    <label class="payment__option__label">Máquina cartão</label>
+    <label class="payment__option__label">Máquina</label>
   </button>
   <button class="payment__option" [ngClass]="payment=='money'?'active':''" (click)="payment='money'">
     <span class="icon-money"></span>
     <label class="payment__option__label">Dinheiro</label>
   </button>
-  <button class="payment__option" [ngClass]="payment=='app'?'active':''">
+  <button class="payment__option inactive">
     <span class="icon-card"></span>
-    <label class="payment__option__label">Via app (em breve)</label>
+    <label class="payment__option__label">Via app</label>
   </button>
 </div>
       
