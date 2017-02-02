@@ -21,9 +21,9 @@ export class ModalMapPage {
   request;
   product;
   address;
+  payment='card';
 
   constructor(
-    public modalCtrl:ModalController,
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
@@ -48,11 +48,7 @@ export class ModalMapPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-  openAddressModal(){
-    let loca={0:0,1:0}
-    let modal = this.modalCtrl.create(ModalAddressPage,{"location":loca,"address":this.address});
-    modal.present();
-  }
+
 
   finishRequest(){
     this._user.getLoggedUser()
@@ -63,18 +59,24 @@ export class ModalMapPage {
       }else{
         this.doPrompt()
         .then((data)=>{
-          if(data && data['phone']!=null){
-            this.user.costumer.phone = data['phone'];
-            this._user.updateUser(this.user.costumer)
-            .then((un)=>{
-              this._user.getLoggedUser()
-              .then(uu =>{
-                uu['costumer']=un;
-                this.user=uu;
-                this._user.setLoggedUser(this.user);
-                this.completeSale();
+          if(data){
+            if(data['phone']!=null){
+
+              this.user.costumer.phone = data['phone'];
+              this._user.updateUser(this.user.costumer)
+              .then((un)=>{
+                this._user.getLoggedUser()
+                .then(uu =>{
+                  uu['costumer']=un;
+                  this.user=uu;
+                  this._user.setLoggedUser(this.user);
+                  this.completeSale();
+                })
               })
-            })
+
+            }else{
+              this.finishRequest();
+            }
           }else{
             // this.completeSale();
           }
