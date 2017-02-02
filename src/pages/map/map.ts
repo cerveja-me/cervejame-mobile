@@ -128,11 +128,17 @@ declare var google;
     openModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
       let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.fullAddress});
+
       modal.present();
     }
     openAddressModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
       let modal = this.modalCtrl.create(ModalAddressPage,{"location":loca,"address":this.fullAddress});
+      modal.onDidDismiss(data=>{
+        if(data!=null){
+          console.log('data->',data);
+        }
+      });
       modal.present();
     }
   }

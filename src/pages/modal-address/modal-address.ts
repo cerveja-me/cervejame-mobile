@@ -42,7 +42,6 @@ export class ModalAddressPage {
       this.fullAddress=this.params.get("address");
       this.address=this.fullAddress.route;
       this.number=this.fullAddress.street_number;
-      this.product=p;
     })
   }
 
@@ -53,6 +52,9 @@ export class ModalAddressPage {
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+  confirm() {
+    this.viewCtrl.dismiss({result:"teste"});
   }
   openModal(){
     let loca={0:-23,1:-48}

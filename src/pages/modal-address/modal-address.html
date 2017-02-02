@@ -1,23 +1,23 @@
 
 <ion-content class="background-dark"  *ngIf="product">
-    
-<div class="msg transparent">
 
-      <span class="msg__text white">Seu endereço.</span>
+  <div class="msg transparent">
 
-      <div class="login__box address">
-        <span class="icon-map"></span>
-        <input  class="login__box__input input-street" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
-        <input class="login__box__input input-number" placeholder="Número" type="text" [(ngModel)]="number" >
-      </div>
-      <ul class="map__adress__autocomplete" *ngIf="addressOptions && addressOptions.length ">
-       <li class="map__adress__autocomplete__item" *ngFor="let ad of addressOptions" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
-     </ul>
+    <span class="msg__text white">Seu endereço.</span>
 
-     <div class="login__box address" >
+    <div class="login__box address">
       <span class="icon-map"></span>
-      <input class="login__box__input"  placeholder="Complemento" type="text" [(ngModel)]="complement" >
+      <input  class="login__box__input input-street" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
+      <input class="login__box__input input-number" placeholder="Número" type="text" [(ngModel)]="number" >
     </div>
+    <ul class="map__adress__autocomplete" *ngIf="addressOptions && addressOptions.length ">
+     <li class="map__adress__autocomplete__item" *ngFor="let ad of addressOptions" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
+   </ul>
+
+   <div class="login__box address" >
+    <span class="icon-map"></span>
+    <input class="login__box__input"  placeholder="Complemento" type="text" [(ngModel)]="complement" >
+  </div>
 </div>
 
 <!--<p class="receipt__alert"><span class="icon-card"></span>Só aceitamos cartão de crédito/débito.</p>-->
@@ -26,5 +26,5 @@
 
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
-  <button ion-button secondary class="receipt__btn" (click)="dismiss()">CONFIRMAR</button>
+  <button ion-button secondary class="receipt__btn" (click)="confirm()">CONFIRMAR</button>
 </ion-footer>

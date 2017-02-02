@@ -65,7 +65,6 @@ export class ModalMapPage {
         .then((data)=>{
           if(data){
             if(data['phone']!=null){
-
               this.user.costumer.phone = data['phone'];
               this._user.updateUser(this.user.costumer)
               .then((un)=>{
@@ -113,7 +112,6 @@ export class ModalMapPage {
           .catch(e =>{
             console.log('erro ->', e);
           });
-
         })
       })
     })
