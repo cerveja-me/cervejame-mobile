@@ -16,7 +16,7 @@
         <small class="total__pricebox--currency" >R$</small>{{product.amount * product.price |number:'2.2-2'}}
       </span>
     </div>
-    <p class="receipt__address" ><span class="icon-map" (click)="dismiss()" *ngIf="address"></span>{{readAddres}}</p>
+    <p class="receipt__address" ><span class="icon-map" (click)="dismiss()" *ngIf="address"></span>{{address}}</p>
 
     <div class="payment">
       <button class="payment__option" [ngClass]="payment=='card'?'active':''" (click)="payment='card'">
