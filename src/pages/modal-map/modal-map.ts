@@ -22,7 +22,8 @@ export class ModalMapPage {
   product;
   address;
   payment='card';
-
+  addressComplement='';
+  readAddress='';
   constructor(
     public platform: Platform,
     public params: NavParams,
@@ -38,6 +39,9 @@ export class ModalMapPage {
     this._sale.getProduct()
     .then( p=>{
       this.address=this.params.get("address");
+      console.log(this.address);
+      this.readAddress=this.address.route;
+      console.log(this.readAddress);
       this.product=p;
     })
   }
@@ -93,11 +97,11 @@ export class ModalMapPage {
         .then( d =>{
           let csa=u['costumer'];
           this._sale.createSale({
-
+            address:this.address.route+", "+this.address.street_number+", "+this.addressComplement,
             location:d['id'],
             device:d['device'],
             costumer:csa['id'],
-            payment:"money",
+            payment:this.payment,
             product:{
               amount:p["amount"],
               id:p['id']
@@ -141,6 +145,7 @@ export class ModalMapPage {
         {
           text: 'Continuar',
           handler: data => {
+            this.addressComplement=data.complement;
             resolve(data);
           }
         }
