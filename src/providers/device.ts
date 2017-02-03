@@ -118,6 +118,7 @@ import {ConstantService} from './constant-service';
             let lat={};
             lat[0]=pos.coords.latitude;
             lat[1]=pos.coords.longitude;
+            console.log(lat);
             this.setLocation(lat);
             resolve(lat);
           })

@@ -22,6 +22,7 @@ export class ModalMapPage {
   request;
   product;
   address;
+  fullAddress;
   payment='card';
   addressComplement='';
   readAddress='';
@@ -40,10 +41,9 @@ export class ModalMapPage {
 
     this._sale.getProduct()
     .then( p=>{
-      this.address=this.params.get("address");
+      this.fullAddress=this.params.get("address");
       this.addressComplement=this.params.get("complement");
-      this.readAddress=this.address.route;
-      this.address=this._device.formatAddress(this.address) +(this.addressComplement?", complemento: "+this.addressComplement:'');
+      this.address=this._device.formatAddress(this.fullAddress) +(this.addressComplement?", complemento: "+this.addressComplement:'');
       this.zone.run(()=>{});
       this.product=p;
     })
@@ -102,7 +102,7 @@ export class ModalMapPage {
         .then( d =>{
           let csa=u['costumer'];
           this._sale.createSale({
-            address:this.address.route+", "+this.address.street_number+", "+this.addressComplement,
+            address:this._device.formatAddress(this.fullAddress) +(this.addressComplement?", complemento: "+this.addressComplement:''),
             location:d['id'],
             device:d['device'],
             costumer:csa['id'],
@@ -130,7 +130,8 @@ export class ModalMapPage {
         inputs: [
         {
           name: 'complement',
-          placeholder: 'Complemento do endereço'
+          placeholder: 'Complemento do endereço',
+          value:this.addressComplement
         },
         {
           name: 'phone',
