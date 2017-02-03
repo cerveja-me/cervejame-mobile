@@ -30,6 +30,7 @@ declare var google;
     address;
     fullAddress;
     addressOptions=[];
+    complement='';
     constructor(public navCtrl: NavController,
       public modalCtrl:ModalController,
       private _device:Device,
@@ -85,7 +86,7 @@ declare var google;
           this._device.getAddressFromLocation(_loc)
           .then((address)=>{
             this.setAddressNew(address);
-            console.log(this._device.formatAddress(this._device.convertAddress(address)));
+            //console.log(this._device.formatAddress(this._device.convertAddress(address)));
             let endereco = this._device.formatAddress(this._device.convertAddress(address));
             this._user.getNewLocation(_loc,endereco);
           })
@@ -105,7 +106,6 @@ declare var google;
       if(address.length >3){
         this._device.getLocationsWithAddres(address)
         .then((listAddress)=>{
-
           this.addressOptions=listAddress['results'];
         })
       }
@@ -122,20 +122,22 @@ declare var google;
       this.zone.run(()=>{});
     }
 
-
-
-
     openModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-      let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.fullAddress});
-
+      let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.fullAddress,"complement":this.complement});
       modal.present();
     }
+
     openAddressModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
       let modal = this.modalCtrl.create(ModalAddressPage,{"location":loca,"address":this.fullAddress});
       modal.onDidDismiss(data=>{
         if(data!=null){
+          this.fullAddress.route=data.address;
+          this.fullAddress.street_number=data.number;
+          this.complement=data.complement;
+          this.address=this._device.formatAddress(this.fullAddress);
+          this.zone.run(()=>{});
           console.log('data->',data);
         }
       });

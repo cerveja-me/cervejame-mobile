@@ -7,8 +7,8 @@
 
     <div class="login__box address">
       <span class="icon-map"></span>
-      <input  class="login__box__input input-street" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
-      <input class="login__box__input input-number" placeholder="Número" type="text" [(ngModel)]="number" >
+      <input  class="login__box__input" [ngClass]="editing==false?'input-street':'input-streetediting'"  (click)="editing=true" (blur)="editing=false" placeholder="Rua" type="text" [(ngModel)]="address"  (ngModelChange)="addressChange(address)">
+      <input class="login__box__input input-number" *ngIf="!editing" placeholder="Número" type="text" [(ngModel)]="number" >
     </div>
     <ul class="map__adress__autocomplete" *ngIf="addressOptions && addressOptions.length ">
      <li class="map__adress__autocomplete__item" *ngFor="let ad of addressOptions" (click)="setAddress(ad)">{{ad.formatted_address}}</li>

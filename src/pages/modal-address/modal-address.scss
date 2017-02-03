@@ -1,179 +1,182 @@
 page-modal-tour {
-  .btn-start {
-    @include border-radius(50px);
-    @extend .font-bold;
+.btn-start {
+@include border-radius(50px);
+@extend .font-bold;
 
-    position: absolute;
-    bottom: 0;
-    background: #D5A86C;
-    border: 2px solid #573317;
-    font-size: 17px;
-    padding: 10px 30px;
-    height: auto;
-    left: 50%;
-    width: 290px;
-    margin-left: -145px;
-    transition: all .5s;
-    color: #573317;
-    text-transform: uppercase;
-  }
+position: absolute;
+bottom: 0;
+background: #D5A86C;
+border: 2px solid #573317;
+font-size: 17px;
+padding: 10px 30px;
+height: auto;
+left: 50%;
+width: 290px;
+margin-left: -145px;
+transition: all .5s;
+color: #573317;
+text-transform: uppercase;
+}
 
-  .icone-tour1 {
-    background-image: url(../assets/icon/tour1.svg);
-    background-size: cover;
-    width: 106px;
-    height: 150px;
-    display: inline-block;
-  }
+.icone-tour1 {
+background-image: url(../assets/icon/tour1.svg);
+background-size: cover;
+width: 106px;
+height: 150px;
+display: inline-block;
+}
 
-  .icone-tour2 {
-    background-image: url(../assets/icon/tour2.svg);
-    background-size: cover;
-    width: 106px;
-    height: 145px;
-    display: inline-block;
-  }
+.icone-tour2 {
+background-image: url(../assets/icon/tour2.svg);
+background-size: cover;
+width: 106px;
+height: 145px;
+display: inline-block;
+}
 }
 
 .slider-nav {
-  width: 100%;
-  position: absolute;
-  bottom: 5%;
+width: 100%;
+position: absolute;
+bottom: 5%;
 
-  &__item {
-    @include border-radius(50px);
+&__item {
+@include border-radius(50px);
 
-    width: 10px;
-    height: 10px;
-    background: white;
-    display: inline-block;
-    margin: 0 2px;
-    opacity: 0.3;
+width: 10px;
+height: 10px;
+background: white;
+display: inline-block;
+margin: 0 2px;
+opacity: 0.3;
 
-    &.active {
-      opacity: 1;
-    }
-  }
+&.active {
+opacity: 1;
+}
+}
 }
 
 .input-street {
-    width: 47%;
+width: 47%;
 }
 
+.input-streetediting {
+width: 70%;
+}
 .input-number {
-    width: 22%;
-    border-left: 1px solid #ccc;
-    text-align: center;
-    height: 30px;
+width: 22%;
+border-left: 1px solid #ccc;
+text-align: center;
+height: 30px;
 }
 
 .payment {
-    border-top: 1px solid #583318;
-    padding-top: 15px;
-    overflow: hidden;
-    height: 89px;
-    padding: 15px;
-    margin-top: 20px;
-    box-sizing: border-box;
-    
-    &__option {
-        @include border-radius(10px);
-        
-        border: 2px solid #583318;
-        background: white;
-        padding: 10px;
-        display: inline-block;
-        vertical-align: middle;
-        text-align: center;
-        width: 31%;
-        margin-right: 2%;
-        
-        &:last-child {
-            margin-right: 0;
-        }
-        
-        &__label {
-            @extend .font-bold;
-            
-            color: #583318;
-            text-transform: uppercase;
-            display: block;
-            font-size: 10px;
-            margin-top: 10px;
-        }
-        
-        &.active {
-            background: #583318;
-            
-            .icon-maquina {
-                 background-image: url('../assets/icon/icon-maquina-w.svg');
-            }
-            
-            .icon-money {
-                background-image: url('../assets/icon/icon-money-w.svg');
-            }
-            
-            .payment__option__label { color: white;}
-        }
-        
-        &.inactive {
-            position: relative;
-            background: rgba(255,255,255,0.4);
-            border-color: rgba(88,51,24,0.4);
-            
-            span, label {opacity: 0.4;}
-            
-            &:after {
-                @extend .font-bold;
-                
-                content: 'EM BREVE';
-                color: white;
-                background: black;
-                font-size: 10px;
-                position: absolute;
-                top: 27px;
-                padding: 2px 5px;
-                transform: rotate(-5deg);
-                width: 70px;
-                left: 50%;
-                margin-left: -40px;
-            }
-        }
-    }
+border-top: 1px solid #583318;
+padding-top: 15px;
+overflow: hidden;
+height: 89px;
+padding: 15px;
+margin-top: 20px;
+box-sizing: border-box;
+
+&__option {
+@include border-radius(10px);
+
+border: 2px solid #583318;
+background: white;
+padding: 10px;
+display: inline-block;
+vertical-align: middle;
+text-align: center;
+width: 31%;
+margin-right: 2%;
+
+&:last-child {
+margin-right: 0;
 }
 
+&__label {
+@extend .font-bold;
+
+color: #583318;
+text-transform: uppercase;
+display: block;
+font-size: 10px;
+margin-top: 10px;
+}
+
+&.active {
+background: #583318;
+
 .icon-maquina {
-    background-image: url('../assets/icon/icon-maquina.svg');
-    background-size: cover;
-    width: 67px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    background-color: transparent;
+background-image: url('../assets/icon/icon-maquina-w.svg');
 }
 
 .icon-money {
-    background-image: url('../assets/icon/icon-money.svg');
-    background-size: cover;
-    width: 40px;
-    height: 22px;
-    display: inline-block;
-    vertical-align: middle;
-    background-color: transparent;
+background-image: url('../assets/icon/icon-money-w.svg');
+}
+
+.payment__option__label { color: white;}
+}
+
+&.inactive {
+position: relative;
+background: rgba(255,255,255,0.4);
+border-color: rgba(88,51,24,0.4);
+
+span, label {opacity: 0.4;}
+
+&:after {
+@extend .font-bold;
+
+content: 'EM BREVE';
+color: white;
+background: black;
+font-size: 10px;
+position: absolute;
+top: 27px;
+padding: 2px 5px;
+transform: rotate(-5deg);
+width: 70px;
+left: 50%;
+margin-left: -40px;
+}
+}
+}
+}
+
+.icon-maquina {
+background-image: url('../assets/icon/icon-maquina.svg');
+background-size: cover;
+width: 67px;
+height: 20px;
+display: inline-block;
+vertical-align: middle;
+background-color: transparent;
+}
+
+.icon-money {
+background-image: url('../assets/icon/icon-money.svg');
+background-size: cover;
+width: 40px;
+height: 22px;
+display: inline-block;
+vertical-align: middle;
+background-color: transparent;
 }
 
 .icon-splash {
-    background-image: url('../assets/icon/icon-splash.svg');
-    background-size: cover;
-    width: 120px;
-    height: 120px;
-    vertical-align: middle;
-    background-color: transparent;
-    margin: 20px auto 10px;
-    text-align: center;
-    
-    img {
-        height: 100%;
-        width: auto;
-    }
+background-image: url('../assets/icon/icon-splash.svg');
+background-size: cover;
+width: 120px;
+height: 120px;
+vertical-align: middle;
+background-color: transparent;
+margin: 20px auto 10px;
+text-align: center;
+
+img {
+height: 100%;
+width: auto;
+}
 }

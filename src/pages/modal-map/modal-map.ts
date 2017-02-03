@@ -3,6 +3,7 @@ import {LoginPage} from '../login/login';
 import { MapPage } from '../map/map';
 import { FinishPage } from '../finish/finish';
 import { ModalAddressPage } from '../modal-address/modal-address';
+import { Injectable, NgZone } from '@angular/core';
 
 import { User } from '../../providers/user';
 import { Sale } from '../../providers/sale';
@@ -33,15 +34,17 @@ export class ModalMapPage {
     private _user: User,
     private _sale:Sale,
     private _device:Device,
+    private zone:NgZone,
     private an:Analytics) {
     an.trackView('modal_map','none');
 
     this._sale.getProduct()
     .then( p=>{
       this.address=this.params.get("address");
-      console.log(this.address);
+      this.addressComplement=this.params.get("complement");
       this.readAddress=this.address.route;
-      console.log(this.readAddress);
+      this.address=this._device.formatAddress(this.address) +(this.addressComplement?", complemento: "+this.addressComplement:'');
+      this.zone.run(()=>{});
       this.product=p;
     })
   }
@@ -53,6 +56,11 @@ export class ModalMapPage {
     this.viewCtrl.dismiss();
   }
 
+  ionViewLoaded() {
+    this.address=this._device.formatAddress(this.address);
+    this.zone.run(()=>{});
+
+  }
 
   finishRequest(){
     this._user.getLoggedUser()
@@ -80,8 +88,6 @@ export class ModalMapPage {
             }else{
               this.finishRequest();
             }
-          }else{
-            // this.completeSale();
           }
         })
       }

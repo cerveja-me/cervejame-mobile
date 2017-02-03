@@ -24,6 +24,7 @@ export class ModalAddressPage {
   product;
   payment='card';
   user;
+  editing=false;
   constructor(
     public platform: Platform,
     public params: NavParams,
@@ -45,30 +46,18 @@ export class ModalAddressPage {
     })
   }
 
-  ionViewLoaded() {
-
-
-  }
 
   dismiss() {
     this.viewCtrl.dismiss();
   }
   confirm() {
-    this.viewCtrl.dismiss({result:"teste"});
+    this.viewCtrl.dismiss({address:this.address,number:this.number, complement:this.complement});
   }
-  openModal(){
-    let loca={0:-23,1:-48}
-    let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.address+','+this.number+','+this.complement});
-    modal.present();
-  }
-
   setAddress(address){
     this.fullAddress=this._device.convertAddress(address);
     this.address=this.fullAddress.route;
     this.number=this.fullAddress.street_number;
     this.addressOptions=[];
-    // new google.maps.LatLng(address, location[1]);
-    // this.map.setCenter(address['geometry'].location);
   }
 
   addressChange(address){
@@ -79,110 +68,5 @@ export class ModalAddressPage {
         this.addressOptions=listAddress['results'];
       })
     }
-  }
-  increaseAmount(){
-    this.an.button('increase_quantity_modal',this.product.zone,this.product.product.name,this.product.price);
-    this.product.amount++;
-    this.zone.run(()=>{});
-  }
-  decreaseAmount(){
-    this.an.button('decrease_quantity_modal',this.product.zone,this.product.product.name,this.product.price);
-    if(this.product.amount>1){
-      this.product.amount--;
-      this.zone.run(()=>{});
-    }
-  }
-
-  finishRequest(){
-    this._user.getLoggedUser()
-    .then((u)=>{
-      this.user = u;
-      if(this.user.costumer.phone!=null){
-        this.completeSale();
-      }else{
-        this.doPrompt()
-        .then((phone)=>{
-          if(phone!=null){
-            this.user.costumer.phone = phone;
-            this._user.updateUser(this.user.costumer)
-            .then((un)=>{
-              this._user.getLoggedUser()
-              .then(uu =>{
-                uu['costumer']=un;
-                this.user=uu;
-                this._user.setLoggedUser(this.user);
-                this.completeSale();
-              })
-            })
-          }else{
-            // this.completeSale();
-          }
-        })
-      }
-    });
-  }
-
-  complete(){
-    this.navCtrl.push(FinishPage);
-  }
-  completeSale(){
-    this._sale.getProduct()
-    .then( p=>{
-      this._user.getLoggedUser()
-      .then( u =>{
-        this._device.getDevice()
-        .then( d =>{
-          let csa=u['costumer'];
-          this._sale.createSale({
-
-            location:d['id'],
-            device:d['device'],
-            costumer:csa['id'],
-            payment:this.payment,
-            product:{
-              amount:p["amount"],
-              id:p['id']
-            }
-          })
-          .then(r =>{
-            this.complete();
-          })
-          .catch(e =>{
-            console.log('erro ->', e);
-          });
-
-        })
-      })
-    })
-  }
-  doPrompt() {
-    return new Promise((resolve, reject) => {
-      let prompt = this.alertCtrl.create({
-        title: 'Telefone para contato',
-        message: "Para melhorar sua entrega, passa aí seu telefone.",
-        inputs: [
-        {
-          name: 'phone',
-          placeholder: 'Seu Telefone'
-        },
-        ],
-        buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked', data);
-            resolve(null);
-          }
-        },
-        {
-          text: 'Continuar',
-          handler: data => {
-            resolve(data.phone);
-          }
-        }
-        ]
-      });
-      prompt.present();
-    });
   }
 }
