@@ -46,6 +46,10 @@ page-map {
         border: 0;
         height: 60px;
         width: 85%;
+        
+          &[disabled] {
+             color: #666;
+          }
       }
 
       &__autocomplete {
