@@ -45,7 +45,10 @@ export class ModalAddressPage {
       this.number=this.fullAddress.street_number;
     })
   }
-
+  focusOut() {
+    let activeElement = <HTMLElement>document.activeElement;
+    activeElement && activeElement.blur && activeElement.blur();
+  }
 
   dismiss() {
     this.viewCtrl.dismiss();
