@@ -47,7 +47,7 @@ page-map {
         height: 60px;
         width: 85%;
         
-          &[disabled=disabled] {
+          &:disabled {
              color: #666;
           }
       }
