@@ -252,6 +252,7 @@ import {ConstantService} from './constant-service';
     "Senhor, dai-me café para mudar o que posso e cerveja para mudar as que não posso.",
     "GELADAAAAAA!",
     "Nã Nã Nã",
-    "Aqui, Cerveja mais gelada que o coração do(a) ex."
+    "Aqui, Cerveja mais gelada que o coração do(a) ex.",
+    "Cerveja é igual banho, tem que tomar todo dia."
     ]
   }

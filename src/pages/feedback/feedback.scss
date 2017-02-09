@@ -1,0 +1,62 @@
+page-feedback {
+  .btn-finish {
+    @include border-radius(50px);
+    @extend .font-bold;
+
+    position: absolute;
+    bottom: -25px;
+    background: #D5A86C;
+    border: 2px solid #FFFFDD;
+    font-size: 17px;
+    padding: 10px 30px;
+    height: auto;
+    left: 50%;
+    width: 290px;
+    margin-left: -145px;
+    transition: all .5s;
+    color: #573317;
+    text-transform: uppercase;
+  }
+
+  .phone {
+
+    &__box {
+      padding: 0 15px;
+      background: white;
+      width: 100%;
+      height: 60px;
+      z-index: 2;
+      box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+      margin-bottom: 20px;
+
+      &__input {
+        @extend .font-regular;
+
+        background: transparent;
+        color: #666;
+        border: 0;
+        height: 60px;
+        width: 70%;
+      }
+    }
+  }
+
+  .icon-phone {
+    background-image: url(../assets/icon/phone.svg);
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+}
+
+.icone-shipping {
+  background-image: url(../assets/icon/shipping.svg);
+  background-size: cover;
+  width: 160px;
+  height: 98px;
+  display: inline-block;
+}
+}

@@ -13,6 +13,7 @@ import { ModalMapPage } from '../pages/modal-map/modal-map';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { MapPage } from '../pages/map/map';
 import { FinishPage } from '../pages/finish/finish';
+import { FeedbackPage } from '../pages/feedback/feedback';
 
 import { User } from '../providers/user';
 import { Device } from '../providers/device';
@@ -31,7 +32,7 @@ import 'intl/locale-data/jsonp/pt-BR';
 @NgModule({
   declarations: [
   MyApp,Page1,Page2,ModalContentPage,LoginPage,
-  MapPage,FinishPage,ModalTourPage,ModalMapPage,
+  MapPage,FinishPage,ModalTourPage,ModalMapPage,FeedbackPage,
   ModalRegisterPage,ModalNotificationPage,ModalAddressPage
   ],
   imports: [
@@ -40,7 +41,7 @@ import 'intl/locale-data/jsonp/pt-BR';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-  MyApp,Page1,Page2,ModalContentPage,
+  MyApp,Page1,Page2,ModalContentPage,FeedbackPage,
   LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage,ModalRegisterPage,ModalNotificationPage,ModalAddressPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },Analytics,User,Device,Sale,Storage,ConstantService]
