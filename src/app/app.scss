@@ -101,6 +101,18 @@
         display: block;
         margin: 20px 0;
         
+        &--small {
+             @extend .font-bold;
+
+            color: #573317;
+            font-size: 14px;
+            position: relative;
+            z-index: 2;
+            padding: 0 57px;
+            display: block;
+            margin: 20px 0;
+        }
+        
         &.white {
             color: white;
         }

@@ -1,4 +1,27 @@
 page-feedback {
+    
+    .feedback {
+    
+        &__star {
+            background-image: url(../assets/icon/icon-star.svg);
+            background-size: cover;
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            margin: 20px 5px 35px;
+            background-color: transparent;
+            
+            &.active {
+                background-image: url(../assets/icon/icon-star-vote.svg);
+                background-size: cover;
+                width: 35px;
+                height: 35px;
+                display: inline-block;
+                background-color: transparent;
+            }
+        }
+    }
+    
   .btn-finish {
     @include border-radius(50px);
     @extend .font-bold;
@@ -18,7 +41,7 @@ page-feedback {
     text-transform: uppercase;
   }
 
-  .phone {
+  .comment {
 
     &__box {
       padding: 0 15px;
@@ -41,22 +64,4 @@ page-feedback {
     }
   }
 
-  .icon-phone {
-    background-image: url(../assets/icon/phone.svg);
-    background-size: cover;
-    width: 24px;
-    height: 24px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
-  }
-}
-
-.icone-shipping {
-  background-image: url(../assets/icon/shipping.svg);
-  background-size: cover;
-  width: 160px;
-  height: 98px;
-  display: inline-block;
-}
 }
