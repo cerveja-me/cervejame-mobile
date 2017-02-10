@@ -4,9 +4,11 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation, Push} from 'ionic-native';
-import {Platform,AlertController} from 'ionic-angular';
+import {Platform,AlertController,ModalController} from 'ionic-angular';
 
 import {ConstantService} from './constant-service';
+import { User } from './user';
+import { FeedbackPage } from '../feedback/feedback';
 
 
 /*
@@ -20,7 +22,9 @@ import {ConstantService} from './constant-service';
 
 
     constructor(
+      public modalCtrl: ModalController,
       public http: Http,
+      private _user:User,
       private storage:Storage,
       private platform:Platform,
       private cs :ConstantService,
@@ -173,14 +177,14 @@ import {ConstantService} from './constant-service';
           var push = Push.init({
             android: {
               senderID: "10339294539",
-              sound: 'false',
+              sound: 'true',
               icon:'icon'
             },
             ios: {
               senderID: "10339294539",
               alert: "true",
               badge: true,
-              sound: 'false'
+              sound: 'true'
             }
           });
           push.on('registration', (data) => {
@@ -189,6 +193,7 @@ import {ConstantService} from './constant-service';
           });
           push.on('notification', (data) => {
             this.doAlert(data);
+
           });
           push.on('error', (e) => {
             reject(e);
@@ -235,6 +240,18 @@ import {ConstantService} from './constant-service';
     private handleError (error: Response | any) {
       console.log('err->',error);
 
+    }
+    verifySaleFeedback(){
+      this._user.getSaleFeedBack()
+      .then(sale=>{
+        if(sale){
+          let feedbackModal = this.modalCtrl.create(FeedbackPage, {sale: sale});
+          feedbackModal.present();
+        }
+      })
+      .catch(e=>{
+
+      })
     }
 
     getRandonLoading():string{
