@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams,ViewController } from 'ionic-angular';
 import { Page1 } from '../page1/page1';
+import { Sale } from '../../providers/sale';
 import { Analytics } from '../../providers/analytics';
 
 /*
@@ -15,15 +16,32 @@ import { Analytics } from '../../providers/analytics';
   })
   export class FeedbackPage {
 
+    rate;
+    comment;
+    sale;
     constructor(public navCtrl: NavController,
-      private an:Analytics) {
+      public params: NavParams,
+      private an:Analytics,
+      public viewCtrl: ViewController,
+
+      private sa:Sale) {
       an.trackView('FeedbackPage','none');
+      this.sale=this.params.get("sale");
 
     }
     ionViewDidLoad() {
+      this.sale=this.params.get("sale");
       console.log('Hello FeedbackPage Page');
     }
-    gotopage1(){
-      this.navCtrl.push(Page1);
+    dismiss() {
+      this.viewCtrl.dismiss();
+    }
+
+    finishFeedback(){
+      this.sa.sendFeedback({id:this.sale.id,rate:this.rate,comment:this.comment})
+      .then(res=>{
+        console.log('result->',res);
+        this.dismiss();
+      })
     }
   }

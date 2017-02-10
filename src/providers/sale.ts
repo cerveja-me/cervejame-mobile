@@ -50,6 +50,23 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
       })
     }
 
+    sendFeedback(data){
+
+      return new Promise((resolve, reject) => {
+        let body = JSON.stringify(data);
+        let headers = new Headers({ 'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers, method: "post" });
+
+        this._http.post(this.cs.API+this.cs.SALE+this.cs.SEND_FEEDBACK, body,options)
+        .toPromise()
+        .then((res)=>{
+          // this._device.setDevice(res.json());
+          resolve(res.json());
+        })
+        .catch(this.handleError);
+      })
+    }
+
     private handleError (error: Response | any) {
       console.log('err->',error);
     }

@@ -5,6 +5,7 @@ import { LoadingController,AlertController ,ModalController,Platform} from 'ioni
 import { ModalContentPage } from '../modal-receipt/modal-receipt';
 import { ModalTourPage } from '../modal-tour/modal-tour';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
+import { FeedbackPage } from '../feedback/feedback';
 
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
@@ -31,9 +32,19 @@ export class Page1 {
     platform.ready().then((readySource) => {
       an.trackView('home','none');
       this.verifyFirstTime();
+      this.verifySaleFeedback();
 
     });
   }
+  verifySaleFeedback(){
+    this._user.getSaleFeedBack()
+    .then(sale=>{
+      console.log('sale-->',sale);
+      let feedbackModal = this.modalCtrl.create(FeedbackPage, {sale: sale});
+      feedbackModal.present();
+    })
+  }
+
   verifyFirstTime(){
     this._device.firstTimeApp()
     .then((res)=>{

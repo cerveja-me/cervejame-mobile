@@ -7,19 +7,19 @@
 <ion-content padding class="background-light">
  <div class="logo-dark"></div>
  <div class="msg success">
-  <span class="msg__text">Sua cerveja chegou!</span>
+  <span class="msg__text">Sua cerveja chegou?</span>
   <span class="msg__text--small">Avalie sua experiência:</span>
 
-     <button class="feedback__star active"></button>
-     <button class="feedback__star"></button>
-     <button class="feedback__star"></button>
-     <button class="feedback__star"></button>
-     <button class="feedback__star"></button>
-     
-    <div class="comment__box">
-     <input name="login" class="comment__box__input" placeholder="Deixe seu comentário" type="email" required="true"/>
-   </div>
-     
-  <button ion-button secondary class="btn-finish" (click)="gotopage1()">Fazer outro pedido</button>
+  <button class="feedback__star" [ngClass]="rate>=1?'active':''" (click)="rate=1"></button>
+  <button class="feedback__star" [ngClass]="rate>=2?'active':''" (click)="rate=2"></button>
+  <button class="feedback__star" [ngClass]="rate>=3?'active':''" (click)="rate=3"></button>
+  <button class="feedback__star" [ngClass]="rate>=4?'active':''" (click)="rate=4"></button>
+  <button class="feedback__star" [ngClass]="rate>=5?'active':''" (click)="rate=5"></button>
+
+  <div class="comment__box">
+    <input name="login" class="comment__box__input" placeholder="Deixe seu comentário" type="text" required="true" [(ngModel)]="comment"/>
+  </div>
+
+  <button ion-button secondary class="btn-finish" (click)="finishFeedback()">Fazer outro pedido</button>
 </div>
 </ion-content>
