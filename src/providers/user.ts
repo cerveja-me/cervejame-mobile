@@ -33,11 +33,15 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
               this._http.get(this.cs.API+this.cs.COSTUMER+this.cs.LASTBUY+id)
               .toPromise()
               .then(sale=>{
-                if(sale){
+                console.log('asdasdasd',sale);
+                try{
                   resolve(sale.json());
-                }else{
+                }catch(e){
                   reject();
                 }
+              })
+              .catch(err=>{
+                reject();
               })
 
             })

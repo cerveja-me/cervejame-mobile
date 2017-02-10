@@ -39,9 +39,13 @@ export class Page1 {
   verifySaleFeedback(){
     this._user.getSaleFeedBack()
     .then(sale=>{
-      console.log('sale-->',sale);
-      let feedbackModal = this.modalCtrl.create(FeedbackPage, {sale: sale});
-      feedbackModal.present();
+      if(sale){
+        let feedbackModal = this.modalCtrl.create(FeedbackPage, {sale: sale});
+        feedbackModal.present();
+      }
+    })
+    .catch(e=>{
+
     })
   }
 

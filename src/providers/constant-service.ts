@@ -17,8 +17,7 @@ export class ConstantService {
   SEND_FEEDBACK:string;
   PUSH:string;
   constructor() {
-    // this.API = 'http://api.cerveja.me/';
-    this.API = 'http://localhost:1337/';
+    this.API = 'http://api.cerveja.me/';
     this.DEVICE = 'device/';
     this.AUTH='auth/login';
     this.LOCATION = 'location/';
