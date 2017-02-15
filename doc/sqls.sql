@@ -41,8 +41,7 @@ in (
 group by Date(createdAt - interval 3 hour);
 
 -- aberturas do aplicativo por dia na cidade
-select Date(createdAt - interval 3 hour), count(*)
-from location
-where zone = '499dfe43-7712-438d-85bf-888b98c7c717'
-group by Date(createdAt - interval 3 hour);
+select Date(createdAt - interval 3 hour), count(*) from location where zone = '499dfe43-7712-438d-85bf-888b98c7c717' group by Date(createdAt - interval 3 hour);
 
+-- usuarios que fizeram pedido
+select c.name, c.email,concat('https://www.facebook.com/',c.facebook_id) ,c.createdAt from costumer c where c.id  in (select costumer from sale) and createdat > '2017-01-26 00:00:00';
