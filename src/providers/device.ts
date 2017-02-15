@@ -7,8 +7,7 @@ import {Geolocation, Push} from 'ionic-native';
 import {Platform,AlertController,ModalController} from 'ionic-angular';
 
 import {ConstantService} from './constant-service';
-import { User } from './user';
-import { FeedbackPage } from '../feedback/feedback';
+import { FeedbackPage } from '../pages/feedback/feedback';
 
 
 /*
@@ -22,14 +21,16 @@ import { FeedbackPage } from '../feedback/feedback';
 
 
     constructor(
-      public modalCtrl: ModalController,
       public http: Http,
-      private _user:User,
       private storage:Storage,
       private platform:Platform,
       private cs :ConstantService,
       private _http:Http,
-      private alerCtrl: AlertController) {}
+      private _storage:Storage,
+      private alerCtrl: AlertController,
+      public modalCtrl: ModalController,
+
+      ) {}
 
     firstTimeApp(){
       return new Promise((resolve, reject) => {
@@ -193,7 +194,6 @@ import { FeedbackPage } from '../feedback/feedback';
           });
           push.on('notification', (data) => {
             this.doAlert(data);
-
           });
           push.on('error', (e) => {
             reject(e);
@@ -204,6 +204,77 @@ import { FeedbackPage } from '../feedback/feedback';
         }
       });
     }
+    verifySaleFeedback(){
+      this.getSaleFeedBack()
+      .then(sale=>{
+        if(sale){
+          let feedbackModal = this.modalCtrl.create(FeedbackPage, {sale: sale});
+          feedbackModal.present();
+        }
+      })
+      .catch(e=>{
+
+      })
+    }
+
+    getSaleFeedBack(){
+      return new Promise((resolve, reject) => {
+        this.isUserLogged()
+        .then(log=>{
+          if(log){
+            this.getLoggedUser()
+            .then(userll=>{
+
+              let id=userll['costumer'].id;
+              console.log('user->',id);
+              this._http.get(this.cs.API+this.cs.COSTUMER+this.cs.LASTBUY+id)
+              .toPromise()
+              .then(sale=>{
+                console.log('asdasdasd',sale);
+                try{
+                  resolve(sale.json());
+                }catch(e){
+                  reject();
+                }
+              })
+              .catch(err=>{
+                reject();
+              })
+
+            })
+          }else{
+            reject();
+          }
+        })
+      })
+    }
+    isUserLogged(){
+
+      return new Promise((resolve, reject) => {
+        this.getLoggedUser()
+        .then((o)=>{
+
+          if(o!=null){
+            resolve( true);
+          }else{
+            resolve(false);
+          }
+        });
+      });
+    }
+
+    getLoggedUser(){
+      return new Promise((resolve, reject) => {
+        this._storage.get('user_logged')
+        .then((user)=>{
+          resolve(user);
+        });
+      });
+    }
+
+
+
+
     setDevice(device){
       this.storage.set('device',device);
     }
@@ -234,24 +305,13 @@ import { FeedbackPage } from '../feedback/feedback';
       }
       return address;
     }
+
+
     formatAddress(address){
       return address.route+","+address.street_number+","+address.locality+","+address.administrative_area_level_1;
     }
     private handleError (error: Response | any) {
       console.log('err->',error);
-
-    }
-    verifySaleFeedback(){
-      this._user.getSaleFeedBack()
-      .then(sale=>{
-        if(sale){
-          let feedbackModal = this.modalCtrl.create(FeedbackPage, {sale: sale});
-          feedbackModal.present();
-        }
-      })
-      .catch(e=>{
-
-      })
     }
 
     getRandonLoading():string{

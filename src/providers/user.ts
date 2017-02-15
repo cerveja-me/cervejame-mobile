@@ -18,7 +18,11 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
   export class User {
     items: Array<{}>;
 
-    constructor(private _http: Http,private _device:Device,private _storage:Storage, private cs: ConstantService){}
+    constructor(
+      private _http: Http,
+      private _device:Device,
+      private _storage:Storage,
+      private cs: ConstantService){}
 
     getSaleFeedBack(){
       return new Promise((resolve, reject) => {
