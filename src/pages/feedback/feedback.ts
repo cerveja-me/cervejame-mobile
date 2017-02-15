@@ -3,7 +3,7 @@ import { NavController,NavParams,ViewController } from 'ionic-angular';
 import { Analytics } from '../../providers/analytics';
 import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import {ConstantService} from '../../providers/constant-service';
-
+import { Page1 } from '../page1/page1';
 
 /*
   Generated class for the Feedback page.
@@ -37,7 +37,9 @@ import {ConstantService} from '../../providers/constant-service';
       console.log('Hello FeedbackPage Page');
     }
     dismiss() {
+
       this.viewCtrl.dismiss();
+      this.navCtrl.push(Page1);
     }
 
     finishFeedback(){
