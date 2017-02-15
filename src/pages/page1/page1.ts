@@ -22,7 +22,9 @@ export class Page1 {
   loader = this._loading.create({
     content: this._device.getRandonLoading()
   });
-  constructor(public modalCtrl: ModalController, private _device:Device,
+  constructor(
+    public modalCtrl: ModalController,
+    private _device:Device,
     private _user:User,
     private _loading:LoadingController,
     private _sale:Sale,
@@ -139,6 +141,7 @@ export class Page1 {
     let time =new Date().getMilliseconds()-this.startTime;
     this.an.time('TimeToChooseBeer',time,'','');
     this.an.button('selected_beer',beer.zone,beer.product.name,beer.price);
+    this.verifySaleFeedback();
   }
 }
 

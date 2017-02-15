@@ -4,9 +4,10 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation, Push} from 'ionic-native';
-import {Platform,AlertController} from 'ionic-angular';
+import {Platform,AlertController,ModalController} from 'ionic-angular';
 
 import {ConstantService} from './constant-service';
+import { FeedbackPage } from '../pages/feedback/feedback';
 
 
 /*
@@ -25,7 +26,11 @@ import {ConstantService} from './constant-service';
       private platform:Platform,
       private cs :ConstantService,
       private _http:Http,
-      private alerCtrl: AlertController) {}
+      private _storage:Storage,
+      private alerCtrl: AlertController,
+      public modalCtrl: ModalController,
+
+      ) {}
 
     firstTimeApp(){
       return new Promise((resolve, reject) => {
@@ -199,6 +204,77 @@ import {ConstantService} from './constant-service';
         }
       });
     }
+    verifySaleFeedback(){
+      this.getSaleFeedBack()
+      .then(sale=>{
+        if(sale){
+          let feedbackModal = this.modalCtrl.create(FeedbackPage, {sale: sale});
+          feedbackModal.present();
+        }
+      })
+      .catch(e=>{
+
+      })
+    }
+
+    getSaleFeedBack(){
+      return new Promise((resolve, reject) => {
+        this.isUserLogged()
+        .then(log=>{
+          if(log){
+            this.getLoggedUser()
+            .then(userll=>{
+
+              let id=userll['costumer'].id;
+              console.log('user->',id);
+              this._http.get(this.cs.API+this.cs.COSTUMER+this.cs.LASTBUY+id)
+              .toPromise()
+              .then(sale=>{
+                console.log('asdasdasd',sale);
+                try{
+                  resolve(sale.json());
+                }catch(e){
+                  reject();
+                }
+              })
+              .catch(err=>{
+                reject();
+              })
+
+            })
+          }else{
+            reject();
+          }
+        })
+      })
+    }
+    isUserLogged(){
+
+      return new Promise((resolve, reject) => {
+        this.getLoggedUser()
+        .then((o)=>{
+
+          if(o!=null){
+            resolve( true);
+          }else{
+            resolve(false);
+          }
+        });
+      });
+    }
+
+    getLoggedUser(){
+      return new Promise((resolve, reject) => {
+        this._storage.get('user_logged')
+        .then((user)=>{
+          resolve(user);
+        });
+      });
+    }
+
+
+
+
     setDevice(device){
       this.storage.set('device',device);
     }
@@ -229,12 +305,13 @@ import {ConstantService} from './constant-service';
       }
       return address;
     }
+
+
     formatAddress(address){
       return address.route+","+address.street_number+","+address.locality+","+address.administrative_area_level_1;
     }
     private handleError (error: Response | any) {
       console.log('err->',error);
-
     }
 
     getRandonLoading():string{
