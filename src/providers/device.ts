@@ -193,7 +193,16 @@ import { FeedbackPage } from '../pages/feedback/feedback';
             resolve(data.registrationId);
           });
           push.on('notification', (data) => {
-            this.doAlert(data);
+            if(data && data.title && data.title=="Cerveja entregue"){
+              this.verifySaleFeedback();
+            }else{
+
+              this.doAlert(data);
+            }
+
+
+
+
           });
           push.on('error', (e) => {
             reject(e);
