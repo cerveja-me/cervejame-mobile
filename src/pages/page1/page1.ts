@@ -76,7 +76,7 @@ export class Page1 {
         let notificationModal = this.modalCtrl.create(ModalNotificationPage, {charNum: 0});
         notificationModal.present();
         notificationModal.onDidDismiss(a =>{
-          this.verifyPush();
+          this.verifyFirstTime();
         });
       }
     })
