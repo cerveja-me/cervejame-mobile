@@ -6,6 +6,7 @@ import { ModalContentPage } from '../modal-receipt/modal-receipt';
 import { ModalTourPage } from '../modal-tour/modal-tour';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
 import { FeedbackPage } from '../feedback/feedback';
+import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
@@ -37,6 +38,12 @@ export class Page1 {
       this.verifySaleFeedback();
 
     });
+  }
+  openSchedule(){
+    console.log('abra o horario');
+    let modal = this.modalCtrl.create(ModalSchedulePage,{});
+    modal.present();
+
   }
   verifySaleFeedback(){
     this._user.getSaleFeedBack()
@@ -143,5 +150,6 @@ export class Page1 {
     this.an.button('selected_beer',beer.zone,beer.product.name,beer.price);
     this.verifySaleFeedback();
   }
+
 }
 
