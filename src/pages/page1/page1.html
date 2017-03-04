@@ -155,8 +155,12 @@
 </ion-slides>
 
 </ion-content>
-<ion-footer align-title="left" >
-  <button ion-button secondary class="receipt__btn" (click)="openSchedule()">ESTMOS ATENDENDO</button>
-  <button ion-button secondary class="receipt__btn" (click)="openSchedule()">NAO ESTAMOS</button>
+<ion-footer *ngIf="products" align-title="left" >
+  <!--<button ion-button secondary class="schedule-on" (click)="openSchedule()">Estamos atendendo</button>-->
+    <button ion-button secondary class="schedule-off" (click)="openSchedule()">
+        <span class="schedule-off__label"><span class="icon-clock"></span>Não estamos entregando 
+no momento</span>
+        
+    </button>
 </ion-footer>
 
