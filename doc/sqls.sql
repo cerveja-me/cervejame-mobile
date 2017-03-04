@@ -45,3 +45,20 @@ select Date(createdAt - interval 3 hour), count(*) from location where zone = '4
 
 -- usuarios que fizeram pedido
 select c.name, c.email,concat('https://www.facebook.com/',c.facebook_id) ,c.createdAt from costumer c where c.id  in (select costumer from sale) and createdat > '2017-01-26 00:00:00';
+
+-- ultimos 5 pedidos e suas respectivas notas
+select  z.name as 'local',
+c.name as 'cliente',
+p.name as 'product',
+s.finishedAt as 'finalizado',
+s.costumerRate as 'cliente',
+s.serviceRate as 'servico',
+s.costumerComment as 'comentario'
+from sale s
+left join costumer c on c.id = s.costumer
+left join prodreg pr on pr.id = s.prodreg
+left join product p on pr.product = p.id
+left join zone z on z.id = pr.zone
+order by s.createdAt desc limit 5;
+
+
