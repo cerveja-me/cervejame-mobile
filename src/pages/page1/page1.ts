@@ -21,6 +21,7 @@ export class Page1 {
   products=[];
   startTime;
   closed=false;
+  loadedcompleted=false;
   loader = this._loading.create({
     content: this._device.getRandonLoading()
   });
@@ -101,7 +102,7 @@ export class Page1 {
           var closedtime = JSON.parse(_products["schedule"]);
           var d=new Date();
           console.log('horarios hj->',closedtime[d.getDay()])
-          if(d.getHours() > closedtime[d.getDay()].start && d.getHours() < closedtime[d.getDay()].start){
+          if(d.getHours() > closedtime[d.getDay()].start && d.getHours() < closedtime[d.getDay()].end){
             this.closed = true;
           }
           this.products=_products['products'];
@@ -113,6 +114,7 @@ export class Page1 {
         console.log('fechado->', this.closed);
         console.log('wweeekee day->',d.getDay(),d.getHours(),d);
         this.loader.dismiss();
+        this.loadedcompleted=true;
       })
       .catch(e=>{
         console.log('erro ao buscar produtos');
