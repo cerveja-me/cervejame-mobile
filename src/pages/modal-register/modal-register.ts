@@ -61,6 +61,16 @@ export class ModalRegisterPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
+  facebookRegister(){
+    this.doFbLogin()
+    .then((user)=>{
+      this._user.facebookRegister(user)
+      .then((result)=>{
+        this._user.setLoggedUser(result);
+        this.dismiss();
+      })
+    })
+  }
   private doFbLogin(){
     return new Promise((resolve, reject) => {
       let permissions = new Array();

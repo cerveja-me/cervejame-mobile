@@ -15,22 +15,24 @@
 <ion-content class="background-dark">
 
   <div class="msg transparent">
-   <span class="msg__text white">Crie sua conta no Cerveja.me</span>
+    <button ion-button secondary class="btn-facebook" (click)="facebookRegister()">CONECTAR COM FACEBOOK</button>
 
-   <form (ngSubmit)="createUser()">
-    <div class="login__box">
-     <span class="icon-user"></span>
-     <input name="nome" class="login__box__input" placeholder="Seu Nome" required="true" type="text" [(ngModel)]="register.name"/>
-   </div>
-   <div class="login__box">
-     <span class="icon-user"></span>
-     <input name="login" class="login__box__input" placeholder="E-mail" required="true" type="email" [(ngModel)]="register.email"/>
-   </div>
-   <div class="login__box">
-     <span class="icon-pass"></span>
-     <input name="senha" class="login__box__input" placeholder="Senha" required="true" type="password" [(ngModel)]="register.password"/>
-   </div>
-   <input type="submit" class="btn-submit" name="" value="Criar conta" />
- </form>
-</div>
+    <span class="msg__text white">Crie sua conta no Cerveja.me</span>
+
+    <form (ngSubmit)="createUser()">
+      <div class="login__box">
+       <span class="icon-user"></span>
+       <input name="nome" class="login__box__input" placeholder="Seu Nome" required="true" type="text" [(ngModel)]="register.name"/>
+     </div>
+     <div class="login__box">
+       <span class="icon-user"></span>
+       <input name="login" class="login__box__input" placeholder="E-mail" required="true" type="email" [(ngModel)]="register.email"/>
+     </div>
+     <div class="login__box">
+       <span class="icon-pass"></span>
+       <input name="senha" class="login__box__input" placeholder="Senha" required="true" type="password" [(ngModel)]="register.password"/>
+     </div>
+     <input type="submit" class="btn-submit" name="" value="Criar conta" />
+   </form>
+ </div>
 </ion-content>
