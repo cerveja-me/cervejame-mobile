@@ -21,6 +21,7 @@ export class Page1 {
   products=[];
   startTime;
   closed=false;
+  hours;
   loadedcompleted=false;
   loader = this._loading.create({
     content: this._device.getRandonLoading()
@@ -42,8 +43,7 @@ export class Page1 {
     });
   }
   openSchedule(){
-    console.log('abra o horario');
-    let modal = this.modalCtrl.create(ModalSchedulePage,{});
+    let modal = this.modalCtrl.create(ModalSchedulePage,{hours:this.hours});
     modal.present();
 
   }
@@ -100,8 +100,8 @@ export class Page1 {
 
         if(_products['zone'] !=null){
           var closedtime = JSON.parse(_products["schedule"]);
+          this.hours =closedtime;
           var d=new Date();
-          console.log('horarios hj->',closedtime[d.getDay()])
           if(d.getHours() > closedtime[d.getDay()].start && d.getHours() < closedtime[d.getDay()].end){
             this.closed = true;
           }
@@ -111,19 +111,15 @@ export class Page1 {
           this.products=[];
         }
         var d=new Date();
-        console.log('fechado->', this.closed);
-        console.log('wweeekee day->',d.getDay(),d.getHours(),d);
         this.loader.dismiss();
         this.loadedcompleted=true;
       })
       .catch(e=>{
-        console.log('erro ao buscar produtos');
         this.loader.dismiss();
         this.doConfirm();
       });
     })
     .catch(e=>{
-      console.log('erro ao criar device');
       this.loader.dismiss();
       this.doConfirm();
     });
