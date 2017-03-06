@@ -156,8 +156,8 @@
 
 </ion-content>
 <ion-footer *ngIf="products && loadedcompleted" align-title="left" >
-  <button ion-button secondary class="schedule-on" *ngIf="!closed" (click)="openSchedule()">Estamos atendendo</button>
-  <button ion-button secondary class="schedule-off" *ngIf="closed"  (click)="openSchedule()">
+  <button ion-button secondary class="schedule-on" *ngIf="!closed" >Estamos atendendo</button>
+  <button ion-button secondary class="schedule-off" *ngIf="closed"  >
     <span class="schedule-off__label"><span class="icon-clock"></span>Não estamos entregando
     no momento</span>
   </button>
