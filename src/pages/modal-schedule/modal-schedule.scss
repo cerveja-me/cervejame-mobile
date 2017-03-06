@@ -77,3 +77,14 @@ page-modal-schedule {
         }
     }
 }
+
+.msg-schedule {
+    @extend .font-regular;
+
+    color: white;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    padding: 0 50px;
+    margin-top: 20px;
+}
