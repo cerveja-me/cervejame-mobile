@@ -155,7 +155,7 @@
 </ion-slides>
 
 </ion-content>
-<ion-footer *ngIf="products && loadedcompleted" align-title="left" >
+<ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
   <button ion-button secondary (click)="openSchedule()" class="schedule-on" *ngIf="!closed" >Estamos atendendo</button>
   <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed"  >
     <span class="schedule-off__label"><span class="icon-clock"></span>Não estamos entregando
