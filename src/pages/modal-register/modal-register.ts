@@ -48,9 +48,8 @@ export class ModalRegisterPage {
         this._user.setLoggedUser(re);
 
         this.loader.dismiss();
-        this.navCtrl.push(MapPage);
 
-        this.dismiss();
+        this.dismiss(re);
       }else{
         this.loader.dismiss();
         console.log('cadastro com sucesso ->',re);
@@ -58,8 +57,8 @@ export class ModalRegisterPage {
     })
   }
 
-  dismiss() {
-    this.viewCtrl.dismiss();
+  dismiss(result) {
+    this.viewCtrl.dismiss(result);
   }
   facebookRegister(){
     this.doFbLogin()
@@ -67,7 +66,7 @@ export class ModalRegisterPage {
       this._user.facebookRegister(user)
       .then((result)=>{
         this._user.setLoggedUser(result);
-        this.dismiss();
+        this.dismiss(result);
       })
     })
   }

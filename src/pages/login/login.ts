@@ -106,12 +106,17 @@ import { Sale } from '../../providers/sale';
       let modal = this.modalCtrl.create(ModalRegisterPage);
       modal.present();
       modal.onWillDismiss(f =>{
-        this._user.isUserLogged()
-        .then(log=>{
-          if(log){
-            this.gotomap();
-          }
-        })
+        if(f!=null){
+          this.gotomap();
+        }else{
+          this._user.isUserLogged()
+          .then(log=>{
+            if(log){
+              this.gotomap();
+            }
+          })
+        }
+
       })
     }
   }
