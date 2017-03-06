@@ -4,12 +4,11 @@
   <h1 class="logo-home"></h1>
   <!-- <h1 *ngFor="let p of products">oi</h1> -->
 
-  <ion-slides class="choose-slider" *ngIf="!products.length">
+  <ion-slides class="choose-slider" *ngIf="products.length">
    <ion-slide>
-     <p class="msg-empty">Não vamos encher o seu copo hoje.<br/><br/>
+     <p class="msg-empty">Ainda não atendemos sua região :( <br/><br/>
 
-      Ainda não atendemos sua região,
-      mas já estamos trabalhando nisso.</p>
+         Quer levar o Cerveja.me para sua cidade?<br/> <strong>Entrar em contato</strong></p>
       <p class="choose__bottom">
         <figure class="choose__picture">
 
@@ -19,7 +18,7 @@
     </ion-slide>
   </ion-slides>
 
-  <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="products.length">
+  <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="!products.length">
     <ion-slide *ngIf="products[0]">
      <p class="choose__pricebox">
        <span class="choose__pricebox__info">{{products[0].product.description}} </span>
@@ -156,8 +155,8 @@
 
 </ion-content>
 <ion-footer *ngIf="products && loadedcompleted" align-title="left" >
-  <button ion-button secondary class="schedule-on" *ngIf="!closed" >Estamos atendendo</button>
-  <button ion-button secondary class="schedule-off" *ngIf="closed"  >
+  <button ion-button secondary (click)="openSchedule()" class="schedule-on" *ngIf="!closed" >Estamos atendendo</button>
+  <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed"  >
     <span class="schedule-off__label"><span class="icon-clock"></span>Não estamos entregando
     no momento</span>
   </button>

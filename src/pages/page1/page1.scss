@@ -166,17 +166,6 @@ page-page1 {
   transition: all .5s;
 }
 
-.swiper-slide-next {
-    //margin-left: -150px;
-
-  }
-
-  .swiper-slide-prev {
-    //margin-left: -150px;
-
-
-  }
-
   .swiper-slide-active {
     margin-left: auto;
     z-index: 3;
@@ -211,7 +200,16 @@ page-page1 {
     font-size: 16px;
     width: 100%;
     text-align: center;
-    padding: 0 15px;
+    padding: 0 30px;
+      
+      strong {
+          border-radius: 100px;
+          
+        display: inline-block;
+          border: 2px solid;
+          padding: 5px 15px;
+          margin: 5px;
+      }
   }
 
 @keyframes show-up-on {
@@ -274,6 +272,9 @@ page-page1 {
         white-space: initial;
         text-align: left;
         line-height: 1.3em;
+        text-transform: initial;
+        top: 50%;
+        margin-top: -15px;
     }
     
     .icon-clock {
@@ -295,14 +296,14 @@ page-page1 {
         position: absolute;
         right: 30px;
         top: 50%;
-        margin-top: -12px;
+        margin-top: -11px;
     }
 }
 
   .icon-shipping-white {
-        width: 26px;
-        height: 16px;
-        background-image: url(../assets/icon/icon-shipping-white.svg);
-        display: inline-block;
-        margin-bottom: 3px;
+        width: 29px;
+    height: 18px;
+    background-image: url(../assets/icon/icon-shipping-white.svg);
+    display: inline-block;
+    margin-bottom: 0px;
     }
