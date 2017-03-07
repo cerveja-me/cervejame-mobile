@@ -6,7 +6,7 @@ import {SHA256} from 'crypto-js/sha256"';
 
 import { Device } from './device';
 import {ConstantService} from  './constant-service'; //This is my Constant Service
-
+import { Error } from './error';
 
 /*
   Generated class for the User provider.
@@ -22,6 +22,7 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
       private _http: Http,
       private _device:Device,
       private _storage:Storage,
+      private _err:Error,
       private cs: ConstantService){}
 
     getSaleFeedBack(){
@@ -74,18 +75,20 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
               this._device.setDevice(res.json());
               resolve(res.json());
             })
+            /* error ao consultar o servidor em busca da regiao */
             .catch(e=>{
-              console.log('err');
+              this._err.sendError('USER_BUSCAR_REGIAO',e);
               reject(e);
             });
           })
           .catch(e=>{
-            console.log('err');
+            /* error ao obter a localização do caboclo */
+            this._err.sendError('USER_OBTER_LOCALIZACAO',e);
             reject();
           });
         })
         .catch(e=>{
-          console.log('err');
+          this._err.sendError('USER_GET_DEVICE',e);
           reject();
         });
       });
@@ -104,8 +107,14 @@ import {ConstantService} from  './constant-service'; //This is my Constant Servi
             this._device.setDevice(res.json());
             resolve(res.json());
           })
-          .catch(this.handleError);
+          .catch(e=>{
+            this._err.sendError('USER_BUSCAR_REGIAO',e);
+          });
         })
+        .catch(e=>{
+          this._err.sendError('USER_GET_DEVICE',e);
+          reject();
+        });
       });
     }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams } from 'ionic-angular';
+import { NavController,NavParams,ViewController } from 'ionic-angular';
 
 /*
   Generated class for the ModalSchedule page.
@@ -8,18 +8,24 @@ import { NavController,NavParams } from 'ionic-angular';
   Ionic pages and navigation.
   */
   @Component({
-      selector: 'page-modal-schedule',
-      templateUrl: 'modal-schedule.html'
+    selector: 'page-modal-schedule',
+    templateUrl: 'modal-schedule.html'
   })
   export class ModalSchedulePage {
-      hours;
-      day = new Date().getDay();
+    hours;
+    day = new Date().getDay();
 
-      constructor(public navCtrl: NavController,    public params: NavParams
-          ) {}
+    constructor(
+      public navCtrl: NavController,
+      public params: NavParams,
+      public viewCtrl:ViewController
+      ) {}
 
-      ionViewDidLoad() {
-          this.hours= this.params.get("hours");
-      }
+    ionViewDidLoad() {
+      this.hours= this.params.get("hours");
+    }
+    dismiss() {
+      this.viewCtrl.dismiss();
+    }
 
   }

@@ -109,7 +109,7 @@ import { FeedbackPage } from '../pages/feedback/feedback';
               resolve(lat);
             })
             .catch(e=>{
-              reject();
+              reject(e);
             });
           });
         }else{
@@ -128,7 +128,7 @@ import { FeedbackPage } from '../pages/feedback/feedback';
             resolve(lat);
           })
           .catch(e=>{
-            reject();
+            reject(e);
           });
         }
 
@@ -150,6 +150,9 @@ import { FeedbackPage } from '../pages/feedback/feedback';
         .then((res)=>{
           let add = res.json()['results'];
           resolve(add[0])
+        })
+        .catch(e=>{
+          reject(e)
         });
       })
     }
@@ -160,6 +163,9 @@ import { FeedbackPage } from '../pages/feedback/feedback';
         this.http.get(url).toPromise()
         .then((res)=>{
           resolve(res.json());
+        })
+        .catch(e=>{
+          reject(e);
         });
       })
     }
@@ -196,13 +202,8 @@ import { FeedbackPage } from '../pages/feedback/feedback';
             if(data && data.title && data.title=="Cerveja entregue"){
               this.verifySaleFeedback();
             }else{
-
               this.doAlert(data);
             }
-
-
-
-
           });
           push.on('error', (e) => {
             reject(e);
@@ -239,30 +240,27 @@ import { FeedbackPage } from '../pages/feedback/feedback';
               this._http.get(this.cs.API+this.cs.COSTUMER+this.cs.LASTBUY+id)
               .toPromise()
               .then(sale=>{
-                console.log('asdasdasd',sale);
                 try{
                   resolve(sale.json());
                 }catch(e){
-                  reject();
+                  reject(e);
                 }
               })
               .catch(err=>{
-                reject();
+                reject(err);
               })
 
             })
           }else{
-            reject();
+            reject({cod:123123,message:'usuario nao logado'});
           }
         })
       })
     }
     isUserLogged(){
-
       return new Promise((resolve, reject) => {
         this.getLoggedUser()
         .then((o)=>{
-
           if(o!=null){
             resolve( true);
           }else{
