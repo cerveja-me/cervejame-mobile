@@ -42,6 +42,10 @@ export class Page1 {
 
     });
   }
+
+  openSendEmail(){
+    console.log('abra envio de email');
+  }
   openSchedule(){
     let modal = this.modalCtrl.create(ModalSchedulePage,{hours:this.hours});
     modal.present();
