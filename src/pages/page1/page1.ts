@@ -12,6 +12,8 @@ import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 import { Analytics } from '../../providers/analytics';
+import { EmailComposer } from 'ionic-native';
+
 
 @Component({
   selector: 'page-page1',
@@ -44,6 +46,30 @@ export class Page1 {
   }
 
   openSendEmail(){
+    EmailComposer.isAvailable().then((available: boolean) =>{
+      if(available) {
+        let email = {
+          to: 'max@mustermann.de',
+          cc: 'erika@mustermann.de',
+          bcc: ['john@doe.com', 'jane@doe.com'],
+          attachments: [
+          'file://img/logo.png',
+          'res://icon.png',
+          'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
+          'file://README.pdf'
+          ],
+          subject: 'Cordova Icons',
+          body: 'How are you? Nice greetings from Leipzig',
+          isHtml: true
+        };
+
+        // Send a text message using default options
+        EmailComposer.open(email);
+      }
+    });
+
+
+
     console.log('abra envio de email');
   }
   openSchedule(){
