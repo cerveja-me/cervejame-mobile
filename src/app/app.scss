@@ -225,3 +225,28 @@ ion-spinner {
 .toolbar-background {
     background: transparent !important;
 }
+
+.back-button {
+    display: block;
+}
+
+.back-button-text {
+    display: none;
+}
+
+.back-button-icon {
+    background-image: url(../assets/icon/icon-back.svg);
+    background-size: cover;
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    
+    &:before {
+        content: '';
+    }
+}
+
+.toolbar {
+    min-height: 60px;
+    padding: 0 15px;
+}
