@@ -21,6 +21,7 @@ import { Device } from '../providers/device';
 import { Sale } from '../providers/sale';
 import { ConstantService } from  '../providers/constant-service';
 import { Analytics } from '../providers/analytics';
+import { Error } from '../providers/error';
 
 import { Storage } from '@ionic/storage';
 import {Push,GoogleAnalytics} from 'ionic-native';
@@ -45,7 +46,7 @@ import 'intl/locale-data/jsonp/pt-BR';
   MyApp,Page1,Page2,ModalContentPage,FeedbackPage,
   LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage,ModalRegisterPage,ModalNotificationPage,ModalAddressPage,ModalSchedulePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },Analytics,User,Device,Sale,Storage,ConstantService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },Analytics,User,Error,Device,Sale,Storage,ConstantService]
 })
 export class AppModule {
   constructor(public _an:Analytics) {

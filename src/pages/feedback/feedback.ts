@@ -4,6 +4,7 @@ import { Analytics } from '../../providers/analytics';
 import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import {ConstantService} from '../../providers/constant-service';
 import { Page1 } from '../page1/page1';
+import { Error } from '../../providers/error';
 
 /*
   Generated class for the Feedback page.
@@ -25,7 +26,8 @@ import { Page1 } from '../page1/page1';
       private an:Analytics,
       public viewCtrl: ViewController,
       private cs :ConstantService,
-      private _http:Http
+      private _http:Http,
+      private error:Error
 
       ) {
       an.trackView('FeedbackPage','none');
@@ -47,6 +49,9 @@ import { Page1 } from '../page1/page1';
       .then(res=>{
         console.log('result->',res);
         this.dismiss();
+      })
+      .catch(e=>{
+        this.error.sendError('USER_OBTER_LOCALIZACAO',e);
       })
     }
     sendFeedback(data){
