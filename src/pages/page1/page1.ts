@@ -45,25 +45,7 @@ export class Page1 {
     });
   }
 
-  openSendEmail(){
-    EmailComposer.isAvailable().then((available: boolean) =>{
-      if(available) {
-        let email = {
-          to: 'euquero@cerveja.me',
-          subject: 'Na minha Cidade',
-          body: '',
-          isHtml: true
-        };
 
-        // Send a text message using default options
-        EmailComposer.open(email);
-      }
-    });
-
-
-
-    console.log('abra envio de email');
-  }
   openSchedule(){
     let modal = this.modalCtrl.create(ModalSchedulePage,{hours:this.hours});
     modal.present();
@@ -104,11 +86,18 @@ export class Page1 {
       if(tk){
         this.getProducts();
       }else{
-        let notificationModal = this.modalCtrl.create(ModalNotificationPage, {charNum: 0});
-        notificationModal.present();
-        notificationModal.onDidDismiss(a =>{
-          this.verifyFirstTime();
-        });
+        if(this.platform.is('ios')){
+          let notificationModal = this.modalCtrl.create(ModalNotificationPage, {charNum: 0});
+          notificationModal.present();
+          notificationModal.onDidDismiss(a =>{
+            this.verifyFirstTime();
+          });
+        }else{
+          this._device.getPushToken()
+          .then(token =>{
+            this.verifyFirstTime();
+          });
+        }
       }
     })
   }
