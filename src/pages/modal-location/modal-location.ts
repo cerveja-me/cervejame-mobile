@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Device } from '../../providers/device';
 import { Analytics } from '../../providers/analytics';
-
-
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
 declare var Appsee:any;
+
 @Component({
   selector: 'page-modal-notification',
   templateUrl: 'modal-notification.html'
@@ -20,9 +19,8 @@ export class ModalNotificationPage {
     public navCtrl: NavController,
     private _device : Device,
     private an:Analytics) {
-
     Appsee.startScreen('feedback');
-    an.trackView('modal_notification','none');
+    an.trackView('modal_location','none');
   }
 
   accept() {

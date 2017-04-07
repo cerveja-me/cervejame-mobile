@@ -2,7 +2,7 @@
 
 ###build for release
 ```
-cordova build --release android
+ionic build --release android
 ```
 
 ### sign the build

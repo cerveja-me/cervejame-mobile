@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams,ViewController } from 'ionic-angular';
+declare var Appsee:any;
 
 /*
   Generated class for the ModalSchedule page.
@@ -19,13 +20,14 @@ import { NavController,NavParams,ViewController } from 'ionic-angular';
       public navCtrl: NavController,
       public params: NavParams,
       public viewCtrl:ViewController
-      ) {}
+      ) {
+      Appsee.startScreen('feedback');}
 
-    ionViewDidLoad() {
-      this.hours= this.params.get("hours");
-    }
-    dismiss() {
-      this.viewCtrl.dismiss();
-    }
+      ionViewDidLoad() {
+        this.hours= this.params.get("hours");
+      }
+      dismiss() {
+        this.viewCtrl.dismiss();
+      }
 
-  }
+    }

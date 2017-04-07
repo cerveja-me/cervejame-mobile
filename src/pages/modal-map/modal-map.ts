@@ -13,6 +13,8 @@ import { Analytics } from '../../providers/analytics';
 
 import {NavController,ModalController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
 
+declare var Appsee:any;
+
 @Component({
   templateUrl: 'modal-map.html'
 })
@@ -37,6 +39,8 @@ export class ModalMapPage {
     private _device:Device,
     private zone:NgZone,
     private an:Analytics) {
+
+    Appsee.startScreen('feedback');
     an.trackView('modal_map','none');
 
     this._sale.getProduct()

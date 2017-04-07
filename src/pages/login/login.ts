@@ -5,11 +5,12 @@ import { ModalRegisterPage } from '../modal-register/modal-register';
 import { Facebook, NativeStorage } from 'ionic-native';
 import { Analytics } from '../../providers/analytics';
 
-
-
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
+
+
+declare var Appsee:any;
 
 /*
   Generated class for the Login page.
@@ -37,6 +38,8 @@ import { Sale } from '../../providers/sale';
       private _device:Device,
       public alerCtrl: AlertController,
       private an:Analytics) {
+
+      Appsee.startScreen('feedback');
       an.trackView('Login','none');
     }
 

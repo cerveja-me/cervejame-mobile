@@ -1,4 +1,6 @@
 import { Component,ViewChild,NgZone } from '@angular/core';
+import {NavController, Platform, NavParams, ViewController,AlertController,ModalController } from 'ionic-angular';
+
 import { ModalMapPage } from '../modal-map/modal-map';
 import { FinishPage } from '../finish/finish';
 
@@ -8,7 +10,8 @@ import { Sale } from '../../providers/sale';
 import { User } from '../../providers/user';
 
 
-import {NavController, Platform, NavParams, ViewController,AlertController,ModalController } from 'ionic-angular';
+
+declare var Appsee:any;
 
 @Component({
   selector: 'page-modal-address',
@@ -37,6 +40,8 @@ export class ModalAddressPage {
     private zone:NgZone,
     public _device : Device,
     private an:Analytics) {
+
+    Appsee.startScreen('feedback');
     an.trackView('modal_address','none');
     this._sale.getProduct()
     .then( p=>{

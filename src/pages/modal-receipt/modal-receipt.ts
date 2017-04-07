@@ -9,6 +9,7 @@ import { Analytics } from '../../providers/analytics';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
+declare var Appsee:any;
 @Component({
   templateUrl: 'modal-receipt.html'
 })
@@ -25,6 +26,8 @@ export class ModalContentPage {
     private zone:NgZone,
     private _user:User,
     private an:Analytics) {
+
+    Appsee.startScreen('feedback');
     an.trackView('modal_receip','none');
 
     this.beer=this.params.get('beer');

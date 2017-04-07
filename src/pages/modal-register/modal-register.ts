@@ -8,6 +8,7 @@ import { Device } from '../../providers/device';
 import { Analytics } from '../../providers/analytics';
 import { Facebook, NativeStorage } from 'ionic-native';
 
+declare var Appsee:any;
 
 @Component({
   templateUrl: 'modal-register.html'
@@ -32,6 +33,8 @@ export class ModalRegisterPage {
     private _device:Device,
     public alerCtrl: AlertController,
     private an:Analytics) {
+
+    Appsee.startScreen('feedback');
     an.trackView('modal_register','none');
   }
 

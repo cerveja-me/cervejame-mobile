@@ -9,7 +9,9 @@ import { Injectable, NgZone } from '@angular/core';
 import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
 import { Analytics } from '../../providers/analytics';
+
 declare var google;
+declare var Appsee:any;
 /*
   Generated class for the Map page.
 
@@ -38,6 +40,8 @@ declare var google;
       private _user:User,
       private _loading:LoadingController,
       private an:Analytics) {
+
+      Appsee.startScreen('feedback');
       an.trackView('map','none');
     }
 
