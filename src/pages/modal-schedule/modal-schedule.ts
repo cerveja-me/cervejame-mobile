@@ -21,7 +21,7 @@ declare var Appsee:any;
       public params: NavParams,
       public viewCtrl:ViewController
       ) {
-      Appsee.startScreen('feedback');}
+      Appsee.startScreen('schedule');}
 
       ionViewDidLoad() {
         this.hours= this.params.get("hours");
