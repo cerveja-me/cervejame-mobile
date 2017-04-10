@@ -40,8 +40,8 @@ export class ModalMapPage {
     private zone:NgZone,
     private an:Analytics) {
 
-    Appsee.startScreen('feedback');
-    an.trackView('modal_map','none');
+    Appsee.startScreen('modal_map');
+    // an.trackView('modal_map','none');
 
     this._sale.getProduct()
     .then( p=>{

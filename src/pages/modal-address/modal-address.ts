@@ -41,8 +41,8 @@ export class ModalAddressPage {
     public _device : Device,
     private an:Analytics) {
 
-    Appsee.startScreen('feedback');
-    an.trackView('modal_address','none');
+    Appsee.startScreen('modal_address');
+    // an.trackView('modal_address','none');
     this._sale.getProduct()
     .then( p=>{
       this.fullAddress=this.params.get("address");

@@ -39,8 +39,8 @@ declare var Appsee:any;
       public alerCtrl: AlertController,
       private an:Analytics) {
 
-      Appsee.startScreen('feedback');
-      an.trackView('Login','none');
+      Appsee.startScreen('login');
+      // an.trackView('Login','none');
     }
 
     ionViewDidLoad() {

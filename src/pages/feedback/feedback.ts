@@ -32,13 +32,13 @@ declare var Appsee:any;
 
       ) {
       Appsee.startScreen('feedback');
-      an.trackView('FeedbackPage','none');
+      // an.trackView('FeedbackPage','none');
       this.sale=this.params.get("sale");
 
     }
     ionViewDidLoad() {
       this.sale=this.params.get("sale");
-      console.log('Hello FeedbackPage Page');
+      // console.log('Hello FeedbackPage Page');
     }
     dismiss() {
 

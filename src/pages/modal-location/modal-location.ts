@@ -19,8 +19,8 @@ export class ModalNotificationPage {
     public navCtrl: NavController,
     private _device : Device,
     private an:Analytics) {
-    Appsee.startScreen('feedback');
-    an.trackView('modal_location','none');
+    Appsee.startScreen('modal_location');
+    // an.trackView('modal_location','none');
   }
 
   accept() {

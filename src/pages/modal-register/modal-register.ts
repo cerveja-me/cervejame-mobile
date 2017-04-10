@@ -34,8 +34,8 @@ export class ModalRegisterPage {
     public alerCtrl: AlertController,
     private an:Analytics) {
 
-    Appsee.startScreen('feedback');
-    an.trackView('modal_register','none');
+    Appsee.startScreen('modal_register');
+    // an.trackView('modal_register','none');
   }
 
   ionViewDidLoad() {

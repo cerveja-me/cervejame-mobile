@@ -27,8 +27,8 @@ export class ModalContentPage {
     private _user:User,
     private an:Analytics) {
 
-    Appsee.startScreen('feedback');
-    an.trackView('modal_receip','none');
+    Appsee.startScreen('modal_receip');
+    // an.trackView('modal_receip','none');
 
     this.beer=this.params.get('beer');
     this.beer.amount=1;

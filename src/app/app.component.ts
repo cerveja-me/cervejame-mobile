@@ -13,7 +13,7 @@ import { ModalTourPage } from '../pages/modal-tour/modal-tour';
 import { User } from '../providers/user';
 import { Sale } from '../providers/sale';
 
-declare var Appsee:any;
+// declare var Appsee:any;
 
 
 
@@ -41,7 +41,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      Appsee.start("d38be6c0c94d4c0a8a65b7968cf2fd41");
+      // Appsee.start("d38be6c0c94d4c0a8a65b7968cf2fd41");
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

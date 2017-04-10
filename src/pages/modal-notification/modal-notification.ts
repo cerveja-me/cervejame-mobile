@@ -21,8 +21,8 @@ export class ModalNotificationPage {
     private _device : Device,
     private an:Analytics) {
 
-    Appsee.startScreen('feedback');
-    an.trackView('modal_notification','none');
+    Appsee.startScreen('modal_notification');
+    // an.trackView('modal_notification','none');
   }
 
   accept() {

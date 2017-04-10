@@ -41,8 +41,8 @@ declare var Appsee:any;
       private _loading:LoadingController,
       private an:Analytics) {
 
-      Appsee.startScreen('feedback');
-      an.trackView('map','none');
+      Appsee.startScreen('map');
+      // an.trackView('map','none');
     }
 
     ionViewDidLoad() {

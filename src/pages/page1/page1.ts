@@ -39,7 +39,7 @@ export class Page1 {
     private an:Analytics) {
     platform.ready().then((readySource) => {
       Appsee.startScreen('home');
-      an.trackView('home','none');
+      // an.trackView('home','none');
       this.verifyFirstTime();
       this.verifySaleFeedback();
 

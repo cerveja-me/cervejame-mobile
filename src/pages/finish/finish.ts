@@ -20,9 +20,9 @@ declare var Appsee:any;
 
     constructor(public navCtrl: NavController,
       private an:Analytics) {
-      Appsee.startScreen('feedback');
+      Appsee.startScreen('finish');
 
-      an.trackView('Finish','none');
+      // an.trackView('Finish','none');
     }
 
     ionViewDidLoad() {

@@ -20,8 +20,8 @@ export class ModalTourPage {
     public navCtrl: NavController,
     private an : Analytics
     ) {
-    Appsee.startScreen('feedback');
-    an.trackView('modal_tour','none');
+    Appsee.startScreen('modal_tour');
+    // an.trackView('modal_tour','none');
   }
 
   dismiss() {
