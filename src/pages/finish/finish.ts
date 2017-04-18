@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import { Page1 } from '../page1/page1';
 import { Analytics } from '../../providers/analytics';
 
-declare var Appsee:any;
+//declare var Appsee:any;
 
 /*
   Generated class for the Finish page.
@@ -20,7 +20,7 @@ declare var Appsee:any;
 
     constructor(public navCtrl: NavController,
       private an:Analytics) {
-      Appsee.startScreen('finish');
+      //Appsee.startScreen('finish');
 
       // an.trackView('Finish','none');
     }

@@ -4,7 +4,7 @@ import { Analytics } from '../../providers/analytics';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
-declare var Appsee:any;
+//declare var Appsee:any;
 
 @Component({
   selector: 'page-modal-tour',
@@ -20,7 +20,7 @@ export class ModalTourPage {
     public navCtrl: NavController,
     private an : Analytics
     ) {
-    Appsee.startScreen('modal_tour');
+    //Appsee.startScreen('modal_tour');
     // an.trackView('modal_tour','none');
   }
 

@@ -6,12 +6,16 @@ import { TourPage } from '../pages/tour/tour';
 import { FeedbackPage } from '../pages/feedback/feedback';
 
 import { MapPage } from '../pages/map/map';
+
+import { FinishPage } from '../pages/finish/finish';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { ModalMapPage } from '../pages/modal-map/modal-map';
 import { ModalTourPage } from '../pages/modal-tour/modal-tour';
 import { User } from '../providers/user';
 import { Sale } from '../providers/sale';
+
+
 
 // declare var Appsee:any;
 
@@ -24,7 +28,7 @@ import { Sale } from '../providers/sale';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
+  rootPage: any = FinishPage;
 
   pages: Array<{title: string, component: any}>;
 

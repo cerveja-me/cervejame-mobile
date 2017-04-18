@@ -11,7 +11,7 @@ import { User } from '../../providers/user';
 
 
 
-declare var Appsee:any;
+//declare var Appsee:any;
 
 @Component({
   selector: 'page-modal-address',
@@ -41,7 +41,7 @@ export class ModalAddressPage {
     public _device : Device,
     private an:Analytics) {
 
-    Appsee.startScreen('modal_address');
+    //Appsee.startScreen('modal_address');
     // an.trackView('modal_address','none');
     this._sale.getProduct()
     .then( p=>{

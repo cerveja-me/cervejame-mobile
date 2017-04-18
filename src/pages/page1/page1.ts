@@ -13,7 +13,7 @@ import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 import { Analytics } from '../../providers/analytics';
 import { EmailComposer } from 'ionic-native';
-declare var Appsee:any;
+//declare var Appsee:any;
 
 @Component({
   selector: 'page-page1',
@@ -38,7 +38,7 @@ export class Page1 {
     private platform:Platform,
     private an:Analytics) {
     platform.ready().then((readySource) => {
-      Appsee.startScreen('home');
+      //Appsee.startScreen('home');
       // an.trackView('home','none');
       this.verifyFirstTime();
       this.verifySaleFeedback();

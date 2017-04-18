@@ -11,7 +11,7 @@ import { User } from '../../providers/user';
 import { Analytics } from '../../providers/analytics';
 
 declare var google;
-declare var Appsee:any;
+//declare var Appsee:any;
 /*
   Generated class for the Map page.
 
@@ -41,7 +41,7 @@ declare var Appsee:any;
       private _loading:LoadingController,
       private an:Analytics) {
 
-      Appsee.startScreen('map');
+      //Appsee.startScreen('map');
       // an.trackView('map','none');
     }
 

@@ -10,7 +10,7 @@ import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 
 
-declare var Appsee:any;
+//declare var Appsee:any;
 
 /*
   Generated class for the Login page.
@@ -39,7 +39,7 @@ declare var Appsee:any;
       public alerCtrl: AlertController,
       private an:Analytics) {
 
-      Appsee.startScreen('login');
+      //Appsee.startScreen('login');
       // an.trackView('Login','none');
     }
 
