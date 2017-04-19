@@ -1,16 +1,14 @@
-<!--
-  Generated template for the Finish page.
+<ion-header>
+   <h1 class="logo-dark"></h1>
+</ion-header>
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-content class="background-light">
   <div class="order" *ngIf="sale">
     <figure class="order__image">
-      <img-loader [src]="'http://cerveja.me/img/mobile/'+sale.prodreg.product.img"></img-loader>
+      <img-loader class="order__image__img" [src]="'http://cerveja.me/img/mobile/'+sale.prodreg.product.img"></img-loader>
       <!-- <img src="../../assets/img/"/> -->
     </figure>
-    <label class="order__label">{{sale.amount}} {{sale.prodreg.product.name}}</label>
+    <label class="order__label">{{sale.amount}} CAIXAS DE {{sale.prodreg.product.name}}</label>
   </div>
   <ul class="order-status" *ngIf="sale">
     <li class="order-status__item" [ngClass]="!sale.aceptedAt?'loading':'active'">
@@ -21,7 +19,7 @@
     </li>
     <li class="order-status__item delivery " [ngClass]="!sale.onWayAt?'':'active'">
       <span class="order-status__icon"></span>
-      <label class="order-status__label"> {{!sale.onWayAt?'Entrega a caminho':sale.user.name+' saiu para entrega'}}
+      <label class="order-status__label"> {{!sale.onWayAt?'Entrega a caminho':'Saiu para entrega'}}
       </label>
       <span class="order-status__delivery" *ngIf="sale.user">
         <figure class="order-status__delivery__image">

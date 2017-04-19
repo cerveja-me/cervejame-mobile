@@ -15,40 +15,24 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.logo-home {
-    background-image: url(../assets/icon/logo-dark.svg);
-    background-size: cover;
-    width: 156px;
-    height: 42px;
-    display: inline-block;
-    margin-top: 30px;
-}
-
 .logo-dark {
-    background-image: url(../assets/icon/logo-dark.svg);
-    background-size: cover;
-    width: 156px;
-    height: 42px;
+     background-image: url(../assets/icon/logo-dark.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 48%;
     display: inline-block;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    margin-left: -78px;
-    z-index: 2;
+    margin-top: 8%;
 }
 
 .logo-white {
     background-image: url(../assets/icon/logo-white.svg);
     background-size: cover;
-    width: 156px;
-    height: 42px;
+    width: 42%;
+    height: 55%;
     display: inline-block;
-    margin-bottom: 80px;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    margin-left: -100px;
-    z-index: 2;
+    margin-top: 30px;
 }
 
 .center {
@@ -222,10 +206,6 @@ ion-spinner {
     }
 }
 
-.toolbar-background {
-    background: transparent !important;
-}
-
 .back-button {
     display: block;
 }
@@ -249,11 +229,17 @@ ion-spinner {
 .toolbar {
     min-height: 60px;
     padding: 0 15px;
+    
+    .toolbar-background {
+        background: transparent !important;
+        border: none;
+    }
 }
 
 .header {
     position: relative;
     text-align: center;
+    height: 14%;
     
     &:after {
         content: '';
@@ -263,5 +249,9 @@ ion-spinner {
         width: 85%;
         top: 100%;
         left: 7.5%;
+    }
+    
+    &.white:after {
+        background: white;
     }
 }
