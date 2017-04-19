@@ -16,6 +16,20 @@ page-map {
     pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
   }
   .map {
+      
+      &__btn {
+          @include border-radius(0);
+          @extend .font-bold;
+
+          background: #D84040;
+          border-top: 2px solid #583318;
+          font-size: 24px;
+          padding: 20px;
+          height: auto;
+          width: 100%;
+          margin: 0;
+          text-transform: uppercase;
+        }
 
     &__navigation {
       background: #ccc;
