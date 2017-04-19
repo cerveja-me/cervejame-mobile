@@ -5,35 +5,40 @@
   Ionic pages and navigation.
 -->
 <ion-content class="background-light">
-    <div class="order">
-        <figure class="order__image">
-            <img src="../../assets/img/"/>
+  <div class="order" *ngIf="sale">
+    <figure class="order__image">
+      <img-loader [src]="'http://cerveja.me/img/mobile/'+sale.prodreg.product.img"></img-loader>
+      <!-- <img src="../../assets/img/"/> -->
+    </figure>
+    <label class="order__label">{{sale.amount}} {{sale.prodreg.product.name}}</label>
+  </div>
+  <ul class="order-status" *ngIf="sale">
+    <li class="order-status__item" [ngClass]="!sale.aceptedAt?'loading':'active'">
+      <span class="order-status__icon"></span>
+      <label class="order-status__label">
+        {{!sale.aceptedAt?'Aguardando confirmação':'Pedido Confirmado'}}
+      </label>
+    </li>
+    <li class="order-status__item delivery " [ngClass]="!sale.onWayAt?'':'active'">
+      <span class="order-status__icon"></span>
+      <label class="order-status__label"> {{!sale.onWayAt?'Entrega a caminho':sale.user.name+' saiu para entrega'}}
+      </label>
+      <span class="order-status__delivery" *ngIf="sale.user">
+        <figure class="order-status__delivery__image">
+          <img-loader [src]="'http://cerveja.me/img/mobile/driver/'+sale.user.img"></img-loader>
+          <!-- <img src="../../assets/img/"/> -->
         </figure>
-        <label class="order__label">2 Caixas de Brahma</label>
-    </div>
-    <ul class="order-status">
-        <li class="order-status__item active">
-            <span class="order-status__icon"></span>
-            <label class="order-status__label">Aguardando confirmação</label>
-        </li>
-        <li class="order-status__item delivery active">
-            <span class="order-status__icon"></span>
-            <label class="order-status__label">Vitor saiu para entrega</label>
-            <span class="order-status__delivery">
-                <figure class="order-status__delivery__image">
-                    <img src="../../assets/img/"/>
-                </figure>
-                <label class="order-status__delivery__label">
-                    <small>Entregador</small>Vitor</label>
-            </span>
-        </li>
-        <li class="order-status__item active">
-            <span class="order-status__icon"></span>
-            <label class="order-status__label">Cerveja entregue</label>
-        </li>
+        <label class="order-status__delivery__label">
+          <small>Entregador</small>{{sale.user.name}}</label>
+        </span>
+      </li>
+      <li class="order-status__item" [ngClass]="!sale.finishedAt?'':'active'">
+        <span class="order-status__icon"></span>
+        <label class="order-status__label">Cerveja entregue</label>
+      </li>
     </ul>
   </ion-content>
 
-<ion-footer>
+  <ion-footer>
     <button ion-button secondary class="btn-finish" (click)="gotopage1()">Fazer outro pedido</button>
-</ion-footer>
+  </ion-footer>

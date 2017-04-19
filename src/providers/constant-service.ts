@@ -14,6 +14,7 @@ export class ConstantService {
   SALE:string;
   FIRSTIME:string;
   LASTBUY:string;
+  LASTBUYOPEN:string;
   SEND_FEEDBACK:string;
   PUSH:string;
   constructor() {
@@ -24,6 +25,7 @@ export class ConstantService {
     this.COSTUMER = 'costumer/';
     this.COSTUMER_UPDATE = 'update/';
     this.LASTBUY = 'lastbuy/';
+    this.LASTBUYOPEN = 'lastbuyOpen/';
     this.SEND_FEEDBACK='sendfeedback/';
     this.SALE = 'sale/';
     this.GOOGLE_GEOCODE ='https://maps.googleapis.com/maps/api/geocode/json?address=#&rankby=distance&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';

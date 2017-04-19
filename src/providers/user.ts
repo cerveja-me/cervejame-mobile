@@ -57,6 +57,38 @@ import { Error } from './error';
       })
     }
 
+    getLastSale(){
+      return new Promise((resolve, reject) => {
+        this.isUserLogged()
+        .then(log=>{
+          if(log){
+            this.getLoggedUser()
+            .then(userll=>{
+              let id=userll['costumer'].id;
+              console.log('user->',id);
+              this._http.get(this.cs.API+this.cs.COSTUMER+this.cs.LASTBUYOPEN+id)
+              .toPromise()
+              .then(sale=>{
+                console.log('asdasdasd',sale.json());
+                try{
+                  resolve(sale.json());
+                }catch(e){
+                  reject();
+                }
+              })
+              .catch(err=>{
+
+                reject();
+              })
+
+            })
+          }else{
+            reject();
+          }
+        })
+      })
+    }
+
     getProducts(){
       return new Promise((resolve, reject) => {
         this._device.getDevice()
