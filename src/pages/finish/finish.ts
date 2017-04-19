@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,Events } from 'ionic-angular';
 
 import { Page1 } from '../page1/page1';
-import { Analytics } from '../../providers/analytics';
+import { User } from '../../providers/user';
+
 
 //declare var Appsee:any;
 
@@ -17,17 +18,37 @@ import { Analytics } from '../../providers/analytics';
     templateUrl: 'finish.html'
   })
   export class FinishPage {
-
+    sale:any;
     constructor(public navCtrl: NavController,
-      private an:Analytics) {
+      public _user:User,
+      public events: Events
+      ) {
+      this.events.subscribe('push:order_update', data=>{
+        this.verifyLastSale();
+      })
+
       //Appsee.startScreen('finish');
 
       // an.trackView('Finish','none');
     }
 
     ionViewDidLoad() {
-
+      this.verifyLastSale();
     }
+
+    verifyLastSale(){
+      this._user.getLastSale()
+      .then(sale=>{
+        console.log('asda');
+        if(sale){
+          this.sale=sale;
+        }
+      })
+      .catch(e=>{
+
+      })
+    }
+
     gotopage1(){
       this.navCtrl.push(Page1);
     }

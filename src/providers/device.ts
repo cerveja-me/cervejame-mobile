@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import {Geolocation, Push} from 'ionic-native';
-import {Platform,AlertController,ModalController} from 'ionic-angular';
+import {Platform,AlertController,ModalController,Events} from 'ionic-angular';
 
 import {ConstantService} from './constant-service';
 import { FeedbackPage } from '../pages/feedback/feedback';
@@ -29,7 +29,7 @@ import { FeedbackPage } from '../pages/feedback/feedback';
       private _storage:Storage,
       private alerCtrl: AlertController,
       public modalCtrl: ModalController,
-
+      public events: Events
       ) {}
 
     firstTimeApp(){
@@ -199,6 +199,9 @@ import { FeedbackPage } from '../pages/feedback/feedback';
             resolve(data.registrationId);
           });
           push.on('notification', (data) => {
+            if(data && data.title && (data.title=="Pedido Confirmado" || data.title=="Cerveja a caminho" || data.title=="Cerveja entregue" )){
+              this.events.publish('push:order_update', data);
+            }
             if(data && data.title && data.title=="Cerveja entregue"){
               this.verifySaleFeedback();
             }else{

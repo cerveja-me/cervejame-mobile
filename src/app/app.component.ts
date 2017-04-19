@@ -28,7 +28,7 @@ import { Sale } from '../providers/sale';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = FinishPage;
+  rootPage: any = Page1;
 
   pages: Array<{title: string, component: any}>;
 
