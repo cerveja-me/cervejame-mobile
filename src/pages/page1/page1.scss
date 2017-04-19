@@ -44,13 +44,17 @@
     z-index: 1;
 
     &:after {
-    content: '';
-    border: 10px solid;
-    border-color: white transparent  transparent transparent;
+        content: '';
+          background-image: url(../assets/icon/trigger-white.svg);
+    background-size: cover;
+    width: 23px;
+    height: 23px;
+           
     position: absolute;
     top: 100%;
     left: 50%;
-    margin-left: -4px;
+        margin-left: -6px;
+        margin-top: -10px;
     }
 
     &__info {
@@ -72,12 +76,21 @@
     &--currency {
     @extend .font-regular;
 
-    font-size: 20px;
+    font-size: 24px;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 5px;
+    margin-right: 7px;
     }
     }
+        
+        &__each {
+            @extend .font-bold;
+
+            color: white;
+            font-size: 12px;
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
 
     &__picture {
@@ -87,7 +100,7 @@
     left: -18%;
     display: block;
     position: absolute;
-    bottom: 16%;
+    bottom: 14%;
     margin: 0;
     z-index: 2;
     transform: scale(0.8);
@@ -145,7 +158,9 @@
     }
 
     .choose-slider {
-    height: 71%;
+        height: 86%;
+        position: absolute;
+        bottom: 13%;
     }
 
     .btn-choose {
@@ -164,6 +179,7 @@
     margin-left: -100px;
     opacity: 0;
     transition: all .5s;
+        box-shadow: none;
     }
 
     .swiper-slide-active {
@@ -225,31 +241,59 @@
     }
 
     .schedule-on {
-    @extend .font-bold;
+        @extend .font-bold;
 
-    font-size: 12px;
-    border-top: 1px solid white;
-    color: #583318;
-    background: #83DD7F;
-    border-radius: 0;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    position: absolute;
-    animation: show-up-on 0.3s ease-out 1s 1 normal;
-    animation-fill-mode: both;
-
-    &:after {
-    content: '';
-    width: 22px;
-    height: 22px;
-    background-image: url(../assets/icon/icon-up-brown.svg);
-    display: block;
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    margin-top: -12px;
-    }
+        font-size: 12px;
+        border-top: 1px solid white;
+        color: #583318;
+        background: #83DD7F;
+        border-radius: 0;
+        height: 37px;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        animation: show-up-on 0.3s ease-out 1s 1 normal;
+        animation-fill-mode: both;
+        
+        &__label {
+            width: 65%;
+            position: absolute;
+            left: 6px;
+            white-space: initial;
+            text-align: left;
+            line-height: 1.3em;
+            text-transform: initial;
+            top: 50%;
+            margin-top: -12px;
+            
+            label {
+                display: inline-block;
+                margin-top: 2px;
+                vertical-align: middle;
+            }
+        }
+        
+         .icon-clock {
+            width: 22px;
+            height: 22px;
+            background-image: url(../assets/icon/icon-clock.svg);
+            display: inline-block;
+            margin-right: 6px;
+             vertical-align: middle;
+            }
+        
+        &:after {
+        content: '';
+        width: 22px;
+        height: 22px;
+        background-image: url(../assets/icon/icon-up-brown.svg);
+        display: block;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        margin-top: -12px;
+        }
     }
 
     .schedule-off {
@@ -296,7 +340,7 @@
     background-image: url(../assets/icon/icon-up-white.svg);
     display: block;
     position: absolute;
-    right: 30px;
+    right: 5px;
     top: 50%;
     margin-top: -11px;
     }
