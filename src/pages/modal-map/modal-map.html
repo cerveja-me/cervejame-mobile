@@ -7,7 +7,7 @@
 
     <div class="receipt__quantidade">
       <h2 class="receipt__title">Seu pedido</h2>
-      <span class="figure__pedido" *ngIf="product"><img-loader [src]="'http://cerveja.me/img/mobile/'+product.product.img"></img-loader></span>
+      <span class="figure__pedido" *ngIf="product"><img-loader class="figure__pedido__img" [src]="'http://cerveja.me/img/mobile/'+product.product.img"></img-loader></span>
       <span class="quantidade-pedido" *ngIf="product">{{product.amount}} Caixas de {{product.product.name}}</span>
     </div>
     <div class="receipt__total" *ngIf="product">

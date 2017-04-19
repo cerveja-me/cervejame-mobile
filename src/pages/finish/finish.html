@@ -14,17 +14,16 @@
     <li class="order-status__item" [ngClass]="!sale.aceptedAt?'loading':'active'">
       <span class="order-status__icon"></span>
       <label class="order-status__label">
-        {{!sale.aceptedAt?'Aguardando confirmação':'Pedido Confirmado'}}
+        {{!sale.aceptedAt?'Aguardando confirmação':'Pedido confirmado'}}
       </label>
     </li>
     <li class="order-status__item delivery " [ngClass]="!sale.onWayAt?'':'active'">
       <span class="order-status__icon"></span>
-      <label class="order-status__label"> {{!sale.onWayAt?'Entrega a caminho':'Saiu para entrega'}}
+      <label class="order-status__label"> {{!sale.onWayAt?'Sair para entrega':'Saiu para entrega'}}
       </label>
       <span class="order-status__delivery" *ngIf="sale.user">
         <figure class="order-status__delivery__image">
           <img-loader [src]="'http://cerveja.me/img/mobile/driver/'+sale.user.img"></img-loader>
-          <!-- <img src="../../assets/img/"/> -->
         </figure>
         <label class="order-status__delivery__label">
           <small>Entregador</small>{{sale.user.name}}</label>

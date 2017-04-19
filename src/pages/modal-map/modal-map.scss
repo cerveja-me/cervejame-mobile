@@ -4,7 +4,7 @@
   font-size: 14px;
   color: #583318;
     text-align: left;
-    width: 67%;
+    width: 62%;
     text-align: left;
     display: inline-block;
     margin-top: 8px;
@@ -18,20 +18,30 @@
 
   font-size: 14px;
   color: #583318;
-    margin-bottom: 0;
-    padding: 5px 20px 15px;
+    margin: 0;
+    padding: 15px 20px 15px;
 }
 
 .figure__pedido {
-  float: left;
-  text-align: center;
-    width: auto;
-    height: 51px;
+    @include border-radius(10px);
+    
+    border: 2px solid #583318;
+    float: left;
+    text-align: center;
+    width: 49px;
+    height: 49px;
+    text-align: center;
+    overflow: hidden;
+    
 
-  img {
-    width: auto;
-    height: 100%;
-  }
+  &__img {
+        display: block;
+        height: 100%;
+        width: auto;
+        background-size: cover !important;
+        text-align: center;
+        margin: 0 auto;
+    }
 }
 
 .icon-card {

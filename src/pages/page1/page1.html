@@ -179,5 +179,28 @@
         <span class="icon-clock"></span>Não estamos entregando
     no momento</span>
   </button>
+  
+  <button ion-button secondary (click)="openSchedule()" class="order-status-bar" *ngIf="!closed" >
+<!--
+      <span class="order-status-bar__label">
+          <span class="icon-loading"></span>
+          <label>Aguardando confirmação</label>
+      </span>
+-->
+      
+<!--
+      <span class="order-status-bar__label active">
+          <span class="icon-check"></span>
+          <label>Perdido confirmado</label>
+      </span>
+-->
+      
+        <span class="order-status-bar__label delivery active">
+          <figure class="order-status-bar__image">
+              <img-loader ></img-loader>
+          </figure>
+          <label>Glauber saiu para entrega</label>
+      </span>
+    </button>
 </ion-footer>
 

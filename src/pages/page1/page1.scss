@@ -1,5 +1,10 @@
     @import '../../app/_mixins';
 
+ @keyframes loading {
+        0% { transform: rotate(0deg)}
+        100% { transform: rotate(359deg)}
+    }
+
     ion-backdrop {
     background: #583318;
     opacity: 0.8 !important;
@@ -344,6 +349,114 @@
     top: 50%;
     margin-top: -11px;
     }
+    }
+
+    .order-status-bar {
+        @extend .font-regular;
+
+        font-size: 12px;
+        border-top: 1px solid white;
+        color: #583318;
+        background: #FFFFDD;
+        border-radius: 0;
+        height: 37px;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        animation: show-up-on 0.3s ease-out 1s 1 normal;
+        animation-fill-mode: both;
+        
+      
+        
+        .icon-loading {
+            background-image: url(../assets/icon/icon-loading.svg);
+            background-size: cover;
+            width: 22px;
+            height: 22px;
+            border: none;
+            border-radius: 0;
+            animation: loading 1s linear 0s infinite normal;
+            animation-fill-mode: both;
+            vertical-align: middle;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        .icon-check {
+            background-image: url(../assets/icon/icon-check.svg);
+            background-size: cover;
+            width: 22px;
+            height: 22px;
+            border: none;
+            border-radius: 0;
+            vertical-align: middle;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        &__label {
+            width: 65%;
+            position: absolute;
+            left: 6px;
+            white-space: initial;
+            text-align: left;
+            line-height: 1.3em;
+            text-transform: initial;
+            top: 50%;
+            margin-top: -12px;
+            
+            &.active label {
+                @extend .font-bold;
+            }
+            
+            label {
+                display: inline-block;
+                margin-top: 2px;
+                vertical-align: middle;
+            }
+        }
+        
+          &__image {
+            @include border-radius(5px);
+
+            border: 1px solid #573317;
+            display: inline-block;
+            vertical-align: middle;
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+            display: inline-block;
+            margin: 0 5px 0 0;
+            overflow: hidden;
+
+            img {
+                height: 100%;
+                width: auto;
+            }
+          }
+        
+        
+         .icon-clock {
+            width: 22px;
+            height: 22px;
+            background-image: url(../assets/icon/icon-clock.svg);
+            display: inline-block;
+            margin-right: 6px;
+             vertical-align: middle;
+            }
+        
+        &:after {
+        content: '';
+        width: 22px;
+        height: 22px;
+        background-image: url(../assets/icon/icon-up-brown.svg);
+        display: block;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        margin-top: -12px;
+        }
     }
 
     .icon-shipping-white {
