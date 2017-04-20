@@ -1,14 +1,15 @@
 .quantidade-pedido {
   @extend .font-bold;
 
-  font-size: 14px;
+  font-size: 12px;
   color: #583318;
     text-align: left;
-    width: 62%;
+    width: 56%;
     text-align: left;
     display: inline-block;
     margin-top: 8px;
     text-transform: uppercase;
+    margin-left: 10px;
 }
 
 .receipt__address {
