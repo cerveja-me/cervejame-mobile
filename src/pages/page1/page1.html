@@ -25,11 +25,14 @@
   <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="products.length">
     <ion-slide *ngIf="products[0]">
      <p class="choose__pricebox">
-       <span class="choose__pricebox__info">{{products[0].product.description}} </span>
+       <span class="choose__pricebox__info1">Caixa - 12 Latas</span>
+       <span class="choose__pricebox__info2">Unidade - 355ml</span>
        <span class="choose__pricebox__price">
          <small class="choose__pricebox__price--currency">R$</small>{{products[0].price |number:'2.2-2'}}
        </span>
-         <span class="choose__pricebox__each">R$ 2,90 por Unidade</span>
+          <span class="choose__pricebox__each">
+             <small class="choose__pricebox__each--currency">R$</small>2,90
+        </span>
        <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
        <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
      </p>
@@ -46,7 +49,9 @@
      <span class="choose__pricebox__price">
       <small class="choose__pricebox__price--currency">R$</small>{{products[1].price | number:'2.2-2'}}
     </span>
-         <span class="choose__pricebox__each">R$ 2,90 por Unidade</span>
+         <span class="choose__pricebox__each">
+             <small class="choose__pricebox__each--currency">R$</small>R$ 2,90
+        </span>
     <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
     <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
   </p>

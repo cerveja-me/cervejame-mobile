@@ -27,17 +27,16 @@ page-feedback {
     @extend .font-bold;
 
     position: absolute;
-    bottom: -25px;
-    background: #D5A86C;
+    background: #573317;
     border: 2px solid #FFFFDD;
     font-size: 17px;
     padding: 10px 30px;
     height: auto;
     left: 50%;
-    width: 290px;
-    margin-left: -145px;
+    width: 250px;
+    margin-left: -125px;
     transition: all .5s;
-    color: #573317;
+    color: white;
     text-transform: uppercase;
   }
 

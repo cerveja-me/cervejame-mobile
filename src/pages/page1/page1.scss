@@ -1,9 +1,27 @@
     @import '../../app/_mixins';
 
  @keyframes loading {
-        0% { transform: rotate(0deg)}
-        100% { transform: rotate(359deg)}
-    }
+    0% { transform: rotate(0deg)}
+    100% { transform: rotate(359deg)}
+}
+
+@keyframes dissolve-in {
+    0% { opacity: 1}
+    30% { opacity: 1}
+    35% { opacity: 0}
+    65% { opacity: 0}
+    70% { opacity: 1}
+    100% { opacity: 1}
+}
+
+@keyframes dissolve-out {
+    0% { opacity: 0}
+    30% { opacity: 0}
+    35% { opacity: 1}
+    65% { opacity: 1}
+    70% { opacity: 0}
+    100% { opacity: 0}
+}
 
     ion-backdrop {
     background: #583318;
@@ -37,7 +55,7 @@
 
     border: 2px solid #fff;
     width: 215px;
-    background: rgba(0,0,0,.5);
+    background: #573317;
     padding: 15px;
     display: inline-block;
     position: absolute;
@@ -62,12 +80,30 @@
         margin-top: -10px;
     }
 
-    &__info {
+    &__info1 {
     @extend .font-bold;
 
     color: white;
     text-transform: uppercase;
     font-size: 14px;
+        animation: dissolve-in 10s ease-out 1.5s infinite normal;
+    animation-fill-mode: both;
+    }
+        
+    &__info2 {
+    @extend .font-bold;
+
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+         position: absolute;
+        top: 18px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+     
+         animation: dissolve-out 10s ease-out 1.5s infinite reverse;
+        animation-fill-mode: both;
     }
 
     &__price {
@@ -77,25 +113,44 @@
     font-size: 38px;
     display: inline-block;
     vertical-align: middle;
+    animation: dissolve-in 10s ease-out 1.5s infinite normal;
+    animation-fill-mode: both;
 
-    &--currency {
-    @extend .font-regular;
+        &--currency {
+        @extend .font-regular;
 
-    font-size: 24px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 7px;
-    }
+        font-size: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 7px;
+            margin-bottom: 7px;
+        }
     }
         
-        &__each {
-            @extend .font-bold;
+    &__each {
+          @extend .font-bold;
 
-            color: white;
-            font-size: 12px;
+        color: white;
+        font-size: 38px;
+        display: block;
+        animation: dissolve-out 10s ease-out 1.5s infinite reverse;
+        animation-fill-mode: both;
+        position: absolute;
+        top: 37px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        
+        &--currency {
+            @extend .font-regular;
+
+            font-size: 24px;
             display: inline-block;
             vertical-align: middle;
+            margin-right: 7px;
+            margin-bottom: 7px;
         }
+    }
     }
 
     &__picture {
