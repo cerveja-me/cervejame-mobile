@@ -25,8 +25,8 @@
   <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="products.length">
     <ion-slide *ngIf="products[0]">
      <p class="choose__pricebox">
-       <span class="choose__pricebox__info1">Caixa - 12 Latas</span>
-       <span class="choose__pricebox__info2">Unidade - 355ml</span>
+       <span class="choose__pricebox__info1">12 Latas - 355ml</span>
+       <span class="choose__pricebox__info2">Preço por Unidade</span>
        <span class="choose__pricebox__price">
          <small class="choose__pricebox__price--currency">R$</small>{{products[0].price |number:'2.2-2'}}
        </span>
