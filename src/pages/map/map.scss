@@ -4,13 +4,13 @@ page-map {
     height: 100%;
   }
   #map:after {
-    width: 34px;
-    height: 40px;
+    width: 51px;
+    height: 60px;
     display: block;
     content: ' ';
     position: absolute;
     top: 50%; left: 50%;
-    margin: -40px 0 0 -17px;
+    margin: -60px 0 0 -26px;
     background: url(../assets/icon/map-pin.svg);
     background-size: contain;
     pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
@@ -42,24 +42,31 @@ page-map {
     }
 
     &__adress {
-      padding: 0 15px;
-      background: white;
+      padding: 0 10px;
       width: 100%;
       height: 60px;
       position: absolute;
       bottom: 15px;
       left: 0;
       z-index: 2;
-      box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+        
+        &__icon {
+            position: absolute;
+            left: 25px;
+            top: 15px;
+        }
 
       &__input {
         @extend .font-regular;
+        @include border-radius(10px);
 
-        background: transparent;
+        background: white;
         color: #666;
-        border: 0;
+        border: 2px solid #583318;
         height: 60px;
-        width: 85%;
+        width: 100%;
+        padding-left: 50px;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
      
       }
         
@@ -96,8 +103,8 @@ page-map {
  .icon-map {
     background-image: url(../assets/icon/map-pin.svg);
     background-size: cover;
-    width: 20px;
-    height: 24px;
+    width: 24px;
+    height: 29px;
     display: inline-block;
     vertical-align: middle;
     margin-right: 10px;

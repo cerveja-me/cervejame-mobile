@@ -1,4 +1,6 @@
 modal-receipt{
+    
+    
 
   ion-modal {
     height: 100%;
@@ -38,6 +40,8 @@ modal-receipt{
      top: -9px;
      left: 0;
    }
+      
+
  }
 
  &__alert {
@@ -173,3 +177,6 @@ modal-receipt{
     margin-right: 0;
 }
 
+ .receipt .scroll-content {
+    margin-top: 0 !important;
+  }

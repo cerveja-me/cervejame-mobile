@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="414 474 36 36">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="414 530 36 36">
   <defs>
     <style>
       .cls-1 {
@@ -8,7 +8,7 @@
       }
 
       .cls-2 {
-        fill: #fff;
+        fill: #583318;
       }
 
       .cls-3 {
@@ -20,7 +20,7 @@
       }
     </style>
   </defs>
-  <g id="Group_2" data-name="Group 2" transform="translate(385 -117)">
+  <g id="Group_2" data-name="Group 2" transform="translate(385 -61)">
     <g id="ellipse-1" class="cls-1" transform="translate(29 591)">
       <circle class="cls-3" cx="18" cy="18" r="18"/>
       <circle class="cls-4" cx="18" cy="18" r="17"/>
