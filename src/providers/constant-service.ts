@@ -18,7 +18,9 @@ export class ConstantService {
   SEND_FEEDBACK:string;
   PUSH:string;
   constructor() {
-    this.API = 'http://api.cerveja.me/';
+    // this.API = 'http://api.cerveja.me/';
+    this.API = '  http://e101a380.ngrok.io/';
+
     this.DEVICE = 'device/';
     this.AUTH='auth/login';
     this.LOCATION = 'location/';

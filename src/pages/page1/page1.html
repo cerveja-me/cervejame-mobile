@@ -1,10 +1,10 @@
 <ion-header>
-   <h1 class="logo-dark"></h1>
+ <h1 class="logo-dark"></h1>
 </ion-header>
 
 <ion-content class="bkg-choose center">
   <div class="table"></div>
-  
+
   <!-- <h1 *ngFor="let p of products">oi</h1> -->
 
   <ion-slides class="choose-slider" *ngIf="!products.length">
@@ -30,9 +30,9 @@
        <span class="choose__pricebox__price">
          <small class="choose__pricebox__price--currency">R$</small>{{products[0].price |number:'2.2-2'}}
        </span>
-          <span class="choose__pricebox__each">
-             <small class="choose__pricebox__each--currency">R$</small>2,90
-        </span>
+       <span class="choose__pricebox__each">
+         <small class="choose__pricebox__each--currency">R$</small>2,90
+       </span>
        <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
        <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
      </p>
@@ -49,7 +49,7 @@
      <span class="choose__pricebox__price">
       <small class="choose__pricebox__price--currency">R$</small>{{products[1].price | number:'2.2-2'}}
     </span>
-        
+
     <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
     <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
   </p>
@@ -66,7 +66,7 @@
    <span class="choose__pricebox__price">
      <small class="choose__pricebox__price--currency">R$</small>{{products[2].price | number:'2.2-2'}}
    </span>
-      
+
    <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
    <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
  </p>
@@ -149,7 +149,7 @@
    <span class="choose__pricebox__info1">{{products[7].product.description}} </span>
    <span class="choose__pricebox__price">
      <small class="choose__pricebox__price--currency">R$</small>{{products[7].price | number:'2.2-2'}}
-       
+
    </span>
    <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
    <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
@@ -167,38 +167,38 @@
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
   <button ion-button secondary (click)="openSchedule()" class="schedule-on" *ngIf="!closed" >
-      <span class="schedule-on__label">
-          <span class="icon-clock"></span>
-          <label>Estamos atendendo</label>
-      </span>
-    </button>
+    <span class="schedule-on__label">
+      <span class="icon-clock"></span>
+      <label>Estamos atendendo</label>
+    </span>
+  </button>
   <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed"  >
     <span class="schedule-off__label">
-        <span class="icon-clock"></span>Não estamos entregando
-    no momento</span>
-  </button>
-  
-  <button ion-button secondary (click)="openSchedule()" class="order-status-bar" *ngIf="!closed" >
-<!--
-      <span class="order-status-bar__label">
-          <span class="icon-loading"></span>
-          <label>Aguardando confirmação</label>
+      <span class="icon-clock"></span>Não estamos entregando
+      no momento</span>
+    </button>
+
+    <button ion-button secondary  (click)="openSale()" class="order-status-bar" *ngIf="sale && sale.id" >
+
+      <span class="order-status-bar__label" *ngIf="!sale.aceptedAt && !sale.onWayAt">
+        <span class="icon-loading"></span>
+        <label>Aguardando confirmação</label>
       </span>
--->
-      
-<!--
-      <span class="order-status-bar__label active">
-          <span class="icon-check"></span>
-          <label>Perdido confirmado</label>
+
+
+
+      <span class="order-status-bar__label active" *ngIf="sale.aceptedAt && !sale.onWayAt">
+        <span class="icon-check"></span>
+        <label>Perdido confirmado</label>
       </span>
--->
-      
-        <span class="order-status-bar__label delivery active">
-          <figure class="order-status-bar__image">
-              <img-loader ></img-loader>
-          </figure>
-          <label>Glauber saiu para entrega</label>
+
+
+      <span class="order-status-bar__label delivery active" *ngIf="sale.aceptedAt && sale.onWayAt">
+        <figure class="order-status-bar__image">
+          <img-loader [src]="'http://cerveja.me/img/mobile/driver/'+sale.user.img"></img-loader>
+        </figure>
+        <label>{{sale.user.name}} saiu para entrega</label>
       </span>
     </button>
-</ion-footer>
+  </ion-footer>
 
