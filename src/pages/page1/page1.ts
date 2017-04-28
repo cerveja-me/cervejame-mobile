@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LoadingController,AlertController ,ModalController,Platform,Events} from 'ionic-angular';
+import { LoadingController,AlertController ,ModalController,Platform,Events,App} from 'ionic-angular';
 
 import { ModalContentPage } from '../modal-receipt/modal-receipt';
 import { ModalTourPage } from '../modal-tour/modal-tour';
@@ -14,7 +14,8 @@ import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 import { Analytics } from '../../providers/analytics';
 import { EmailComposer } from 'ionic-native';
-//declare var Appsee:any;
+
+// declare var UXCam:any;
 
 @Component({
   selector: 'page-page1',
@@ -38,11 +39,12 @@ export class Page1 {
     private _sale:Sale,
     private alertCtrl:AlertController,
     private platform:Platform,
-    private an:Analytics,
+    private app : App,
     public events: Events) {
-    platform.ready().then((readySource) => {
-      //Appsee.startScreen('home');
-      // an.trackView('home','none');
+    this.platform.ready().then((readySource) => {
+      this.app.setScrollDisabled(true);
+      // UXCam.tagScreenName('home');
+
       this.verifyFirstTime();
       this.verifySaleFeedback();
       this.verifyLastSale();
@@ -193,9 +195,6 @@ export class Page1 {
   selectBeer(beer){
     let modal = this.modalCtrl.create(ModalContentPage,{'beer':beer});
     modal.present();
-    let time =new Date().getMilliseconds()-this.startTime;
-    this.an.time('TimeToChooseBeer',time,'','');
-    this.an.button('selected_beer',beer.zone,beer.product.name,beer.price);
     this.verifySaleFeedback();
   }
 
