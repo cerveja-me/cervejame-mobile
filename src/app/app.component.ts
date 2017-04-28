@@ -15,7 +15,7 @@ import { ModalTourPage } from '../pages/modal-tour/modal-tour';
 import { User } from '../providers/user';
 import { Sale } from '../providers/sale';
 
-declare var UXCam:any;
+//declare var UXCam:any;
 
 // declare var Appsee:any;
 
@@ -45,7 +45,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      UXCam.startWithKey("eb717cc41850c30");
+      //UXCam.startWithKey("eb717cc41850c30");
 
       // Appsee.start("d38be6c0c94d4c0a8a65b7968cf2fd41");
 
