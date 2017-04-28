@@ -30,7 +30,7 @@ page-feedback {
     background: #573317;
     border: 2px solid #FFFFDD;
     font-size: 17px;
-    padding: 10px 30px;
+    padding: 15px 30px;
     height: auto;
     left: 50%;
     width: 250px;
@@ -38,6 +38,10 @@ page-feedback {
     transition: all .5s;
     color: white;
     text-transform: uppercase;
+		
+		&.activated {
+			background: #573317;	
+		}
   }
 
   .comment {
