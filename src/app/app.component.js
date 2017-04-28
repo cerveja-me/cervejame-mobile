@@ -12,7 +12,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
-export var MyApp = (function () {
+// declare var Appsee:any;
+var MyApp = (function () {
     function MyApp(platform) {
         this.platform = platform;
         this.rootPage = Page1;
@@ -25,6 +26,8 @@ export var MyApp = (function () {
     }
     MyApp.prototype.initializeApp = function () {
         this.platform.ready().then(function () {
+            UXCam.startWithKey("eb717cc41850c30");
+            // Appsee.start("d38be6c0c94d4c0a8a65b7968cf2fd41");
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             StatusBar.styleDefault();
@@ -36,16 +39,17 @@ export var MyApp = (function () {
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
     };
-    __decorate([
-        ViewChild(Nav), 
-        __metadata('design:type', Nav)
-    ], MyApp.prototype, "nav", void 0);
-    MyApp = __decorate([
-        Component({
-            templateUrl: 'app.html'
-        }), 
-        __metadata('design:paramtypes', [Platform])
-    ], MyApp);
     return MyApp;
 }());
+__decorate([
+    ViewChild(Nav),
+    __metadata("design:type", Nav)
+], MyApp.prototype, "nav", void 0);
+MyApp = __decorate([
+    Component({
+        templateUrl: 'app.html'
+    }),
+    __metadata("design:paramtypes", [Platform])
+], MyApp);
+export { MyApp };
 //# sourceMappingURL=app.component.js.map

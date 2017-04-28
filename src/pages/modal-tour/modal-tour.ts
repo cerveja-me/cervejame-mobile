@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Analytics } from '../../providers/analytics';
-
+import { App} from 'ionic-angular';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
@@ -18,8 +18,10 @@ export class ModalTourPage {
     public params: NavParams,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
-    private an : Analytics
+    private an : Analytics,
+    private app : App
     ) {
+    this.app.setScrollDisabled(true);
     //Appsee.startScreen('modal_tour');
     // an.trackView('modal_tour','none');
   }

@@ -8,27 +8,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
+import { Page1 } from '../page1/page1';
+import { User } from '../../providers/user';
+//declare var Appsee:any;
 /*
   Generated class for the Finish page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
-*/
-export var FinishPage = (function () {
-    function FinishPage(navCtrl) {
+  */
+var FinishPage = (function () {
+    function FinishPage(navCtrl, _user, events) {
+        var _this = this;
         this.navCtrl = navCtrl;
+        this._user = _user;
+        this.events = events;
+        this.events.subscribe('push:order_update', function (data) {
+            _this.verifyLastSale();
+        });
+        //Appsee.startScreen('finish');
+        // an.trackView('Finish','none');
     }
     FinishPage.prototype.ionViewDidLoad = function () {
-        console.log('Hello FinishPage Page');
+        this.verifyLastSale();
     };
-    FinishPage = __decorate([
-        Component({
-            selector: 'page-finish',
-            templateUrl: 'finish.html'
-        }), 
-        __metadata('design:paramtypes', [NavController])
-    ], FinishPage);
+    FinishPage.prototype.verifyLastSale = function () {
+        var _this = this;
+        this._user.getLastSale()
+            .then(function (sale) {
+            console.log('asda');
+            if (sale) {
+                _this.sale = sale;
+            }
+        })
+            .catch(function (e) {
+        });
+    };
+    FinishPage.prototype.gotopage1 = function () {
+        this.navCtrl.push(Page1);
+    };
     return FinishPage;
 }());
+FinishPage = __decorate([
+    Component({
+        selector: 'page-finish',
+        templateUrl: 'finish.html'
+    }),
+    __metadata("design:paramtypes", [NavController,
+        User,
+        Events])
+], FinishPage);
+export { FinishPage };
 //# sourceMappingURL=finish.js.map

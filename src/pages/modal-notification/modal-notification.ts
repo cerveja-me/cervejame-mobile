@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Device } from '../../providers/device';
 import { Analytics } from '../../providers/analytics';
-
+import { App} from 'ionic-angular';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
@@ -19,7 +19,11 @@ export class ModalNotificationPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     private _device : Device,
-    private an:Analytics) {
+    private an:Analytics,
+    private app : App
+    ) {
+    this.app.setScrollDisabled(true);
+
 
     //Appsee.startScreen('modal_notification');
     // an.trackView('modal_notification','none');
