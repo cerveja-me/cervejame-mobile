@@ -34,7 +34,7 @@ import { Error } from './error';
             .then(userll=>{
 
               let id=userll['costumer'].id;
-              console.log('user->',id);
+
               this._http.get(this.cs.API+this.cs.COSTUMER+this.cs.LASTBUY+id)
               .toPromise()
               .then(sale=>{
@@ -89,6 +89,13 @@ import { Error } from './error';
       })
     }
 
+    convertProducts(p){
+      p.product.qtd=p.product.description.split(" ", 1)[0];
+      p.unitvalue=parseFloat((p.price/p.product.qtd).toFixed(2));
+
+      return p;
+    }
+
     getProducts(){
       return new Promise((resolve, reject) => {
         this._device.getDevice()
@@ -105,7 +112,12 @@ import { Error } from './error';
             .then((res)=>{
 
               this._device.setDevice(res.json());
-              resolve(res.json());
+              let data = res.json();
+              if(data.products && data.products.length>0 ){
+                data.products=data.products.map(this.convertProducts);
+              }
+
+              resolve(data);
             })
             /* error ao consultar o servidor em busca da regiao */
             .catch(e=>{
