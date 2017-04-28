@@ -23,145 +23,29 @@
   </ion-slides>
 
   <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="products.length">
-    <ion-slide *ngIf="products[0]">
-     <p class="choose__pricebox">
-       <span class="choose__pricebox__info1">12 Latas - 355ml</span>
-       <span class="choose__pricebox__info2">Por Unidade</span>
-       <span class="choose__pricebox__price">
-         <small class="choose__pricebox__price--currency">R$</small>{{products[0].price |number:'2.2-2'}}
-       </span>
-       <span class="choose__pricebox__each">
-         <small class="choose__pricebox__each--currency">R$</small>2,90
-       </span>
-       <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-       <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
-     </p>
-     <p class="choose__bottom">
-      <figure class="choose__picture">
-        <img-loader [src]="'http://cerveja.me/img/mobile/'+products[0].product.img"></img-loader>
-      </figure>
-      <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(products[0])">ESCOLHER</button>
-    </p>
+    <ion-slide  *ngFor="let prod of products">
+      <div>
+        <p class="choose__pricebox">
+          <span class="choose__pricebox__info1">{{prod.product.description}}</span>
+          <span class="choose__pricebox__info2">Por Unidade</span>
+          <span class="choose__pricebox__price">
+           <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'2.2-2'}}
+         </span>
+         <span class="choose__pricebox__each">
+           <small class="choose__pricebox__each--currency">R$</small>{{prod.unitvalue |number:'2.2-2'}}
+         </span>
+         <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
+         <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
+       </p>
+       <p class="choose__bottom">
+        <figure class="choose__picture">
+          <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img"></img-loader>
+        </figure>
+        <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
+      </p>
+    </div>
   </ion-slide>
-  <ion-slide *ngIf="products[1]">
-   <p class="choose__pricebox">
-     <span class="choose__pricebox__info1">{{products[1].product.description}} </span>
-     <span class="choose__pricebox__price">
-      <small class="choose__pricebox__price--currency">R$</small>{{products[1].price | number:'2.2-2'}}
-    </span>
 
-    <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-    <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
-  </p>
-  <p class="choose__bottom">
-    <figure class="choose__picture">
-      <img-loader [src]="'http://cerveja.me/img/mobile/'+products[1].product.img"></img-loader>
-    </figure>
-    <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(products[1])">ESCOLHER</button>
-  </p>
-</ion-slide>
-<ion-slide *ngIf="products[2]">
- <p class="choose__pricebox">
-   <span class="choose__pricebox__info1">{{products[2].product.description}} </span>
-   <span class="choose__pricebox__price">
-     <small class="choose__pricebox__price--currency">R$</small>{{products[2].price | number:'2.2-2'}}
-   </span>
-
-   <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
- </p>
- <p class="choose__bottom">
-  <figure class="choose__picture">
-    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[2].product.img"></img-loader>
-  </figure>
-  <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(products[2])">ESCOLHER</button>
-</p>
-</ion-slide>
-
-<ion-slide *ngIf="products[3]">
- <p class="choose__pricebox">
-   <span class="choose__pricebox__info1">{{products[3].product.description}} </span>
-   <span class="choose__pricebox__price">
-     <small class="choose__pricebox__price--currency">R$</small>{{products[3].price | number:'2.2-2'}}
-   </span>
-   <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
- </p>
- <p class="choose__bottom">
-  <figure class="choose__picture">
-    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[3].product.img"></img-loader>
-  </figure>
-  <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(products[3])">ESCOLHER</button>
-</p>
-</ion-slide>
-
-<ion-slide *ngIf="products[4]">
- <p class="choose__pricebox">
-   <span class="choose__pricebox__info1">{{products[4].product.description}} </span>
-   <span class="choose__pricebox__price">
-     <small class="choose__pricebox__price--currency">R$</small>{{products[4].price | number:'2.2-2'}}
-   </span>
-   <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
- </p>
- <p class="choose__bottom">
-  <figure class="choose__picture">
-    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[4].product.img"></img-loader>
-  </figure>
-  <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(products[4])">ESCOLHER</button>
-</p>
-</ion-slide>
-
-<ion-slide *ngIf="products[5]">
- <p class="choose__pricebox">
-   <span class="choose__pricebox__info1">{{products[5].product.description}} </span>
-   <span class="choose__pricebox__price">
-     <small class="choose__pricebox__price--currency">R$</small>{{products[5].price | number:'2.2-2'}}
-   </span>
-   <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
- </p>
- <p class="choose__bottom">
-  <figure class="choose__picture">
-    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[5].product.img"></img-loader>
-  </figure>
-  <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(products[5])">ESCOLHER</button>
-</p>
-</ion-slide>
-<ion-slide *ngIf="products[6]">
- <p class="choose__pricebox">
-   <span class="choose__pricebox__info1">{{products[6].product.description}} </span>
-   <span class="choose__pricebox__price">
-     <small class="choose__pricebox__price--currency">R$</small>{{products[6].price | number:'2.2-2'}}
-   </span>
-   <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
- </p>
- <p class="choose__bottom">
-  <figure class="choose__picture">
-    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[6].product.img"></img-loader>
-  </figure>
-  <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(products[6])">ESCOLHER</button>
-</p>
-</ion-slide>
-<ion-slide *ngIf="products[7]">
- <p class="choose__pricebox">
-   <span class="choose__pricebox__info1">{{products[7].product.description}} </span>
-   <span class="choose__pricebox__price">
-     <small class="choose__pricebox__price--currency">R$</small>{{products[7].price | number:'2.2-2'}}
-
-   </span>
-   <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-   <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
- </p>
- <p class="choose__bottom">
-  <figure class="choose__picture">
-    <img-loader [src]="'http://cerveja.me/img/mobile/'+products[7].product.img"></img-loader>
-  </figure>
-  <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(products[7])">ESCOLHER</button>
-</p>
-<button>oi</button>
-</ion-slide>
 </ion-slides>
 
 </ion-content>
