@@ -1,18 +1,14 @@
-<ion-header>
-
-  <ion-navbar>
-   
- </ion-navbar>
-   <h1 class="logo-white"></h1>
-
+<ion-header class="white">
+	<h1 class="logo-white"></h1>
+  <ion-navbar></ion-navbar>
 </ion-header>
 
 <ion-content class="background-dark">
 
-  <div class="msg transparent">
+  <div class="msg">
     <button ion-button secondary class="btn-facebook" (click)="facebookRegister()">CONECTAR COM FACEBOOK</button>
 
-    <span class="msg__text white">Crie sua conta no Cerveja.me</span>
+    <span class="msg__text">Crie sua conta</span>
 
     <form (ngSubmit)="createUser()">
       <div class="login__box">

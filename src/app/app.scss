@@ -74,7 +74,7 @@
     margin-top: -210px;
     height: 420px;
     width: 380px;
-    padding: 75px 0;
+    padding: 65px 0;
     
     &__text {
         @extend .font-bold;
@@ -210,6 +210,9 @@ ion-spinner {
 
 .back-button {
     display: block;
+	position: absolute;
+	top: 50%;
+	margin-top: -11px;
 }
 
 .back-button-text {
@@ -219,8 +222,9 @@ ion-spinner {
 .back-button-icon {
     background-image: url(../assets/icon/icon-back.svg);
     background-size: cover;
-    width: 26px;
-    height: 26px;
+    width: 13px;
+    height: 22px;
+		min-width: 13px;
     display: inline-block;
     
     &:before {
@@ -231,6 +235,7 @@ ion-spinner {
 .toolbar {
     min-height: 60px;
     padding: 0 15px;
+	height: 100%;
     
     .toolbar-background {
         background: transparent !important;
@@ -256,4 +261,9 @@ ion-spinner {
     &.white:after {
         background: white;
     }
+}
+
+ion-navbar {
+	position: absolute;
+   top: 0;
 }

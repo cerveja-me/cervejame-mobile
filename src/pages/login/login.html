@@ -1,5 +1,6 @@
-<ion-header>
-   <h1 class="logo-white"></h1>
+<ion-header class="white">
+	<h1 class="logo-white"></h1>
+  <ion-navbar></ion-navbar>
 </ion-header>
 
 <ion-content padding class="background-dark">
@@ -20,8 +21,12 @@
    </div>
    <input type="submit" class="btn-submit" name="" value="Acessar" />
  </form>
- <button class="btn-signup" (click)="openModalRegister()" >Criar conta</button>
+ 
 
 </div>
 
 </ion-content>
+
+<ion-footer>
+	<button class="btn-signup" (click)="openModalRegister()" >Criar conta</button>
+</ion-footer>
