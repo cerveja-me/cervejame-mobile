@@ -2,8 +2,11 @@
 
 <ion-content>
   <div class="map__adress" *ngIf="address" (click)="openAddressModal()">
+	  	<label class="map__adress__input">{{address}}</label>
      <span class="map__adress__icon icon-map"></span>
-     <input class="map__adress__input" placeholder="" type="text"  [(ngModel)]="address"  disabled="disabled"/>
+		 <input class="login__box__input input-number" placeholder="Número" type="text" [(ngModel)]="number" >
+		 <span class="map__adress__plus icon-plus-b"></span>
+		 <input class="map__adress__input" placeholder="Complemento" type="text"/>
  </div>
  <div #map id="map"></div>
 </ion-content>
