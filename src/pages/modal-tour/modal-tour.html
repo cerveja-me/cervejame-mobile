@@ -38,9 +38,9 @@
       </div>
     </ion-slide>
     <ion-slide>
-    		<figure class="tour__image">
-			 	<img src="assets/img/tour3.jpg"/>
-			 </figure>
+      <figure class="tour__image">
+       <img src="assets/img/tour3.jpg"/>
+     </figure>
      <div class="tour">
       <span class="tour__text">Pronto! <strong>Sua gelada</strong>
         chegou.</span>
@@ -54,25 +54,27 @@
       </div>
 
     </ion-slide>
-     <ion-slide>
-    	
+    <ion-slide>
+
       <figure class="tour__image">
        <img src="assets/img/tour3.jpg"/>
      </figure>
      <div class="tour">
-			 <span class="tour__text"><button class="btn-start">Vamos lá!</button></span>
-    		   
-      </div>
+      <span class="tour__text">
+       <button class="btn-start" (click)="dismiss()">Vamos lá!</button>
+     </span>
 
-      <div class="slider-nav">
-        <span class="slider-nav__item"></span>
-        <span class="slider-nav__item"></span>
-        <span class="slider-nav__item"></span>
-        <span class="slider-nav__item active"></span>
-      </div>
+   </div>
 
-    </ion-slide>
-  </ion-slides>
+   <div class="slider-nav">
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item active"></span>
+  </div>
+
+</ion-slide>
+</ion-slides>
 </ion-content>
 
 <ion-footer>
