@@ -8,7 +8,7 @@ import { Device } from '../../providers/device';
 import { Analytics } from '../../providers/analytics';
 import { Facebook, NativeStorage } from 'ionic-native';
 
-//declare var Appsee:any;
+declare var UXCam:any;
 
 @Component({
   templateUrl: 'modal-register.html'
@@ -33,9 +33,8 @@ export class ModalRegisterPage {
     private _device:Device,
     public alerCtrl: AlertController,
     private an:Analytics) {
+    UXCam.tagScreenName("modal-register");
 
-    //Appsee.startScreen('modal_register');
-    // an.trackView('modal_register','none');
   }
 
   ionViewDidLoad() {
