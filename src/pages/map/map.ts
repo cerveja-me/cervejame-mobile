@@ -8,7 +8,6 @@ import { NavController, ModalController, Platform, NavParams } from 'ionic-angul
 import { Injectable, NgZone } from '@angular/core';
 import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
-import { Analytics } from '../../providers/analytics';
 
 declare var google;
 //declare var Appsee:any;
@@ -38,11 +37,8 @@ declare var google;
       private _device:Device,
       private zone:NgZone,
       private _user:User,
-      private _loading:LoadingController,
-      private an:Analytics) {
+      private _loading:LoadingController) {
 
-      //Appsee.startScreen('map');
-      // an.trackView('map','none');
     }
 
     ionViewDidLoad() {

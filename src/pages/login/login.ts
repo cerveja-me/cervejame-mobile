@@ -3,14 +3,12 @@ import { NavController,ModalController,AlertController,LoadingController } from 
 import { MapPage } from '../map/map';
 import { ModalRegisterPage } from '../modal-register/modal-register';
 import { Facebook, NativeStorage } from 'ionic-native';
-import { Analytics } from '../../providers/analytics';
 
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 
 
-//declare var Appsee:any;
 
 /*
   Generated class for the Login page.
@@ -36,11 +34,8 @@ import { Sale } from '../../providers/sale';
       private _user:User,
       private _loading:LoadingController,
       private _device:Device,
-      public alerCtrl: AlertController,
-      private an:Analytics) {
+      public alerCtrl: AlertController) {
 
-      //Appsee.startScreen('login');
-      // an.trackView('Login','none');
     }
 
     ionViewDidLoad() {
