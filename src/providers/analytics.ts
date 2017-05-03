@@ -1,6 +1,6 @@
 import {App, Platform} from 'ionic-angular';
 import { Injectable } from '@angular/core';
-import { GoogleAnalytics } from 'ionic-native';
+//import { GoogleAnalytics } from 'ionic-native';
 
 /*
   Generated class for the Analytics provider.
@@ -12,25 +12,25 @@ import { GoogleAnalytics } from 'ionic-native';
   export class Analytics {
 
     constructor(public platform:Platform) {
-      GoogleAnalytics.startTrackerWithId("UA-88184207-3");
+      //GoogleAnalytics.startTrackerWithId("UA-88184207-3");
 
     }
 
     startTrack(){
       this.platform.ready().then(() => {
-        GoogleAnalytics.startTrackerWithId("UA-88184207-3");
+        //GoogleAnalytics.startTrackerWithId("UA-88184207-3");
       })
 
     }
     trackView(v,campaing){
-      GoogleAnalytics.trackView(v, campaing, false);
+      //GoogleAnalytics.trackView(v, campaing, false);
     }
 
     time(category, intervalInMilliseconds, variable, label){
-      GoogleAnalytics.trackTiming(category, intervalInMilliseconds, variable, label)
+      //GoogleAnalytics.trackTiming(category, intervalInMilliseconds, variable, label)
     }
     button(category: string, action: string, label?: string, value?: number, newSession?: boolean){
-      GoogleAnalytics.trackEvent(category, action, label, value, newSession);
+      //GoogleAnalytics.trackEvent(category, action, label, value, newSession);
     }
 
 
