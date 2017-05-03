@@ -208,7 +208,24 @@
     text-align: center;
     display: block;
     position: absolute;
-    bottom: -26px;
+    bottom: -23px;
+    right: -31px;
+    padding: 4px 11px;
+    font-size: 11px;
+    text-transform: uppercase;
+    z-index: 4;
+    }
+			
+			.termo-natura {
+    @extend .font-bold;
+    @include border-radius(50px);
+
+    background: #FFFFDD;
+    color: #573317;
+    text-align: center;
+    display: block;
+    position: absolute;
+    bottom: -23px;
     right: -31px;
     padding: 4px 11px;
     font-size: 11px;
@@ -268,6 +285,20 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
+			
+    margin-bottom: 1px;
+    }
+
+    .icon-termo {
+    background-image: url(../assets/icon/icon-termo.svg);
+    background-size: cover;
+    width: 11px;
+    height: 19px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+			
+    margin-bottom: 1px;
     }
 
 
