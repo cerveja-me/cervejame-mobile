@@ -4,8 +4,9 @@ import { NavController,Events } from 'ionic-angular';
 import { Page1 } from '../page1/page1';
 import { User } from '../../providers/user';
 
+declare var UXCam:any;
 
-//declare var Appsee:any;
+
 
 /*
   Generated class for the Finish page.
@@ -23,6 +24,7 @@ import { User } from '../../providers/user';
       public _user:User,
       public events: Events
       ) {
+      UXCam.tagScreenName("finish");
       this.events.subscribe('push:order_update', data=>{
         this.verifyLastSale();
       })

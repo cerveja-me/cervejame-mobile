@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
-import { App} from 'ionic-angular';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
-//declare var Appsee:any;
+declare var UXCam:any;
 
 @Component({
   selector: 'page-modal-tour',
@@ -17,13 +16,9 @@ export class ModalTourPage {
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
-    public navCtrl: NavController,
-
-    private app : App
+    public navCtrl: NavController
     ) {
-    this.app.setScrollDisabled(true);
-    //Appsee.startScreen('modal_tour');
-    // an.trackView('modal_tour','none');
+    UXCam.tagScreenName("modal-tour");
   }
 
   dismiss() {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LoadingController,AlertController ,ModalController,Platform,Events,App} from 'ionic-angular';
+import { LoadingController,AlertController ,ModalController,Platform,Events} from 'ionic-angular';
 
 import { ModalContentPage } from '../modal-receipt/modal-receipt';
 import { ModalTourPage } from '../modal-tour/modal-tour';
@@ -14,8 +14,8 @@ import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 
 import { EmailComposer } from 'ionic-native';
+declare var UXCam:any;
 
-// declare var UXCam:any;
 
 @Component({
   selector: 'page-page1',
@@ -39,11 +39,10 @@ export class Page1 {
     private _sale:Sale,
     private alertCtrl:AlertController,
     private platform:Platform,
-    private app : App,
     public events: Events) {
+    UXCam.tagScreenName("home");
     this.platform.ready().then((readySource) => {
-      this.app.setScrollDisabled(true);
-      // UXCam.tagScreenName('home');
+
 
       this.verifyFirstTime();
       this.verifySaleFeedback();

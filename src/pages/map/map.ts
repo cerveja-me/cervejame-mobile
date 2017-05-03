@@ -10,7 +10,9 @@ import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
 
 declare var google;
-//declare var Appsee:any;
+
+declare var UXCam:any;
+
 /*
   Generated class for the Map page.
 
@@ -38,7 +40,7 @@ declare var google;
       private zone:NgZone,
       private _user:User,
       private _loading:LoadingController) {
-
+      UXCam.tagScreenName("map");
     }
 
     ionViewDidLoad() {

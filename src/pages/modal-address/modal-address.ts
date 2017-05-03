@@ -8,9 +8,7 @@ import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 import { User } from '../../providers/user';
 
-
-
-//declare var Appsee:any;
+declare var UXCam:any;
 
 @Component({
   selector: 'page-modal-address',
@@ -38,6 +36,7 @@ export class ModalAddressPage {
     private _sale:Sale,
     private zone:NgZone,
     public _device : Device) {
+    UXCam.tagScreenName("modal-address");
 
     this._sale.getProduct()
     .then( p=>{
