@@ -7,9 +7,7 @@ import { Injectable, NgZone } from '@angular/core';
 
 import { User } from '../../providers/user';
 import { Sale } from '../../providers/sale';
-import { Device } from '../../providers/device'
-import { Analytics } from '../../providers/analytics';
-
+import { Device } from '../../providers/device';
 
 import {NavController,ModalController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
 
@@ -37,11 +35,8 @@ export class ModalMapPage {
     private _user: User,
     private _sale:Sale,
     private _device:Device,
-    private zone:NgZone,
-    private an:Analytics) {
+    private zone:NgZone) {
 
-    //Appsee.startScreen('modal_map');
-    // an.trackView('modal_map','none');
 
     this._sale.getProduct()
     .then( p=>{

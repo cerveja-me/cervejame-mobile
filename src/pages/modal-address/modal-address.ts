@@ -5,7 +5,6 @@ import { ModalMapPage } from '../modal-map/modal-map';
 import { FinishPage } from '../finish/finish';
 
 import { Device } from '../../providers/device';
-import { Analytics } from '../../providers/analytics';
 import { Sale } from '../../providers/sale';
 import { User } from '../../providers/user';
 
@@ -38,11 +37,8 @@ export class ModalAddressPage {
     private _user: User,
     private _sale:Sale,
     private zone:NgZone,
-    public _device : Device,
-    private an:Analytics) {
+    public _device : Device) {
 
-    //Appsee.startScreen('modal_address');
-    // an.trackView('modal_address','none');
     this._sale.getProduct()
     .then( p=>{
       this.fullAddress=this.params.get("address");
