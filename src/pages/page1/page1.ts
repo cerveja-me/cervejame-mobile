@@ -12,7 +12,7 @@ import { FinishPage } from '../finish/finish';
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
-import { Analytics } from '../../providers/analytics';
+
 import { EmailComposer } from 'ionic-native';
 
 // declare var UXCam:any;
