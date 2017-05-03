@@ -103,10 +103,6 @@ page-map {
      
       }
         
-        &__input:disabled {
-            color: #666;
-        }
-
       &__autocomplete {
         background: white;
         position: absolute;
@@ -126,6 +122,10 @@ page-map {
           padding: 15px;
           border-bottom: 1px solid #ccc;
           margin: 0;
+					
+					&:last-child {
+						border-bottom: none;
+					}
         }
       }
     }
@@ -153,13 +153,16 @@ page-map {
     margin-right: 10px;
   }
 
- .map__adress__autocomplete {
+ .address__autocomplete {
+	 			border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+				border-top: none;
+	 
+	 			border: 2px solid #583318;
         background: white;
-        position: absolute;
-        top: auto;
         width: 100%;
-        left: 0;
         margin: 0;
+	 			margin-top: -8px;
         padding: 0;
         list-style: none;
         box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
@@ -172,6 +175,47 @@ page-map {
           padding: 15px;
           border-bottom: 1px solid #ccc;
           margin: 0;
-            text-align: left;
+          text-align: left;
+					
+					&:last-of-type {
+						border-bottom: none;
+					}
         }
  }
+
+.address {
+	
+	&__box {
+		 padding: 0 10px;
+		width: 100%;
+		position: absolute;
+		top: 35px;
+		left: 0;
+		z-index: 2;
+	}
+
+		&__icon {
+				position: absolute;
+				left: 25px;
+				top: 15px;
+		} 
+	
+	 &__input {
+			@extend .font-regular;
+		  @include border-radius(10px);
+
+			display: block;
+			background: white;
+			color: #583318;
+			border: 2px solid #583318;
+			height: 60px;
+			width: 100%;
+			padding: 18px 0 18px 50px;
+			box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+		}
+	
+}
