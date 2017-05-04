@@ -36,7 +36,9 @@ export class ModalAddressPage {
     private _sale:Sale,
     private zone:NgZone,
     public _device : Device) {
-    UXCam.tagScreenName("modal-address");
+
+    if(this.platform.is('core'))
+      UXCam.tagScreenName("modal-address");
 
     this._sale.getProduct()
     .then( p=>{

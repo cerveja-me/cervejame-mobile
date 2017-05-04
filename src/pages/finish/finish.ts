@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,Events } from 'ionic-angular';
+import { NavController,Events, Platform } from 'ionic-angular';
 
 import { Page1 } from '../page1/page1';
 import { User } from '../../providers/user';
@@ -22,9 +22,12 @@ declare var UXCam:any;
     sale:any;
     constructor(public navCtrl: NavController,
       public _user:User,
-      public events: Events
-      ) {
-      UXCam.tagScreenName("finish");
+      public events: Events,
+      private platform:Platform) {
+
+      if(this.platform.is('core'))
+        UXCam.tagScreenName("finish");
+
       this.events.subscribe('push:order_update', data=>{
         this.verifyLastSale();
       })

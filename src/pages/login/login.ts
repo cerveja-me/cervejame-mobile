@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController,AlertController,LoadingController } from 'ionic-angular';
+import { NavController,ModalController,AlertController,LoadingController,Platform } from 'ionic-angular';
 import { MapPage } from '../map/map';
 import { ModalRegisterPage } from '../modal-register/modal-register';
 import { Facebook, NativeStorage } from 'ionic-native';
@@ -35,8 +35,11 @@ declare var UXCam:any;
       private _user:User,
       private _loading:LoadingController,
       private _device:Device,
+      private platform:Platform,
       public alerCtrl: AlertController) {
-      UXCam.tagScreenName("login");
+
+      if(this.platform.is('core'))
+        UXCam.tagScreenName("login");
 
     }
 

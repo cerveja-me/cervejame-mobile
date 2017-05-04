@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams,ViewController } from 'ionic-angular';
+import { NavController,NavParams,ViewController,Platform } from 'ionic-angular';
 import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import {ConstantService} from '../../providers/constant-service';
 import { Page1 } from '../page1/page1';
@@ -28,10 +28,12 @@ declare var UXCam:any;
       public viewCtrl: ViewController,
       private cs :ConstantService,
       private _http:Http,
-      private error:Error
+      private error:Error,
+      private platform:Platform) {
 
-      ) {
-      UXCam.tagScreenName("feedback");
+      if(this.platform.is('core'))
+        UXCam.tagScreenName("feedback");
+
       this.sale=this.params.get("sale");
 
     }

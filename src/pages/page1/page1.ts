@@ -40,7 +40,11 @@ export class Page1 {
     private alertCtrl:AlertController,
     private platform:Platform,
     public events: Events) {
-    UXCam.tagScreenName("home");
+
+    if(platform.is('core'))
+      UXCam.tagScreenName("home");
+
+
     this.platform.ready().then((readySource) => {
 
 

@@ -16,11 +16,10 @@ export class ModalNotificationPage {
     public params: NavParams,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
-    private _device : Device
-    ) {
-    UXCam.tagScreenName("modal-notification");
-    //Appsee.startScreen('modal_notification');
-    // an.trackView('modal_notification','none');
+    private _device : Device) {
+
+    if(this.platform.is('core'))
+      UXCam.tagScreenName("modal-notification");
   }
 
   accept() {

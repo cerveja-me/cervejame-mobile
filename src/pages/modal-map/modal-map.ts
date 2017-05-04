@@ -36,7 +36,9 @@ export class ModalMapPage {
     private _sale:Sale,
     private _device:Device,
     private zone:NgZone) {
-    UXCam.tagScreenName("modal-map");
+
+    if(this.platform.is('core'))
+      UXCam.tagScreenName("modal-map");
 
     this._sale.getProduct()
     .then( p=>{

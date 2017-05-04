@@ -45,8 +45,9 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      UXCam.startWithKey("eb717cc41850c30");
-
+      if(this.platform.is('core')){
+        UXCam.startWithKey("eb717cc41850c30");
+      }
       // Appsee.start("d38be6c0c94d4c0a8a65b7968cf2fd41");
 
       // Okay, so the platform is ready and our plugins are available.

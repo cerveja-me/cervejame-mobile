@@ -40,8 +40,10 @@ declare var UXCam:any;
       private _device:Device,
       private zone:NgZone,
       private _user:User,
+      public platform: Platform,
       private _loading:LoadingController) {
-      UXCam.tagScreenName("map");
+      if(this.platform.is('core'))
+        UXCam.tagScreenName("map");
     }
 
     ionViewDidLoad() {
