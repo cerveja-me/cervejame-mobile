@@ -18,7 +18,9 @@ export class ModalTourPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController
     ) {
-    UXCam.tagScreenName("modal-tour");
+    
+    if(platform.is('core'))
+        UXCam.tagScreenName("modal-tour");
   }
 
   dismiss() {
