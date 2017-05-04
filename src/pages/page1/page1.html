@@ -23,8 +23,8 @@
   </ion-slides>
 
   <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="products.length">
-    <ion-slide  *ngFor="let prod of products">
-      <div>
+    <ion-slide *ngFor="let prod of products">
+      <div #beer>
         <p class="choose__pricebox">
           <span class="choose__pricebox__info1">{{prod.product.description}}</span>
           <span class="choose__pricebox__info2">Por Unidade</span>
@@ -36,6 +36,25 @@
          </span>
          <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
          <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
+       </p>
+       <p class="choose__bottom">
+        <figure class="choose__picture">
+          <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img"></img-loader>
+        </figure>
+        <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
+      </p>
+    </div>
+    <div #wine>
+        <p class="choose__pricebox">
+          <span class="choose__pricebox__info1">Tipo de vinho</span>
+          <span class="choose__pricebox__info2">País - Vinícula</span>
+          <span class="choose__pricebox__price">
+           <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'2.2-2'}}
+         </span>
+         <span class="choose__pricebox__each">
+           <small class="choose__pricebox__each--currency">Tipo da Uva</small>
+         </span>
+         <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
          <span class="termo-natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
        </p>
        <p class="choose__bottom">
