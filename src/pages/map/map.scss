@@ -204,7 +204,8 @@ page-map {
 	 &__input {
 			@extend .font-regular;
 		  @include border-radius(10px);
-
+       
+      box-shadow: none;
 			display: block;
 			background: white;
 			color: #583318;
@@ -216,7 +217,5 @@ page-map {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-
 		}
-	
 }
