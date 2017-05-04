@@ -2,12 +2,12 @@
 
 <ion-content>
 	<div class="address__box" *ngIf="!showAddress">
-      <span class="address__icon icon-map"></span>
-      <input class="address__input" [(ngModel)]="address.formated" (ngModelChange)="addressChange()">
+    <span class="address__icon icon-map"></span>
+    <input class="address__input" [(ngModel)]="address.formated" (ngModelChange)="addressChange()">
 
-      <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
-          <li class="map__adress__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
-      </ul>
+    <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
+      <li class="map__adress__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
+    </ul>
   </div>
 
 
@@ -16,9 +16,9 @@
     <span class="map__adress__icon icon-map"></span>
     <input class="login__box__input input-number" placeholder="Número" type="text" [(ngModel)]="address.street_number" >
     <span class="map__adress__plus icon-plus-b"></span>
-    <input class="map__adress__input" placeholder="Complemento" type="text"/>
-</div>
-<div #map id="map" (click)="showAddress=true" ></div>
+    <input class="map__adress__input" placeholder="Complemento" type="text" [(ngModel)]="complement">
+  </div>
+  <div #map id="map" (click)="showAddress=true" ></div>
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
   <button ion-button secondary class="map__btn" (click)="openModal()">ENTREGAR AQUI</button>
