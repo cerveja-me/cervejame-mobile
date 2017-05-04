@@ -44,13 +44,13 @@ declare var UXCam:any;
     verifyLastSale(){
       this._user.getLastSale()
       .then(sale=>{
-        console.log('asda');
+        console.log('asda',sale);
         if(sale){
           this.sale=sale;
         }
       })
       .catch(e=>{
-
+        this.gotopage1();
       })
     }
 
