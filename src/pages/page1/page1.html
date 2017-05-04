@@ -9,12 +9,14 @@
 
   <ion-slides class="choose-slider" *ngIf="!products.length">
    <ion-slide>
-     <p class="msg-empty">Não atendemos sua região :( <br/><br/>
+     <p class="msg-empty">
+         
+         <span class="msg-empty__title">Não atendemos sua região.</span>
 
-       Leve o Cerveja.me para sua cidade:<br/>
-       <strong>euquero@cerveja.me</strong></p>
+       Quer levar para sua cidade?<br/>
+       Saiba como: <strong><a href="http://cerveja.me">Cerveja.me</a></strong></p>
        <p class="choose__bottom">
-        <figure class="choose__picture">
+        <figure class="choose__picture" style="bottom: 5%;">
 
           <img style="margin-top: 5%" src="assets/img/empty.png">
         </figure>
