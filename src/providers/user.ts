@@ -176,7 +176,7 @@ import { Error } from './error';
               console.log('nova -> ',l);
 
 
-              this._device.setDevice(l);
+              // this._device.setDevice(l);
               resolve(address);
             })
           })

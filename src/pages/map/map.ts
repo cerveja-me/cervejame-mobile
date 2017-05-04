@@ -76,8 +76,8 @@ declare var UXCam:any;
           let _loc={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
           this._user.getAddressFromLocation(_loc)
           .then((address)=>{
-
             this.address=address;
+            this.zone.run(()=>{});
           })
         });
         this.map.setCenter(latLng);
