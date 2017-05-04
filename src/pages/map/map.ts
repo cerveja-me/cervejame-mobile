@@ -1,11 +1,10 @@
-import { Component, ViewChild, ElementRef  } from '@angular/core';
+import { Component, ViewChild, ElementRef,Injectable, NgZone,Input  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
 
 import { ModalMapPage } from '../modal-map/modal-map';
 import { ModalAddressPage } from '../modal-address/modal-address';
 import { NavController, ModalController, Platform, NavParams } from 'ionic-angular';
-import { Injectable, NgZone } from '@angular/core';
 import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
 
@@ -25,6 +24,7 @@ declare var UXCam:any;
   })
   export class MapPage {
     @ViewChild('map') mapElement: ElementRef;
+    @ViewChild('address') addressInput ;
     map: any;
     loader = this._loading.create({
       content: this._device.getRandonLoading()
@@ -99,6 +99,10 @@ declare var UXCam:any;
     setAddress(address){
       this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
       this.showAddress=true;
+      setTimeout(() => {
+        this.addressInput.setFocus();
+      },150);
+
     }
     openModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
