@@ -15,6 +15,7 @@ declare var UXCam:any;
   })
   export class ModalSchedulePage {
     hours;
+    closed;
     day = new Date().getDay();
 
     constructor(
@@ -30,6 +31,7 @@ declare var UXCam:any;
 
     ionViewDidLoad() {
       this.hours= this.params.get("hours");
+      this.closed= this.params.get("closed");
     }
     dismiss() {
       this.viewCtrl.dismiss();

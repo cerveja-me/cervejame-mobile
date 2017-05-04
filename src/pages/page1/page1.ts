@@ -72,7 +72,7 @@ export class Page1 {
   }
 
   openSchedule(){
-    let modal = this.modalCtrl.create(ModalSchedulePage,{hours:this.hours});
+    let modal = this.modalCtrl.create(ModalSchedulePage,{hours:this.hours, closed:this.closed});
     modal.present();
 
   }
