@@ -117,7 +117,7 @@
     animation-fill-mode: both;
 
         &--currency {
-        @extend .font-regular;
+        @extend .font-bold;
 
         font-size: 24px;
         display: inline-block;
@@ -142,7 +142,7 @@
         text-align: center;
         
         &--currency {
-            @extend .font-regular;
+            @extend .font-bold;
 
             font-size: 24px;
             display: inline-block;

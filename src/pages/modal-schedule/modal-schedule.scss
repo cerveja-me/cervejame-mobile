@@ -33,6 +33,21 @@ page-modal-schedule {
                     }
                 }
                 
+                &.today.closed {
+                    background: #583318;
+                    border: solid white;
+                    border-width: 2px 0;
+                    
+                      .schedule__day {
+                        color: white;
+										
+                    }
+                    
+                    .schedule__hour {
+                        color: white;
+                    }
+                }
+                
                  &:first-of-type {
                      .schedule__day {
                          border-top-right-radius: 100px;
