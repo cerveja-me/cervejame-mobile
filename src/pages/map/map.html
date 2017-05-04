@@ -3,7 +3,7 @@
 <ion-content>
 	<div class="address__box" *ngIf="!showAddress">
     <span class="address__icon icon-map"></span>
-    <input class="address__input" [(ngModel)]="address.formated" (ngModelChange)="addressChange()">
+    <input #address class="address__input" [(ngModel)]="address.formated" (ngModelChange)="addressChange()">
 
     <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
       <li class="map__adress__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
