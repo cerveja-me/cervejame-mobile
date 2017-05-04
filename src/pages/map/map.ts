@@ -47,6 +47,7 @@ declare var UXCam:any;
     }
 
     ionViewDidLoad() {
+      this.loader.present();
       this.loadMap();
     }
 
@@ -78,9 +79,11 @@ declare var UXCam:any;
           .then((address)=>{
             this.address=address;
             this.zone.run(()=>{});
-          })
+
+          });
         });
         this.map.setCenter(latLng);
+        this.loader.dismiss();
       })
 
     }
