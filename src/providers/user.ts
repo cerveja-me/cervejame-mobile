@@ -148,7 +148,7 @@ import { Error } from './error';
           this._http.post(this.cs.API+this.cs.LOCATION, body,options)
           .toPromise()
           .then((res)=>{
-            this._device.setDevice(res.json());
+
             resolve(res.json());
           })
           .catch(e=>{
@@ -160,6 +160,28 @@ import { Error } from './error';
           reject();
         });
       });
+    }
+
+    getAddressFromLocation(loc){
+      return new Promise((resolve, reject) => {
+        this._device.getAddressFromLocation(loc)
+        .then(address=>{
+          return this.getNewLocation(loc,address['formated'])
+          .then(l=>{
+            this._device.getDevice()
+            .then(d=>{
+              //verificar aqui se é a mesma zona
+              // por hr supomos que sim
+              console.log('velha -> ',d);
+              console.log('nova -> ',l);
+
+
+              this._device.setDevice(l);
+              resolve(address);
+            })
+          })
+        })
+      })
     }
 
     isUserLogged(){

@@ -74,8 +74,9 @@ declare var UXCam:any;
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
         this.map.addListener('center_changed',()=>{
           let _loc={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-          this._device.getAddressFromLocation(_loc)
+          this._user.getAddressFromLocation(_loc)
           .then((address)=>{
+
             this.address=address;
           })
         });
@@ -98,5 +99,10 @@ declare var UXCam:any;
     setAddress(address){
       this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
       this.showAddress=true;
+    }
+    openModal(){
+      let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
+      let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.fullAddress,"complement":this.complement});
+      modal.present();
     }
   }
