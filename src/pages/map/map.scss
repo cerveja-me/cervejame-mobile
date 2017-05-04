@@ -62,6 +62,7 @@ page-map {
         }
 			
 			.input-number {
+          color: #583318;
 				  position: absolute;
 					right: 0;
 					top: 15px;
@@ -84,7 +85,7 @@ page-map {
         border: 2px solid #583318;
         height: 60px;
         width: 100%;
-				padding: 18px 0 18px 50px;
+				padding: 18px 15px 18px 50px;
         box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
 				white-space: nowrap;
 				overflow: hidden;
