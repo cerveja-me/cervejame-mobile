@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams,ViewController } from 'ionic-angular';
-//declare var Appsee:any;
+
+declare var UXCam:any;
 
 /*
   Generated class for the ModalSchedule page.
@@ -21,14 +22,15 @@ import { NavController,NavParams,ViewController } from 'ionic-angular';
       public params: NavParams,
       public viewCtrl:ViewController
       ) {
-      //Appsee.startScreen('schedule');
-    }
-
-      ionViewDidLoad() {
-        this.hours= this.params.get("hours");
-      }
-      dismiss() {
-        this.viewCtrl.dismiss();
-      }
+      UXCam.tagScreenName("modal-schedule");
 
     }
+
+    ionViewDidLoad() {
+      this.hours= this.params.get("hours");
+    }
+    dismiss() {
+      this.viewCtrl.dismiss();
+    }
+
+  }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Device } from '../../providers/device';
-import { App} from 'ionic-angular';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
+declare var UXCam:any;
 
 @Component({
   selector: 'page-modal-notification',
@@ -16,12 +16,9 @@ export class ModalNotificationPage {
     public params: NavParams,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
-    private _device : Device,
-    private app : App
+    private _device : Device
     ) {
-    this.app.setScrollDisabled(true);
-
-
+    UXCam.tagScreenName("modal-notification");
     //Appsee.startScreen('modal_notification');
     // an.trackView('modal_notification','none');
   }

@@ -50,6 +50,5 @@ import 'intl/locale-data/jsonp/pt-BR';
 })
 export class AppModule {
   constructor() {
-
   }
 }

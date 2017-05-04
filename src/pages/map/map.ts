@@ -10,7 +10,9 @@ import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
 
 declare var google;
-//declare var Appsee:any;
+
+declare var UXCam:any;
+
 /*
   Generated class for the Map page.
 
@@ -39,7 +41,7 @@ declare var google;
       private zone:NgZone,
       private _user:User,
       private _loading:LoadingController) {
-
+      UXCam.tagScreenName("map");
     }
 
     ionViewDidLoad() {
@@ -73,7 +75,6 @@ declare var google;
           this._device.getAddressFromLocation(_loc)
           .then((address)=>{
             this.address=address;
-            // console.log('address->',address);
           })
         });
         this.map.setCenter(latLng);
@@ -87,7 +88,6 @@ declare var google;
       if(this.address.formated.length >3){
         this._device.getLocationsWithAddres(this.address.formated)
         .then((listAddress)=>{
-          console.log('list->',listAddress);
           this.addressOptions=listAddress['results'];
         })
       }

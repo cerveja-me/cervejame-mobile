@@ -4,7 +4,8 @@ import { Http,Response,Headers, RequestOptions } from '@angular/http';
 import {ConstantService} from '../../providers/constant-service';
 import { Page1 } from '../page1/page1';
 import { Error } from '../../providers/error';
-//declare var Appsee:any;
+
+declare var UXCam:any;
 
 /*
   Generated class for the Feedback page.
@@ -30,6 +31,7 @@ import { Error } from '../../providers/error';
       private error:Error
 
       ) {
+      UXCam.tagScreenName("feedback");
       this.sale=this.params.get("sale");
 
     }

@@ -8,6 +8,7 @@ import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
 import { Sale } from '../../providers/sale';
 
+declare var UXCam:any;
 
 
 /*
@@ -35,6 +36,7 @@ import { Sale } from '../../providers/sale';
       private _loading:LoadingController,
       private _device:Device,
       public alerCtrl: AlertController) {
+      UXCam.tagScreenName("login");
 
     }
 

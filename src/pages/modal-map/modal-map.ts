@@ -11,7 +11,7 @@ import { Device } from '../../providers/device';
 
 import {NavController,ModalController, Platform, NavParams, ViewController,AlertController } from 'ionic-angular';
 
-//declare var Appsee:any;
+declare var UXCam:any;
 
 @Component({
   templateUrl: 'modal-map.html'
@@ -36,7 +36,7 @@ export class ModalMapPage {
     private _sale:Sale,
     private _device:Device,
     private zone:NgZone) {
-
+    UXCam.tagScreenName("modal-map");
 
     this._sale.getProduct()
     .then( p=>{

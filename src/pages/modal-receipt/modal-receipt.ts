@@ -8,6 +8,8 @@ import { User } from '../../providers/user';
 
 import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
 
+declare var UXCam:any;
+
 @Component({
   templateUrl: 'modal-receipt.html'
 })
@@ -23,6 +25,7 @@ export class ModalContentPage {
     private _sale:Sale,
     private zone:NgZone,
     private _user:User) {
+    UXCam.tagScreenName("modal-receipt");
 
 
     this.beer=this.params.get('beer');
