@@ -24,7 +24,7 @@
         <span class="schedule__day">QUA</span>
         <span class="schedule__hour">{{hours[3].end}}:00 - {{hours[4].start}}:00</span>
       </li>
-      <li class="schedule__list__item" [ngClass]="day==4?'today':''">
+      <li class="schedule__list__item" [ngClass]="day==4?'today closed':''">
         <span class="schedule__day">QUI</span>
         <span class="schedule__hour">{{hours[4].end}}:00 - {{hours[5].start}}:00</span>
       </li>
@@ -41,7 +41,7 @@
         <span class="schedule__hour">{{hours[0].end}}:00 - {{hours[1].start}}:00</span>
       </li>
     </ul>
-    <p class="msg-schedule">Nossos horários podem alterar em vésperas de feriado, feriados e datas comemorativas.</p>
+    <p class="msg-schedule">Os horários podem alterar em feriados.</p>
   </div>
 
 </ion-content>
