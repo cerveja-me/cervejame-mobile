@@ -149,7 +149,7 @@ import { FeedbackPage } from '../pages/feedback/feedback';
         this.http.get(url).toPromise()
         .then((res)=>{
           let add = res.json()['results'];
-          resolve(add[0])
+          resolve(this.convertAddress(add[0]))
         })
         .catch(e=>{
           reject(e)
@@ -297,49 +297,52 @@ import { FeedbackPage } from '../pages/feedback/feedback';
       });
     }
     convertAddress(place){
-      let  componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-      };
-      let address={};
-      for (var i = 0; i < place.address_components.length; i++) {
-        var addressType = place.address_components[i].types[0];
-        if (componentForm[addressType]) {
-          var val = place.address_components[i][componentForm[addressType]];
-          address[addressType]=val;
+      // return new Promise((resolve, reject) => {
+        let  componentForm = {
+          street_number: 'short_name',
+          route: 'long_name',
+          locality: 'long_name',
+          administrative_area_level_1: 'short_name',
+          country: 'long_name',
+          postal_code: 'short_name'
+        };
+        let address={};
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            address[addressType]=val;
+          }
         }
+        address['formated']=this.formatAddress(address);
+        return(address);
+        // });
       }
-      return address;
-    }
 
 
-    formatAddress(address){
-      return address.route+","+address.street_number+","+address.locality+","+address.administrative_area_level_1;
-    }
-    private handleError (error: Response | any) {
-      console.log('err->',error);
-    }
+      formatAddress(address){
+        return address.route+","+address.street_number+","+address.locality+","+address.administrative_area_level_1;
+      }
+      private handleError (error: Response | any) {
+        console.log('err->',error);
+      }
 
-    getRandonLoading():string{
-      return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
+      getRandonLoading():string{
+        return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
+      }
+      private phrases =[
+      "Negociando gelo com o pé grande.",
+      "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa.",
+      "Não deixe pra amanhã a cerveja que você pode beber hoje.",
+      "Se dirigir não beba, se beber chame o Cerveja.me!",
+      "Nunca fiz um amigo bebendo leite.",
+      "Diga-me com quem tu andas, que te direi quantas cervejas levar.",
+      "Previsão do tempo: 100% propício para uma cerveja.",
+      "O líquido mais precioso do mundo é a água, pois com ela dá pra fazer cerveja.",
+      "Senhor, dai-me café para mudar o que posso e cerveja para mudar as que não posso.",
+      "GELADAAAAAA!",
+      "Nã Nã Nã",
+      "Aqui, Cerveja mais gelada que o coração do(a) ex.",
+      "Cerveja é igual banho, tem que tomar todo dia."
+      ]
     }
-    private phrases =[
-    "Negociando gelo com o pé grande.",
-    "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa.",
-    "Não deixe pra amanhã a cerveja que você pode beber hoje.",
-    "Se dirigir não beba, se beber chame o Cerveja.me!",
-    "Nunca fiz um amigo bebendo leite.",
-    "Diga-me com quem tu andas, que te direi quantas cervejas levar.",
-    "Previsão do tempo: 100% propício para uma cerveja.",
-    "O líquido mais precioso do mundo é a água, pois com ela dá pra fazer cerveja.",
-    "Senhor, dai-me café para mudar o que posso e cerveja para mudar as que não posso.",
-    "GELADAAAAAA!",
-    "Nã Nã Nã",
-    "Aqui, Cerveja mais gelada que o coração do(a) ex.",
-    "Cerveja é igual banho, tem que tomar todo dia."
-    ]
-  }

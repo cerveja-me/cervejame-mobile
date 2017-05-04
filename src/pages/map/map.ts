@@ -27,11 +27,12 @@ declare var google;
     loader = this._loading.create({
       content: this._device.getRandonLoading()
     });
-
+    showAddress=true;
     address;
     fullAddress;
     addressOptions=[];
     complement='';
+    number='';
     constructor(public navCtrl: NavController,
       public modalCtrl:ModalController,
       private _device:Device,
@@ -42,7 +43,6 @@ declare var google;
     }
 
     ionViewDidLoad() {
-      this.loader.present();
       this.loadMap();
     }
 
@@ -51,18 +51,7 @@ declare var google;
       this._device.getLocation()
       .then((location)=>{
         let latLng = new google.maps.LatLng(location[0], location[1]);
-        this._device.getAddressFromLocation(location)
-        .then((address)=>{
-          this.setAddressNew(address);
-          this.fullAddress=this._device.convertAddress(address);
-          let endereco = address['formatted_address'];
-          this._user.getNewLocation(location,endereco)
-          .then( r =>{
-            this.loader.dismiss();
-          });
-        })
         let mapOptions = {
-          center: latLng,
           clickableIcons:false,
           disableDoubleClickZoom:true,
           fullscreenControl:false,
@@ -79,68 +68,33 @@ declare var google;
         }
 
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
         this.map.addListener('center_changed',()=>{
-
           let _loc={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
           this._device.getAddressFromLocation(_loc)
           .then((address)=>{
-            this.setAddressNew(address);
-            //console.log(this._device.formatAddress(this._device.convertAddress(address)));
-            let endereco = this._device.formatAddress(this._device.convertAddress(address));
-            this._user.getNewLocation(_loc,endereco);
+            this.address=address;
+            // console.log('address->',address);
           })
         });
-        this.map.addListener('domready',e =>{
-          console.log('mapread');
-        });
+        this.map.setCenter(latLng);
       })
+
     }
-    setAddressNew(address){
-      this.fullAddress=this._device.convertAddress(address);
-      this.address=this._device.formatAddress(this.fullAddress);
-      this.addressOptions=[];
-      this.zone.run(()=>{});
+    openAddressEdit(){
+      this.showAddress=false;
     }
-    addressChange(address){
-      if(address.length >3){
-        this._device.getLocationsWithAddres(address)
+    addressChange(){
+      if(this.address.formated.length >3){
+        this._device.getLocationsWithAddres(this.address.formated)
         .then((listAddress)=>{
+          console.log('list->',listAddress);
           this.addressOptions=listAddress['results'];
         })
       }
     }
+
     setAddress(address){
-      this.fullAddress=this._device.convertAddress(address);
-      this.address=this._device.formatAddress(this.fullAddress);
-      this.addressOptions=[];
-      // new google.maps.LatLng(address, location[1]);
-      this.map.setCenter(address['geometry'].location);
-    }
-    clearAddress(){
-      this.address='';
-      this.zone.run(()=>{});
-    }
-
-    openModal(){
-      let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-      let modal = this.modalCtrl.create(ModalMapPage,{"location":loca,"address":this.fullAddress,"complement":this.complement});
-      modal.present();
-    }
-
-    openAddressModal(){
-      let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-      let modal = this.modalCtrl.create(ModalAddressPage,{"location":loca,"address":this.fullAddress});
-      modal.onDidDismiss(data=>{
-        if(data!=null){
-          this.fullAddress.route=data.address;
-          this.fullAddress.street_number=data.number;
-          this.complement=data.complement;
-          this.address=this._device.formatAddress(this.fullAddress);
-          this.zone.run(()=>{});
-          console.log('data->',data);
-        }
-      });
-      modal.present();
+      this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
+      this.showAddress=true;
     }
   }

@@ -35,8 +35,8 @@
            <small class="choose__pricebox__each--currency">R$</small>{{prod.unitvalue |number:'2.2-2'}}
          </span>
          <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-         <span class="cold-beer"><span class="icon-cold"></span>Gelada!</span>
-					<span class="termo-natura"><span class="icon-termo"></span>Natural</span>
+         <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
+         <span class="termo-natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
        </p>
        <p class="choose__bottom">
         <figure class="choose__picture">

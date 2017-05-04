@@ -1,4 +1,4 @@
-import {Page, Platform} from 'ionic/ionic';
+// import {Page, Platform} from 'ionic/ionic';
 import {Injectable} from 'angular2/core';
 
 @Injectable()
