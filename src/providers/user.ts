@@ -92,7 +92,9 @@ import { Error } from './error';
     convertProducts(p){
       p.product.qtd=p.product.description.split(" ", 1)[0];
       p.unitvalue=parseFloat((p.price/p.product.qtd).toFixed(2));
-
+      if(!p.product.cold){
+        p.product.details=JSON.parse(p.product.description);
+      }
       return p;
     }
 
