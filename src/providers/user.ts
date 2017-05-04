@@ -172,10 +172,6 @@ import { Error } from './error';
             .then(d=>{
               //verificar aqui se é a mesma zona
               // por hr supomos que sim
-              console.log('velha -> ',d);
-              console.log('nova -> ',l);
-
-
               // this._device.setDevice(l);
               resolve(address);
             })
