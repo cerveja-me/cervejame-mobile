@@ -15,8 +15,8 @@
         <small class="total__pricebox--currency" >R$</small>{{product.amount * product.price |number:'2.2-2'}}
       </span>
     </div>
-    
-     <div class="payment">
+
+    <div class="payment">
       <button class="payment__option" [ngClass]="payment=='card'?'active':''" (click)="payment='card'">
         <span class="icon-maquina"></span>
         <label class="payment__option__label">Máquina</label>
@@ -31,10 +31,10 @@
       </button>
     </div>
 
-    
-    <p class="receipt__address" ><span class="icon-map" (click)="dismiss()" *ngIf="address"></span>{{address}}</p>
 
-   
+    <div class="receipt__address" ><span class="icon-map" (click)="dismiss()" *ngIf="address"></span>{{address}}</div>
+
+
     <button ion-button secondary class="receipt__btn" (click)="finishRequest()">CONCLUIR PEDIDO</button>
 
   </div>

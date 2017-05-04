@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef,Injectable, NgZone,Input  } from '@angular/core';
+import { Component, ViewChild, ElementRef,Injectable, NgZone } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
 
@@ -24,7 +24,7 @@ declare var UXCam:any;
   })
   export class MapPage {
     @ViewChild('map') mapElement: ElementRef;
-    @ViewChild('address') addressInput ;
+    @ViewChild('inputaddress') addressInput ;
     map: any;
     loader = this._loading.create({
       content: this._device.getRandonLoading()

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams,ViewController } from 'ionic-angular';
+import { NavController,NavParams,ViewController,Platform } from 'ionic-angular';
 
 declare var UXCam:any;
 
@@ -20,9 +20,11 @@ declare var UXCam:any;
     constructor(
       public navCtrl: NavController,
       public params: NavParams,
-      public viewCtrl:ViewController
-      ) {
-      UXCam.tagScreenName("modal-schedule");
+      public viewCtrl:ViewController,
+      public platform:Platform) {
+
+      if(this.platform.is('core'))
+        UXCam.tagScreenName("modal-schedule");
 
     }
 
