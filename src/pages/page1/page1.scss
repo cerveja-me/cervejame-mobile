@@ -394,11 +394,11 @@
 
     .schedule-off {
     @extend .font-bold;
-
-    font-size: 12px;
+        
+    font-size: 14px;
     border-top: 1px solid white;
     color: white;
-    background: rgba(0,0,0,0.4);
+    background: #583318;
     border-radius: 0;
     width: 100%;
     margin: 0;
@@ -410,36 +410,38 @@
     &__label {
     width: 65%;
     position: absolute;
-    left: 30px;
+    left: 20px;
     white-space: initial;
     text-align: left;
     line-height: 1.3em;
     text-transform: initial;
     top: 50%;
-    margin-top: -15px;
+    margin-top: -18px;
     }
 
-    .icon-clock {
-    width: 26px;
-    height: 26px;
-    background-image: url(../assets/icon/icon-clock.svg);
+    .icon-clock-w {
+    width: 22px;
+    height: 22px;
+    background-image: url(../assets/icon/icon-clock-w.svg);
     display: block;
     margin-right: 20px;
     float: left;
-    margin-top: 3px;
+    margin-top: 8px;
     }
 
-    &:after {
-    content: '';
-    width: 22px;
-    height: 22px;
-    background-image: url(../assets/icon/icon-up-white.svg);
-    display: block;
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    margin-top: -11px;
-    }
+        &__hours {
+            @include border-radius(5px);
+            @extend .font-bold;
+            
+            color: white;
+            position: absolute;
+            width: 25%;
+            border: 2px solid white;
+            font-size: 12px;
+            right: 20px;
+            padding: 10px;
+        }
+ 
     }
 
     .order-status-bar {

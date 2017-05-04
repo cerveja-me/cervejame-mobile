@@ -78,24 +78,21 @@
   </button>
   <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed"  >
     <span class="schedule-off__label">
-      <span class="icon-clock"></span>Não estamos entregando
-      no momento</span>
+      <span class="icon-clock-w"></span>Não é possível fazer pedidos agora.</span>
+      <span class="schedule-off__hours">Horários</span>
     </button>
 
-    <button ion-button secondary  (click)="openSale()" class="order-status-bar" *ngIf="sale && sale.id" >
+    <button ion-button secondary (click)="openSale()" class="order-status-bar" *ngIf="sale && sale.id" >
 
       <span class="order-status-bar__label" *ngIf="!sale.aceptedAt && !sale.onWayAt">
         <span class="icon-loading"></span>
         <label>Aguardando confirmação</label>
       </span>
 
-
-
       <span class="order-status-bar__label active" *ngIf="sale.aceptedAt && !sale.onWayAt">
         <span class="icon-check"></span>
         <label>Perdido confirmado</label>
       </span>
-
 
       <span class="order-status-bar__label delivery active" *ngIf="sale.aceptedAt && sale.onWayAt">
         <figure class="order-status-bar__image">
