@@ -1,12 +1,13 @@
 import { Component, ViewChild,Input, ElementRef,Injectable, NgZone } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LoadingController } from 'ionic-angular';
 
 import { ModalMapPage } from '../modal-map/modal-map';
 import { ModalAddressPage } from '../modal-address/modal-address';
-import { NavController, ModalController, Platform, NavParams } from 'ionic-angular';
+import {LoadingController, NavController, ModalController, Platform, NavParams } from 'ionic-angular';
 import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
+
+import { Keyboard } from 'ionic-native';
 
 declare var google;
 
@@ -41,7 +42,9 @@ declare var UXCam:any;
       private zone:NgZone,
       private _user:User,
       public platform: Platform,
-      private _loading:LoadingController) {
+      private _loading:LoadingController,
+      private keyboard:Keyboard) {
+
       if(this.platform.is('core'))
         UXCam.tagScreenName("map");
     }
@@ -100,6 +103,12 @@ declare var UXCam:any;
           this.addressOptions=listAddress['results'];
         })
       }
+    }
+    closeEdit(){
+      if(this.platform.is('core'))
+        this.keyboard.close();
+
+      console.log('fechar o teclado agora');
     }
 
     setAddress(address){
