@@ -1,7 +1,7 @@
 
 
 <ion-content>
-	<div class="address__box" *ngIf="!showAddress">
+	<div class="address__box" *ngIf="address" [ngClass]="showAddress ? 'hidden': '' ">
     <span class="address__icon icon-map"></span>
     <input #inputaddress class="address__input" [(ngModel)]="address.formated" (ngModelChange)="addressChange()">
 

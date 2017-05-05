@@ -73,7 +73,7 @@
 
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
-  <button ion-button secondary (click)="openSchedule()" class="schedule-on" *ngIf="!closed" >
+  <button ion-button secondary (click)="openSchedule()" class="schedule-on" *ngIf="!closed && !sale" >
     <span class="schedule-on__label">
       <span class="icon-clock"></span>
       <label>Estamos atendendo</label>
