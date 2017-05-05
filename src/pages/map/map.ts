@@ -31,7 +31,7 @@ declare var UXCam:any;
     });
     showAddress=true;
     address;
-    fullAddress;
+    fulladdress;
     addressOptions=[];
     complement='';
     number='';
@@ -92,7 +92,7 @@ declare var UXCam:any;
     }
     addressChange(){
       if(this.address.formated.length >3){
-        this._device.getLocationsWithAddres(this.address.formated)
+        this._device.getLocationsWithAddres(this.fulladdress)
         .then((listAddress)=>{
           this.addressOptions=listAddress['results'];
         })
