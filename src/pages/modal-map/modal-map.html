@@ -31,9 +31,8 @@
       </button>
     </div>
 
-
-    <div class="receipt__address" (click)="dismiss()" ><span class="icon-map" *ngIf="address"></span>{{address}}</div>
-
+    <div class="receipt__address" (click)="dismiss()" ><span class="icon-map receipt__address__icon" *ngIf="address"></span>{{address}}<span class="icon-arrow-fw" *ngIf="address"></span></div>
+      
 
     <button ion-button secondary class="receipt__btn" (click)="finishRequest()">CONCLUIR PEDIDO</button>
 
