@@ -28,16 +28,13 @@ export class ModalNotificationPage {
   }
 
   accept() {
-    this.loader.present();
     this._device.getPushToken()
     .then(token =>{
       if(token){
         this.viewCtrl.dismiss({push:true});
-        this.loader.dismiss();
       }else{
         this._device.setFcmToken('userDeniedPush');
         this.viewCtrl.dismiss({push:false});
-        this.loader.dismiss();
       }
     })
     .catch(e =>{

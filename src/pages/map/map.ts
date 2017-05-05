@@ -89,8 +89,6 @@ declare var UXCam:any;
     }
     openAddressEdit(){
       this.showAddress=false;
-      this.addressInput.setFocus();
-
     }
     addressChange(){
       if(this.address.formated.length >3){

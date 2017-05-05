@@ -44,7 +44,7 @@ export class ModalMapPage {
     .then( p=>{
       this.fullAddress=this.params.get("address");
       this.addressComplement=this.params.get("complement");
-      this.address=this._device.formatAddress(this.fullAddress) +(this.addressComplement?", complemento: "+this.addressComplement:'');
+      this.address=this._device.formatAddress(this.fullAddress) +(this.addressComplement?", "+this.addressComplement:'');
       this.zone.run(()=>{});
       this.product=p;
     })
