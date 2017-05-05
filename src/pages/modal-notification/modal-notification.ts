@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Device } from '../../providers/device';
 
-import {NavController, Platform, NavParams, ViewController } from 'ionic-angular';
+import {NavController,LoadingController, Platform, NavParams, ViewController } from 'ionic-angular';
 declare var UXCam:any;
 
 @Component({
@@ -11,10 +11,15 @@ declare var UXCam:any;
 
 export class ModalNotificationPage {
 
+  loader = this._loading.create({
+    content: this._device.getRandonLoading()
+  });
   constructor(
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
+    private _loading:LoadingController,
+
     public navCtrl: NavController,
     private _device : Device) {
 
@@ -23,13 +28,16 @@ export class ModalNotificationPage {
   }
 
   accept() {
+    this.loader.present();
     this._device.getPushToken()
     .then(token =>{
       if(token){
         this.viewCtrl.dismiss({push:true});
+        this.loader.dismiss();
       }else{
         this._device.setFcmToken('userDeniedPush');
         this.viewCtrl.dismiss({push:false});
+        this.loader.dismiss();
       }
     })
     .catch(e =>{
