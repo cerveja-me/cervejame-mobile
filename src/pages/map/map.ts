@@ -106,7 +106,7 @@ declare var UXCam:any;
     }
     closeEdit(){
       if(this.platform.is('core'))
-        this.keyboard.close();
+        Keyboard.close();
 
       console.log('fechar o teclado agora');
     }
