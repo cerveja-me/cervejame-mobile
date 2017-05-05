@@ -5,7 +5,7 @@
   <div class="modal-overlay" (click)="dismiss()"></div>
   <div class="receipt__box">
     <div class="receipt__quantidade">
-      <h2 class="receipt__title">Quantas caixas?</h2>
+      <h2 class="receipt__title" *ngIf="beer">Quantas {{beer.product.cold?'caixas':'Garrafas'}}?</h2>
       <button class="btn-minus" (click)="decreaseAmount()"></button>
       <span class="quantidade-number" *ngIf="beer">{{beer.amount}}</span>
       <button class="btn-plus" (click)="increaseAmount()"></button>
@@ -16,7 +16,7 @@
         <small class="total__pricebox--currency" >R$</small>{{beer.price * beer.amount | number:'2.2-2'}}
       </span>
     </div>
-  
+
     <button ion-button secondary class="receipt__btn" (click)="finishRequest()">CONTINUAR</button>
 
   </div>
