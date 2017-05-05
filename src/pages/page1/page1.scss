@@ -195,7 +195,7 @@
     position: absolute;
     bottom: -9px;
     right: -35px;
-    padding: 13px 10px;
+    padding: 10px;
     font-size: 11px;
     text-transform: uppercase;
     z-index: 4;
@@ -568,9 +568,10 @@
     }
 
     .icon-shipping-white {
-    width: 29px;
-    height: 18px;
-    background-image: url(../assets/icon/icon-shipping-white.svg);
+    width: 30px;
+    height: 20px;
+    background-image: url(../assets/icon/shipping.svg);
     display: inline-block;
     margin-bottom: 0px;
+        background-size: cover;
     }
