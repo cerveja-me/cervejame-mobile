@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef,Injectable, Input,NgZone } from '@angular/core';
+import { Component, ViewChild,Input, ElementRef,Injectable, NgZone } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
 
@@ -89,6 +89,9 @@ declare var UXCam:any;
     }
     openAddressEdit(){
       this.showAddress=false;
+      setTimeout(() => {
+        this.addressInput.setFocus();
+      },150);
     }
     addressChange(){
       if(this.address.formated.length >3){
