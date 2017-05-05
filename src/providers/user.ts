@@ -174,7 +174,7 @@ import { Error } from './error';
             .then(d=>{
               //verificar aqui se é a mesma zona
               // por hr supomos que sim
-              // this._device.setDevice(l);
+              this._device.setDevice(l);
               resolve(address);
             })
           })
