@@ -31,6 +31,7 @@ export class ModalContentPage {
 
 
     this.beer=this.params.get('beer');
+    console.log('ber->', this.beer);
     this.beer.amount=1;
     this.zone.run(()=>{});
 
