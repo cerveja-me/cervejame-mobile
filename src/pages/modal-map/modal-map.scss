@@ -14,13 +14,21 @@
 
 .receipt__address {
   text-align: center;
+    position: relative;
 
   @extend .font-regular;
 
   font-size: 14px;
   color: #583318;
     margin: 0;
-    padding: 15px 20px 15px;
+    padding: 15px 45px 15px;
+    
+    &__icon {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        margin-top: -15px;
+    }
 }
 
 .figure__pedido {
@@ -55,3 +63,15 @@
     margin-right: 10px;
 }
 
+.icon-arrow-fw {
+    background-image: url('../assets/icon/arrow-fw.svg');
+ background-size: cover;
+ width: 11px;
+ height: 20px;
+ display: inline-block;
+ vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -10px;
+}
