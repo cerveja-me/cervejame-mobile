@@ -5,7 +5,6 @@ import { MapPage } from '../map/map';
 
 import { User } from '../../providers/user';
 import { Device } from '../../providers/device';
-import { Analytics } from '../../providers/analytics';
 import { Facebook, NativeStorage } from 'ionic-native';
 
 declare var UXCam:any;
@@ -31,9 +30,10 @@ export class ModalRegisterPage {
     private _user:User,
     private _loading:LoadingController,
     private _device:Device,
-    public alerCtrl: AlertController,
-    private an:Analytics) {
-    UXCam.tagScreenName("modal-register");
+    public alerCtrl: AlertController) {
+
+    if(platform.is('core'))
+      UXCam.tagScreenName("modal-register");
 
   }
 
