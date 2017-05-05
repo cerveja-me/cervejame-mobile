@@ -83,12 +83,11 @@
   text-align: center;
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin-left: -190px;
+  left: 0;
   margin-top: -210px;
   height: 420px;
-  width: 380px;
-  padding: 65px 0;
+  width: 100%;
+  padding: 10% 0;
 
   &__text {
     @extend .font-bold;
@@ -189,7 +188,7 @@ ion-spinner {
 .loading-content {
   @extend .font-bold;
 
-  color: #D5A86C;
+  color: white;
   display: block !important;
   text-align: center;
   font-size: 22px;

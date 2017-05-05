@@ -12,21 +12,21 @@
 
   <form (ngSubmit)="doLoginForm()">
    <div class="login__box">
-     <span class="icon-user"></span>
+     <span class="icon-user login__box__icon"></span>
      <input name="login" class="login__box__input" placeholder="E-mail" type="email" required="true" [(ngModel)]="login.email"/>
    </div>
    <div class="login__box">
-     <span class="icon-pass"></span>
+     <span class="icon-pass login__box__icon"></span>
      <input name="senha" class="login__box__input" placeholder="Senha" type="password" required="true"  [(ngModel)]="login.password"/>
    </div>
    <input type="submit" class="btn-submit" name="" value="Acessar" />
  </form>
- 
+ <button class="btn-signup" (click)="openModalRegister()" >Criar conta</button>
 
 </div>
 
 </ion-content>
 
 <ion-footer>
-	<button class="btn-signup" (click)="openModalRegister()" >Criar conta</button>
+	
 </ion-footer>

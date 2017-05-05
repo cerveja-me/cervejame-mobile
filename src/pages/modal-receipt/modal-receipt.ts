@@ -34,7 +34,7 @@ export class ModalContentPage {
     this.beer.amount=1;
     this.zone.run(()=>{});
 
-    this.timeStart =new Date().getMilliseconds();
+    //this.timeStart =new Date().getMilliseconds();
   }
 
 
@@ -43,7 +43,7 @@ export class ModalContentPage {
   }
 
   finishRequest(){
-    let time = new Date().getMilliseconds()-this.timeStart;
+    //let time = new Date().getMilliseconds()-this.timeStart;
     this._sale.setProduct(this.beer);
 
     this._user.isUserLogged()

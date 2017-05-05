@@ -88,7 +88,7 @@ margin-top: 10px;
 }
 
 &.active {
-background: #583318;
+background: #D5A86C;
 
 .icon-maquina {
 background-image: url('../assets/icon/icon-maquina-w.svg');
@@ -113,14 +113,15 @@ span, label {opacity: 0.4;}
 
 content: 'EM BREVE';
 color: white;
-background: black;
+background: #583318;
+text-align: center;
 font-size: 10px;
 position: absolute;
 top: 27px;
 padding: 2px 5px;
-transform: rotate(-5deg);
 width: 70px;
-left: 50%;
+left: 0;
+width: 100%;
 margin-left: -40px;
 }
 }

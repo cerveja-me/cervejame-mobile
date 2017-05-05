@@ -7,23 +7,7 @@
 
   <!-- <h1 *ngFor="let p of products">oi</h1> -->
 
-  <ion-slides class="choose-slider" *ngIf="!products.length">
-   <ion-slide>
-     <p class="msg-empty">
-         
-         <span class="msg-empty__title">Não atendemos sua região.</span>
-
-       Quer levar para sua cidade?<br/>
-       Saiba como: <strong><a href="http://cerveja.me">Cerveja.me</a></strong></p>
-       <p class="choose__bottom">
-        <figure class="choose__picture" style="bottom: 5%;">
-
-          <img style="margin-top: 5%" src="assets/img/empty.png">
-        </figure>
-      </p>
-    </ion-slide>
-  </ion-slides>
-
+  
   <ion-slides class="choose-slider" [options]="sliderOptions" *ngIf="products.length">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold">
@@ -69,6 +53,23 @@
 </ion-slide>
 
 </ion-slides>
+    <ion-slides class="choose-slider" *ngIf="!products.length">
+   <ion-slide>
+     <p class="msg-empty">
+         
+         <span class="msg-empty__title">Não atendemos sua região.</span>
+
+       Quer levar para sua cidade?<br/>
+       Saiba como: <strong><a href="http://cerveja.me">Cerveja.me</a></strong></p>
+       <p class="choose__bottom">
+        <figure class="choose__picture" style="bottom: 5%;">
+
+          <img style="margin-top: 5%" src="assets/img/empty.png">
+        </figure>
+      </p>
+    </ion-slide>
+  </ion-slides>
+
 
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
