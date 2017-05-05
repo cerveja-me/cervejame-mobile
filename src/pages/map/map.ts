@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef,Injectable, NgZone } from '@angular/core';
+import { Component, ViewChild, ElementRef,Injectable, Input,NgZone } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
 
@@ -89,6 +89,8 @@ declare var UXCam:any;
     }
     openAddressEdit(){
       this.showAddress=false;
+      this.addressInput.setFocus();
+
     }
     addressChange(){
       if(this.address.formated.length >3){
@@ -102,10 +104,6 @@ declare var UXCam:any;
     setAddress(address){
       this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
       this.showAddress=true;
-      setTimeout(() => {
-        this.addressInput.setFocus();
-      },150);
-
     }
     openModal(){
       let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
