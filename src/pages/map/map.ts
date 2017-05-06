@@ -7,13 +7,13 @@ import {LoadingController, NavController, ModalController, Platform, NavParams }
 import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
 
-import { Keyboard } from 'ionic-native';
+// import { Keyboard } from 'ionic-native';
 
 declare var google;
 
 declare var UXCam:any;
 
-declare var cordova;
+// declare var cordova;
 
 /*
   Generated class for the Map page.
@@ -44,8 +44,7 @@ declare var cordova;
       private zone:NgZone,
       private _user:User,
       public platform: Platform,
-      private _loading:LoadingController,
-      private keyboard:Keyboard) {
+      private _loading:LoadingController) {
 
       if(this.platform.is('core'))
         UXCam.tagScreenName("map");
