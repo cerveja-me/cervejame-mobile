@@ -13,6 +13,8 @@ declare var google;
 
 declare var UXCam:any;
 
+declare var cordova;
+
 /*
   Generated class for the Map page.
 
@@ -105,8 +107,9 @@ declare var UXCam:any;
       }
     }
     closeEdit(){
-      if(this.platform.is('core'))
-        Keyboard.close();
+      if(this.platform.is('core')){
+        cordova.plugins.Keyboard.close();
+      }
 
       console.log('fechar o teclado agora');
     }
