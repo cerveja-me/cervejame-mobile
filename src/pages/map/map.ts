@@ -107,7 +107,8 @@ declare var UXCam:any;
     }
     closeEdit(){
       if(this.platform.is('core')){
-        // cordova.plugins.Keyboard.close();
+        let activeElement = <HTMLElement>document.activeElement;
+        activeElement && activeElement.blur && activeElement.blur();
       }
 
       console.log('fechar o teclado agora');
