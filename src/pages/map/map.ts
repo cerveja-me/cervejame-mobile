@@ -108,7 +108,7 @@ declare var cordova;
     }
     closeEdit(){
       if(this.platform.is('core')){
-        cordova.plugins.Keyboard.close();
+        // cordova.plugins.Keyboard.close();
       }
 
       console.log('fechar o teclado agora');
