@@ -111,7 +111,7 @@ declare var UXCam:any;
         activeElement && activeElement.blur && activeElement.blur();
       }
 
-      console.log('fechar o teclado agora');
+      // console.log('fechar o teclado agora');
     }
 
     setAddress(address){
