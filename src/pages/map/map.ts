@@ -115,6 +115,7 @@ declare var UXCam:any;
     }
 
     setAddress(address){
+      this.closeEdit();
       this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
       this.showAddress=true;
     }
