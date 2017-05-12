@@ -32,8 +32,9 @@ export class ModalRegisterPage {
     private _device:Device,
     public alerCtrl: AlertController) {
 
-    if(platform.is('core'))
+    if(platform.is('cordova')){
       UXCam.tagScreenName("modal-register");
+    }
 
   }
 

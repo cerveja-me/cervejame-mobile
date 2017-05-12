@@ -41,8 +41,9 @@ export class Page1 {
     private platform:Platform,
     public events: Events) {
 
-    if(platform.is('core'))
+    if(platform.is('cordova')){
       UXCam.tagScreenName("home");
+    }
 
 
     this.platform.ready().then((readySource) => {

@@ -37,8 +37,9 @@ export class ModalMapPage {
     private _device:Device,
     private zone:NgZone) {
 
-    if(this.platform.is('core'))
+    if(this.platform.is('cordova')){
       UXCam.tagScreenName("modal-map");
+    }
 
     this._sale.getProduct()
     .then( p=>{

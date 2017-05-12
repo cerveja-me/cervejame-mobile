@@ -38,8 +38,9 @@ declare var UXCam:any;
       private platform:Platform,
       public alerCtrl: AlertController) {
 
-      if(this.platform.is('core'))
+      if(this.platform.is('cordova')){
         UXCam.tagScreenName("login");
+      }
 
     }
 

@@ -24,8 +24,9 @@ declare var UXCam:any;
       public viewCtrl:ViewController,
       public platform:Platform) {
 
-      if(this.platform.is('core'))
+      if(this.platform.is('cordova')){
         UXCam.tagScreenName("modal-schedule");
+      }
 
     }
 

@@ -46,8 +46,9 @@ declare var UXCam:any;
       public platform: Platform,
       private _loading:LoadingController) {
 
-      if(this.platform.is('core'))
+      if(this.platform.is('core')){
         UXCam.tagScreenName("map");
+      }
     }
 
     ionViewDidLoad() {

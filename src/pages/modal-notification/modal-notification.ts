@@ -23,8 +23,9 @@ export class ModalNotificationPage {
     public navCtrl: NavController,
     private _device : Device) {
 
-    if(this.platform.is('core'))
+    if(this.platform.is('cordova')){
       UXCam.tagScreenName("modal-notification");
+    }
   }
 
   accept() {

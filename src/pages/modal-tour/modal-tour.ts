@@ -18,9 +18,10 @@ export class ModalTourPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController
     ) {
-    
-    if(platform.is('core'))
-        UXCam.tagScreenName("modal-tour");
+
+    if(platform.is('cordova')){
+      UXCam.tagScreenName("modal-tour");
+    }
   }
 
   dismiss() {

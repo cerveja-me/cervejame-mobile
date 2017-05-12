@@ -25,8 +25,9 @@ declare var UXCam:any;
       public events: Events,
       private platform:Platform) {
 
-      if(this.platform.is('core'))
+      if(this.platform.is('cordova')){
         UXCam.tagScreenName("finish");
+      }
 
       this.events.subscribe('push:order_update', data=>{
         this.verifyLastSale();

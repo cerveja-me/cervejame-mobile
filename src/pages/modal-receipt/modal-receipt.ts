@@ -26,8 +26,9 @@ export class ModalContentPage {
     private zone:NgZone,
     private _user:User) {
 
-    if(platform.is('core'))
+    if(platform.is('cordova')){
       UXCam.tagScreenName("modal-receipt");
+    }
 
 
     this.beer=this.params.get('beer');

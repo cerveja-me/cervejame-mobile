@@ -31,8 +31,9 @@ declare var UXCam:any;
       private error:Error,
       private platform:Platform) {
 
-      if(this.platform.is('core'))
+      if(this.platform.is('cordova')){
         UXCam.tagScreenName("feedback");
+      }
 
       this.sale=this.params.get("sale");
 
