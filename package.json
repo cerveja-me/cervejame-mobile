@@ -39,7 +39,8 @@
         "cordova-plugin-statusbar": "~2.2.0",
         "cordova-plugin-whitelist": "~1.3.0",
         "ionic-plugin-keyboard": "~2.2.1",
-        "phonegap-plugin-push": "~1.9.2"
+        "phonegap-plugin-push": "~1.9.2",
+        "cordova-uxcam": "~2.3.6"
     },
     "devDependencies": {
         "@ionic/app-scripts": "0.0.45",
@@ -96,7 +97,8 @@
             "ionic-plugin-keyboard": {},
             "phonegap-plugin-push": {
                 "SENDER_ID": "10339294539"
-            }
+            },
+            "cordova-uxcam": {}
         }
     }
 }

@@ -44,9 +44,11 @@ export class MyApp {
   }
 
   initializeApp() {
+    console.log('aplicativo abriu');
     this.platform.ready().then(() => {
       if(this.platform.is('cordova')){
         UXCam.startWithKey("eb717cc41850c30");
+        console.log('aplicativo real');
       }
       // Appsee.start("d38be6c0c94d4c0a8a65b7968cf2fd41");
 
