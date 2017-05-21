@@ -1,4 +1,7 @@
 page-map {
+  scroll-content {
+    overflow-y: hidden;
+  }
   #map {
     width: 100%;
     height: 100%;
@@ -172,8 +175,8 @@ page-map {
   padding: 0;
   list-style: none;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
-    z-index: 999;
-    position: relative;
+  z-index: 999;
+  position: relative;
 
   &__item {
     @extend .font-regular;
@@ -210,7 +213,7 @@ page-map {
     position: absolute;
     left: 25px;
     top: 15px;
-      z-index: 999;
+    z-index: 999;
   }
 
   &__input {
@@ -229,9 +232,9 @@ page-map {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-      
-      input {
-        margin: 0;
-      }
+
+    input {
+      margin: 0;
+    }
   }
 }

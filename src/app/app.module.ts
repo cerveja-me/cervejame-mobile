@@ -26,7 +26,6 @@ import { Error } from '../providers/error';
 import { Storage } from '@ionic/storage';
 import {Push} from 'ionic-native';
 
-
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 
@@ -46,7 +45,7 @@ import 'intl/locale-data/jsonp/pt-BR';
   MyApp,Page1,Page2,ModalContentPage,FeedbackPage,
   LoginPage,MapPage,FinishPage,ModalTourPage,ModalMapPage,ModalRegisterPage,ModalNotificationPage,ModalAddressPage,ModalSchedulePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },User,Error,Device,Sale,Storage,ConstantService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},{ provide: LOCALE_ID, useValue: "pt-BR" },User,Error,Device,Sale,Storage,ConstantService,Push]
 })
 export class AppModule {
   constructor() {

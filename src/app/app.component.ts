@@ -17,13 +17,9 @@ import { Sale } from '../providers/sale';
 
 declare var UXCam:any;
 
-// declare var Appsee:any;
-
-
-
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -44,18 +40,19 @@ export class MyApp {
   }
 
   initializeApp() {
-    console.log('aplicativo abriu');
     this.platform.ready().then(() => {
       if(this.platform.is('cordova')){
         UXCam.startWithKey("eb717cc41850c30");
-        console.log('aplicativo real');
       }
-      // Appsee.start("d38be6c0c94d4c0a8a65b7968cf2fd41");
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-      Splashscreen.hide();
+      setTimeout(() => {
+        Splashscreen.hide();
+      }, 500);
+
+
     });
   }
 

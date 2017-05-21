@@ -7,7 +7,6 @@ import {LoadingController, NavController, ModalController, Platform, NavParams }
 import { Device } from '../../providers/device';
 import { User } from '../../providers/user';
 
-// import { Keyboard } from 'ionic-native';
 
 declare var google;
 
@@ -99,6 +98,7 @@ declare var UXCam:any;
       },150);
     }
     addressChange(){
+      console.log('address change');
       if(this.address.formated.length >3){
         this._device.getLocationsWithAddres(this.fulladdress)
         .then((listAddress)=>{
@@ -111,13 +111,17 @@ declare var UXCam:any;
         let activeElement = <HTMLElement>document.activeElement;
         activeElement && activeElement.blur && activeElement.blur();
       }
-
+      console.log('address change');
       // console.log('fechar o teclado agora');
     }
 
     setAddress(address){
+
+      console.log('set address');
       this.closeEdit();
-      this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
+      setTimeout(() => {
+        this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
+      }, 500);
       this.showAddress=true;
     }
     openModal(){

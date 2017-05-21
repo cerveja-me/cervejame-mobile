@@ -62,7 +62,7 @@ export class Page1 {
   verifyLastSale(){
     this._user.getLastSale()
     .then(sale=>{
-      console.log('asda');
+      // console.log('asda');
       if(sale){
         this.sale=sale;
       }
@@ -87,7 +87,7 @@ export class Page1 {
   verifySaleFeedback(){
     this._user.getSaleFeedBack()
     .then(sale=>{
-      console.log('salefeedocabk->',sale);
+      //console.log('salefeedocabk->',sale);
       if(sale){
         let feedbackModal = this.modalCtrl.create(FeedbackPage, {sale: sale});
         feedbackModal.present();
@@ -111,7 +111,7 @@ export class Page1 {
         this.verifyPush();
       }
     }).catch((err)=>{
-      console.log('err->',err);
+      //console.log('err->',err);
     });
   }
   verifyPush(){
