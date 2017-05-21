@@ -1,14 +1,17 @@
 
 import { Injectable } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
+import { FCM } from '@ionic-native/fcm';
 
 import { Storage } from '@ionic/storage';
 
+declare var UXCam:any;
 
 /*
   Generated class for the DeviceProvider provider.
@@ -22,17 +25,28 @@ import { Storage } from '@ionic/storage';
     constructor(
       public http: Http,
       public device:Device,
-      public appVersion:AppVersion
+      public appVersion:AppVersion,
+      public storage:Storage,
+      public fcm:FCM,
+      public platform:Platform
       ) {
-      this.createDevice();
+      if(this.platform.is('cordova')){
+        UXCam.startWithKey("eb717cc41850c30");
+        UXCam.tagUsersName(this.device.uuid);
+      }
+      this.createDevice('empty');
     }
-    createDevice(){
+    createDevice(push:string){
+
+      //colocar o ux cam starter
+      console.log('push->',push);
       var d = {
         other:this.device.manufacturer+' | '+this.device.serial,
         model:this.device.model,
         type:this.device.platform,
         id:this.device.uuid,
-        appVersion:''
+        appVersion:'',
+        push_token:push ||'empty'
       }
       this.appVersion.getVersionNumber().then(v=>{
         d.appVersion=v;
@@ -40,6 +54,19 @@ import { Storage } from '@ionic/storage';
       })
     }
 
+
+    startPush(){
+      this.fcm.getToken().then(token=>{
+        console.log('token->',token);
+        this.createDevice(token);
+      })
+    }
+    camPage(page){
+      if(this.platform.is('cordova')){
+        UXCam.tagScreenName(page);
+      }
+
+    }
     post(url, object){
       return new Promise((resolve, reject)=> {
 

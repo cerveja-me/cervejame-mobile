@@ -1,14 +1,86 @@
-<!--
-  Generated template for the TourPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-content no-bounce>
+<ion-content class="background-dark" >
 
-    Cervejame
-    <button ion-button icon-right large clear (click)="startApp()">
-        Continue
-        <ion-icon name="arrow-forward"></ion-icon>
-    </button>
+  <ion-slides>
+
+    <ion-slide>
+
+     <figure class="tour__image">
+       <img src="assets/img/tour1.jpg"/>
+   </figure>
+   <div class="logo-full"></div>
+   <div class="tour">
+      <span class="tour__text">Escolha <strong>sua cerveja</strong>
+        preferida.</span>
+    </div>
+
+    <div class="slider-nav">
+        <span class="slider-nav__item active"></span>
+        <span class="slider-nav__item"></span>
+        <span class="slider-nav__item"></span>
+        <span class="slider-nav__item"></span>
+    </div>
+
+</ion-slide>
+
+<ion-slide>
+  <figure class="tour__image">
+   <img src="assets/img/tour2.jpg"/>
+</figure>
+<div class="logo-full"></div>
+<div class="tour">
+
+  <span class="tour__text">Informe <strong>o local</strong>
+    de entrega.</span>
+</div>
+
+<div class="slider-nav">
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item active"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+</div>
+</ion-slide>
+<ion-slide>
+  <figure class="tour__image">
+   <img src="assets/img/tour3.jpg"/>
+</figure>
+<div class="logo-full"></div>
+<div class="tour">
+  <span class="tour__text">Pronto! <strong>Sua gelada</strong>
+    chegou.</span>
+</div>
+
+<div class="slider-nav">
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item active"></span>
+    <span class="slider-nav__item"></span>
+</div>
+
+</ion-slide>
+<ion-slide>
+
+  <figure class="tour__image">
+   <img src="assets/img/tour3.jpg"/>
+</figure>
+<div class="logo-full"></div>
+<div class="tour">
+  <span class="tour__text">
+   <button class="btn-start" (click)="startApp()">Vamos lá!</button>
+</span>
+
+</div>
+
+<div class="slider-nav">
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item"></span>
+    <span class="slider-nav__item active"></span>
+</div>
+
+</ion-slide>
+
+</ion-slides>
 </ion-content>
+

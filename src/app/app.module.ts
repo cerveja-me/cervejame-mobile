@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
+import { FCM } from '@ionic-native/fcm';
 
 import { HttpModule } from '@angular/http';
 
@@ -19,7 +20,7 @@ import { DeviceProvider } from '../providers/device/device';
 
 class DeviceMock extends Device{
   get cordova(): string{ return "6.2.3";}
-  // get isVirtual(): boolean { return false;}
+  get isVirtual(): boolean { return true;}
   get manufacturer() : string { return "Desenvolvimento";}
   get model() : string { return "Browser - Chrome";}
   get platform() : string { return "Browser";}
@@ -29,14 +30,12 @@ class DeviceMock extends Device{
 }
 
 class AppVersionMock extends AppVersion{
-  constructor(){
-    super();
-  }
-  getVersionNumber(){
-    return new Promise((resolve, reject) => {
-      resolve( '2.0.1');
-    })
-  }
+  constructor(){super();}
+  getVersionNumber(){return new Promise((resolve, reject) => {resolve( '2.0.1');})}
+}
+class FcmMock extends FCM{
+  constructor(){super();}
+  getToken(){return new Promise((resolve, reject) => {resolve( 'TOKEN_BROWSER_DEV');})}
 }
 
 @NgModule({
@@ -62,8 +61,10 @@ class AppVersionMock extends AppVersion{
   SplashScreen,
   Device,
   AppVersion,
-  // {provide:AppVersion,useClass:AppVersionMock},
-  // {provide:Device,useClass:DeviceMock},
+  FCM,
+  {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+  {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+  {provide:FCM,useClass:FcmMock},//coment before build to mobile
   {provide: ErrorHandler, useClass: IonicErrorHandler},
   DeviceProvider
   ]

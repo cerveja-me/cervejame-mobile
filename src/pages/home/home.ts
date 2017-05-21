@@ -13,6 +13,8 @@ export class HomePage {
         public navCtrl: NavController,
         public device:DeviceProvider
         ) {
+        this.device.startPush();
+        this.device.camPage('home');
     }
 
 }
