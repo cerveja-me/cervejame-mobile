@@ -35,10 +35,11 @@ declare var UXCam:any;
         UXCam.tagUsersName(this.device.uuid);
       }
       this.createDevice('empty');
+      if(this.device.platform==='Android'){
+        this.startPush();
+      }
     }
     createDevice(push:string){
-
-      //colocar o ux cam starter
       console.log('push->',push);
       var d = {
         other:this.device.manufacturer+' | '+this.device.serial,
@@ -52,6 +53,9 @@ declare var UXCam:any;
         d.appVersion=v;
         this.post(this.API+this.DEVICE,d);
       })
+    }
+    getDevice(){
+      return this.device;
     }
 
 
@@ -92,8 +96,11 @@ declare var UXCam:any;
 
     }
 
-    API:string = 'http://192.168.0.144:1337/';
+    // API:string = 'http://192.168.0.144:1337/';
+    API:string = 'http://localhost:1337/';
     // this.API = '  http://e101a380.ngrok.io/';
+
+    // API:string='http://api.cerveja.me/';
 
     DEVICE:string = 'v2/device/';
     AUTH:string='auth/login';

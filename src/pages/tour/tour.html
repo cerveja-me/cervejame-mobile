@@ -1,7 +1,7 @@
 
 <ion-content class="background-dark" >
 
-  <ion-slides>
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)">
 
     <ion-slide>
 

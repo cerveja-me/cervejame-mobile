@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,Slides } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 //pages
 import { HomePage } from '../home/home';
 //providers
 import { DeviceProvider } from '../../providers/device/device';
+import { GeolocationProvider } from '../../providers/geolocation/geolocation';
 
 /**
  * Generated class for the TourPage page.
@@ -19,18 +20,20 @@ import { DeviceProvider } from '../../providers/device/device';
      templateUrl: 'tour.html',
  })
  export class TourPage {
-
+     @ViewChild('slides') slides: Slides;
      constructor(
          public navCtrl: NavController,
          public navParams: NavParams,
          public storage:Storage,
-         public device:DeviceProvider
+         public device:DeviceProvider,
+         public geoloc:GeolocationProvider
+
          ) {
 
      }
 
      ionViewDidLoad() {
-         console.log('ionViewDidLoad TourPage');
+         this.device.camPage("tour");
      }
 
      startApp() {
@@ -39,5 +42,10 @@ import { DeviceProvider } from '../../providers/device/device';
          })
      }
 
+     onSlideChangeStart(slider: Slides) {
+         if(slider.realIndex==1){
+             this.geoloc.getPosition();
+         }
+     }
  }
 
