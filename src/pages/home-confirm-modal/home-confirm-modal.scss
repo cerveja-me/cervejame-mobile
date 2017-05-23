@@ -1,0 +1,180 @@
+page-home-confirm-modal {
+
+    ion-modal {
+        height: 100%;
+    }
+
+    modal-wrapper{
+        height:40%;
+    }
+
+    ion-modal {
+        position: absolute;
+        bottom: 0;
+        top:initial;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 40%;
+    }
+}
+
+.receipt {
+    background:none;
+    &__box {
+        background: #FFFFDD;
+        position: absolute;
+        box-shadow:0 -7px 10px 0 rgba(0, 0, 0, 0.3);
+        z-index: 2;
+        width: 100%;
+        bottom: 0;
+
+        &:before {
+            content: "";
+            width: 100%;
+            height: 20px;
+            position: absolute;
+            background-image: url('../assets/icon/ticket.svg');
+            top: -9px;
+            left: 0;
+        }
+
+
+    }
+
+    &__alert {
+        @extend .font-bold !optional;
+
+        font-size: 12px;
+        color: #583318;
+        padding: 10px;
+        background: #FFD296;
+        margin: 0;
+        text-align: center;
+    }
+
+    &__quantidade {
+        width: 49%;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 15px 0 15px 15px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    &__total {
+        width: 49%;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    &__title {
+        @extend .font-regular !optional;
+
+        text-transform: uppercase;
+        font-size: 12px;
+        text-align: center;
+        color: #583318;
+        margin: 0 0 10px 0;
+    }
+
+    .btn-minus {
+        background-image: url('../assets/icon/minus.svg');
+        background-size: cover;
+        width: 36px;
+        height: 36px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: transparent;
+    }
+
+    .btn-plus {
+        background-image: url('../assets/icon/plus.svg');
+        background-size: cover;
+        width: 36px;
+        height: 36px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: transparent;
+    }
+
+    .quantidade-number {
+        @extend .font-bold !optional;
+
+        font-size: 26px;
+        text-align: center;
+        color: #583318;
+        position: relative;
+        width: 42px;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 10px;
+
+        &:after {
+            @include border-radius(50%);
+
+            content: '';
+            width: 50px;
+            height: 50px;
+            border: 2px solid #583318;
+            display: block;
+            position: absolute;
+            top: -34%;
+            left: -15%;
+        }
+    }
+
+    .total__pricebox {
+        @extend .font-bold !optional;
+        @include border-radius(10px);
+
+        border: 2px solid #583318;
+        font-size: 21px;
+        color: #583318;
+        padding: 10px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+
+        &--currency {
+            @extend .font-regular !optional;
+
+            font-size: 16px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    }
+
+    &__btn {
+        @include border-radius(0);
+        @extend .font-bold !optional;
+
+        background: #D84040;
+        border-top: 2px solid #583318;
+        font-size: 24px;
+        padding: 20px;
+        height: auto;
+        width: 100%;
+        margin: 0;
+        text-transform: uppercase;
+    }
+}
+
+
+.icon-card {
+    background-image: url('../assets/icon/card.svg');
+    background-size: cover;
+    width: 31px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0;
+}
+
+.receipt .scroll-content {
+    margin-top: 0 !important;
+}

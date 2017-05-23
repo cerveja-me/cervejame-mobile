@@ -1,6 +1,4 @@
-page-home{
-
-
+page-home {
     @keyframes loading {
         0% { transform: rotate(0deg)}
         100% { transform: rotate(359deg)}
@@ -29,7 +27,7 @@ page-home{
         opacity: 0.8 !important;
     }
 
-    page-page1 {
+    page-home {
         .receipt.content-ios {
             background: none !important;
         }
@@ -576,4 +574,5 @@ page-home{
         margin-bottom: 0px;
         background-size: cover;
     }
+
 }
