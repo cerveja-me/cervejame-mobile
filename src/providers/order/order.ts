@@ -30,16 +30,23 @@ import { GeolocationProvider } from '../geolocation/geolocation';
           console.log('buscar produtos -> ',{"device":d.uuid,"location":pos['latitude']});
           this.device.post(this.device.API+this.device.LOCATION,{"device":d.uuid,"location":pos['latitude']+","+pos['longitude']})
           .then(res=>{
-            if(res['products'] && res['products'].length>0 ){
+            console.log('resposta->',res);
+            if(res['products'] && res['products'].length > 0 ){
               res['products']=res['products'].map(this.convertProducts);
+              resolve(res);
+            }else{
+              if(res['zone']){
+                reject({message:"NO_ACTIVE_PRODUCTS"});
+              }else{
+                reject({message:"NO_ZONE_AVAILABLE"});
+              }
             }
-            resolve(res);
           })
-
         })
+        .catch(reject);
       })
-
     }
+
 
     convertProducts(p){
       p.product.qtd=p.product.description.split(" ", 1)[0];

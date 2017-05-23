@@ -8,6 +8,7 @@ import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
 import { FCM } from '@ionic-native/fcm';
 import { Geolocation } from '@ionic-native/geolocation';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 import { HttpModule } from '@angular/http';
 
@@ -44,49 +45,50 @@ class FcmMock extends FCM {
 class GeolocationMock extends Geolocation {
   constructor(){super();}
 
-  getCurrentPosition(){
-    return new Promise((resolve, reject) => {
-      resolve({coords:{Coordinatesaccuracy: 20,latitude: -23.529442,longitude: -46.679886,timestamp: 1495480276346}});
+  // getCurrentPosition(){
+    //   return new Promise((resolve, reject) => {
+      //     resolve({coords:{Coordinatesaccuracy: 20,latitude: -23.529442,longitude: -46.679886,timestamp: 1495480276346}});
+      //   })
+      // }
+
+    }
+
+    @NgModule({
+      declarations: [
+      MyApp,
+      HomePage,
+      TourPage
+      ],
+      imports: [
+      HttpModule,
+      BrowserModule,
+      IonicModule.forRoot(MyApp) ,
+      IonicStorageModule.forRoot(),
+      IonicImageLoader.forRoot()
+      ],
+      bootstrap: [IonicApp],
+      entryComponents: [
+      MyApp,
+      HomePage,
+      TourPage
+      ],
+      providers: [
+      StatusBar,
+      SplashScreen,
+      Device,
+      AppVersion,
+      FCM,
+      Geolocation,
+
+      {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+      {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+      {provide:FCM,useClass:FcmMock},//coment before build to mobile
+      {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+
+      {provide: ErrorHandler, useClass: IonicErrorHandler},
+      DeviceProvider,
+      GeolocationProvider,
+      OrderProvider
+      ]
     })
-  }
-
-}
-
-@NgModule({
-  declarations: [
-  MyApp,
-  HomePage,
-  TourPage
-  ],
-  imports: [
-  HttpModule,
-  BrowserModule,
-  IonicModule.forRoot(MyApp) ,
-  IonicStorageModule.forRoot()
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-  MyApp,
-  HomePage,
-  TourPage
-  ],
-  providers: [
-  StatusBar,
-  SplashScreen,
-  Device,
-  AppVersion,
-  FCM,
-  Geolocation,
-
-  {provide:Device,useClass:DeviceMock}, //coment before build to mobile
-  {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-  {provide:FCM,useClass:FcmMock},//coment before build to mobile
-  {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
-
-  {provide: ErrorHandler, useClass: IonicErrorHandler},
-  DeviceProvider,
-  GeolocationProvider,
-  OrderProvider
-  ]
-})
-export class AppModule {}
+    export class AppModule {}
