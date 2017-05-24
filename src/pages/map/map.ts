@@ -1,4 +1,4 @@
-import { Component, ViewChild,ElementRef } from '@angular/core';
+import { Component, ViewChild,ElementRef,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DeviceProvider } from '../../providers/device/device';
@@ -15,62 +15,52 @@ declare var google;
 })
 export class MapPage {
     @ViewChild('map') mapElement: ElementRef;
-    map: any;
+    @ViewChild('inputaddress') addressInput ;
 
+    map: any;
+    showAddress=true;
+    address;
+    fulladdress;
+    addressOptions=[];
+    complement='';
+    number='';
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         public device:DeviceProvider,
         public order:OrderProvider,
+        public zone:NgZone,
         public geoLoc:GeolocationProvider
         ) {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad MapPage');
         this.loadMap();
     }
 
     loadMap(){
         // this.loader.present();
-        this.geoLoc.getPosition()
-        .then((location)=>{
-            console.log('aqui->',location);
-            let latLng = new google.maps.LatLng(location['latitude'],location['longitude']);
-            let mapOptions = {
-                center:latLng,
-                clickableIcons:false,
-                disableDoubleClickZoom:true,
-                fullscreenControl:false,
-                panControl:false,
-                rotateControl:false,
-                scaleControl:false,
-                scrollwheel  :false,
-                signInControl:false,
-                streetViewControl:false,
-                zoomControl:false,
-                mapTypeControl:false,
-                zoom: 17,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
+        this.geoLoc.getMap()
+        .then((mapOpt)=>{
+            // this.map=;
+            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOpt);
+            this.map.addListener('center_changed',()=>{
+                this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+            });
+            this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+        })
 
-            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-            // this.map.addListener('center_changed',()=>{
-                //     let _loc={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-                //     this._user.getAddressFromLocation(_loc)
-                //     .then((address)=>{
-                    //         this.address=address;
-                    //         this.zone.run(()=>{});
-
-                    //     });
-                    // });
-                    this.map.setCenter(latLng);
-                    // this.loader.dismiss();
-                })
-
+    }
+    updateAddress(_loc){
+        this.geoLoc.getAddressFromLocation(_loc)
+        .then((address)=>{
+            this.address=address;
+            this.zone.run(()=>{});
+        });
     }
 
     openModal(){}
+
 
 }
