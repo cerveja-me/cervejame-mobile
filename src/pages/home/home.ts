@@ -1,5 +1,5 @@
 import { Component,ViewChild,NgZone } from '@angular/core';
-import { NavController, Slides,ModalController} from 'ionic-angular';
+import { NavController, Slides,ModalController,LoadingController} from 'ionic-angular';
 
 import { DeviceProvider } from '../../providers/device/device';
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';
@@ -19,9 +19,11 @@ export class HomePage {
     products:any=[];
     @ViewChild(Slides) slides: Slides;
     loadedcompleted;
+    err:string;
     constructor(
         public navCtrl: NavController,
         public zone:NgZone,
+        public load:LoadingController,
         public device:DeviceProvider,
         public order:OrderProvider,
         public modalCtrl: ModalController
@@ -31,6 +33,9 @@ export class HomePage {
 
     }
 
+    loader=this.load.create({
+        content: this.device.getRandonLoading()
+    })
     ionViewDidLoad() {
         this.device.camPage('home');
         this.getZone();
@@ -51,6 +56,7 @@ export class HomePage {
     //zona valida
     //produtos
     getZone(){
+        this.loader.present();
         this.order.getZone()
         .then(z=>{
             var closedtime = JSON.parse(z["schedule"]);
@@ -60,11 +66,17 @@ export class HomePage {
                 this.closed = true;
             }
             this.products=z['products'];
+
+            this.loadedcompleted=true;
             this.slides.slideTo(1);
-            // this.slides.slideTo(0);
+            this.loader.dismiss();
 
         })
         .catch(e=>{
+            this.loadedcompleted=true;
+            this.err=e.message;
+
+            this.loader.dismiss();
             console.log(e);
             //code: 3, message: "Timeout expired"}
             //não estar com a geoliberada

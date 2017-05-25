@@ -32,10 +32,10 @@ export class RegisterModalPage {
     }
 
     createUser(){
-        this.device.displayLoading();
+        // this.device.displayLoading();
         this.user.createUser(this.register)
         .then(re =>{
-            this.device.hideLoading();
+            // this.device.hideLoading();
             if(re['err']==null){
                 this.user.setLoggedUser(re);
                 this.dismiss('success');
@@ -45,7 +45,7 @@ export class RegisterModalPage {
             }
         })
         .catch(err=>{
-            this.device.hideLoading();
+            // this.device.hideLoading();
             console.log('err->',err);
         })
     }

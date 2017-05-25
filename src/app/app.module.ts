@@ -51,11 +51,11 @@ class FcmMock extends FCM {
 class GeolocationMock extends Geolocation {
   constructor(){super();}
 
-  // getCurrentPosition(){
-    //   return new Promise((resolve, reject) => {
-      //     resolve({coords:{Coordinatesaccuracy: 20,latitude: -23.529442,longitude: -46.679886,timestamp: 1495480276346}});
-      //   })
-      // }
+  getCurrentPosition(){
+    return new Promise((resolve, reject) => {
+      resolve({coords:{Coordinatesaccuracy: 20,latitude: -23.529442,longitude: -46.679886,timestamp: 1495480276346}});
+    })
+  }
 
     }
 

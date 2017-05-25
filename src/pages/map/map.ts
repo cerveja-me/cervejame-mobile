@@ -44,7 +44,6 @@ export class MapPage {
     }
 
     loadMap(){
-        this.device.displayLoading();
         this.geoLoc.getMap()
         .then((mapOpt)=>{
             // this.map=;
@@ -53,9 +52,10 @@ export class MapPage {
                 this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
             });
             this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
-            this.device.hideLoading();
         })
-        .catch(this.device.hideLoading);
+        .catch(e=>{
+            console.log(e);
+        });
 
     }
 
