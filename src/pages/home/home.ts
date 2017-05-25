@@ -1,4 +1,4 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component,ViewChild,NgZone } from '@angular/core';
 import { NavController, Slides,ModalController} from 'ionic-angular';
 
 import { DeviceProvider } from '../../providers/device/device';
@@ -17,10 +17,11 @@ export class HomePage {
     hours:{};
     closed:boolean;
     products:any=[];
-    @ViewChild('homeslide') slides: Slides;
+    @ViewChild(Slides) slides: Slides;
     loadedcompleted;
     constructor(
         public navCtrl: NavController,
+        public zone:NgZone,
         public device:DeviceProvider,
         public order:OrderProvider,
         public modalCtrl: ModalController
@@ -37,10 +38,7 @@ export class HomePage {
     }
 
     ngAfterViewInit() {
-        this.slides.loop = true;
-        // this.slides.slidesPerView=3;
-        // this.slides.initialSlide=1;
-        // this.slides.centeredSlides=true;
+        this.slides.loop=false;
     }
 
 
@@ -57,9 +55,7 @@ export class HomePage {
                 this.closed = true;
             }
             this.products=z['products'];
-            // this.slides.loop = true;
-            // this.slides.centeredSlides=true;
-            console.log('zone->',z);
+
         })
         .catch(e=>{
             console.log(e);

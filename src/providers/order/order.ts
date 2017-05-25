@@ -13,6 +13,8 @@ import { GeolocationProvider } from '../geolocation/geolocation';
     */
   @Injectable()
   export class OrderProvider {
+    product;
+
 
     constructor(
       public http: Http,
@@ -50,5 +52,11 @@ import { GeolocationProvider } from '../geolocation/geolocation';
         p.product.details=JSON.parse(p.product.description);
       }
       return p;
+    }
+    getProduct(){
+      return this.product;
+    }
+    setProduct(p){
+      this.product=p;
     }
   }

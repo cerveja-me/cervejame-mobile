@@ -18,6 +18,9 @@ import { HomePage } from '../pages/home/home';
 import { TourPage } from '../pages/tour/tour';
 import { HomeConfirmModalPage } from '../pages/home-confirm-modal/home-confirm-modal';
 import { MapPage } from '../pages/map/map';
+import { LoginModalPage } from '../pages/login-modal/login-modal';
+import { RegisterModalPage } from '../pages/register-modal/register-modal';
+import { CheckoutModalPage } from '../pages/checkout-modal/checkout-modal';
 
 //providers
 import { DeviceProvider } from '../providers/device/device';
@@ -62,7 +65,10 @@ class GeolocationMock extends Geolocation {
       HomePage,
       TourPage,
       HomeConfirmModalPage,
-      MapPage
+      MapPage,
+      LoginModalPage,
+      RegisterModalPage,
+      CheckoutModalPage
       ],
       imports: [
       HttpModule,
@@ -77,7 +83,10 @@ class GeolocationMock extends Geolocation {
       HomePage,
       TourPage,
       HomeConfirmModalPage,
-      MapPage
+      MapPage,
+      LoginModalPage,
+      RegisterModalPage,
+      CheckoutModalPage
       ],
       providers: [
       StatusBar,

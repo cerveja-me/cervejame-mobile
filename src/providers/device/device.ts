@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform,LoadingController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -24,11 +24,12 @@ declare var UXCam:any;
 
     constructor(
       public http: Http,
+      public platform:Platform,
+      public load:LoadingController,
       public device:Device,
       public appVersion:AppVersion,
       public storage:Storage,
-      public fcm:FCM,
-      public platform:Platform
+      public fcm:FCM
       ) {
       if(this.platform.is('cordova')){
         UXCam.startWithKey("eb717cc41850c30");
@@ -70,7 +71,22 @@ declare var UXCam:any;
       if(this.platform.is('cordova')){
         UXCam.tagScreenName(page);
       }
-
+    }
+    loader=this.load.create({
+      // content:this.getRandonLoading()
+      content: ''
+    })
+    displayLoading(){
+      this.loader.present();
+    }
+    hideLoading(){
+      this.loader.dismiss();
+    }
+    displayLoadingTimer(timer){
+      this.loader.present();
+      setTimeout(() => {
+        this.loader.dismiss();
+      }, timer);
     }
     post(url, object){
       return new Promise((resolve, reject)=> {
@@ -116,4 +132,25 @@ declare var UXCam:any;
     GOOGLE_ADDRESS:string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
     FIRSTIME:string = 'ftime';
     PUSH:string='fcm_token';
+
+    phrases =[
+    "Negociando gelo com o pé grande.",
+    "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa.",
+    "Não deixe pra amanhã a cerveja que você pode beber hoje.",
+    "Se dirigir não beba, se beber chame o Cerveja.me!",
+    "Nunca fiz um amigo bebendo leite.",
+    "Diga-me com quem tu andas, que te direi quantas cervejas levar.",
+    "Previsão do tempo: 100% propício para uma cerveja.",
+    "O líquido mais precioso do mundo é a água, pois com ela dá pra fazer cerveja.",
+    "Senhor, dai-me café para mudar o que posso e cerveja para mudar as que não posso.",
+    "GELADAAAAAA!",
+    "Nã Nã Nã",
+    "Aqui, Cerveja mais gelada que o coração do(a) ex.",
+    "Cerveja é igual banho, tem que tomar todo dia."
+    ];
+
+    getRandonLoading():string{
+      return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
+    }
+
   }

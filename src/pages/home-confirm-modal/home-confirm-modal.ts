@@ -48,6 +48,7 @@ export class HomeConfirmModalPage {
         }
     }
     finishRequest(){
+        this.order.setProduct(this.beer);
         this.navCtrl.push(MapPage);
     }
 }
