@@ -21,6 +21,7 @@ import { MapPage } from '../pages/map/map';
 import { LoginModalPage } from '../pages/login-modal/login-modal';
 import { RegisterModalPage } from '../pages/register-modal/register-modal';
 import { CheckoutModalPage } from '../pages/checkout-modal/checkout-modal';
+import { ScheduleModalPage } from '../pages/schedule-modal/schedule-modal';
 
 //providers
 import { DeviceProvider } from '../providers/device/device';
@@ -57,54 +58,56 @@ class GeolocationMock extends Geolocation {
     })
   }
 
-    }
+}
 
-    @NgModule({
-      declarations: [
-      MyApp,
-      HomePage,
-      TourPage,
-      HomeConfirmModalPage,
-      MapPage,
-      LoginModalPage,
-      RegisterModalPage,
-      CheckoutModalPage
-      ],
-      imports: [
-      HttpModule,
-      BrowserModule,
-      IonicModule.forRoot(MyApp) ,
-      IonicStorageModule.forRoot(),
-      IonicImageLoader.forRoot()
-      ],
-      bootstrap: [IonicApp],
-      entryComponents: [
-      MyApp,
-      HomePage,
-      TourPage,
-      HomeConfirmModalPage,
-      MapPage,
-      LoginModalPage,
-      RegisterModalPage,
-      CheckoutModalPage
-      ],
-      providers: [
-      StatusBar,
-      SplashScreen,
-      Device,
-      AppVersion,
-      FCM,
-      Geolocation,
-      {provide:Device,useClass:DeviceMock}, //coment before build to mobile
-      {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-      {provide:FCM,useClass:FcmMock},//coment before build to mobile
-      {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+@NgModule({
+  declarations: [
+  MyApp,
+  HomePage,
+  TourPage,
+  HomeConfirmModalPage,
+  MapPage,
+  LoginModalPage,
+  RegisterModalPage,
+  CheckoutModalPage,
+  ScheduleModalPage
+  ],
+  imports: [
+  HttpModule,
+  BrowserModule,
+  IonicModule.forRoot(MyApp) ,
+  IonicStorageModule.forRoot(),
+  IonicImageLoader.forRoot()
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+  MyApp,
+  HomePage,
+  TourPage,
+  HomeConfirmModalPage,
+  MapPage,
+  LoginModalPage,
+  RegisterModalPage,
+  CheckoutModalPage,
+  ScheduleModalPage
+  ],
+  providers: [
+  StatusBar,
+  SplashScreen,
+  Device,
+  AppVersion,
+  FCM,
+  Geolocation,
+  {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+  {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+  {provide:FCM,useClass:FcmMock},//coment before build to mobile
+  {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
 
-      {provide: ErrorHandler, useClass: IonicErrorHandler},
-      DeviceProvider,
-      GeolocationProvider,
-      OrderProvider,
-      UserProvider
-      ]
-    })
-    export class AppModule {}
+  {provide: ErrorHandler, useClass: IonicErrorHandler},
+  DeviceProvider,
+  GeolocationProvider,
+  OrderProvider,
+  UserProvider
+  ]
+})
+export class AppModule {}

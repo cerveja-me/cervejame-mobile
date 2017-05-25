@@ -7,6 +7,7 @@ import { OrderProvider } from '../../providers/order/order';
 
 //relatedPages
 import { HomeConfirmModalPage } from '../home-confirm-modal/home-confirm-modal';
+import { ScheduleModalPage } from '../schedule-modal/schedule-modal';
 
 
 @Component({
@@ -91,6 +92,11 @@ export class HomePage {
             this.device.camPage('home');
         });
     }
-    openSchedule(){}
+    openSchedule(){
+        let modal = this.modalCtrl.create(ScheduleModalPage,{hours:this.hours, closed:this.closed});
+        modal.present();
+
+    }
+
 
 }
