@@ -37,10 +37,10 @@ export class HomePage {
     }
 
     ngAfterViewInit() {
-        this.slides.loop = true;
-        // this.slides.slidesPerView=3;
-        // this.slides.initialSlide=1;
-        // this.slides.centeredSlides=true;
+        //this.slides.loop = true;
+        this.slides.slidesPerView =2;
+        this.slides.initialSlide = 0;
+        this.slides.centeredSlides=true;
     }
 
 
