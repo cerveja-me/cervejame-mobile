@@ -22,7 +22,7 @@ page-map {
 
         &__btn {
             @include border-radius(0);
-            @extend .font-bold !optional;
+            @extend .font-bold;
 
             background: #D84040;
             border-top: 2px solid #583318;
@@ -65,6 +65,8 @@ page-map {
             }
 
             .input-number {
+                @extend .font-bold;
+
                 border-radius: 0;
                 color: #583318;
                 position: absolute;
@@ -78,6 +80,7 @@ page-map {
                 border-color: #583318;
                 box-shadow: -22px 0 20px 0 white;
                 border-width: 0 0 0 1px;
+                text-align: center;
             }
 
             &__input {
