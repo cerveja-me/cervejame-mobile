@@ -1,0 +1,240 @@
+page-map {
+    scroll-content {
+        overflow-y: hidden;
+    }
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+    #map:after {
+        width: 51px;
+        height: 60px;
+        display: block;
+        content: ' ';
+        position: absolute;
+        top: 50%; left: 50%;
+        margin: -60px 0 0 -26px;
+        background: url(../assets/icon/map-pin.svg);
+        background-size: contain;
+        pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
+    }
+    .map {
+
+        &__btn {
+            @include border-radius(0);
+            @extend .font-bold !optional;
+
+            background: #D84040;
+            border-top: 2px solid #583318;
+            font-size: 24px;
+            padding: 20px;
+            height: auto;
+            width: 100%;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        &__navigation {
+            background: #ccc;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        &__adress {
+            padding: 0 10px;
+            width: 100%;
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            z-index: 2;
+
+            &__icon {
+                position: absolute;
+                left: 25px;
+                top: 15px;
+            }
+
+            &__plus {
+                position: absolute;
+                left: 30px;
+                BOTTOM: 23px;
+            }
+
+            .input-number {
+                border-radius: 0;
+                color: #583318;
+                position: absolute;
+                right: 0;
+                top: 15px;
+                margin-right: 15px;
+                height: 25px;
+                background: white;
+                padding: 15px;
+                width: 100px;
+                border-color: #583318;
+                box-shadow: -22px 0 20px 0 white;
+                border-width: 0 0 0 1px;
+            }
+
+            &__input {
+                @extend .font-regular;
+
+                display: block;
+                background: white;
+                color: #583318;
+                border: 2px solid #583318;
+                height: 60px;
+                width: 100%;
+                padding: 18px 15px 18px 50px;
+                box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &:first-child {
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+
+                &:last-child {
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    border-top: none;
+                }
+
+            }
+
+            &__autocomplete {
+                background: white;
+                position: absolute;
+                top: 65px;
+                width: 100%;
+                left: 0;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+
+                &__item {
+                    @extend .font-regular;
+
+                    color: #666;
+                    font-size: 14px;
+                    padding: 15px;
+                    border-bottom: 1px solid #ccc;
+                    margin: 0;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.icon-map {
+    background-image: url(../assets/icon/map-pin.svg);
+    background-size: cover;
+    width: 24px;
+    height: 29px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.icon-plus-b {
+    background-image: url(../assets/icon/icon-plus-b.svg);
+    background-size: cover;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.address__autocomplete {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: none;
+
+    border: 2px solid #583318;
+    background: white;
+    width: 100%;
+    margin: 0;
+    margin-top: -6px;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+    z-index: 999;
+    position: relative;
+
+    &__item {
+        @extend .font-regular;
+
+        color: #666;
+        font-size: 14px;
+        padding: 15px;
+        border-bottom: 1px solid #ccc;
+        margin: 0;
+        text-align: left;
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+}
+
+.address {
+
+    &__box {
+        padding: 0 10px;
+        width: 100%;
+        position: absolute;
+        top: 35px;
+        left: 0;
+        z-index: 2;
+
+        &.hidden{
+            display: none;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        left: 25px;
+        top: 15px;
+        z-index: 999;
+    }
+
+    &__input {
+        @extend .font-regular;
+        @include border-radius(10px);
+
+        box-shadow: none;
+        display: block;
+        background: white;
+        color: #583318;
+        border: 2px solid #583318;
+        height: 60px;
+        width: 100%;
+        padding: 18px 0 18px 50px;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        input {
+            margin: 0;
+        }
+    }
+}

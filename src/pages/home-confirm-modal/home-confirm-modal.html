@@ -1,0 +1,30 @@
+<!--
+  Generated template for the HomeConfirmModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content class="receipt">
+
+  <div class="modal-overlay" (click)="dismiss()"></div>
+  <div class="receipt__box">
+    <div class="receipt__quantidade">
+      <h2 class="receipt__title" *ngIf="beer">Quantas {{beer.product.cold?'caixas':'Garrafas'}}?</h2>
+      <button class="btn-minus" (click)="decreaseAmount()"></button>
+      <span class="quantidade-number" *ngIf="beer">{{beer.amount}}</span>
+      <button class="btn-plus" (click)="increaseAmount()"></button>
+  </div>
+  <div class="receipt__total">
+      <h2 class="receipt__title">Total a pagar</h2>
+      <span class="total__pricebox" *ngIf="beer">
+        <small class="total__pricebox--currency" >R$</small>{{beer.price * beer.amount | number:'2.2-2'}}
+    </span>
+</div>
+
+<button ion-button secondary class="receipt__btn" (click)="finishRequest()">CONTINUAR</button>
+
+</div>
+
+</ion-content>

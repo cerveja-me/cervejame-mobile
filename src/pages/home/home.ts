@@ -1,9 +1,13 @@
 import { Component,ViewChild } from '@angular/core';
-import { NavController, Slides} from 'ionic-angular';
+import { NavController, Slides,ModalController} from 'ionic-angular';
 
 import { DeviceProvider } from '../../providers/device/device';
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';
 import { OrderProvider } from '../../providers/order/order';
+
+//relatedPages
+import { HomeConfirmModalPage } from '../home-confirm-modal/home-confirm-modal';
+
 
 @Component({
     selector: 'page-home',
@@ -18,7 +22,8 @@ export class HomePage {
     constructor(
         public navCtrl: NavController,
         public device:DeviceProvider,
-        public order:OrderProvider
+        public order:OrderProvider,
+        public modalCtrl: ModalController
         ) {
         // this.device.camPage('home');
         //        this.device.startPush(); ver qual é o melhor momento pra ativar isso
@@ -61,7 +66,13 @@ export class HomePage {
             //estar sem conexão com a internet
         });
     }
-    selectBeer(){}
+    selectBeer(beer){
+        let modal = this.modalCtrl.create(HomeConfirmModalPage,{'beer':beer});
+        modal.present()
+        modal.onDidDismiss(data => {
+            this.device.camPage('home');
+        });
+    }
     openSchedule(){}
 
 }

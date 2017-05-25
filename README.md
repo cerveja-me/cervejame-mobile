@@ -24,3 +24,7 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac.
 
+
+```
+ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyAKiUVVFdR0OlfrR34QtKu9sBf-oyYuiGs" --variable API_KEY_FOR_IOS="AIzaSyAKiUVVFdR0OlfrR34QtKu9sBf-oyYuiGs"
+```

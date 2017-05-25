@@ -16,11 +16,14 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TourPage } from '../pages/tour/tour';
+import { HomeConfirmModalPage } from '../pages/home-confirm-modal/home-confirm-modal';
+import { MapPage } from '../pages/map/map';
 
 //providers
 import { DeviceProvider } from '../providers/device/device';
 import { GeolocationProvider } from '../providers/geolocation/geolocation';
 import { OrderProvider } from '../providers/order/order';
+import { UserProvider } from '../providers/user/user';
 
 
 class DeviceMock extends Device{
@@ -57,7 +60,9 @@ class GeolocationMock extends Geolocation {
       declarations: [
       MyApp,
       HomePage,
-      TourPage
+      TourPage,
+      HomeConfirmModalPage,
+      MapPage
       ],
       imports: [
       HttpModule,
@@ -70,7 +75,9 @@ class GeolocationMock extends Geolocation {
       entryComponents: [
       MyApp,
       HomePage,
-      TourPage
+      TourPage,
+      HomeConfirmModalPage,
+      MapPage
       ],
       providers: [
       StatusBar,
@@ -79,7 +86,6 @@ class GeolocationMock extends Geolocation {
       AppVersion,
       FCM,
       Geolocation,
-
       {provide:Device,useClass:DeviceMock}, //coment before build to mobile
       {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
       {provide:FCM,useClass:FcmMock},//coment before build to mobile
@@ -88,7 +94,8 @@ class GeolocationMock extends Geolocation {
       {provide: ErrorHandler, useClass: IonicErrorHandler},
       DeviceProvider,
       GeolocationProvider,
-      OrderProvider
+      OrderProvider,
+      UserProvider
       ]
     })
     export class AppModule {}
