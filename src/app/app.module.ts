@@ -16,13 +16,14 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TourPage } from '../pages/tour/tour';
-import { HomeConfirmModalPage } from '../pages/home-confirm-modal/home-confirm-modal';
 import { MapPage } from '../pages/map/map';
+import { HomeConfirmModalPage } from '../pages/home-confirm-modal/home-confirm-modal';
 import { LoginModalPage } from '../pages/login-modal/login-modal';
 import { RegisterModalPage } from '../pages/register-modal/register-modal';
 import { CheckoutModalPage } from '../pages/checkout-modal/checkout-modal';
 import { ScheduleModalPage } from '../pages/schedule-modal/schedule-modal';
 import { StatusModalPage } from '../pages/status-modal/status-modal';
+import { FeedbackModalPage } from '../pages/feedback-modal/feedback-modal';
 
 //providers
 import { DeviceProvider } from '../providers/device/device';
@@ -53,64 +54,66 @@ class FcmMock extends FCM {
 class GeolocationMock extends Geolocation {
   constructor(){super();}
 
-  getCurrentPosition(){
-    return new Promise((resolve, reject) => {
-      resolve({coords:{Coordinatesaccuracy: 20,latitude: -23.529442,longitude: -46.679886,timestamp: 1495480276346}});
+  // getCurrentPosition(){
+    //   return new Promise((resolve, reject) => {
+      //     resolve({coords:{Coordinatesaccuracy: 20,latitude:-22.226555,longitude: -54.810209,timestamp: 1495480276346}});
+      //   })
+      // }
+
+    }
+
+    @NgModule({
+      declarations: [
+      MyApp,
+      HomePage,
+      TourPage,
+      HomeConfirmModalPage,
+      MapPage,
+      LoginModalPage,
+      RegisterModalPage,
+      CheckoutModalPage,
+      ScheduleModalPage,
+      StatusModalPage,
+      FeedbackModalPage
+      ],
+      imports: [
+      HttpModule,
+      BrowserModule,
+      IonicModule.forRoot(MyApp) ,
+      IonicStorageModule.forRoot(),
+      IonicImageLoader.forRoot()
+      ],
+      bootstrap: [IonicApp],
+      entryComponents: [
+      MyApp,
+      HomePage,
+      TourPage,
+      HomeConfirmModalPage,
+      MapPage,
+      LoginModalPage,
+      RegisterModalPage,
+      CheckoutModalPage,
+      ScheduleModalPage,
+      StatusModalPage,
+      FeedbackModalPage
+      ],
+      providers: [
+      StatusBar,
+      SplashScreen,
+      Device,
+      AppVersion,
+      FCM,
+      Geolocation,
+      {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+      {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+      {provide:FCM,useClass:FcmMock},//coment before build to mobile
+      {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+
+      {provide: ErrorHandler, useClass: IonicErrorHandler},
+      DeviceProvider,
+      GeolocationProvider,
+      OrderProvider,
+      UserProvider
+      ]
     })
-  }
-
-}
-
-@NgModule({
-  declarations: [
-  MyApp,
-  HomePage,
-  TourPage,
-  HomeConfirmModalPage,
-  MapPage,
-  LoginModalPage,
-  RegisterModalPage,
-  CheckoutModalPage,
-  ScheduleModalPage,
-  StatusModalPage
-  ],
-  imports: [
-  HttpModule,
-  BrowserModule,
-  IonicModule.forRoot(MyApp) ,
-  IonicStorageModule.forRoot(),
-  IonicImageLoader.forRoot()
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-  MyApp,
-  HomePage,
-  TourPage,
-  HomeConfirmModalPage,
-  MapPage,
-  LoginModalPage,
-  RegisterModalPage,
-  CheckoutModalPage,
-  ScheduleModalPage,
-  StatusModalPage
-  ],
-  providers: [
-  StatusBar,
-  SplashScreen,
-  Device,
-  AppVersion,
-  FCM,
-  Geolocation,
-  {provide:Device,useClass:DeviceMock}, //coment before build to mobile
-  {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-  {provide:FCM,useClass:FcmMock},//coment before build to mobile
-  {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
-
-  {provide: ErrorHandler, useClass: IonicErrorHandler},
-  DeviceProvider,
-  GeolocationProvider,
-  OrderProvider,
-  UserProvider
-  ]
-})
-export class AppModule {}
+    export class AppModule {}

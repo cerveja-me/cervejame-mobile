@@ -9,6 +9,7 @@ import { OrderProvider } from '../../providers/order/order';
 import { HomeConfirmModalPage } from '../home-confirm-modal/home-confirm-modal';
 import { ScheduleModalPage } from '../schedule-modal/schedule-modal';
 import { StatusModalPage } from '../status-modal/status-modal';
+import { FeedbackModalPage } from '../feedback-modal/feedback-modal';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class HomePage {
     @ViewChild(Slides) slides: Slides;
     loadedcompleted;
     err:string;
+    sale;
     constructor(
         public navCtrl: NavController,
         public params:NavParams,
@@ -41,11 +43,12 @@ export class HomePage {
     })
 
     ionViewDidLoad() {
-        if(this.params.get("justFinished")){
+        this.verifyLastSale();
+        this.getZone();
+        if(!this.params.get("justFinished")){
             this.openStatus();
         }else{
             this.device.camPage('home');
-            this.getZone();
         }
 
     }
@@ -57,9 +60,30 @@ export class HomePage {
         this.slides.slidesPerView =2;
         this.slides.initialSlide = 0;
         this.slides.centeredSlides=true;
+        this.verifySaleFeedback();
     }
 
+    verifyLastSale(){
+        this.order.getLastOpenSale()
+        .then(ls=>{
+            this.sale=ls;
+        })
+        .catch(e=>{});
+    }
 
+    verifySaleFeedback(){
+        this.order.getSaleForFeedback()
+        .then(lf=>{
+            if(lf){
+                let feedbackModal = this.modalCtrl.create(FeedbackModalPage, {sale: lf});
+                feedbackModal.present();
+                feedbackModal.onDidDismiss(date=>{
+                    this.device.camPage('home');
+                })
+            }
+        })
+        .catch(e=>{});
+    }
 
     //zona valida
     //produtos
@@ -76,7 +100,7 @@ export class HomePage {
             this.products=z['products'];
 
             this.loadedcompleted=true;
-            this.slides.slideTo(1);
+            // this.slides.slideTo(1);
             this.loader.dismiss();
 
         })
@@ -109,10 +133,10 @@ export class HomePage {
 
     openStatus(){
         let modal = this.modalCtrl.create(StatusModalPage,{hours:this.hours, closed:this.closed});
-        modal.present();
         modal.onDidDismiss(data => {
             this.device.camPage('home');
-            this.getZone();
+            // this.getZone();
         });
+        modal.present();
     }
 }

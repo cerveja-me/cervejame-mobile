@@ -84,7 +84,7 @@
       <span class="schedule-off__hours">Horários</span>
     </button>
 
-    <button ion-button secondary (click)="openSale()" class="order-status-bar" *ngIf="sale && sale.id" >
+    <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="sale && sale.id" >
 
       <span class="order-status-bar__label" *ngIf="!sale.aceptedAt && !sale.onWayAt">
         <span class="icon-loading"></span>
