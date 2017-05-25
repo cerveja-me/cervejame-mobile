@@ -38,7 +38,9 @@ export class HomePage {
 
     ngAfterViewInit() {
         this.slides.loop = true;
-        this.slides.slidesPerView=3;
+        // this.slides.slidesPerView=3;
+        // this.slides.initialSlide=1;
+        // this.slides.centeredSlides=true;
     }
 
 
@@ -55,7 +57,8 @@ export class HomePage {
                 this.closed = true;
             }
             this.products=z['products'];
-
+            // this.slides.loop = true;
+            // this.slides.centeredSlides=true;
             console.log('zone->',z);
         })
         .catch(e=>{

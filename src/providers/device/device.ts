@@ -91,7 +91,7 @@ declare var UXCam:any;
       });
     }
     get(url){
-
+      return this.http.get(url).toPromise();
     }
     put(url,object){
 
