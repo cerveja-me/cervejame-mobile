@@ -66,27 +66,23 @@ declare var google;
     getAddressFromLocation(location){
       return new Promise((resolve, reject) => {
         let url =this.device.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
-        this.http.get(url).toPromise()
+        this.device.get(url)
         .then((res)=>{
           let add = res.json()['results'];
           resolve(this.convertAddress(add[0]))
         })
-        .catch(e=>{
-          reject(e)
-        });
+        .catch(reject);
       })
     }
 
     getLocationsWithAddres(address){
       return new Promise((resolve, reject) => {
         let url =this.device.GOOGLE_GEOCODE.replace('#',address);
-        this.http.get(url).toPromise()
+        this.device.get(url)
         .then((res)=>{
           resolve(res.json());
         })
-        .catch(e=>{
-          reject(e);
-        });
+        .catch(reject);
       })
     }
 
