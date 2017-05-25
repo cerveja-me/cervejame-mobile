@@ -1,5 +1,5 @@
 import { Component,ViewChild,NgZone } from '@angular/core';
-import { NavController, Slides,ModalController,LoadingController} from 'ionic-angular';
+import { NavController,NavParams, Slides,ModalController,LoadingController} from 'ionic-angular';
 
 import { DeviceProvider } from '../../providers/device/device';
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';
@@ -8,6 +8,7 @@ import { OrderProvider } from '../../providers/order/order';
 //relatedPages
 import { HomeConfirmModalPage } from '../home-confirm-modal/home-confirm-modal';
 import { ScheduleModalPage } from '../schedule-modal/schedule-modal';
+import { StatusModalPage } from '../status-modal/status-modal';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class HomePage {
     err:string;
     constructor(
         public navCtrl: NavController,
+        public params:NavParams,
         public zone:NgZone,
         public load:LoadingController,
         public device:DeviceProvider,
@@ -37,9 +39,14 @@ export class HomePage {
     loader=this.load.create({
         content: this.device.getRandonLoading()
     })
+
     ionViewDidLoad() {
-        this.device.camPage('home');
-        this.getZone();
+        if(this.params.get("justFinished")){
+            this.openStatus();
+        }else{
+            this.device.camPage('home');
+            this.getZone();
+        }
 
     }
 
@@ -95,8 +102,17 @@ export class HomePage {
     openSchedule(){
         let modal = this.modalCtrl.create(ScheduleModalPage,{hours:this.hours, closed:this.closed});
         modal.present();
-
+        modal.onDidDismiss(data => {
+            this.device.camPage('home');
+        });
     }
 
-
+    openStatus(){
+        let modal = this.modalCtrl.create(StatusModalPage,{hours:this.hours, closed:this.closed});
+        modal.present();
+        modal.onDidDismiss(data => {
+            this.device.camPage('home');
+            this.getZone();
+        });
+    }
 }

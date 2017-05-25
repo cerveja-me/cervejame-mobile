@@ -22,6 +22,7 @@ import { LoginModalPage } from '../pages/login-modal/login-modal';
 import { RegisterModalPage } from '../pages/register-modal/register-modal';
 import { CheckoutModalPage } from '../pages/checkout-modal/checkout-modal';
 import { ScheduleModalPage } from '../pages/schedule-modal/schedule-modal';
+import { StatusModalPage } from '../pages/status-modal/status-modal';
 
 //providers
 import { DeviceProvider } from '../providers/device/device';
@@ -70,7 +71,8 @@ class GeolocationMock extends Geolocation {
   LoginModalPage,
   RegisterModalPage,
   CheckoutModalPage,
-  ScheduleModalPage
+  ScheduleModalPage,
+  StatusModalPage
   ],
   imports: [
   HttpModule,
@@ -89,7 +91,8 @@ class GeolocationMock extends Geolocation {
   LoginModalPage,
   RegisterModalPage,
   CheckoutModalPage,
-  ScheduleModalPage
+  ScheduleModalPage,
+  StatusModalPage
   ],
   providers: [
   StatusBar,

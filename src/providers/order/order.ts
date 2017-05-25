@@ -14,7 +14,7 @@ import { GeolocationProvider } from '../geolocation/geolocation';
   @Injectable()
   export class OrderProvider {
     product;
-
+    location;
 
     constructor(
       public http: Http,
@@ -29,8 +29,10 @@ import { GeolocationProvider } from '../geolocation/geolocation';
           var d=this.device.getDevice();
           this.device.post(this.device.API+this.device.LOCATION,{"device":d.uuid,"location":pos['latitude']+","+pos['longitude']})
           .then(res=>{
+
             if(res['products'] && res['products'].length > 0 ){
               res['products']=res['products'].map(this.convertProducts);
+              this.location=res;
               resolve(res);
             }else{
               if(res['zone']){
@@ -43,6 +45,9 @@ import { GeolocationProvider } from '../geolocation/geolocation';
         })
         .catch(reject);
       })
+    }
+    getLocation(){
+      return this.location;
     }
 
     convertProducts(p){
@@ -58,5 +63,15 @@ import { GeolocationProvider } from '../geolocation/geolocation';
     }
     setProduct(p){
       this.product=p;
+    }
+
+    createSale(data){
+      return new Promise((resolve, reject) => {
+        this.device.post(this.device.API+this.device.SALE,data)
+        .then((res)=>{
+          resolve(res);
+        })
+        .catch(reject);
+      })
     }
   }
