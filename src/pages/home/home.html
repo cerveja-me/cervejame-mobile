@@ -5,9 +5,8 @@
 <ion-content class="bkg-choose center">
   <div class="table"></div>
 
-
-
-  <ion-slides  class="choose-slider"  hideWhen="!products.length >0">
+  <ion-slides class="choose-slider" [ngClass]="!taped?'on-slide':''" 
+   (ionSlideDrag)="onTaped()" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold">
         <p class="choose__pricebox">
