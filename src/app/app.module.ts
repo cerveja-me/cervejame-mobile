@@ -32,8 +32,8 @@ import { GeolocationProvider } from '../providers/geolocation/geolocation';
 import { OrderProvider } from '../providers/order/order';
 import { UserProvider } from '../providers/user/user';
 
-// import 'intl';
-// import 'intl/locale-data/jsonp/pt-BR';
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 
 class DeviceMock extends Device{
   get cordova(): string{ return "6.2.3";}
