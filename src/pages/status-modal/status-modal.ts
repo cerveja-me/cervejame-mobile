@@ -34,7 +34,6 @@ export class StatusModalPage {
             this.sale=ls;
         })
         .catch(e=>{
-            console.log(e);
             this.dismiss();
         })
     }
