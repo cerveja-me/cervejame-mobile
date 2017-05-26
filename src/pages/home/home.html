@@ -5,9 +5,7 @@
 <ion-content class="bkg-choose center" (click)="onTaped()">
   <div class="table"></div>
 
-
-
-  <ion-slides class="choose-slider" hideWhen="!products.length >0">
+     <ion-slides class="choose-slider" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold">
         <p class="choose__pricebox">
@@ -70,12 +68,12 @@
 </ion-slides>
 <ion-slides class="choose-slider" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
  <ion-slide>
-   <p class="msg-empty">
+   <p class="msg-empty location-error">
 
-     <span class="msg-empty__title">Localização.</span>
+     <span class="msg-empty__title">Onde você está?</span>
 
-     Quer levar para sua cidade?<br/>
-     Saiba como: <strong><a href="http://cerveja.me">Cerveja.me</a></strong></p>
+     Ative o uso da Localização nas configurações do seu aparelho.<button class="btn-white" (click)="startApp()">Já ativei</button>
+     
      <p class="choose__bottom">
       <figure class="choose__picture" style="bottom: 5%;">
 
