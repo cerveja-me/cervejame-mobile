@@ -108,7 +108,6 @@ export class HomePage {
             this.err=e.message;
 
             this.loader.dismiss();
-            console.log(e);
             //code: 3, message: "Timeout expired"}
             //não estar com a geoliberada
             //nao estar em uma zona valida
