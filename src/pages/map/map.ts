@@ -1,5 +1,5 @@
 import { Component, ViewChild,ElementRef,NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams,Platform,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform,ModalController,LoadingController } from 'ionic-angular';
 
 import { DeviceProvider } from '../../providers/device/device';
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';
@@ -25,13 +25,14 @@ export class MapPage {
     addressOptions=[];
     complement='';
     number='';
-
+    loader;
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         public modalCtrl:ModalController,
         public zone:NgZone,
         public platform:Platform,
+        public load:LoadingController,
         public geoLoc:GeolocationProvider,
         public device:DeviceProvider,
         public order:OrderProvider
@@ -44,6 +45,10 @@ export class MapPage {
     }
 
     loadMap(){
+        this.loader=this.load.create({
+            content: this.device.getRandonLoading()
+        });
+        this.loader.present();
         this.geoLoc.getMap()
         .then((mapOpt)=>{
             // this.map=;
@@ -52,9 +57,11 @@ export class MapPage {
                 this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
             });
             this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+            this.loader.dismiss();
         })
         .catch(e=>{
             console.log(e);
+            this.loader.dismiss();
         });
 
     }
