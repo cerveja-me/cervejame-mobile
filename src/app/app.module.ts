@@ -171,7 +171,7 @@ class GeolocationMock extends Geolocation {
         {provide:Device,useClass:DeviceMock}, //coment before build to mobile
         {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
         {provide:FCM,useClass:FcmMock},//coment before build to mobile
-        {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+        // {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
 
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         DeviceProvider,

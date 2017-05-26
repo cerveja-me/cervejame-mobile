@@ -31,7 +31,7 @@ declare var UXCam:any;
       public fcm:FCM
       ) {
       if(this.platform.is('cordova')){
-        UXCam.startWithKey("eb717cc41850c30");
+        UXCam.startWithKey("f7aa8dede567674");
         UXCam.tagUsersName(this.device.uuid);
       }
       this.createDevice('empty');
