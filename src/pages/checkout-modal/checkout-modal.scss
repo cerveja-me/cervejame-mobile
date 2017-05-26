@@ -61,7 +61,24 @@ page-checkout-modal {
         height: 18px;
         display: inline-block;
         vertical-align: middle;
-        margin-right: 10px;
+    }
+    
+     .icon-maquina {
+        background-image: url('../assets/icon/icon-maquina.svg');
+        background-size: cover;
+        width: 64px;
+        height: 18px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+     .icon-money {
+        background-image: url('../assets/icon/icon-money.svg');
+        background-size: cover;
+        width: 33px;
+        height: 18px;
+        display: inline-block;
+        vertical-align: middle;
     }
 
     .icon-arrow-fw {
@@ -95,6 +112,7 @@ page-checkout-modal {
             text-align: center;
             width: 31%;
             margin-right: 2%;
+            transition: all 0.3s;
 
             &:last-child {
                 margin-right: 0;
@@ -112,11 +130,11 @@ page-checkout-modal {
 
             &.active {
                 background: #D5A86C;
+                box-shadow: inset 0px 0px 0px 2px #FFFFDD;
             }
 
             &.inactive {
                 position: relative;
-                background: rgba(255,255,255,0.4);
                 border-color: rgba(88,51,24,0.4);
 
                 span, label {opacity: 0.4;}

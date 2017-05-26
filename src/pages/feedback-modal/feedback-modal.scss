@@ -5,7 +5,7 @@ page-feedback-modal {
         &__star {
             background-image: url(../assets/icon/icon-star.svg);
             background-size: cover;
-            width: 35px;
+            width: 36px;
             height: 35px;
             display: inline-block;
             margin: 20px 5px 35px;
@@ -14,7 +14,7 @@ page-feedback-modal {
             &.active {
                 background-image: url(../assets/icon/icon-star-vote.svg);
                 background-size: cover;
-                width: 35px;
+                width: 36px;
                 height: 35px;
                 display: inline-block;
                 background-color: transparent;
