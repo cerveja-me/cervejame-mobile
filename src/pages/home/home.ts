@@ -100,14 +100,14 @@ export class HomePage {
 
             this.loadedcompleted=true;
             // this.slides.slideTo(1);
-            //this.loader.dismiss();
+            this.loader.dismiss();
 
         })
         .catch(e=>{
             this.loadedcompleted=true;
             this.err=e.message;
 
-            //this.loader.dismiss();
+            this.loader.dismiss();
             console.log(e);
             //code: 3, message: "Timeout expired"}
             //não estar com a geoliberada
