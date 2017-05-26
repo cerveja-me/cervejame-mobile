@@ -168,6 +168,10 @@
     z-index: 1;
     animation: overlay 0.3s linear .3s 1 normal;
     animation-fill-mode: both;
+    
+    &.on-close {
+        animation: overlay 0.3s linear 0s 1 reverse;
+    }
 }
 
 .loading-wrapper {
