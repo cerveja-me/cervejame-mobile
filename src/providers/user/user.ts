@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 
 import { DeviceProvider } from '../device/device';
@@ -10,6 +11,7 @@ export class UserProvider {
 
     constructor(
         private storage:Storage,
+        private fb: Facebook,
         private device:DeviceProvider
         ) {
         console.log('Hello UserProvider Provider');

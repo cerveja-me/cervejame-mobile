@@ -36,6 +36,7 @@
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
+        "cordova-plugin-facebook4": "^1.9.0",
         "cordova-plugin-fcm": "^2.1.1",
         "cordova-plugin-file": "^4.3.3",
         "cordova-plugin-file-transfer": "^1.6.3",
@@ -75,7 +76,11 @@
             "cordova-uxcam": {},
             "cordova-plugin-geolocation": {},
             "cordova-plugin-file": {},
-            "cordova-plugin-file-transfer": {}
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-facebook4": {
+                "APP_ID": "289767478086559",
+                "APP_NAME": "Cerveja.me"
+            }
         },
         "platforms": [
             "android"

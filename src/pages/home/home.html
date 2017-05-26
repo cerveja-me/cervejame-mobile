@@ -7,7 +7,7 @@
 
 
 
-  <ion-slides  class="choose-slider"  hideWhen="!products.length >0">
+  <ion-slides  class="choose-slider" (ionSlideWillChange)="onSlideChangeStart($event)" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold">
         <p class="choose__pricebox">
