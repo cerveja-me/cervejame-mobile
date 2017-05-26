@@ -27,12 +27,15 @@ declare var google;
       return new Promise((resolve, reject) => {
         this.geolocation.getCurrentPosition({enableHighAccuracy: true,timeout: 5000, maximumAge: 0})
         .then(pos=>{
-          console.log('position->',pos);
           resolve(pos.coords)
         })
         .catch(err=>{
-          console.log('erro geo->', err);
-          reject(err);
+          let e={message:''};
+          if(err.code==1){
+            e.message='USER_DENIED_GEOLOCATION';
+          }
+          console.log('erro geo->', e);
+          reject(e);
         })
       })
     }
