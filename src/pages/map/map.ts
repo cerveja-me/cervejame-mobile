@@ -110,6 +110,12 @@ export class MapPage {
         let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
         let modal = this.modalCtrl.create(CheckoutModalPage,{"location":loca,"address":this.address,"complement":this.complement});
         modal.present();
+        modal.onDidDismiss(data=>{
+            if(data==='cancel'){
+                this.device.camPage("map");
+            }
+
+        })
     }
 
 

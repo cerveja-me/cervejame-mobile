@@ -49,8 +49,8 @@ export class CheckoutModalPage {
 
     }
 
-    dismiss() {
-        this.viewCtrl.dismiss();
+    dismiss(msg) {
+        this.viewCtrl.dismiss(msg);
     }
 
     finishOrder(){

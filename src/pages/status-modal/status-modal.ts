@@ -35,6 +35,7 @@ export class StatusModalPage {
         })
         .catch(e=>{
             console.log(e);
+            this.dismiss();
         })
     }
     dismiss(){

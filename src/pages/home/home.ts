@@ -134,7 +134,8 @@ export class HomePage {
         let modal = this.modalCtrl.create(StatusModalPage,{hours:this.hours, closed:this.closed});
         modal.onDidDismiss(data => {
             this.device.camPage('home');
-            // this.getZone();
+            this.verifyLastSale();
+            this.verifySaleFeedback();
         });
         modal.present();
     }
