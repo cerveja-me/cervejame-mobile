@@ -49,11 +49,26 @@ export class LoginModalPage {
             }
         });
     }
-    facebookRegister(){}
+
+    doFacebookRegister(){
+        this.loader=this.load.create({content: this.device.getRandonLoading()});
+        this.loader.present();
+        this.user.facebookRegister()
+        .then(u=>{
+            this.loader.dismiss();
+            this.dismiss('success');
+        })
+        .catch(e=>{
+            this.dismiss('success');
+            console.log('erro ao cadastrar pelo facebook');
+        });
+    }
+
     doLoginForm(){
         this.loader=this.load.create({
             content: this.device.getRandonLoading()
         });
+        this.loader.present();
         this.user.loginUser(this.login)
         .then(u =>{
             this.loader.dismiss();
@@ -71,6 +86,7 @@ export class LoginModalPage {
         })
         .catch(e=>{
             this.dismiss('success');
+            console.log('e->',e);
             //qual erro
             //qual msg
         })

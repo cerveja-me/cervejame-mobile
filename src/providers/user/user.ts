@@ -77,31 +77,60 @@ export class UserProvider {
             .catch(reject);
         })
     }
-    //verificar esse metodo na sequencia
-    /*facebookRegister(fu){
+    facebookData(){
         return new Promise((resolve, reject) => {
-            let u ={
-                name:fu.name,
-                email:fu.email,
-                password:fu.id,
-                facebook_id:fu.id,
-                facebook_token:fu.auth.accessToken
-            }
-            this.loginUser(u)
-            .then(res =>{
-                if(res['err']==null){
-                    resolve(res);
-                }else{
-                    this.createUser(u)
-                    .then(re =>{
-                        if(res['err']==null){
-                            resolve(res);
-                        }else{
-                            reject();
-                        }
-                    });
+            let permissions = new Array();
+            permissions = ["public_profile","email"];
+            this.fb.login(permissions)
+            .then(data=>{
+                let params=new Array();
+                this.fb.api("/me?fields=id,name,email,first_name,last_name,gender", params)
+                .then(user=>{
+                    user.auth=data.authResponse;
+                    resolve(user);
+                })
+                .catch(reject);
+            })
+            .catch(reject);
+        })
+    }
+
+
+
+    facebookRegister(){
+        return new Promise((resolve, reject) => {
+            this.facebookData()
+            .then(fu=>{
+                console.log('facebook->',fu);
+                let u ={
+                    name:fu['name'],
+                    email:fu['email'],
+                    password:fu['id'],
+                    facebook_id:fu['id'],
+                    facebook_token:fu['auth']['accessToken']
                 }
-            });
+
+                this.loginUser(u)
+                .then(res =>{
+                    console.log('user ->',res);
+                    if(res['err']==null){
+                        this.setLoggedUser(res);
+                        resolve(res);
+                    }else{
+                        this.createUser(u)
+                        .then(re =>{
+                            if(res['err']==null){
+                                this.setLoggedUser(res);
+                                resolve(res);
+                            }else{
+                                reject();
+                            }
+                        });
+                    }
+                })
+                .catch(reject);
+            })
+            .catch(reject);
         });
-    }*/
+    }
 }

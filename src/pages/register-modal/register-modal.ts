@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController,LoadingController } from 'ionic-angular';
 
 import { UserProvider } from '../../providers/user/user';
 import { DeviceProvider } from '../../providers/device/device';
@@ -16,11 +16,12 @@ export class RegisterModalPage {
         password:'',
         phone:''
     }
-
+    loader;
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         public viewCtrl: ViewController,
+        public load:LoadingController,
         public user:UserProvider,
         public device:DeviceProvider
         )
@@ -28,7 +29,6 @@ export class RegisterModalPage {
     }
     ionViewDidLoad() {
         this.device.camPage('register');
-        console.log('ionViewDidLoad RegisterModalPage');
     }
 
     createUser(){
@@ -52,6 +52,17 @@ export class RegisterModalPage {
     dismiss(re){
         this.viewCtrl.dismiss('success');
     }
-
+    doFacebookRegister(){
+        this.loader=this.load.create({content: this.device.getRandonLoading()});
+        this.loader.present();
+        this.user.facebookRegister()
+        .then(u=>{
+            this.loader.dismiss();
+            this.dismiss('success');
+        })
+        .catch(e=>{
+            'erro ao cadastrar pelo facebook';
+        });
+    }
 
 }
