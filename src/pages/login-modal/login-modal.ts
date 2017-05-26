@@ -18,9 +18,7 @@ export class LoginModalPage {
         password:''
     }
 
-    loader=this.load.create({
-        content: this.device.getRandonLoading()
-    })
+    loader;
 
     constructor(
         public navCtrl: NavController,
@@ -53,6 +51,9 @@ export class LoginModalPage {
     }
     facebookRegister(){}
     doLoginForm(){
+        this.loader=this.load.create({
+            content: this.device.getRandonLoading()
+        });
         this.user.loginUser(this.login)
         .then(u =>{
             this.loader.dismiss();
@@ -69,6 +70,7 @@ export class LoginModalPage {
             }
         })
         .catch(e=>{
+            this.dismiss('success');
             //qual erro
             //qual msg
         })

@@ -45,11 +45,8 @@ export class HomePage {
     ionViewDidLoad() {
         this.verifyLastSale();
         this.getZone();
-        if(!this.params.get("justFinished")){
-            this.openStatus();
-        }else{
-            this.device.camPage('home');
-        }
+        this.device.camPage('home');
+
 
     }
 
@@ -66,6 +63,7 @@ export class HomePage {
     verifyLastSale(){
         this.order.getLastOpenSale()
         .then(ls=>{
+            // this.openStatus();
             this.sale=ls;
         })
         .catch(e=>{});
@@ -79,6 +77,7 @@ export class HomePage {
                 feedbackModal.present();
                 feedbackModal.onDidDismiss(date=>{
                     this.device.camPage('home');
+                    this.verifyLastSale();
                 })
             }
         })
@@ -135,7 +134,8 @@ export class HomePage {
         let modal = this.modalCtrl.create(StatusModalPage,{hours:this.hours, closed:this.closed});
         modal.onDidDismiss(data => {
             this.device.camPage('home');
-            // this.getZone();
+            this.verifyLastSale();
+            this.verifySaleFeedback();
         });
         modal.present();
     }
