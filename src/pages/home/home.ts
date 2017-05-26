@@ -24,8 +24,8 @@ export class HomePage {
     loadedcompleted;
     err:string;
     sale;
-taped=false;
-constructor(
+    taped=false;
+    constructor(
         public navCtrl: NavController,
         public params:NavParams,
         public zone:NgZone,
@@ -47,7 +47,7 @@ constructor(
         this.verifyLastSale();
         this.getZone();
         this.device.camPage('home');
-        
+
 
     }
 

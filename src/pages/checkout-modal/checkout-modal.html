@@ -1,7 +1,7 @@
 
 
 <ion-content class="receipt">
-  <div class="modal-overlay" (click)="dismiss('cancel')"></div>
+  <div class="modal-overlay"  [ngClass]="closing ? 'on-close': '' " (click)="close('cancel')"></div>
   <div class="receipt__box">
 
     <div class="receipt__quantidade">
@@ -31,7 +31,7 @@
       </button>
     </div>
 
-    <div class="receipt__address" (click)="dismiss()" ><span class="icon-map receipt__address__icon" *ngIf="address"></span>{{address}}<span class="icon-arrow-fw" *ngIf="address"></span></div>
+    <div class="receipt__address" (click)="close()" ><span class="icon-map receipt__address__icon" *ngIf="address"></span>{{address}}<span class="icon-arrow-fw" *ngIf="address"></span></div>
 
 
     <button ion-button secondary class="receipt__btn" (click)="finishOrder()">CONCLUIR PEDIDO</button>

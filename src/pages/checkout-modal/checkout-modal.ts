@@ -24,6 +24,7 @@ export class CheckoutModalPage {
     payment='card';
     addressComplement='';
     readAddress='';
+    closing=false;
     constructor(
         public navCtrl: NavController,
         public params: NavParams,
@@ -46,11 +47,18 @@ export class CheckoutModalPage {
         this.fullAddress=this.params.get("address");
         this.addressComplement=this.params.get("complement");
         this.address=this.geoloc.formatAddress(this.fullAddress) +(this.addressComplement?", "+this.addressComplement:'');
-
+        this.closing=false;
     }
 
     dismiss(msg) {
         this.viewCtrl.dismiss(msg);
+    }
+
+    close(){
+        this.closing=true;
+        setTimeout(() => {
+            this.viewCtrl.dismiss();
+        },300);
     }
 
     finishOrder(){
