@@ -1,0 +1,41 @@
+
+
+<ion-content class="receipt">
+  <div class="modal-overlay"  [ngClass]="closing ? 'on-close': '' " (click)="close('cancel')"></div>
+  <div class="receipt__box">
+
+    <div class="receipt__quantidade">
+      <h2 class="receipt__title">Seu pedido</h2>
+      <span class="figure__pedido" *ngIf="product"><img-loader class="figure__pedido__img" [src]="'http://cerveja.me/img/mobile/'+product.product.img"></img-loader></span>
+      <span class="quantidade-pedido" *ngIf="product">{{product.amount}} {{product.product.cold?'Caixas de':''}} {{product.product.name}}</span>
+    </div>
+    <div class="receipt__total" *ngIf="product">
+      <h2 class="receipt__title teste">Total a pagar</h2>
+      <span class="total__pricebox">
+        <small class="total__pricebox--currency" >R$</small>{{product.amount * product.price |number:'2.2-2'}}
+      </span>
+    </div>
+
+    <div class="payment">
+      <button class="payment__option" [ngClass]="payment=='card'?'active':''" (click)="payment='card'">
+        <span class="icon-maquina"></span>
+        <label class="payment__option__label">Máquina</label>
+      </button>
+      <button class="payment__option" [ngClass]="payment=='money'?'active':''" (click)="payment='money'">
+        <span class="icon-money"></span>
+        <label class="payment__option__label">Dinheiro</label>
+      </button>
+      <button class="payment__option inactive">
+        <span class="icon-card"></span>
+        <label class="payment__option__label">Via app</label>
+      </button>
+    </div>
+
+    <div class="receipt__address" (click)="close()" ><span class="icon-map receipt__address__icon" *ngIf="address"></span>{{address}}<span class="icon-arrow-fw" *ngIf="address"></span></div>
+
+
+    <button ion-button secondary class="receipt__btn" (click)="finishOrder()">CONCLUIR PEDIDO</button>
+
+  </div>
+
+</ion-content>

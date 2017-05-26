@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 import { DeviceProvider } from '../device/device';
 import { GeolocationProvider } from '../geolocation/geolocation';
-
+import { UserProvider } from '../user/user';
 /*
   Generated class for the OrderProvider provider.
 
@@ -13,11 +13,14 @@ import { GeolocationProvider } from '../geolocation/geolocation';
     */
   @Injectable()
   export class OrderProvider {
+    product;
+    location;
 
     constructor(
       public http: Http,
       public device:DeviceProvider,
-      public geoloc:GeolocationProvider
+      public geoloc:GeolocationProvider,
+      public user:UserProvider
       ) {}
 
     getZone(){
@@ -27,8 +30,10 @@ import { GeolocationProvider } from '../geolocation/geolocation';
           var d=this.device.getDevice();
           this.device.post(this.device.API+this.device.LOCATION,{"device":d.uuid,"location":pos['latitude']+","+pos['longitude']})
           .then(res=>{
+
             if(res['products'] && res['products'].length > 0 ){
               res['products']=res['products'].map(this.convertProducts);
+              this.location=res;
               resolve(res);
             }else{
               if(res['zone']){
@@ -42,6 +47,9 @@ import { GeolocationProvider } from '../geolocation/geolocation';
         .catch(reject);
       })
     }
+    getLocation(){
+      return this.location;
+    }
 
     convertProducts(p){
       p.product.qtd=p.product.description.split(" ", 1)[0];
@@ -50,5 +58,79 @@ import { GeolocationProvider } from '../geolocation/geolocation';
         p.product.details=JSON.parse(p.product.description);
       }
       return p;
+    }
+    getProduct(){
+      return this.product;
+    }
+    setProduct(p){
+      this.product=p;
+    }
+
+    createSale(data){
+      return new Promise((resolve, reject) => {
+        this.device.post(this.device.API+this.device.SALE,data)
+        .then((res)=>{
+          resolve(res);
+        })
+        .catch(reject);
+      })
+    }
+
+    getLastOpenSale(){
+      return new Promise((resolve, reject) => {
+        this.user.isUserLogged()
+        .then(isLogged=>{
+          if(isLogged){
+            this.user.getLoggedUser()
+            .then(u=>{
+              this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUYOPEN+u['costumer']['id'])
+              .then(s=>{
+                try{
+                  resolve(s.json());
+                }catch(e){
+                  reject();
+                }
+              })
+            })
+          }else{
+            reject();
+          }
+        })
+      })
+    }
+    getSaleForFeedback(){
+      return new Promise((resolve, reject) => {
+        this.user.isUserLogged()
+        .then(isLogged=>{
+          if(isLogged){
+            this.user.getLoggedUser()
+            .then(u=>{
+              this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUY+u['costumer']['id'])
+              .then(s=>{
+                try{
+                  resolve(s.json());
+                }catch(e){
+                  reject();
+                }
+              })
+            })
+          }else{
+            reject();
+          }
+        })
+      })
+    }
+
+    sendFeedback(sale){
+      return new Promise((resolve, reject) => {
+        this.device.post(this.device.API+this.device.SALE+this.device.SEND_FEEDBACK, sale)
+        .then((res)=>{
+          // this._device.setDevice(res.json());
+          resolve(res);
+        })
+        .catch(er=>{
+
+        });
+      })
     }
   }

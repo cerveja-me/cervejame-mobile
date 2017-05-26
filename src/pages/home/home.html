@@ -2,12 +2,12 @@
  <h1 class="logo-dark"></h1>
 </ion-header>
 
-<ion-content class="bkg-choose center">
+<ion-content class="bkg-choose center" (click)="onTaped()">
   <div class="table"></div>
 
 
 
-  <ion-slides #homeslide class="choose-slider"  hideWhen="!products.length >0">
+  <ion-slides class="choose-slider" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold">
         <p class="choose__pricebox">
@@ -15,44 +15,44 @@
           <span class="choose__pricebox__info2">Por Unidade</span>
           <span class="choose__pricebox__price">
            <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'2.2-2'}}
+         </span>
+         <span class="choose__pricebox__each">
+           <small class="choose__pricebox__each--currency">R$</small>{{prod.unitvalue |number:'2.2-2'}}
+         </span>
+         <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
+         <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
+       </p>
+       <p class="choose__bottom">
+        <figure class="choose__picture">
+          <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
+        </figure>
+        <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
+      </p>
+    </div>
+    <div *ngIf="!prod.product.cold">
+      <p class="choose__pricebox">
+        <span class="choose__pricebox__info1">{{prod.product.details.type}}</span>
+        <span class="choose__pricebox__info2">{{prod.product.details.winery}}</span>
+        <span class="choose__pricebox__price">
+         <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'2.2-2'}}
        </span>
        <span class="choose__pricebox__each">
-           <small class="choose__pricebox__each--currency">R$</small>{{prod.unitvalue |number:'2.2-2'}}
+         <small class="choose__pricebox__each--currency">{{prod.product.details.grape}}</small>
        </span>
        <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-       <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
-   </p>
-   <p class="choose__bottom">
-    <figure class="choose__picture">
-      <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
-  </figure>
-  <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
-</p>
-</div>
-<div *ngIf="!prod.product.cold">
-  <p class="choose__pricebox">
-    <span class="choose__pricebox__info1">{{prod.product.details.type}}</span>
-    <span class="choose__pricebox__info2">{{prod.product.details.winery}}</span>
-    <span class="choose__pricebox__price">
-     <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'2.2-2'}}
- </span>
- <span class="choose__pricebox__each">
-     <small class="choose__pricebox__each--currency">{{prod.product.details.grape}}</small>
- </span>
- <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
- <span class="termo-natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
-</p>
-<p class="choose__bottom">
-  <figure class="choose__picture">
-      <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
-  </figure>
-  <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
-</p>
-</div>
+       <span class="termo-natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
+     </p>
+     <p class="choose__bottom">
+      <figure class="choose__picture">
+        <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
+      </figure>
+      <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
+    </p>
+  </div>
 </ion-slide>
 
 </ion-slides>
-<!-- <ion-slides class="choose-slider" *ngIf="!products.length && loadedcompleted">
+<ion-slides class="choose-slider" *ngIf="loadedcompleted && err==='NO_ZONE_AVAILABLE'">
  <ion-slide>
    <p class="msg-empty">
 
@@ -64,11 +64,11 @@
       <figure class="choose__picture" style="bottom: 5%;">
 
         <img style="margin-top: 5%" src="assets/img/empty.png">
-    </figure>
-</p>
-</ion-slide>
+      </figure>
+    </p>
+  </ion-slide>
 </ion-slides>
--->
+
 
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
@@ -76,33 +76,33 @@
     <span class="schedule-on__label">
       <span class="icon-clock"></span>
       <label>Estamos atendendo</label>
-  </span>
-</button>
-<button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed"  >
+    </span>
+  </button>
+  <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed"  >
     <span class="schedule-off__label">
       <span class="icon-clock-w"></span>Não é possível fazer pedidos agora.</span>
       <span class="schedule-off__hours">Horários</span>
-  </button>
+    </button>
 
-  <button ion-button secondary (click)="openSale()" class="order-status-bar" *ngIf="sale && sale.id" >
+    <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="sale && sale.id" >
 
       <span class="order-status-bar__label" *ngIf="!sale.aceptedAt && !sale.onWayAt">
         <span class="icon-loading"></span>
         <label>Aguardando confirmação</label>
-    </span>
+      </span>
 
-    <span class="order-status-bar__label active" *ngIf="sale.aceptedAt && !sale.onWayAt">
+      <span class="order-status-bar__label active" *ngIf="sale.aceptedAt && !sale.onWayAt">
         <span class="icon-check"></span>
         <label>Perdido confirmado</label>
-    </span>
+      </span>
 
-    <span class="order-status-bar__label delivery active" *ngIf="sale.aceptedAt && sale.onWayAt">
+      <span class="order-status-bar__label delivery active" *ngIf="sale.aceptedAt && sale.onWayAt">
         <figure class="order-status-bar__image">
           <img-loader [src]="'http://cerveja.me/img/mobile/driver/'+sale.user.img"></img-loader>
-      </figure>
-      <label>{{sale.user.name}} saiu para entrega</label>
-  </span>
-</button>
-</ion-footer>
+        </figure>
+        <label>{{sale.user.name}} saiu para entrega</label>
+      </span>
+    </button>
+  </ion-footer>
 
 

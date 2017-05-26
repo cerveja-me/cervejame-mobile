@@ -28,3 +28,9 @@ Substitute ios for android if not on a Mac.
 ```
 ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyAKiUVVFdR0OlfrR34QtKu9sBf-oyYuiGs" --variable API_KEY_FOR_IOS="AIzaSyAKiUVVFdR0OlfrR34QtKu9sBf-oyYuiGs"
 ```
+
+```
+ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="289767478086559" --variable APP_NAME="Cerveja.me"
+
+```
+

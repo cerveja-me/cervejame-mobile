@@ -157,6 +157,11 @@
     100% { opacity: 1; }
 }
 
+@keyframes overlayout {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 .modal-overlay {
     position: absolute;
     width: 100%;
@@ -167,7 +172,12 @@
     opacity: 0;
     z-index: 1;
     animation: overlay 0.3s linear .3s 1 normal;
-    animation-fill-mode: both;
+    animation-fill-mode: forwards;
+
+    &.on-close {
+        animation: overlayout 0.3s linear 0s 1 normal;
+        animation-fill-mode: backwards;
+    }
 }
 
 .loading-wrapper {
@@ -285,4 +295,13 @@ ion-spinner {
 ion-navbar {
     position: absolute;
     top: 0;
+}
+
+ion-backdrop {
+    background-color: rgba(#583318,0.9) !important;
+    opacity: 1 !important;
+}
+
+.button.activated {
+    background: #583318;
 }

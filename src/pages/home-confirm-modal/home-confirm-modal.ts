@@ -15,6 +15,7 @@ export class HomeConfirmModalPage {
     character;
     beer;
     timeStart;
+    closing=false;
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -33,9 +34,14 @@ export class HomeConfirmModalPage {
 
     ionViewDidLoad() {
         this.device.camPage("home-modal-confirm");
+        this.closing=false;
     }
     dismiss() {
-        this.viewCtrl.dismiss();
+        this.closing=true;
+        setTimeout(() => {
+            this.viewCtrl.dismiss();
+        },300);
+
     }
     increaseAmount(){
         this.beer.amount++;
@@ -48,6 +54,7 @@ export class HomeConfirmModalPage {
         }
     }
     finishRequest(){
+        this.order.setProduct(this.beer);
         this.navCtrl.push(MapPage);
     }
 }
