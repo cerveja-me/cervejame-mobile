@@ -70,6 +70,24 @@
  <ion-slide>
    <p class="msg-empty location-error">
 
+     <span class="msg-empty__title">Oops!</span>
+
+     Não conseguimos identificar sua localização automaticamente.<button class="btn-white" (click)="startApp()">Tentar novamente</button>
+     
+     <p class="choose__bottom">
+      <figure class="choose__picture" style="bottom: 5%;">
+
+        <img style="margin-top: 5%" src="assets/img/empty.png">
+      </figure>
+    </p>
+  </ion-slide>
+</ion-slides>
+
+<!--
+<ion-slides class="choose-slider" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
+ <ion-slide>
+   <p class="msg-empty location-error">
+
      <span class="msg-empty__title">Onde você está?</span>
 
      Ative o uso da Localização nas configurações do seu aparelho.<button class="btn-white" (click)="startApp()">Já ativei</button>
@@ -82,6 +100,7 @@
     </p>
   </ion-slide>
 </ion-slides>
+-->
 
 
 </ion-content>
