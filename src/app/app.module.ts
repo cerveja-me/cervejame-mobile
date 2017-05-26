@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
-import { FCM } from '@ionic-native/fcm';
+import { Push } from '@ionic-native/push';
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { Facebook } from '@ionic-native/facebook';
@@ -50,9 +50,9 @@ class AppVersionMock extends AppVersion {
   constructor(){super();}
   getVersionNumber(){return new Promise((resolve, reject) => {resolve( '2.0.1');})}
 }
-class FcmMock extends FCM {
+class PushMock extends Push {
   constructor(){super();}
-  getToken(){return new Promise((resolve, reject) => {resolve( 'TOKEN_BROWSER_DEV');})}
+  // getToken(){return new Promise((resolve, reject) => {resolve( 'TOKEN_BROWSER_DEV');})}
 }
 class FacebookMock extends Facebook{
   constructor(){super();}
@@ -164,13 +164,13 @@ class GeolocationMock extends Geolocation {
         SplashScreen,
         Device,
         AppVersion,
-        FCM,
+        Push,
         Geolocation,
         Facebook,
         {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
         {provide:Device,useClass:DeviceMock}, //coment before build to mobile
         {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-        {provide:FCM,useClass:FcmMock},//coment before build to mobile
+        {provide:Push,useClass:PushMock},//coment before build to mobile
         {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
 
         {provide: ErrorHandler, useClass: IonicErrorHandler},

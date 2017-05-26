@@ -11,8 +11,8 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve"
-},
-"dependencies": {
+  },
+  "dependencies": {
     "@angular/common": "4.1.0",
     "@angular/compiler": "4.1.0",
     "@angular/compiler-cli": "4.1.0",
@@ -28,6 +28,7 @@
     "@ionic-native/fcm": "^3.10.2",
     "@ionic-native/file": "^3.10.3",
     "@ionic-native/geolocation": "^3.10.2",
+    "@ionic-native/push": "^3.10.3",
     "@ionic-native/splash-screen": "3.7.0",
     "@ionic-native/status-bar": "3.7.0",
     "@ionic-native/transfer": "^3.10.3",
@@ -38,7 +39,6 @@
     "cordova-plugin-console": "^1.0.5",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-facebook4": "^1.9.0",
-    "cordova-plugin-fcm": "^2.1.1",
     "cordova-plugin-file": "^4.3.3",
     "cordova-plugin-file-transfer": "^1.6.3",
     "cordova-plugin-geolocation": "^2.4.3",
@@ -55,16 +55,16 @@
     "rxjs": "5.1.1",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.10"
-},
-"devDependencies": {
+  },
+  "devDependencies": {
     "@ionic/app-scripts": "1.3.7",
     "@ionic/cli-plugin-cordova": "1.1.2",
     "@ionic/cli-plugin-ionic-angular": "1.1.2",
     "compass": "^0.1.1",
     "compass-sass-mixins": "^0.12.7",
     "typescript": "2.2.1"
-},
-"cordova": {
+  },
+  "cordova": {
     "plugins": {
       "cordova-plugin-nativestorage": {},
       "cordova-plugin-device": {},
@@ -74,7 +74,6 @@
       "cordova-plugin-whitelist": {},
       "ionic-plugin-keyboard": {},
       "cordova-plugin-app-version": {},
-      "cordova-plugin-fcm": {},
       "cordova-uxcam": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-file": {},
@@ -82,10 +81,13 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "289767478086559",
         "APP_NAME": "Cerveja.me"
-    }
-},
-"platforms": [
-  "android"
-]
-}
+      },
+      "phonegap-plugin-push": {
+        "SENDER_ID": "10339294539"
+      }
+    },
+    "platforms": [
+      "android"
+    ]
+  }
 }

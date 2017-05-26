@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
-import { FCM } from '@ionic-native/fcm';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 import { Storage } from '@ionic/storage';
 
@@ -22,13 +22,28 @@ declare var UXCam:any;
   @Injectable()
   export class DeviceProvider {
 
+    options: PushOptions = {
+      android: {
+        senderID: "10339294539",
+        sound: 'true',
+        icon:'icon'
+      },
+      ios: {
+        senderID: "10339294539",
+        alert: "true",
+        badge: true,
+        sound: 'true'
+      }
+    };
+    pushObject: PushObject;
+
     constructor(
       public http: Http,
       public platform:Platform,
       public device:Device,
       public appVersion:AppVersion,
       public storage:Storage,
-      public fcm:FCM
+      public push: Push
       ) {
       if(this.platform.is('cordova')){
         UXCam.startWithKey("eb717cc41850c30");
@@ -38,6 +53,8 @@ declare var UXCam:any;
       if(this.device.platform==='Android'){
         this.startPush();
       }
+      this.pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+
     }
     createDevice(push:string){
       console.log('push->',push);
@@ -60,10 +77,7 @@ declare var UXCam:any;
 
 
     startPush(){
-      this.fcm.getToken().then(token=>{
-        console.log('token->',token);
-        this.createDevice(token);
-      })
+      this.pushObject= this.push.init(this.options);
     }
     camPage(page){
       console.log('uxcam->',page);
