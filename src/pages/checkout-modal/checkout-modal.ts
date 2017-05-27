@@ -147,7 +147,8 @@ export class CheckoutModalPage {
                 {
                     name: 'phone',
                     placeholder: 'Seu Telefone',
-                    value:this.user.costumer.phone
+                    value:this.user.costumer.phone,
+                    type:'tel'
                 }
                 ],
                 buttons: [
