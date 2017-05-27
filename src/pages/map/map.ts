@@ -1,5 +1,5 @@
 import { Component, ViewChild,ElementRef,NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams,Platform,ModalController,LoadingController } from 'ionic-angular';
+import { NavController, NavParams,Platform,ModalController,LoadingController } from 'ionic-angular';
 
 import { DeviceProvider } from '../../providers/device/device';
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';

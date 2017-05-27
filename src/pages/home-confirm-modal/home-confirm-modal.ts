@@ -1,5 +1,5 @@
 import { Component,NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController,ViewController } from 'ionic-angular';
+import { NavController, NavParams,ModalController,ViewController } from 'ionic-angular';
 
 //pages
 import { MapPage } from '../map/map';
