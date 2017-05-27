@@ -33,6 +33,8 @@ declare var google;
           let e={message:''};
           if(err.code==1){
             e.message='USER_DENIED_GEOLOCATION';
+          }else{
+            e.message='GEOLOCATION_TIMEOUT';
           }
           console.log('erro geo->', e);
           reject(e);

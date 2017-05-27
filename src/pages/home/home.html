@@ -5,7 +5,7 @@
 <ion-content class="bkg-choose center" (click)="onTaped()">
   <div class="table"></div>
 
-     <ion-slides class="choose-slider" hideWhen="!products.length >0">
+  <ion-slides class="choose-slider" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold">
         <p class="choose__pricebox">
@@ -66,14 +66,14 @@
     </p>
   </ion-slide>
 </ion-slides>
-<ion-slides class="choose-slider" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
+<ion-slides class="choose-slider" *ngIf="loadedcompleted && err==='GEOLOCATION_TIMEOUT'">
  <ion-slide>
    <p class="msg-empty location-error">
 
      <span class="msg-empty__title">Oops!</span>
 
      Não conseguimos identificar sua localização automaticamente.<button class="btn-white" (click)="startApp()">Tentar novamente</button>
-     
+
      <p class="choose__bottom">
       <figure class="choose__picture" style="bottom: 5%;">
 
@@ -83,7 +83,7 @@
   </ion-slide>
 </ion-slides>
 
-<!--
+
 <ion-slides class="choose-slider" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
  <ion-slide>
    <p class="msg-empty location-error">
@@ -91,7 +91,7 @@
      <span class="msg-empty__title">Onde você está?</span>
 
      Ative o uso da Localização nas configurações do seu aparelho.<button class="btn-white" (click)="startApp()">Já ativei</button>
-     
+
      <p class="choose__bottom">
       <figure class="choose__picture" style="bottom: 5%;">
 
@@ -100,7 +100,6 @@
     </p>
   </ion-slide>
 </ion-slides>
--->
 
 
 </ion-content>

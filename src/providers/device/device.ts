@@ -76,7 +76,9 @@ declare var UXCam:any;
         }
       });
       pushObject.on('registration')
-      .subscribe((registration: any) => console.log('Device registered', registration));
+      .subscribe((registration: any) =>{
+        console.log('Device registered', registration)
+      } );
 
 
 
@@ -112,10 +114,6 @@ declare var UXCam:any;
     put(url,object){
 
     }
-
-    // API:string = 'http://192.168.0.144:1337/';
-    // API:string = 'http://localhost:1337/';
-    // this.API = '  http://e101a380.ngrok.io/';
 
     API:string='http://api.cerveja.me/';
 
