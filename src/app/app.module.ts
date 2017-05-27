@@ -52,7 +52,7 @@ class AppVersionMock extends AppVersion {
 }
 class PushMock extends Push {
   constructor(){super();}
-  // getToken(){return new Promise((resolve, reject) => {resolve( 'TOKEN_BROWSER_DEV');})}
+
 }
 class FacebookMock extends Facebook{
   constructor(){super();}

@@ -22,20 +22,6 @@ declare var UXCam:any;
   @Injectable()
   export class DeviceProvider {
 
-    options: PushOptions = {
-      android: {
-        senderID: "10339294539",
-        sound: 'true',
-        icon:'icon'
-      },
-      ios: {
-        senderID: "10339294539",
-        alert: "true",
-        badge: true,
-        sound: 'true'
-      }
-    };
-    pushObject: PushObject;
 
     constructor(
       public http: Http,
@@ -53,7 +39,6 @@ declare var UXCam:any;
       if(this.device.platform==='Android'){
         this.startPush();
       }
-      this.pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
 
     }
     createDevice(push:string){
@@ -77,7 +62,24 @@ declare var UXCam:any;
 
 
     startPush(){
-      this.pushObject= this.push.init(this.options);
+      var pushObject= this.push.init({
+        android: {
+          senderID: "10339294539",
+          sound: 'true',
+          icon:'icon'
+        },
+        ios: {
+          senderID: "10339294539",
+          alert: "true",
+          badge: true,
+          sound: 'true'
+        }
+      });
+      pushObject.on('registration')
+      .subscribe((registration: any) => console.log('Device registered', registration));
+
+
+
     }
     camPage(page){
       console.log('uxcam->',page);
