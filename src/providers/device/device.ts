@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform,Events,AlertController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -26,6 +26,8 @@ declare var UXCam:any;
     constructor(
       public http: Http,
       public platform:Platform,
+      public events:Events,
+      public alertCtrl:AlertController,
       public device:Device,
       public appVersion:AppVersion,
       public storage:Storage,
@@ -79,9 +81,24 @@ declare var UXCam:any;
       .subscribe((registration: any) =>{
         console.log('Device registered', registration)
       } );
+      pushObject.on('notification')
+      .subscribe((notification: any)=>{
+        if(notification && notification.title && (notification.title=="Pedido Confirmado" || notification.title=="Cerveja a caminho" || notification.title=="Cerveja entregue" )){
+          this.events.publish('push:order_update', notification);
+        }else{
+          this.doAlert(notification);
+        }
+      });
 
 
-
+    }
+    doAlert(data) {
+      let alert = this.alertCtrl.create({
+        title: data.title,
+        message: data.message,
+        buttons: ['Ok']
+      });
+      alert.present()
     }
     camPage(page){
       console.log('uxcam->',page);
