@@ -10,6 +10,7 @@ import { Push } from '@ionic-native/push';
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { Facebook } from '@ionic-native/facebook';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { HttpModule } from '@angular/http';
 
@@ -52,7 +53,12 @@ class AppVersionMock extends AppVersion {
 }
 class PushMock extends Push {
   constructor(){super();}
+}
+class KeyboardMock extends Keyboard {
 
+  constructor() {super();}
+  show(){}
+  close(){}
 }
 class FacebookMock extends Facebook{
   constructor(){super();}
@@ -111,73 +117,72 @@ class FacebookMock extends Facebook{
 class GeolocationMock extends Geolocation {
   constructor(){super();}
 
-  // getCurrentPosition(){
+  /* getCurrentPosition(){
     //   return new Promise((resolve, reject) => {
       //     resolve({coords:{Coordinatesaccuracy: 20,latitude:-22.226555,longitude: -54.810209,timestamp: 1495480276346}});
       //   })
-      // }
+    }*/
 
-    }
+  }
 
-    // class FacebookMock extends Facebook{
-      //   constructor(){super;}
+  @NgModule({
+    declarations: [
+    MyApp,
+    HomePage,
+    TourPage,
+    HomeConfirmModalPage,
+    MapPage,
+    LoginModalPage,
+    RegisterModalPage,
+    CheckoutModalPage,
+    ScheduleModalPage,
+    StatusModalPage,
+    FeedbackModalPage
+    ],
+    imports: [
+    HttpModule,
+    BrowserModule,
+    IonicModule.forRoot(MyApp) ,
+    IonicStorageModule.forRoot(),
+    IonicImageLoader.forRoot()
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+    MyApp,
+    HomePage,
+    TourPage,
+    HomeConfirmModalPage,
+    MapPage,
+    LoginModalPage,
+    RegisterModalPage,
+    CheckoutModalPage,
+    ScheduleModalPage,
+    StatusModalPage,
+    FeedbackModalPage
+    ],
+    providers: [
+    StatusBar,
+    Keyboard,
+    SplashScreen,
+    Device,
+    AppVersion,
+    Push,
+    Geolocation,
+    Facebook,
 
-      // }
+    {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
+    {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+    {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+    {provide:Push,useClass:PushMock},//coment before build to mobile
+    {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+    {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
 
-      @NgModule({
-        declarations: [
-        MyApp,
-        HomePage,
-        TourPage,
-        HomeConfirmModalPage,
-        MapPage,
-        LoginModalPage,
-        RegisterModalPage,
-        CheckoutModalPage,
-        ScheduleModalPage,
-        StatusModalPage,
-        FeedbackModalPage
-        ],
-        imports: [
-        HttpModule,
-        BrowserModule,
-        IonicModule.forRoot(MyApp) ,
-        IonicStorageModule.forRoot(),
-        IonicImageLoader.forRoot()
-        ],
-        bootstrap: [IonicApp],
-        entryComponents: [
-        MyApp,
-        HomePage,
-        TourPage,
-        HomeConfirmModalPage,
-        MapPage,
-        LoginModalPage,
-        RegisterModalPage,
-        CheckoutModalPage,
-        ScheduleModalPage,
-        StatusModalPage,
-        FeedbackModalPage
-        ],
-        providers: [
-        StatusBar,
-        SplashScreen,
-        Device,
-        AppVersion,
-        Push,
-        Geolocation,
-        Facebook,
-        {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
-        {provide:Device,useClass:DeviceMock}, //coment before build to mobile
-        {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-        {provide:Push,useClass:PushMock},//coment before build to mobile
-        {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
 
-        {provide: ErrorHandler, useClass: IonicErrorHandler},
-        DeviceProvider,
-        GeolocationProvider,
-        OrderProvider,
-        UserProvider
-        ]
-      })
-      export class AppModule {}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DeviceProvider,
+    GeolocationProvider,
+    OrderProvider,
+    UserProvider
+    ]
+  })
+  export class AppModule {}
