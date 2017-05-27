@@ -102,6 +102,7 @@ export class HomePage {
             if(d.getHours() > closedtime[d.getDay()].start && d.getHours() < closedtime[d.getDay()].end){
                 this.closed = true;
             }
+            this.err=null;
             this.products=z['products'];
 
             this.loadedcompleted=true;
@@ -146,6 +147,17 @@ export class HomePage {
     }
     onTaped(){
         this.taped=true;
+    }
+    tryAgain(){
+        this.slides.loop=false;
+
+        //this.slides.loop = true;
+        this.slides.slidesPerView =2;
+        this.slides.initialSlide = 0;
+        this.slides.centeredSlides=true;
+        this.loadedcompleted=true;
+        this.err=null;
+        this.getZone()
     }
 
 }
