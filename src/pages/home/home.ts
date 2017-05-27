@@ -1,5 +1,5 @@
 import { Component,ViewChild,NgZone } from '@angular/core';
-import { NavController,NavParams, Slides,ModalController,LoadingController} from 'ionic-angular';
+import { NavController,NavParams, Slides,ModalController,LoadingController,Events} from 'ionic-angular';
 
 import { DeviceProvider } from '../../providers/device/device';
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';
@@ -29,11 +29,16 @@ export class HomePage {
         public navCtrl: NavController,
         public params:NavParams,
         public zone:NgZone,
+        public events:Events,
         public load:LoadingController,
         public device:DeviceProvider,
         public order:OrderProvider,
         public modalCtrl: ModalController
         ) {
+        this.events.subscribe('push:order_update', data=>{
+            this.verifySaleFeedback();
+            this.verifyLastSale();
+        })
         // this.device.camPage('home');
         //        this.device.startPush(); ver qual é o melhor momento pra ativar isso
 
