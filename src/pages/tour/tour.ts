@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams,Slides } from 'ionic-angular';
+import { NavController, NavParams,Slides } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 //pages
