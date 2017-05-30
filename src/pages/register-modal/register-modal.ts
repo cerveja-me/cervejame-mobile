@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ViewController,LoadingController } from 'ionic-angular';
+import { NavController, NavParams,ViewController,LoadingController,AlertController } from 'ionic-angular';
 
 import { UserProvider } from '../../providers/user/user';
 import { DeviceProvider } from '../../providers/device/device';
@@ -22,6 +22,7 @@ export class RegisterModalPage {
         public navParams: NavParams,
         public viewCtrl: ViewController,
         public load:LoadingController,
+        public alert:AlertController,
         public user:UserProvider,
         public device:DeviceProvider
         )
@@ -32,21 +33,39 @@ export class RegisterModalPage {
     }
 
     createUser(){
-        // this.device.displayLoading();
+        this.loader=this.load.create({content: this.device.getRandonLoading()});
+        this.loader.present();
         this.user.createUser(this.register)
         .then(re =>{
-            // this.device.hideLoading();
+            this.loader.dismiss();
             if(re['err']==null){
                 this.user.setLoggedUser(re);
                 this.dismiss('success');
+            }else if(re['err']=='EMAIL_EXISTS'){
+                let alert = this.alert.create({
+                    title: 'Email em Uso',
+                    message: 'Parece que você já usou esse email para se cadastrar, gostaria de entrar em contato? <a href="http://cerveja.me">Cerveja.me</a>.',
+                    buttons: ['Ok']
+                });
+                alert.present();
             }else{
-                // this.loader.dismiss();
-                console.log('cadastro com erro ->',re);
+                let alert = this.alert.create({
+                    title: 'Erro',
+                    message: 'Opa! Tivemos um erro, por favor tente novamente, se o erro persistir entre contato <a href="http://cerveja.me">Cerveja.me</a>.',
+                    buttons: ['Ok']
+                });
+                alert.present();
             }
         })
         .catch(err=>{
-            // this.device.hideLoading();
-            console.log('err->',err);
+            this.loader.dismiss();
+
+            let alert = this.alert.create({
+                title: 'Erro',
+                message: 'Opa! Tivemos um erro, por favor tente novamente, se o erro persistir entre contato <a href="http://cerveja.me">Cerveja.me</a>.',
+                buttons: ['Ok']
+            });
+            alert.present();
         })
     }
     dismiss(re){

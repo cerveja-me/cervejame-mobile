@@ -99,8 +99,10 @@ declare var UXCam:any;
       } );
       pushObject.on('notification')
       .subscribe((notification: any)=>{
-        if(notification && notification.title && (notification.title=="Pedido Confirmado" || notification.title=="Cerveja a caminho" || notification.title=="Cerveja entregue" )){
+        if(notification && notification.title && (notification.title=="Pedido Confirmado" || notification.title=="Cerveja a caminho")){
           this.events.publish('push:order_update', notification);
+        }else if( notification.title=="Cerveja entregue" ){
+          this.events.publish('push:order_complete', notification);
         }
         this.doAlert(notification);
 

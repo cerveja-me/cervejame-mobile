@@ -36,9 +36,12 @@ export class HomePage {
         public modalCtrl: ModalController
         ) {
         this.events.subscribe('push:order_update', data=>{
-            this.verifySaleFeedback();
             this.verifyLastSale();
         });
+        this.events.subscribe('push:order_complete', data=>{
+            this.verifySaleFeedback();
+        });
+
     }
 
     loader=this.load.create({
@@ -46,7 +49,12 @@ export class HomePage {
     })
 
     ionViewDidLoad() {
-        this.verifyLastSale();
+        if(this.params.get('justFinished')){
+            this.openStatus();
+        }else{
+            this.verifyLastSale();
+            this.verifySaleFeedback();
+        }
         this.getZone();
         this.device.camPage('home');
         this.device.startPush();
@@ -59,13 +67,11 @@ export class HomePage {
         this.slides.slidesPerView =2;
         this.slides.initialSlide = 0;
         this.slides.centeredSlides=true;
-        this.verifySaleFeedback();
     }
 
     verifyLastSale(){
         this.order.getLastOpenSale()
         .then(ls=>{
-            // this.openStatus();
             if(ls){
                 this.sale=ls; //verificar aqui se ainda tem alguma venda em aberto se nao tem que remover a barra...
             }else{
@@ -75,20 +81,24 @@ export class HomePage {
         .catch(e=>{});
     }
 
-
+    feedbackisopen=false;
     verifySaleFeedback(){
-        this.order.getSaleForFeedback()
-        .then(lf=>{
-            if(lf){
-                let feedbackModal = this.modalCtrl.create(FeedbackModalPage, {sale: lf});
-                feedbackModal.present();
-                feedbackModal.onDidDismiss(date=>{
-                    this.device.camPage('home');
-                    this.verifyLastSale();
-                })
-            }
-        })
-        .catch(e=>{});
+        if(!this.feedbackisopen){
+            this.order.getSaleForFeedback()
+            .then(lf=>{
+                if(lf){
+                    let feedbackModal = this.modalCtrl.create(FeedbackModalPage, {sale: lf});
+                    feedbackModal.present().then(r=>{
+                        this.feedbackisopen=true;
+                    });
+                    feedbackModal.onDidDismiss(date=>{
+                        this.feedbackisopen=false;
+                        this.device.camPage('home');
+                    })
+                }
+            })
+            .catch(e=>{});
+        }
     }
 
     //zona valida
@@ -127,24 +137,35 @@ export class HomePage {
             this.device.camPage('home');
         });
     }
+    scheduleisopen=false;
     openSchedule(){
-        let modal = this.modalCtrl.create(ScheduleModalPage,{hours:this.hours, closed:this.closed});
-        modal.present();
-        modal.onDidDismiss(data => {
-            this.device.camPage('home');
-        });
+        if(!this.scheduleisopen){
+            let modal = this.modalCtrl.create(ScheduleModalPage,{hours:this.hours, closed:this.closed});
+            modal.present().then(r=>{
+                this.scheduleisopen=true;
+            })
+            modal.onDidDismiss(data => {
+                this.device.camPage('home');
+            });
+        }
     }
 
+    statusIsOpen=false;
     openStatus(){
-        let modal = this.modalCtrl.create(StatusModalPage,{hours:this.hours, closed:this.closed});
-        modal.onDidDismiss(data => {
-            if(data==='empty'){
-                this.sale=null;
-            }
-            this.device.camPage('home');
-            this.events.publish('push:order_update', data);
-        });
-        modal.present();
+        if(!this.statusIsOpen){
+            let modal = this.modalCtrl.create(StatusModalPage,{hours:this.hours, closed:this.closed});
+            modal.present().then(r=>{
+                this.statusIsOpen=true;
+            });
+            modal.onDidDismiss(data => {
+                this.statusIsOpen=false;
+                if(data==='empty'){
+                    this.sale=null;
+                }
+                this.device.camPage('home');
+                this.events.publish('push:order_update', data);
+            });
+        }
     }
     onTaped(){
         this.taped=true;

@@ -19,7 +19,9 @@ export class StatusModalPage {
         public device:DeviceProvider,
         public user:UserProvider,
         public order:OrderProvider) {
-
+        this.events.subscribe('push:order_update', data=>{
+            this.verifyLastSale();
+        });
 
     }
 

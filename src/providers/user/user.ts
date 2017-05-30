@@ -50,7 +50,9 @@ export class UserProvider {
             u.device=this.device.getDevice().uuid;
             this.device.post(this.device.API+this.device.COSTUMER,u)
             .then((res)=>{
-                this.setLoggedUser(res);
+                if(u['err'] == null ){
+                    this.setLoggedUser(res);
+                }
                 resolve(res);
             })
             .catch(reject);

@@ -85,86 +85,18 @@ export class LoginModalPage {
             }
         })
         .catch(e=>{
-            this.dismiss('success');
-            console.log('e->',e);
-            //qual erro
-            //qual msg
+            this.loader.dismiss();
+            let alert = this.alert.create({
+                title: 'Erro',
+                message: 'Opa! Tivemos um erro, por favor tente novamente, se o erro persistir entre contato <a href="http://cerveja.me">Cerveja.me</a>.',
+                buttons: ['Ok']
+            });
+            alert.present();
+
         })
     }
 
     dismiss(re){
         this.viewCtrl.dismiss(re);
     }
-
-    // private doFbLogin(){
-        //   return new Promise((resolve, reject) => {
-            //     let permissions = new Array();
-
-            //     //the permissions your facebook app needs from the user
-            //     permissions = ["public_profile","email"];
-            //     Facebook.login(permissions)
-            //     .then(function(response){
-                //       let userId = response.authResponse.userID;
-                //       let params = new Array();
-
-                //       //Getting name and gender properties
-                //       Facebook.api("/me?fields=name,gender,email", params)
-                //       .then(function(user) {
-                    //         user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
-                    //         user.auth=response.authResponse;
-                    //         console.log('user->',user);
-                    //         resolve(user);
-                    //       })
-                    //     }, function(error){
-
-                        //       console.log('erro->',error);
-                        //       reject(error);
-                        //     });
-                        //   })
-                        // }
-                        // doLoginForm(){
-                            //   this.loader.present();
-                            //   this._user.loginUser(this.login)
-                            //   .then(u =>{
-                                //     this.loader.dismiss();
-                                //     if(u['err'] == null ){
-                                    //       this._user.setLoggedUser(u);
-                                    //     }else{
-                                        //       let alert = this.alerCtrl.create({
-                                            //         title: 'Dados Invalidos',
-                                            //         message: 'Parece que você errou sua senha, cuidado quando for utilizar o aplicativo enquanto estiver alcoolizado.',
-                                            //         buttons: ['Ok']
-                                            //       });
-                                            //       alert.present();
-                                            //     }
-                                            //   })
-
-                                            // }
-                                            // facebookRegister(){
-                                                //   this.doFbLogin()
-                                                //   .then((user)=>{
-                                                    //     this._user.facebookRegister(user)
-                                                    //     .then((result)=>{
-                                                        //       this._user.setLoggedUser(result);
-                                                        //       this.gotomap();
-                                                        //     })
-                                                        //   })
-                                                        // }
-                                                        // openModalRegister(){
-                                                            //   let modal = this.modalCtrl.create(ModalRegisterPage);
-                                                            //   modal.present();
-                                                            //   modal.onWillDismiss(f =>{
-                                                                //     if(f!=null){
-                                                                    //       this.gotomap();
-                                                                    //     }else{
-                                                                        //       this._user.isUserLogged()
-                                                                        //       .then(log=>{
-                                                                            //         if(log){
-                                                                                //           this.gotomap();
-                                                                                //         }
-                                                                                //       })
-                                                                                //     }
-
-                                                                                //   })
-                                                                                // }
-                                                                            }
+}

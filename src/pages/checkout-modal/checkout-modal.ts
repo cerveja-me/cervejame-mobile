@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ViewController,ModalController,AlertController } from 'ionic-angular';
+import { NavController, NavParams,ViewController,ModalController,AlertController,Events } from 'ionic-angular';
 
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';
 import { DeviceProvider } from '../../providers/device/device';
@@ -31,7 +31,7 @@ export class CheckoutModalPage {
         public viewCtrl: ViewController,
         public modalCtrl:ModalController,
         public alertCtrl:AlertController,
-
+        public events:Events,
         public order:OrderProvider,
         public device:DeviceProvider,
         public geoloc:GeolocationProvider,
@@ -124,10 +124,14 @@ export class CheckoutModalPage {
         })
         .then(r =>{
             this.navCtrl.setRoot(HomePage,{"justFinished":true});
-            // this.complete();
         })
         .catch(e =>{
-            console.log('erro ->', e);
+            let alert = this.alertCtrl.create({
+                title: 'Erro',
+                message: 'Opa! Tivemos um erro, por favor tente novamente, se o erro persistir entre contato <a href="http://cerveja.me">Cerveja.me</a>.',
+                buttons: ['Ok']
+            });
+            alert.present();
         });
 
     }
