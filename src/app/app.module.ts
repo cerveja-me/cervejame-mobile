@@ -26,6 +26,7 @@ import { CheckoutModalPage } from '../pages/checkout-modal/checkout-modal';
 import { ScheduleModalPage } from '../pages/schedule-modal/schedule-modal';
 import { StatusModalPage } from '../pages/status-modal/status-modal';
 import { FeedbackModalPage } from '../pages/feedback-modal/feedback-modal';
+import { NotificationModalPage } from '../pages/notification-modal/notification-modal';
 
 //providers
 import { DeviceProvider } from '../providers/device/device';
@@ -137,7 +138,8 @@ class GeolocationMock extends Geolocation {
     CheckoutModalPage,
     ScheduleModalPage,
     StatusModalPage,
-    FeedbackModalPage
+    FeedbackModalPage,
+    NotificationModalPage
     ],
     imports: [
     HttpModule,
@@ -158,7 +160,8 @@ class GeolocationMock extends Geolocation {
     CheckoutModalPage,
     ScheduleModalPage,
     StatusModalPage,
-    FeedbackModalPage
+    FeedbackModalPage,
+    NotificationModalPage
     ],
     providers: [
     StatusBar,
@@ -170,13 +173,13 @@ class GeolocationMock extends Geolocation {
     Geolocation,
     Facebook,
 
-   /* {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
-    {provide:Device,useClass:DeviceMock}, //coment before build to mobile
-    {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-    {provide:Push,useClass:PushMock},//coment before build to mobile
-    {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
-    {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
-    */
+    // {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
+    // {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+    // {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+    // {provide:Push,useClass:PushMock},//coment before build to mobile
+    // {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
+    // {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+
 
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DeviceProvider,

@@ -38,10 +38,7 @@ export class HomePage {
         this.events.subscribe('push:order_update', data=>{
             this.verifySaleFeedback();
             this.verifyLastSale();
-        })
-        // this.device.camPage('home');
-        //        this.device.startPush(); ver qual é o melhor momento pra ativar isso
-
+        });
     }
 
     loader=this.load.create({
@@ -52,8 +49,7 @@ export class HomePage {
         this.verifyLastSale();
         this.getZone();
         this.device.camPage('home');
-
-
+        this.device.startPush();
     }
 
     ngAfterViewInit() {
@@ -70,10 +66,15 @@ export class HomePage {
         this.order.getLastOpenSale()
         .then(ls=>{
             // this.openStatus();
-            this.sale=ls;
+            if(ls){
+                this.sale=ls; //verificar aqui se ainda tem alguma venda em aberto se nao tem que remover a barra...
+            }else{
+                this.sale=null;
+            }
         })
         .catch(e=>{});
     }
+
 
     verifySaleFeedback(){
         this.order.getSaleForFeedback()
@@ -103,9 +104,11 @@ export class HomePage {
                 this.closed = true;
             }
             this.err=null;
+
             this.products=z['products'];
 
             this.loadedcompleted=true;
+            this.zone.run(()=>{});
             // this.slides.slideTo(1);
             this.loader.dismiss();
 
@@ -113,12 +116,8 @@ export class HomePage {
         .catch(e=>{
             this.loadedcompleted=true;
             this.err=e.message;
-
-            this.loader.dismiss();
-            //code: 3, message: "Timeout expired"}
-            //não estar com a geoliberada
-            //nao estar em uma zona valida
-            //estar sem conexão com a internet
+            this.zone.run(()=>{});
+            this.loader.dismiss();            //estar sem conexão com a internet
         });
     }
     selectBeer(beer){
@@ -139,9 +138,11 @@ export class HomePage {
     openStatus(){
         let modal = this.modalCtrl.create(StatusModalPage,{hours:this.hours, closed:this.closed});
         modal.onDidDismiss(data => {
+            if(data==='empty'){
+                this.sale=null;
+            }
             this.device.camPage('home');
-            this.verifyLastSale();
-            this.verifySaleFeedback();
+            this.events.publish('push:order_update', data);
         });
         modal.present();
     }
@@ -149,15 +150,6 @@ export class HomePage {
         this.taped=true;
     }
     tryAgain(){
-        this.slides.loop=false;
-
-        //this.slides.loop = true;
-        this.slides.slidesPerView =2;
-        this.slides.initialSlide = 0;
-        this.slides.centeredSlides=true;
-        this.loadedcompleted=true;
-        this.err=null;
-        this.getZone()
+        this.navCtrl.push(HomePage);
     }
-
 }

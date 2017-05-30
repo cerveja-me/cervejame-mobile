@@ -39,6 +39,7 @@ declare var UXCam:any;
       }
       this.createDevice('empty');
       if(this.device.platform==='Android'){
+        console.log('entrou aqui');
         this.startPush();
       }
 
@@ -55,7 +56,10 @@ declare var UXCam:any;
       }
       this.appVersion.getVersionNumber().then(v=>{
         d.appVersion=v;
-        this.post(this.API+this.DEVICE,d);
+        this.post(this.API+this.DEVICE,d)
+        .then(res=>{
+          console.log('response from device-> ',res);
+        })
       })
     }
     getDevice(){
@@ -64,7 +68,7 @@ declare var UXCam:any;
 
 
     startPush(){
-      var pushObject= this.push.init({
+      const options: PushOptions = {
         android: {
           senderID: "10339294539",
           sound: 'true',
@@ -76,19 +80,35 @@ declare var UXCam:any;
           badge: true,
           sound: 'true'
         }
+      };
+      this.push.hasPermission()
+      .then((res: any) => {
+
+        if (res.isEnabled) {
+          console.log('We have permission to send push notifications');
+        } else {
+          console.log('We do not have permission to send push notifications');
+        }
+
       });
+      const pushObject=this.push.init(options);
+
       pushObject.on('registration')
       .subscribe((registration: any) =>{
-        console.log('Device registered', registration)
+        this.createDevice(registration.registrationId);
       } );
       pushObject.on('notification')
       .subscribe((notification: any)=>{
         if(notification && notification.title && (notification.title=="Pedido Confirmado" || notification.title=="Cerveja a caminho" || notification.title=="Cerveja entregue" )){
           this.events.publish('push:order_update', notification);
-        }else{
-          this.doAlert(notification);
         }
+        this.doAlert(notification);
+
       });
+      pushObject.on('error')
+      .subscribe((error: any) =>{
+        console.log('error', error);
+      } );
 
 
     }
@@ -101,7 +121,6 @@ declare var UXCam:any;
       alert.present()
     }
     camPage(page){
-      console.log('uxcam->',page);
       if(this.platform.is('cordova')){
         UXCam.tagScreenName(page);
       }
@@ -116,11 +135,9 @@ declare var UXCam:any;
         this.http.post(url, body,options)
         .toPromise()
         .then( (res)=> {
-          // console.log(res);
           resolve(res.json());
         })
         .catch((err)=> {
-          // console.log(err);
           reject(err);
         });
       });

@@ -34,7 +34,7 @@ export class StatusModalPage {
             this.sale=ls;
         })
         .catch(e=>{
-            this.dismiss();
+            this.viewCtrl.dismiss('empty');
         })
     }
     dismiss(){
