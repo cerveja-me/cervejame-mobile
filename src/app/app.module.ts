@@ -173,11 +173,11 @@ class GeolocationMock extends Geolocation {
     Geolocation,
     Facebook,
 
-    {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
-    {provide:Device,useClass:DeviceMock}, //coment before build to mobile
-    {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-    {provide:Push,useClass:PushMock},//coment before build to mobile
-    {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
+    // {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
+    // {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+    // {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+    // {provide:Push,useClass:PushMock},//coment before build to mobile
+    // {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
     // {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
 
 
