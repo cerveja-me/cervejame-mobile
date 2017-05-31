@@ -37,7 +37,7 @@ import { GeolocationProvider } from '../../providers/geolocation/geolocation';
      }
 
      startApp() {
-         this.navCtrl.push(HomePage).then(() => {
+         this.navCtrl.setRoot(HomePage).then(() => {
              this.storage.set('hasSeenTutorial', 'true');
          })
      }

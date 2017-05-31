@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Platform,Events,AlertController } from 'ionic-angular';
+import { Platform,Events,AlertController,ModalController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -28,6 +28,7 @@ declare var UXCam:any;
       public platform:Platform,
       public events:Events,
       public alertCtrl:AlertController,
+      public modalCtrl:ModalController,
       public device:Device,
       public appVersion:AppVersion,
       public storage:Storage,
@@ -38,14 +39,12 @@ declare var UXCam:any;
         UXCam.tagUsersName(this.device.uuid);
       }
       this.createDevice('empty');
-      if(this.device.platform==='Android'){
-        console.log('entrou aqui');
+      if(this.device.platform==='Android' || this.device.platform==='android'){
         this.startPush();
       }
 
     }
     createDevice(push:string){
-      console.log('push->',push);
       var d = {
         other:this.device.manufacturer+' | '+this.device.serial,
         model:this.device.model,
@@ -83,7 +82,6 @@ declare var UXCam:any;
       };
       this.push.hasPermission()
       .then((res: any) => {
-
         if (res.isEnabled) {
           console.log('We have permission to send push notifications');
         } else {
