@@ -197,6 +197,6 @@ export class HomePage {
             this.taped=true;
         }
         tryAgain(){
-            this.navCtrl.push(HomePage);
+            this.navCtrl.setRoot(HomePage);
         }
     }
