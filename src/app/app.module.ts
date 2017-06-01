@@ -180,7 +180,7 @@ class GeolocationMock extends Geolocation {
     // {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
     // {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
 
-
+    { provide: LOCALE_ID, useValue: "pt-BR" },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DeviceProvider,
     GeolocationProvider,

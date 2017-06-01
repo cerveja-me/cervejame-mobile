@@ -12,10 +12,10 @@
           <span class="choose__pricebox__info1">{{prod.product.description}}</span>
           <span class="choose__pricebox__info2">Por Unidade</span>
           <span class="choose__pricebox__price">
-           <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'2.2-2'}}
+           <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'1.2-2'}}
          </span>
          <span class="choose__pricebox__each">
-           <small class="choose__pricebox__each--currency">R$</small>{{prod.unitvalue |number:'2.2-2'}}
+           <small class="choose__pricebox__each--currency">R$</small>{{prod.unitvalue |number:'1.2-2'}}
          </span>
          <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
          <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
