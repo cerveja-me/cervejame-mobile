@@ -23,9 +23,7 @@ export class MyApp {
     ) {
     this.storage.get('hasSeenTutorial')
     .then((hasSeenTutorial) => {
-      console.log('tour->',hasSeenTutorial);
       if (hasSeenTutorial) {
-
         this.rootPage = HomePage;
       } else {
         this.rootPage = TourPage;
