@@ -208,4 +208,3 @@ export class HomePage {
       this.navCtrl.setRoot(HomePage);
     }
   }
-}
