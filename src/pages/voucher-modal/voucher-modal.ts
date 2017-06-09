@@ -7,18 +7,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
-@Component({
-  selector: 'page-voucher-modal',
-  templateUrl: 'voucher-modal.html',
-})
-export class VoucherModalPage {
+ @Component({
+     selector: 'page-voucher-modal',
+     templateUrl: 'voucher-modal.html',
+ })
+ export class VoucherModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+     constructor(public navCtrl: NavController, public navParams: NavParams) {
+     }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad VoucherModalPage');
-  }
+     ionViewDidLoad() {
+         console.log('ionViewDidLoad VoucherModalPage');
+     }
 
-}
+ }
