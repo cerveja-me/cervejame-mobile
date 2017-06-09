@@ -28,6 +28,8 @@ import { ScheduleModalPage } from '../pages/schedule-modal/schedule-modal';
 import { StatusModalPage } from '../pages/status-modal/status-modal';
 import { FeedbackModalPage } from '../pages/feedback-modal/feedback-modal';
 import { NotificationModalPage } from '../pages/notification-modal/notification-modal';
+import { VoucherModalPage } from '../pages/voucher-modal/voucher-modal';
+
 
 //providers
 import { DeviceProvider } from '../providers/device/device';
@@ -144,7 +146,8 @@ class GeolocationMock extends Geolocation {
     ScheduleModalPage,
     StatusModalPage,
     FeedbackModalPage,
-    NotificationModalPage
+    NotificationModalPage,
+    VoucherModalPage
     ],
     imports: [
     HttpModule,
@@ -166,7 +169,8 @@ class GeolocationMock extends Geolocation {
     ScheduleModalPage,
     StatusModalPage,
     FeedbackModalPage,
-    NotificationModalPage
+    NotificationModalPage,
+    VoucherModalPage
     ],
     providers: [
     OneSignal,
@@ -179,13 +183,13 @@ class GeolocationMock extends Geolocation {
     Geolocation,
     Facebook,
 
-    // {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
-    // {provide:Device,useClass:DeviceMock}, //coment before build to mobile
-    // {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-    // {provide:Push,useClass:PushMock},//coment before build to mobile
-    // {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
-    // {provide:OneSignal,useClass:OneSignalMock},//coment before build to mobile
-    // {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+    {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
+    {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+    {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+    {provide:Push,useClass:PushMock},//coment before build to mobile
+    {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
+    {provide:OneSignal,useClass:OneSignalMock},//coment before build to mobile
+    {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: "pt-BR" },
     {provide: ErrorHandler, useClass: IonicErrorHandler},

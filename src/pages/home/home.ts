@@ -12,6 +12,7 @@ import { ScheduleModalPage } from '../schedule-modal/schedule-modal';
 import { StatusModalPage } from '../status-modal/status-modal';
 import { FeedbackModalPage } from '../feedback-modal/feedback-modal';
 import { NotificationModalPage } from '../notification-modal/notification-modal';
+import { VoucherModalPage } from '../voucher-modal/voucher-modal';
 
 
 
@@ -193,6 +194,12 @@ export class HomePage {
                     this.events.publish('push:order_update', data);
                 });
             }
+        }
+        openVoucher(){
+            let voucherModal = this.modalCtrl.create(VoucherModalPage);
+            voucherModal.present().then(r=>{
+                this.statusIsOpen=true;
+            });
         }
         onTaped(){
             this.taped=true;
