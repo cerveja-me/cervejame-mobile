@@ -71,6 +71,7 @@ declare var UXCam:any;
 
 
     startPush(){
+      this.oneSignal.registerForPushNotifications();
       const options: PushOptions = {
         android: {
           senderID: "10339294539",
@@ -130,8 +131,10 @@ declare var UXCam:any;
       }
     }
     startOneSignal(){
-      // this.oneSignal.iOSSettings({settings:{
-        //   kOSSettingsKeyAutoPrompt:false;kOSSettingsKeyInAppLaunchURL:false}});
+      var settings:any={kOSSettingsKeyAutoPrompt:false};
+      this.oneSignal.iOSSettings(settings);
+      // settings:{
+        //    kOSSettingsKeyAutoPrompt:false;kOSSettingsKeyInAppLaunchURL:false}});
         this.oneSignal.startInit('5d5587e7-348c-4172-8a19-7e01c49daa2a', '10339294539');
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
         this.oneSignal.handleNotificationReceived().subscribe((text) => {
@@ -146,9 +149,9 @@ declare var UXCam:any;
         })
         this.oneSignal.endInit();
       }
-      oneSignalZone(zone:string){
+      oneSignalTag(tag:string,zone:string){
         if(this.platform.is('cordova')){
-          this.oneSignal.sendTag("zone", zone);
+          this.oneSignal.sendTag(tag, zone);
         }
       }
 
