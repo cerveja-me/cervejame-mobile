@@ -11,6 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { Facebook } from '@ionic-native/facebook';
 import { Keyboard } from '@ionic-native/keyboard';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import { HttpModule } from '@angular/http';
 
@@ -36,6 +37,7 @@ import { UserProvider } from '../providers/user/user';
 
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
+import { VoucherProvider } from '../providers/voucher/voucher';
 
 class DeviceMock extends Device{
   get cordova(): string{ return "6.2.3";}
@@ -114,6 +116,9 @@ class FacebookMock extends Facebook{
 
 }
 
+class OneSignalMock extends OneSignal{
+  constructor(){super();}
+}
 
 class GeolocationMock extends Geolocation {
   constructor(){super();}
@@ -164,6 +169,7 @@ class GeolocationMock extends Geolocation {
     NotificationModalPage
     ],
     providers: [
+    OneSignal,
     StatusBar,
     Keyboard,
     SplashScreen,
@@ -178,6 +184,7 @@ class GeolocationMock extends Geolocation {
     // {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
     // {provide:Push,useClass:PushMock},//coment before build to mobile
     // {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
+    // {provide:OneSignal,useClass:OneSignalMock},//coment before build to mobile
     // {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: "pt-BR" },
@@ -185,7 +192,8 @@ class GeolocationMock extends Geolocation {
     DeviceProvider,
     GeolocationProvider,
     OrderProvider,
-    UserProvider
+    UserProvider,
+    VoucherProvider
     ]
   })
   export class AppModule {}

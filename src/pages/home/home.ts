@@ -133,6 +133,7 @@ export class HomePage {
             this.loader.present();
             this.order.getZone()
             .then(z=>{
+                this.device.oneSignalZone(z['zone']);
                 var closedtime = JSON.parse(z["schedule"]);
                 this.hours =closedtime;
                 var d=new Date();
