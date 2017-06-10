@@ -125,79 +125,80 @@ class OneSignalMock extends OneSignal{
 class GeolocationMock extends Geolocation {
   constructor(){super();}
 
-  /* getCurrentPosition(){
-    //   return new Promise((resolve, reject) => {
-      //     resolve({coords:{Coordinatesaccuracy: 20,latitude:-22.226555,longitude: -54.810209,timestamp: 1495480276346}});
-      //   })
-    }*/
 
+  getCurrentPosition(){
+    return new Promise((resolve, reject) => {
+      resolve({coords:{Coordinatesaccuracy: 20,latitude:-22.226555,longitude: -54.810209,timestamp: 1495480276346}});
+    })
   }
 
-  @NgModule({
-    declarations: [
-    MyApp,
-    HomePage,
-    TourPage,
-    HomeConfirmModalPage,
-    MapPage,
-    LoginModalPage,
-    RegisterModalPage,
-    CheckoutModalPage,
-    ScheduleModalPage,
-    StatusModalPage,
-    FeedbackModalPage,
-    NotificationModalPage,
-    VoucherModalPage
-    ],
-    imports: [
-    HttpModule,
-    BrowserModule,
-    IonicModule.forRoot(MyApp) ,
-    IonicStorageModule.forRoot(),
-    IonicImageLoader.forRoot()
-    ],
-    bootstrap: [IonicApp],
-    entryComponents: [
-    MyApp,
-    HomePage,
-    TourPage,
-    HomeConfirmModalPage,
-    MapPage,
-    LoginModalPage,
-    RegisterModalPage,
-    CheckoutModalPage,
-    ScheduleModalPage,
-    StatusModalPage,
-    FeedbackModalPage,
-    NotificationModalPage,
-    VoucherModalPage
-    ],
-    providers: [
-    OneSignal,
-    StatusBar,
-    Keyboard,
-    SplashScreen,
-    Device,
-    AppVersion,
-    Push,
-    Geolocation,
-    Facebook,
+}
 
-    // {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
-    // {provide:Device,useClass:DeviceMock}, //coment before build to mobile
-    // {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
-    // {provide:Push,useClass:PushMock},//coment before build to mobile
-    // {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
-    // {provide:OneSignal,useClass:OneSignalMock},//coment before build to mobile
-    // {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+@NgModule({
+  declarations: [
+  MyApp,
+  HomePage,
+  TourPage,
+  HomeConfirmModalPage,
+  MapPage,
+  LoginModalPage,
+  RegisterModalPage,
+  CheckoutModalPage,
+  ScheduleModalPage,
+  StatusModalPage,
+  FeedbackModalPage,
+  NotificationModalPage,
+  VoucherModalPage
+  ],
+  imports: [
+  HttpModule,
+  BrowserModule,
+  IonicModule.forRoot(MyApp) ,
+  IonicStorageModule.forRoot(),
+  IonicImageLoader.forRoot()
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+  MyApp,
+  HomePage,
+  TourPage,
+  HomeConfirmModalPage,
+  MapPage,
+  LoginModalPage,
+  RegisterModalPage,
+  CheckoutModalPage,
+  ScheduleModalPage,
+  StatusModalPage,
+  FeedbackModalPage,
+  NotificationModalPage,
+  VoucherModalPage
+  ],
+  providers: [
+  OneSignal,
+  StatusBar,
+  Keyboard,
+  SplashScreen,
+  Device,
+  AppVersion,
+  Push,
+  Geolocation,
+  Facebook,
 
-    { provide: LOCALE_ID, useValue: "pt-BR" },
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DeviceProvider,
-    GeolocationProvider,
-    OrderProvider,
-    UserProvider,
-    VoucherProvider
-    ]
-  })
-  export class AppModule {}
+  // {provide:Facebook,useClass:FacebookMock}, //coment before build to mobile
+  // {provide:Device,useClass:DeviceMock}, //coment before build to mobile
+  // {provide:AppVersion,useClass:AppVersionMock},//coment before build to mobile
+  // {provide:Push,useClass:PushMock},//coment before build to mobile
+  // {provide:Keyboard,useClass:KeyboardMock},//coment before build to mobile
+  // {provide:OneSignal,useClass:OneSignalMock},//coment before build to mobile
+  // {provide:Geolocation,useClass:GeolocationMock},//coment before build to mobile
+
+  { provide: LOCALE_ID, useValue: "pt-BR" },
+  {provide: ErrorHandler, useClass: IonicErrorHandler},
+  DeviceProvider,
+  GeolocationProvider,
+  OrderProvider,
+  UserProvider,
+  VoucherProvider
+  ]
+})
+export class AppModule {}

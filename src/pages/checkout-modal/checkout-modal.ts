@@ -84,7 +84,6 @@ export class CheckoutModalPage {
                     this.completeSale();
                   })
                 })
-
               }else{
                 this.finishOrder();
               }
@@ -124,7 +123,11 @@ export class CheckoutModalPage {
       }
     })
     .then(r =>{
-      this.navCtrl.setRoot(HomePage,{"justFinished":true});
+      this.navCtrl.push(HomePage)
+      .then(() => {
+        const startIndex = this.navCtrl.getActive().index - 1;
+        this.navCtrl.remove(startIndex, 1);
+      });
     })
     .catch(e =>{
       let alert = this.alertCtrl.create({
