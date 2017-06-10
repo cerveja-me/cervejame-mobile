@@ -101,7 +101,6 @@ export class HomePage {
   }
   i=0;
   verifySaleFeedback(){
-    console.log('i->',this.i);
     this.i++;
     this.order.getSaleForFeedback()
     .then(lf=>{
@@ -110,6 +109,7 @@ export class HomePage {
         feedbackModal.onDidDismiss(date=>{
           this.device.camPage('home');
         })
+        feedbackModal.present();
       }
     })
     .catch(e=>{});

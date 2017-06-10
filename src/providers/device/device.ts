@@ -74,12 +74,7 @@ declare var UXCam:any;
       })
     }
     doAlert(data) {
-      let alert = this.alertCtrl.create({
-        title: data.title,
-        message: data.body,
-        buttons: ['Ok']
-      });
-      alert.present()
+
     }
     camPage(page){
       if(this.platform.is('cordova')){
@@ -93,12 +88,17 @@ declare var UXCam:any;
       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
 
       this.oneSignal.handleNotificationReceived().subscribe((text) => {
-        this.doAlert(text.payload);
-        if(text.payload.additionalData !==null){
-          console.log('aqui no if do adicionar->',text.payload.additionalData.action);
-
-          this.events.publish(text.payload.additionalData.action, text.payload);
-        }
+        let alert = this.alertCtrl.create({
+          title: text.payload.title,
+          message: text.payload.body,
+          buttons: ['Ok']
+        });
+        alert.onWillDismiss(data=>{
+          if(text.payload.additionalData !==null){
+            this.events.publish(text.payload.additionalData.action, text.payload);
+          }
+        })
+        alert.present();
         console.log('received-> ',text.payload);
       });
       this.oneSignal.handleNotificationOpened().subscribe((text) => {
