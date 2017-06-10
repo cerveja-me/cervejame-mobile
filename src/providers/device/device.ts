@@ -7,7 +7,6 @@ import 'rxjs/add/operator/toPromise';
 
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { OneSignal } from '@ionic-native/onesignal';
 
 import { Storage } from '@ionic/storage';
@@ -33,7 +32,6 @@ declare var UXCam:any;
       public device:Device,
       public appVersion:AppVersion,
       public storage:Storage,
-      public push: Push,
       public oneSignal:OneSignal
 
       ) {
