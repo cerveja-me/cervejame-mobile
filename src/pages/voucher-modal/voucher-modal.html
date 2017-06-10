@@ -6,14 +6,14 @@
 -->
 
 <ion-content class="voucher" padding>
-    <div class="modal-overlay" [ngClass]="closing ? 'on-close': '' " (click)="dismiss()"></div>
-    <div class="voucher__ticket">
-        <p class="voucher__text">Parece que você encontrou um de
-nossos cupons.</p>
-        <span class="voucher__value">
-            <small>R$</small>
-            <label>10,00</label>
-        </span>
-        <input class="voucher__input" placeholder="Insira o cupom"/>
+  <div class="modal-overlay" [ngClass]="closing ? 'on-close': '' " (click)="dismiss()"></div>
+  <div class="voucher__ticket" [ngClass]="voucher_active?'active':''">
+    <p class="voucher__text">Parece que você encontrou um de
+      nossos cupons.</p>
+      <span class="voucher__value">
+        <small>R$</small>
+        <label>{{voucher_active?vouch.value:10}},00</label>
+      </span>
+      <ion-input class="voucher__input" placeholder="Insira o cupom" maxlength=9 [(ngModel)]="code" (ngModelChange)="changecod()"></ion-input>
     </div>
-</ion-content>
+  </ion-content>
