@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the VoucherModalPage page.
@@ -8,16 +8,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * on Ionic pages and navigation.
  */
  @Component({
-     selector: 'page-voucher-modal',
+     selector: 'voucher-modal',
      templateUrl: 'voucher-modal.html',
  })
  export class VoucherModalPage {
 
-     constructor(public navCtrl: NavController, public navParams: NavParams) {
+     constructor(public navCtrl: NavController, public navParams: NavParams,
+     public viewCtrl: ViewController) {
+     
      }
 
      ionViewDidLoad() {
          console.log('ionViewDidLoad VoucherModalPage');
      }
+     
+    dismiss() {
+        setTimeout(() => {
+            this.viewCtrl.dismiss();
+        },300);
+
+    }
 
  }
