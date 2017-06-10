@@ -98,6 +98,7 @@ import { UserProvider } from '../user/user';
         })
       })
     }
+
     getSaleForFeedback(){
       return new Promise((resolve, reject) => {
         this.user.isUserLogged()
