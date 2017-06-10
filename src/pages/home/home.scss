@@ -438,7 +438,7 @@ page-home {
 }
 
 .schedule-off {
-    @extend .font-bold !optional;
+    @extend .font-bold;
 
     font-size: 14px;
     border-top: 1px solid white;
@@ -604,4 +604,18 @@ page-home {
     background-size: cover;
 }
 
-
+.btn-voucher {
+    background: url(../assets/icon/icon-voucher.svg);
+    width: 39px;
+    height: 39px;
+    border: none;
+    box-shadow: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -14px;
+    right: 20px;
+    
+    &.activated {
+         background: url(../assets/icon/icon-voucher.svg);
+    }
+}

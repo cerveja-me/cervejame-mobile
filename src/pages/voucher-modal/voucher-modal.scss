@@ -1,3 +1,83 @@
-page-voucher-modal {
+voucher-modal {
+    .voucher {
+        background: none;
+        
+        &__ticket {
+            height: 241px;
+            width: 309px;
+            background: url(../assets/icon/bkg-voucher.svg);
+            z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -107.5px;
+            margin-left: -155px;
+            padding: 20px;
+            
+            &.active {
+                background: url(../assets/icon/bkg-voucher-active.svg);
+            }
+        }
+        
+        &__text {
+            @extend .font-bold;
 
+            font-size: 14px;
+            color: #583318;
+            margin: 0;
+            position: relative;
+        }
+        
+        &__ticket.active .voucher__value small,
+        &__ticket.active .voucher__value label
+        {
+            opacity: 1;
+        }
+        
+        &__value {
+            @extend .font-bold;
+
+            font-size: 50px;
+            color: #583318;
+            margin: 15px 0 18px;
+            position: relative;
+            display: block;
+            text-align: right;
+            letter-spacing: -0.05em;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #583318;
+            
+            small, label {
+                opacity: 0.2;
+            }
+            
+            small {
+                @extend .font-regular;
+                
+                font-size: 24px;
+                top: -17px;
+                display: inline-block;
+                position: relative;
+                letter-spacing: 0em;
+                
+            }
+        }
+        
+        &__input {
+            @extend .font-regular;
+
+            border-radius: 10px;
+            box-sizing: border-box;
+            display: block;
+            background: white;
+            color: #583318;
+            border: 2px solid #583318;
+            height: 60px;
+            width: 100%;
+            padding: 15px;
+            position: relative;
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
 }
