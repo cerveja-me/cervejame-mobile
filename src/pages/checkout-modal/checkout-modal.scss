@@ -14,11 +14,10 @@ page-checkout-modal {
     }
 
     .receipt__address {
+        @extend .font-regular;
+        
         text-align: center;
         position: relative;
-
-        @extend .font-regular;
-
         font-size: 14px;
         color: #583318;
         margin: 0;
@@ -42,7 +41,6 @@ page-checkout-modal {
         height: 49px;
         text-align: center;
         overflow: hidden;
-
 
         &__img {
             display: block;

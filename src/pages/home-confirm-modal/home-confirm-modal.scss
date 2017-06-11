@@ -93,6 +93,14 @@ page-home-confirm-modal {
             border-radius: 10px;
             padding: 8px 10px;
             
+            &.active {
+                background: #83DD7F;
+            }
+            
+            &.active label {
+                @extend .font-bold;
+            }
+            
             label {
                 @extend .font-regular;
 
