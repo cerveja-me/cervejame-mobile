@@ -17,26 +17,19 @@
       <button class="btn-plus" (click)="increaseAmount()"></button>
     </div>
     <div class="receipt__voucher">
-        <h2 class="receipt__title">Desconto</h2>
-       <button class="receipt__voucher__btn" >
-        <label>+ CUPOM</label>
+      <h2 class="receipt__title">Desconto</h2>
+      <button class="receipt__voucher__btn" (click)="openVoucherModal()" [ngClass]="coupom?'active':''"  >
+        <label *ngIf="coupom">R$ {{coupom.value | number:'2.2-2'}}</label>
+        <label *ngIf="!coupom">+ CUPOM</label>
         <span class="receipt__voucher__icon"></span>
       </button>
     </div>
     <div class="receipt__total" *ngIf="beer">
       <h2 class="receipt__title">Total a pagar</h2>
-         <span class="total__pricebox">
-          <span class="total__oldprice" *ngIf="coupom && beer.amount>=coupom.min_amount">R$ {{beer.amount * beer.price |number:'2.2-2'}}</span>
+      <span class="total__pricebox">
+        <span class="total__oldprice" *ngIf="coupom && beer.amount>=coupom.min_amount">R$ {{beer.amount * beer.price |number:'2.2-2'}}</span>
         <small class="total__pricebox--currency" >R$</small>{{beer.amount * beer.price -(coupom?coupom.value:0)  | number:'2.2-2'}}
       </span>
-<!--
-      <span class="total__pricebox" *ngIf="beer">
-        <small class="total__pricebox--currency" >R$</small>{{beer.price * beer.amount | number:'2.2-2'}}
-        <div  *ngIf="coupom && beer.amount>=coupom.min_amount">
-          <small class="total__pricebox--currency" >R$</small>{{beer.price * beer.amount - coupom.value | number:'2.2-2'}}
-        </div>
-      </span>
--->
     </div>
 
     <button ion-button secondary class="receipt__btn" (click)="finishRequest()">CONTINUAR</button>

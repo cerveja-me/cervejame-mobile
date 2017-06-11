@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { VoucherProvider } from  '../../providers/voucher/voucher';
+import { DeviceProvider } from '../../providers/device/device';
 
 /**
  * Generated class for the VoucherModalPage page.
@@ -18,19 +19,24 @@ import { VoucherProvider } from  '../../providers/voucher/voucher';
    voucher_active:boolean=false;
    error_active:boolean=false
    vouch:any;
+   closing=false;
+
    constructor(
      public navCtrl: NavController,
      public navParams: NavParams,
+     public device:DeviceProvider,
      public viewCtrl: ViewController,
      public voucher:VoucherProvider) {
 
    }
 
    ionViewDidLoad() {
-     console.log('ionViewDidLoad VoucherModalPage');
+     this.device.camPage('voucher-modal');
+     this.closing=false;
    }
 
    dismiss() {
+     this.closing=true;
      setTimeout(() => {
        this.viewCtrl.dismiss();
      },300);
