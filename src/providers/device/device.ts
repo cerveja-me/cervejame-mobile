@@ -140,7 +140,7 @@ declare var UXCam:any;
     }
 
     API:string='http://api.cerveja.me/';
-
+    // API:string='http://192.168.0.144:1337/';
     DEVICE:string = 'v2/device/';
     AUTH:string='auth/login';
     LOCATION:string = 'location/';
@@ -154,6 +154,7 @@ declare var UXCam:any;
     GOOGLE_ADDRESS:string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
     FIRSTIME:string = 'ftime';
     PUSH:string='fcm_token';
+    VOUCHER:string='voucher?code=';
 
     phrases =[
     "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa.",

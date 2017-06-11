@@ -2,9 +2,11 @@ import { Component,ViewChild,NgZone } from '@angular/core';
 import { NavController,NavParams, Slides,ModalController,LoadingController,Events} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+//providers
 import { DeviceProvider } from '../../providers/device/device';
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';
 import { OrderProvider } from '../../providers/order/order';
+import { VoucherProvider } from '../../providers/voucher/voucher';
 
 //relatedPages
 import { HomeConfirmModalPage } from '../home-confirm-modal/home-confirm-modal';
@@ -25,6 +27,7 @@ export class HomePage {
   closed:boolean;
   products:any=[];
   @ViewChild(Slides) slides: Slides;
+
   loadedcompleted;
   err:string;
   sale;
@@ -38,13 +41,15 @@ export class HomePage {
     public load:LoadingController,
     public device:DeviceProvider,
     public order:OrderProvider,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public voucher:VoucherProvider
     ) {
     this.events.subscribe('push:order_update', data=>{
       this.verifyLastSale();
     });
     this.events.subscribe('push:order_complete', data=>{
       this.verifySaleFeedback();
+      this.verifyLastSale();
     });
 
   }
@@ -54,6 +59,7 @@ export class HomePage {
   })
 
   ionViewDidLoad() {
+    this.voucher.removeVoucher();
     if(this.params.get('justFinished')){
       this.openStatus();
     }else{
