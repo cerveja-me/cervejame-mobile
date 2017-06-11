@@ -1,4 +1,13 @@
 voucher-modal {
+    
+    @keyframes bounce {
+        0% { margin-left: -163px; }
+        25% { margin-left: -147px; }
+        50% { margin-left: -163px; }
+        75% { margin-left: -147px; }
+        100% { margin-left: -155px; }
+    }
+    
     .voucher {
         background: none;
         
@@ -16,6 +25,11 @@ voucher-modal {
             
             &.active {
                 background: url(../assets/icon/bkg-voucher-active.svg);
+            }
+            
+            &.fail {
+                animation: bounce 0.5s linear 0s 1 normal;
+                animation-fill-mode: both;
             }
         }
         
