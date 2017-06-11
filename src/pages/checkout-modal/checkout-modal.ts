@@ -70,11 +70,11 @@ export class CheckoutModalPage {
       this.user=this.userp.getUser();
       this.doPrompt()
       .then((data)=>{
-        if(data['phone']!==null){
+        if(data && data['phone']!==null){
           this.user.costumer.phone = data['phone'];
           this.userp.updateUser(this.user.costumer)
           .then((un)=>{
-            this.user=this.userp.getLoggedUser();
+            this.user=un;
             this.device.oneSignalTag('sale','true');
             this.completeSale();
           })
@@ -90,7 +90,8 @@ export class CheckoutModalPage {
     modal.present();
     modal.onDidDismiss(data => {
       if(data==='success'){
-        if(this.voucher){ //verificar se o cupom que é valido com o login
+        console.log('voucher->',this.coupom);
+        if(this.coupom){ //verificar se o cupom que é valido com o login
           this.voucher.getVoucher(this.coupom.code)
           .then(voucher=>{
             this.finishOrder();
@@ -111,12 +112,13 @@ export class CheckoutModalPage {
 
   completeSale(){
     let p=this.order.getProduct();
+    console.log('user->',this.user);
     let csa=this.user['costumer'];
     console.log('modal->',csa);
     let sale={
       address:this.geoloc.formatAddress(this.fullAddress) +(this.addressComplement?", complemento: "+this.addressComplement:''),
       location:this.order.getLocation().id,
-      device:this.device.getDevice,
+      device:this.device.getDevice, //verificar aqui
       costumer:csa['id'],
       payment:this.payment,
       product:{
