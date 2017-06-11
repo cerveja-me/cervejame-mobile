@@ -78,47 +78,37 @@ import { UserProvider } from '../user/user';
 
     getLastOpenSale(){
       return new Promise((resolve, reject) => {
-        this.user.isUserLogged()
-        .then(isLogged=>{
-          if(isLogged){
-            this.user.getLoggedUser()
-            .then(u=>{
-              this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUYOPEN+u['costumer']['id'])
-              .then(s=>{
-                try{
-                  resolve(s.json());
-                }catch(e){
-                  reject();
-                }
-              })
-            })
-          }else{
-            reject();
-          }
-        })
+        if(this.user.isUserLogged()){
+          let u  =this.user.getUser();
+          this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUYOPEN+u['costumer']['id'])
+          .then(s=>{
+            try{
+              resolve(s.json());
+            }catch(e){
+              reject();
+            }
+          })
+        }else{
+          reject();
+        }
       })
     }
 
     getSaleForFeedback(){
       return new Promise((resolve, reject) => {
-        this.user.isUserLogged()
-        .then(isLogged=>{
-          if(isLogged){
-            this.user.getLoggedUser()
-            .then(u=>{
-              this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUY+u['costumer']['id'])
-              .then(s=>{
-                try{
-                  resolve(s.json());
-                }catch(e){
-                  reject();
-                }
-              })
-            })
-          }else{
-            reject();
-          }
-        })
+        if(this.user.isUserLogged()){
+          let u=this.user.getUser();
+          this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUY+u['costumer']['id'])
+          .then(s=>{
+            try{
+              resolve(s.json());
+            }catch(e){
+              reject();
+            }
+          })
+        }else{
+          reject();
+        }
       })
     }
 

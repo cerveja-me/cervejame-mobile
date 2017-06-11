@@ -19,16 +19,11 @@ export class UserProvider {
 
 
     isUserLogged(){
-        return new Promise((resolve, reject) => {
-            this.getLoggedUser()
-            .then((o)=>{
-                if(o!=null){
-                    resolve( true);
-                }else{
-                    resolve(false);
-                }
-            });
-        });
+        if(this.user){
+            return true;
+        }else{
+            return false
+        }
     }
     getUser(){
         return this.user;
@@ -79,6 +74,7 @@ export class UserProvider {
             user.device =this.device.getDevice().uuid;
             this.device.post(this.device.API+this.device.COSTUMER+this.device.COSTUMER_UPDATE, user)
             .then((res)=>{
+                this.setLoggedUser(res);
                 resolve(res);
             })
             .catch(reject);

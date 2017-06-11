@@ -5,6 +5,8 @@ import { GeolocationProvider } from '../../providers/geolocation/geolocation';
 import { DeviceProvider } from '../../providers/device/device';
 import { OrderProvider } from '../../providers/order/order';
 import { UserProvider } from '../../providers/user/user';
+import { VoucherProvider } from '../../providers/voucher/voucher';
+
 
 import { LoginModalPage } from '../login-modal/login-modal';
 import { HomePage } from '../home/home';
@@ -14,6 +16,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'checkout-modal.html',
 })
 export class CheckoutModalPage {
+  coupom;
   character;
   user;
   request;
@@ -34,13 +37,15 @@ export class CheckoutModalPage {
     public order:OrderProvider,
     public device:DeviceProvider,
     public geoloc:GeolocationProvider,
-    public userp:UserProvider
+    public userp:UserProvider,
+    public voucher:VoucherProvider
     )
   {
 
   }
 
   ionViewDidLoad() {
+    this.coupom=this.voucher.getSavedVoucher();
     this.device.camPage('checkout');
     this.product=this.order.getProduct();
     this.fullAddress=this.params.get("address");
@@ -61,56 +66,53 @@ export class CheckoutModalPage {
   }
 
   finishOrder(){
-    this.userp.isUserLogged()
-    .then(userLogged=>{
-      if(userLogged){
-        this.userp.getLoggedUser()
-        .then(u=>{
-          this.user=u;
-          this.doPrompt()
-          .then((data)=>{
-            if(data){
-              if(data['phone']!=null){
-                this.user.costumer.phone = data['phone'];
-                this.userp.updateUser(this.user.costumer)
-                .then((un)=>{
-                  this.userp.getLoggedUser()
-                  .then(uu =>{
-                    uu['costumer']=un;
-                    this.user=uu;
-                    this.userp.setLoggedUser(this.user);
-                    this.device.oneSignalTag('sale','true');
-                    this.completeSale();
-                  })
-                })
-              }else{
-                this.finishOrder();
-              }
-            }
+    if(this.userp.isUserLogged()){
+      this.user=this.userp.getUser();
+      this.doPrompt()
+      .then((data)=>{
+        if(data['phone']!==null){
+          this.user.costumer.phone = data['phone'];
+          this.userp.updateUser(this.user.costumer)
+          .then((un)=>{
+            this.user=this.userp.getLoggedUser();
+            this.device.oneSignalTag('sale','true');
+            this.completeSale();
           })
-        })
-      }else{
-        this.login();
-      }
-    })
+        }
+      })
+    }else{
+      this.login();
+    }
   }
+
   login(){
     let modal = this.modalCtrl.create(LoginModalPage);
     modal.present();
     modal.onDidDismiss(data => {
       if(data==='success'){
-        this.finishOrder();
+        if(this.voucher){ //verificar se o cupom que é valido com o login
+          this.voucher.getVoucher(this.coupom.code)
+          .then(voucher=>{
+            this.finishOrder();
+          }).catch(er=>{
+            // apresentar mensagem de erro
+            // volta para o checkout para poder adicioonar outro cupom
+            this.device.camPage('checkout');
+          })
+        }else{
+          this.finishOrder();
+        }
       }else{
-        this.device.camPage('login');
+        //apresentar erro de login
+        this.device.camPage('checkout');
       }
     });
   }
 
   completeSale(){
     let p=this.order.getProduct();
-
     let csa=this.user['costumer'];
-    this.order.createSale({
+    let sale={
       address:this.geoloc.formatAddress(this.fullAddress) +(this.addressComplement?", complemento: "+this.addressComplement:''),
       location:this.order.getLocation().id,
       device:this.device.getDevice,
@@ -119,8 +121,16 @@ export class CheckoutModalPage {
       product:{
         amount:p["amount"],
         id:p['id']
-      }
-    })
+      },
+      discount:null,
+      voucher:null
+    }
+    if(this.coupom && sale.product.amount>=this.coupom.min_amount){
+      sale.discount=this.coupom.value;
+      sale.voucher=this.coupom.id;
+    }
+
+    this.order.createSale(sale)
     .then(r =>{
       this.navCtrl.push(HomePage)
       .then(() => {
