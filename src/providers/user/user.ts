@@ -64,6 +64,7 @@ export class UserProvider {
             u.device =this.device.getDevice().uuid;
             this.device.post(this.device.API+this.device.AUTH, u)
             .then((res)=>{
+                this.setLoggedUser(res);
                 resolve(res);
             })
             .catch(reject);
@@ -117,13 +118,11 @@ export class UserProvider {
                 .then(res =>{
                     console.log('user ->',res);
                     if(res['err']==null){
-                        this.setLoggedUser(res);
                         resolve(res);
                     }else{
                         this.createUser(u)
                         .then(re =>{
                             if(res['err']==null){
-                                this.setLoggedUser(res);
                                 resolve(res);
                             }else{
                                 reject();

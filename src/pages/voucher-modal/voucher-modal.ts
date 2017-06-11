@@ -16,6 +16,7 @@ import { VoucherProvider } from  '../../providers/voucher/voucher';
  export class VoucherModalPage {
    code:string;
    voucher_active:boolean=false;
+   error_active:boolean=false
    vouch:any;
    constructor(
      public navCtrl: NavController,
@@ -36,6 +37,7 @@ import { VoucherProvider } from  '../../providers/voucher/voucher';
    }
 
    changecod(){
+     this.error_active=false;
      if(this.code.length==9){
        this.voucher.getVoucher(this.code)
        .then(res=>{
@@ -44,10 +46,11 @@ import { VoucherProvider } from  '../../providers/voucher/voucher';
          this.voucher_active=true;
          setTimeout(a=>{
            this.dismiss()
-         },1500)
+         },1500);
        })
        .catch(er=>{
          console.log('err->',er);
+         this.error_active=true
          this.voucher_active=false;
        })
      }else{
