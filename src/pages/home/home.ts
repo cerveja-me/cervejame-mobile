@@ -4,7 +4,6 @@ import { Storage } from '@ionic/storage';
 
 //providers
 import { DeviceProvider } from '../../providers/device/device';
-import { GeolocationProvider } from '../../providers/geolocation/geolocation';
 import { OrderProvider } from '../../providers/order/order';
 import { VoucherProvider } from '../../providers/voucher/voucher';
 

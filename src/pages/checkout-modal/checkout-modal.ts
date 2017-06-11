@@ -7,7 +7,6 @@ import { OrderProvider } from '../../providers/order/order';
 import { UserProvider } from '../../providers/user/user';
 
 import { LoginModalPage } from '../login-modal/login-modal';
-import { RegisterModalPage } from '../register-modal/register-modal';
 import { HomePage } from '../home/home';
 
 @Component({
