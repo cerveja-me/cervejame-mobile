@@ -8,6 +8,11 @@ voucher-modal {
         100% { margin-left: -155px; }
     }
     
+     @keyframes opacity {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
     .voucher {
         background: none;
         
@@ -22,13 +27,16 @@ voucher-modal {
             margin-top: -107.5px;
             margin-left: -155px;
             padding: 20px;
+            transform: scale(0.95);
+            transition: all 0.3s;
             
             &.active {
                 background: url(../assets/icon/bkg-voucher-active.svg);
+                transform: scale(1);
             }
             
             &.fail {
-                animation: bounce 0.5s linear 0s 1 normal;
+                animation: bounce 0.3s linear 0s 1 normal;
                 animation-fill-mode: both;
             }
         }
@@ -40,6 +48,8 @@ voucher-modal {
             color: #583318;
             margin: 0;
             position: relative;
+            animation: opacity 0.2s linear 0s 1 normal;
+            animation-fill-mode: both;
         }
         
         &__ticket.active .voucher__value small,
