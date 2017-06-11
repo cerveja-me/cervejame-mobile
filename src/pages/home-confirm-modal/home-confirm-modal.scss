@@ -71,13 +71,15 @@ page-home-confirm-modal {
         margin: 0 15px;
         
         h2 {
-             width: 49%;
+            width: 49%;
             display: inline-block;
             vertical-align: middle;
             text-align: left;
             margin: 0;
         }
     }
+    
+  
     
     &__voucher {
         width: 49%;
@@ -182,7 +184,7 @@ page-home-confirm-modal {
     }
 
     .total__pricebox {
-        @extend .font-bold !optional;
+        @extend .font-bold;
         @include border-radius(10px);
 
         font-size: 21px;
@@ -202,7 +204,7 @@ page-home-confirm-modal {
 
     &__btn {
         @include border-radius(0);
-        @extend .font-bold !optional;
+        @extend .font-bold;
 
         background: #D84040;
         border-top: 2px solid #583318;
