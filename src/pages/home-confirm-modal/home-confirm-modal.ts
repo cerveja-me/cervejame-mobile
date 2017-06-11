@@ -1,5 +1,5 @@
 import { Component,NgZone } from '@angular/core';
-import { NavController, NavParams,ModalController,ViewController } from 'ionic-angular';
+import { NavController, NavParams,ModalController,ViewController, } from 'ionic-angular';
 
 //pages
 import { MapPage } from '../map/map';
@@ -8,6 +8,7 @@ import { MapPage } from '../map/map';
 import { DeviceProvider } from '../../providers/device/device';
 import { OrderProvider } from '../../providers/order/order';
 import { VoucherProvider } from  '../../providers/voucher/voucher';
+import { VoucherModalPage } from '../voucher-modal/voucher-modal';
 
 @Component({
     selector: 'page-home-confirm-modal',
@@ -36,7 +37,6 @@ export class HomeConfirmModalPage {
     }
 
     ionViewDidLoad() {
-
         this.device.camPage("home-modal-confirm");
         this.closing=false;
     }
@@ -61,4 +61,14 @@ export class HomeConfirmModalPage {
         this.order.setProduct(this.beer);
         this.navCtrl.push(MapPage);
     }
+
+    openVoucherModal(){
+        let voucherModal = this.modalCtrl.create(VoucherModalPage);
+        voucherModal.present();
+        voucherModal.onDidDismiss(date=>{
+            this.coupom=this.voucher.getSavedVoucher();
+            this.device.camPage("home-modal-confirm");
+        });
+    }
+
 }
