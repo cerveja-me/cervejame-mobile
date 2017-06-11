@@ -35,8 +35,7 @@ import { OrderProvider } from '../../providers/order/order';
         }
         this.device.post(this.device.API+this.device.VOUCHER,data)
         .then(v=>{
-          console.log('res->',v);
-          if(v['err']!==null){
+          if(!v['err']){
             resolve(v);
             this.applyVoucher(v);
           }else{

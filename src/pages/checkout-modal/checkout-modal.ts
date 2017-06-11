@@ -90,6 +90,7 @@ export class CheckoutModalPage {
     modal.present();
     modal.onDidDismiss(data => {
       if(data==='success'){
+        console.log('voucher->',this.voucher);
         if(this.voucher){ //verificar se o cupom que é valido com o login
           this.voucher.getVoucher(this.coupom.code)
           .then(voucher=>{
@@ -112,6 +113,7 @@ export class CheckoutModalPage {
   completeSale(){
     let p=this.order.getProduct();
     let csa=this.user['costumer'];
+    console.log('modal->',csa);
     let sale={
       address:this.geoloc.formatAddress(this.fullAddress) +(this.addressComplement?", complemento: "+this.addressComplement:''),
       location:this.order.getLocation().id,
