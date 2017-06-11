@@ -75,8 +75,10 @@ export class UserProvider {
             user.device =this.device.getDevice().uuid;
             this.device.post(this.device.API+this.device.COSTUMER+this.device.COSTUMER_UPDATE, user)
             .then((res)=>{
-                this.setLoggedUser(res);
-                resolve(res);
+                this.user.costumer=res;
+                console.log('user updated->',this.user,res);
+                this.setLoggedUser(this.user);
+                resolve(this.user);
             })
             .catch(reject);
         })
