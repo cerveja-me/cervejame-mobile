@@ -157,30 +157,22 @@ page-home-confirm-modal {
     }
 
     .quantidade-number {
-        @extend .font-bold !optional;
+        @include border-radius(10px);
+        @extend .font-bold;
 
         font-size: 26px;
         text-align: center;
         color: #583318;
         position: relative;
-        width: 42px;
         text-align: center;
         display: inline-block;
         vertical-align: middle;
         margin: 10px;
-
-        &:after {
-            @include border-radius(10px);
-
-            content: '';
-            width: 50px;
-            height: 38px;
-            border: 2px solid #583318;
-            display: block;
-            position: absolute;
-            top: -17%;
-            left: -13%;
-        }
+        padding-left: 2px;
+        border: 2px solid #583318;
+        margin: 0 7px 0;
+        padding: 3px 0;
+        width: 46px;
     }
 
     .total__pricebox {
