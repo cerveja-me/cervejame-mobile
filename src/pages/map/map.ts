@@ -100,7 +100,7 @@ export class MapPage {
     }
 
     closeEdit(){
-        if(this.platform.is('core')){
+        if(this.platform.is('cordova')){
             let activeElement = <HTMLElement>document.activeElement;
             activeElement && activeElement.blur && activeElement.blur();
         }

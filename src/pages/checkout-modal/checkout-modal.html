@@ -5,12 +5,18 @@
   <div class="receipt__box">
 
     <div class="receipt__quantidade">
-      <h2 class="receipt__title">Seu pedido</h2>
       <span class="figure__pedido" *ngIf="product"><img-loader class="figure__pedido__img" [src]="'http://cerveja.me/img/mobile/'+product.product.img"></img-loader></span>
       <span class="quantidade-pedido" *ngIf="product">{{product.amount}} {{product.product.cold?'Caixas de':''}} {{product.product.name}}</span>
     </div>
+    <div class="receipt__voucher" *ngIf="product">
+       <button class="receipt__voucher__btn" >
+        <label>+ CUPOM</label>
+        <span class="receipt__voucher__icon"></span>
+      </button>
+    </div>
+      
     <div class="receipt__total" *ngIf="product">
-      <h2 class="receipt__title teste">Total a pagar</h2>
+      <h2 class="receipt__title">Total a pagar</h2>
       <span class="total__pricebox">
         <small class="total__pricebox--currency" >R$</small>{{product.amount * product.price |number:'2.2-2'}}
       </span>

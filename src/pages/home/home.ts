@@ -49,6 +49,7 @@ export class HomePage {
     });
     this.events.subscribe('push:order_complete', data=>{
       this.verifySaleFeedback();
+      this.verifyLastSale();
     });
 
   }
