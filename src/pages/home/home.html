@@ -1,6 +1,6 @@
 <ion-header>
  <h1 class="logo-dark"></h1>
- <button class="btn-voucher" ion-button secondary (click)="openVoucher()"></button>
+ <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openVoucher()"></button>
 </ion-header>
 
 <ion-content class="bkg-choose center" >

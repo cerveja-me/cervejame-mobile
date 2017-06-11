@@ -8,13 +8,13 @@ import { DeviceProvider } from '../device/device';
 
 @Injectable()
 export class UserProvider {
-
+    user;
     constructor(
         private storage:Storage,
         private fb: Facebook,
         private device:DeviceProvider
         ) {
-        console.log('Hello UserProvider Provider');
+        this.getLoggedUser();
     }
 
 
@@ -22,7 +22,6 @@ export class UserProvider {
         return new Promise((resolve, reject) => {
             this.getLoggedUser()
             .then((o)=>{
-
                 if(o!=null){
                     resolve( true);
                 }else{
@@ -31,8 +30,12 @@ export class UserProvider {
             });
         });
     }
+    getUser(){
+        return this.user;
+    }
 
     setLoggedUser(user){
+        this.user=user;
         this.storage.set('user_logged',user);
     }
 
@@ -40,10 +43,12 @@ export class UserProvider {
         return new Promise((resolve, reject) => {
             this.storage.get('user_logged')
             .then((user)=>{
+                this.user=user;
                 resolve(user);
             });
         });
     }
+
 
     createUser(u){
         return new Promise((resolve, reject) => {

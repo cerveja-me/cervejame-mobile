@@ -39,10 +39,15 @@ import { VoucherProvider } from  '../../providers/voucher/voucher';
      if(this.code.length==9){
        this.voucher.getVoucher(this.code)
        .then(res=>{
+         console.log('voucher no modal -> ',res);
          this.vouch=res;
          this.voucher_active=true;
+         setTimeout(a=>{
+           this.dismiss()
+         },1500)
        })
        .catch(er=>{
+         console.log('err->',er);
          this.voucher_active=false;
        })
      }else{

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { DeviceProvider } from '../device/device';
+import { UserProvider } from '../user/user';
+import { OrderProvider } from '../../providers/order/order';
+
 
 /*
   Generated class for the VoucherProvider provider.
@@ -11,49 +14,47 @@ import { DeviceProvider } from '../device/device';
     */
   @Injectable()
   export class VoucherProvider {
-
+    voucher;
     constructor(
       private storage:Storage,
-      public device:DeviceProvider
+      public device:DeviceProvider,
+      public order:OrderProvider,
+      public user:UserProvider
       ) {
     }
 
 
     getVoucher(voucher:string){
       return new Promise((resolve, reject)=> {
-        this.device.get(this.device.API+this.device.VOUCHER+voucher)
+        let order=this.order.getLocation();
+        let user=this.user.getUser();
+        let data={
+          zone:order.zone,
+          user:user?user.costumer.id:null,
+          code:voucher
+        }
+        this.device.post(this.device.API+this.device.VOUCHER,data)
         .then(v=>{
-          let vc =Array.from( v.json());
-          let vouch:any;
-          if(vc.length>0){
-            vouch=vc[0];
-            this.applyVoucher(vouch);
-            if(vouch.active){
-              resolve(vouch);
-            }else{
-              reject("Este cupom já encerrou");
-            }
+          console.log('res->',v);
+          if(v['err']!==null){
+            resolve(v);
+            this.applyVoucher(v);
           }else{
-            reject("Cupom não encontrado");
+            reject(v['msg']);
           }
         })
       });
     }
 
     applyVoucher(v:any){
-      this.storage.set('voucher_active',v);
-
+      this.voucher=v;
     }
+
     getSavedVoucher(){
-      return new Promise((resolve, reject) => {
-        this.storage.get('voucher_active')
-        .then((v)=>{
-          resolve(v);
-        });
-      });
+      return this.voucher;
     }
     removeVoucher(){
-      this.storage.remove('voucher_active');
+      this.voucher=null;
     }
 
   }

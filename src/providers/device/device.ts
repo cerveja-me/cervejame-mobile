@@ -65,11 +65,13 @@ declare var UXCam:any;
 
 
     startPush(){
-      this.oneSignal.registerForPushNotifications();
-      this.oneSignal.getIds()
-      .then(res=>{
-        this.createDevice(res.userId);
-      })
+      if(this.platform.is('cordova')){
+        this.oneSignal.registerForPushNotifications();
+        this.oneSignal.getIds()
+        .then(res=>{
+          this.createDevice(res.userId);
+        })
+      }
     }
     doAlert(data) {
 
@@ -154,7 +156,7 @@ declare var UXCam:any;
     GOOGLE_ADDRESS:string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
     FIRSTIME:string = 'ftime';
     PUSH:string='fcm_token';
-    VOUCHER:string='voucher?code=';
+    VOUCHER:string='voucher/validate';
 
     phrases =[
     "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa.",

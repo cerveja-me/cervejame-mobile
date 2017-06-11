@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage';
 import { DeviceProvider } from '../../providers/device/device';
 import { OrderProvider } from '../../providers/order/order';
 import { VoucherProvider } from '../../providers/voucher/voucher';
+import { UserProvider } from '../../providers/user/user';
+
 
 //relatedPages
 import { HomeConfirmModalPage } from '../home-confirm-modal/home-confirm-modal';
@@ -36,6 +38,7 @@ export class HomePage {
     public params:NavParams,
     public zone:NgZone,
     public events:Events,
+    public user:UserProvider,
     public storage:Storage,
     public load:LoadingController,
     public device:DeviceProvider,

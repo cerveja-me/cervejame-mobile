@@ -3,15 +3,18 @@ import { NavController, NavParams,ModalController,ViewController } from 'ionic-a
 
 //pages
 import { MapPage } from '../map/map';
+
 //providers
 import { DeviceProvider } from '../../providers/device/device';
 import { OrderProvider } from '../../providers/order/order';
+import { VoucherProvider } from  '../../providers/voucher/voucher';
 
 @Component({
     selector: 'page-home-confirm-modal',
     templateUrl: 'home-confirm-modal.html',
 })
 export class HomeConfirmModalPage {
+    coupom;
     character;
     beer;
     timeStart;
@@ -21,18 +24,19 @@ export class HomeConfirmModalPage {
         public navParams: NavParams,
         public device:DeviceProvider,
         public order:OrderProvider,
+        public voucher:VoucherProvider,
         public modalCtrl: ModalController,
         private zone:NgZone,
-        public viewCtrl: ViewController,
-
+        public viewCtrl: ViewController
         ) {
-
+        this.coupom=this.voucher.getSavedVoucher();
         this.beer=this.navParams.get('beer');
         this.beer.amount=1;
         this.zone.run(()=>{});
     }
 
     ionViewDidLoad() {
+
         this.device.camPage("home-modal-confirm");
         this.closing=false;
     }

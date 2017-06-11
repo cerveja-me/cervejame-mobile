@@ -20,6 +20,9 @@
       <h2 class="receipt__title">Total a pagar</h2>
       <span class="total__pricebox" *ngIf="beer">
         <small class="total__pricebox--currency" >R$</small>{{beer.price * beer.amount | number:'2.2-2'}}
+        <div  *ngIf="coupom">
+          <small class="total__pricebox--currency" >R$</small>{{beer.price * beer.amount - coupom.value | number:'2.2-2'}}
+        </div>
       </span>
     </div>
 
