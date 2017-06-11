@@ -90,7 +90,6 @@ export class CheckoutModalPage {
     modal.present();
     modal.onDidDismiss(data => {
       if(data==='success'){
-        console.log('voucher->',this.voucher);
         if(this.voucher){ //verificar se o cupom que é valido com o login
           this.voucher.getVoucher(this.coupom.code)
           .then(voucher=>{
