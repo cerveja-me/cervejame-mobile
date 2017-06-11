@@ -89,12 +89,14 @@ page-home-confirm-modal {
         
         &__btn {
             background: none;
-            border: 2px solid #583318;
+            border: 2px dotted #583318;
             border-radius: 10px;
-            padding: 8px 10px;
+            padding: 10px;
+            width: 100%;
             
             &.active {
                 background: #83DD7F;
+                border: 2px solid #583318;
             }
             
             &.active label {
@@ -166,16 +168,16 @@ page-home-confirm-modal {
         margin: 10px;
 
         &:after {
-            @include border-radius(50%);
+            @include border-radius(10px);
 
             content: '';
             width: 50px;
-            height: 50px;
+            height: 38px;
             border: 2px solid #583318;
             display: block;
             position: absolute;
-            top: -34%;
-            left: -15%;
+            top: -17%;
+            left: -13%;
         }
     }
 
