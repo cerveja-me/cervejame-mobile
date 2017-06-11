@@ -20,7 +20,7 @@
     <span class="map__adress__plus icon-plus-b"></span>
     <input class="map__adress__input" placeholder="Complemento" type="text" [(ngModel)]="complement">
   </div>
-  <div #map id="map" (click)="showAddress=true" ></div>
+  <div #map id="map" (click)="closeEdit();showAddress=true" ></div>
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
   <button ion-button secondary class="map__btn" (click)="finishOrder()">ENTREGAR AQUI</button>
