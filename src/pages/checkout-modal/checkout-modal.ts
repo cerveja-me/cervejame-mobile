@@ -10,6 +10,7 @@ import { VoucherProvider } from '../../providers/voucher/voucher';
 
 import { LoginModalPage } from '../login-modal/login-modal';
 import { HomePage } from '../home/home';
+import { VoucherModalPage } from '../voucher-modal/voucher-modal';
 
 @Component({
   selector: 'page-checkout-modal',
@@ -83,6 +84,15 @@ export class CheckoutModalPage {
     }else{
       this.login();
     }
+  }
+
+  openVoucherModal(){
+    let voucherModal = this.modalCtrl.create(VoucherModalPage);
+    voucherModal.present();
+    voucherModal.onDidDismiss(date=>{
+      this.coupom=this.voucher.getSavedVoucher();
+      this.device.camPage("home-modal-confirm");
+    });
   }
 
   login(){

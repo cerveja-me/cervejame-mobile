@@ -6,20 +6,21 @@
 
     <div class="receipt__quantidade">
       <span class="figure__pedido" *ngIf="product"><img-loader class="figure__pedido__img" [src]="'http://cerveja.me/img/mobile/'+product.product.img"></img-loader></span>
-      <span class="quantidade-pedido" *ngIf="product">{{product.amount}} {{product.product.cold?'Caixas de':''}} {{product.product.name}}</span>
+      <span class="quantidade-pedido" *ngIf="product">{{product.amount}} {{product.product.cold?'Caixa':'Garrafa'}}{{product.amount>1?'s de':' de'}} {{product.product.name}}</span>
     </div>
     <div class="receipt__voucher" *ngIf="product">
-       <button class="receipt__voucher__btn" >
-        <label>+ CUPOM</label>
+      <button class="receipt__voucher__btn" (click)="openVoucherModal()" [ngClass]="coupom?'active':''">
+        <label *ngIf="coupom">R$ {{coupom.value | number:'2.2-2'}}</label>
+        <label *ngIf="!coupom">+ CUPOM</label>
         <span class="receipt__voucher__icon"></span>
       </button>
     </div>
-      
+
     <div class="receipt__total" *ngIf="product">
       <h2 class="receipt__title">Total a pagar</h2>
       <span class="total__pricebox">
-          <span class="total__oldprice">R$ 50,00</span>
-        <small class="total__pricebox--currency" >R$</small>{{product.amount * product.price |number:'2.2-2'}}
+        <span class="total__oldprice"*ngIf="coupom && product.amount>=coupom.min_amount">R$ {{product.amount * product.price |number:'2.2-2'}}</span>
+        <small class="total__pricebox--currency" >R$</small>{{product.amount * product.price -(coupom?coupom.value:0) |number:'2.2-2'}}
       </span>
     </div>
 

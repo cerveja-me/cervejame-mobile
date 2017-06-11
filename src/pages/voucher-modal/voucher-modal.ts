@@ -19,6 +19,8 @@ import { DeviceProvider } from '../../providers/device/device';
    voucher_active:boolean=false;
    error_active:boolean=false
    vouch:any;
+   closing=false;
+
    constructor(
      public navCtrl: NavController,
      public navParams: NavParams,
@@ -30,9 +32,11 @@ import { DeviceProvider } from '../../providers/device/device';
 
    ionViewDidLoad() {
      this.device.camPage('voucher-modal');
+     this.closing=false;
    }
 
    dismiss() {
+     this.closing=true;
      setTimeout(() => {
        this.viewCtrl.dismiss();
      },300);
