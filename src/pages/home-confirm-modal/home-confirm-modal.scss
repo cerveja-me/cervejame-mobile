@@ -93,6 +93,14 @@ page-home-confirm-modal {
             border-radius: 10px;
             padding: 8px 10px;
             
+            &.active {
+                background: #83DD7F;
+            }
+            
+            &.active label {
+                @extend .font-bold;
+            }
+            
             label {
                 @extend .font-regular;
 
@@ -106,10 +114,11 @@ page-home-confirm-modal {
         
         &__icon {
             background-image: url('../assets/icon/icon-voucher-single.svg');
-            width: 29px;
-            height: 15px;
+            width: 27px;
+            height: 14px;
             display: inline-block;
             vertical-align: middle;
+            margin-left: 4px;
         }
     }
 

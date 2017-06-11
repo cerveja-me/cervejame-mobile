@@ -12,7 +12,7 @@
       nossos cupons.</p>
       <span class="voucher__value">
         <small>R$</small>
-        <label>{{voucher_active?vouch.value:10}},00</label>
+        <label>{{voucher_active?vouch.value:0}},00</label>
       </span>
       <ion-input class="voucher__input" placeholder="Insira o cupom" maxlength=9 [(ngModel)]="code" (ngModelChange)="changecod()"></ion-input>
     </div>
