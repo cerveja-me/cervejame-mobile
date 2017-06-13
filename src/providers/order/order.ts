@@ -79,7 +79,8 @@ import { UserProvider } from '../user/user';
     getLastOpenSale(){
       return new Promise((resolve, reject) => {
         if(this.user.isUserLogged()){
-          let u  =this.user.getUser();
+
+          let u=this.user.getUser();
           this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUYOPEN+u['costumer']['id'])
           .then(s=>{
             try{

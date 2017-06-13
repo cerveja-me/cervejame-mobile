@@ -14,11 +14,12 @@ export class UserProvider {
         private fb: Facebook,
         private device:DeviceProvider
         ) {
-        this.getLoggedUser();
+
     }
 
 
     isUserLogged(){
+        console.log('user loogeddg-> ',this.user);
         if(this.user){
             return true;
         }else{
@@ -76,7 +77,6 @@ export class UserProvider {
             this.device.post(this.device.API+this.device.COSTUMER+this.device.COSTUMER_UPDATE, user)
             .then((res)=>{
                 this.user.costumer=res;
-                console.log('user updated->',this.user,res);
                 this.setLoggedUser(this.user);
                 resolve(this.user);
             })
@@ -107,7 +107,6 @@ export class UserProvider {
         return new Promise((resolve, reject) => {
             this.facebookData()
             .then(fu=>{
-                console.log('facebook->',fu);
                 let u ={
                     name:fu['name'],
                     email:fu['email'],
@@ -118,7 +117,6 @@ export class UserProvider {
 
                 this.loginUser(u)
                 .then(res =>{
-                    console.log('user ->',res);
                     if(res['err']==null){
                         resolve(res);
                     }else{

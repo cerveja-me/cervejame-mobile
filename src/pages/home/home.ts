@@ -45,7 +45,9 @@ export class HomePage {
     public order:OrderProvider,
     public modalCtrl: ModalController,
     public voucher:VoucherProvider
+
     ) {
+
     this.events.subscribe('push:order_update', data=>{
       this.verifyLastSale();
     });
@@ -64,10 +66,12 @@ export class HomePage {
     this.voucher.removeVoucher();
     if(this.params.get('justFinished')){
       this.openStatus();
-    }else{
+    }
+    this.user.getLoggedUser()
+    .then(u=>{
       this.verifyLastSale();
       this.verifySaleFeedback();
-    }
+    })
     this.getZone();
     this.device.camPage('home');
     this.device.device.platform
@@ -105,11 +109,11 @@ export class HomePage {
         this.sale=null;
       }
     })
-    .catch(e=>{});
+    .catch(e=>{
+    });
   }
-  i=0;
+
   verifySaleFeedback(){
-    this.i++;
     this.order.getSaleForFeedback()
     .then(lf=>{
       if(lf){
