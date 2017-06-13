@@ -19,7 +19,6 @@ export class UserProvider {
 
 
     isUserLogged(){
-        console.log('user loogeddg-> ',this.user);
         if(this.user){
             return true;
         }else{
