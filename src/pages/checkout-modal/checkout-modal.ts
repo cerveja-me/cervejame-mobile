@@ -145,7 +145,7 @@ export class CheckoutModalPage {
 
     this.order.createSale(sale)
     .then(r =>{
-      this.navCtrl.push(HomePage)
+      this.navCtrl.push(HomePage,{"justFinished":true})
       .then(() => {
         const startIndex = this.navCtrl.getActive().index - 1;
         this.navCtrl.remove(startIndex, 1);
