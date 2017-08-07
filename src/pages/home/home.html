@@ -8,7 +8,7 @@
 
   <ion-slides class="choose-slider" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
-      <div *ngIf="prod.product.cold">
+      <div *ngIf="prod.product.cold" >
         <p class="choose__pricebox">
           <span class="choose__pricebox__info1">{{prod.product.description}}</span>
           <span class="choose__pricebox__info2">Por Unidade</span>
