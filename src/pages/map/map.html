@@ -1,5 +1,8 @@
 
-
+<ion-header>
+ <h1 class="logo-dark"></h1>
+ <button  ion-button secondary ></button>
+</ion-header>
 <ion-content>
   <div class="address__box" *ngIf="address" [ngClass]="showAddress ? 'hidden': '' ">
     <span class="address__icon icon-map"></span>
@@ -25,5 +28,3 @@
 <ion-footer align-title="left" class="bar-assertive">
   <button ion-button secondary class="map__btn" (click)="finishOrder()">ENTREGAR AQUI</button>
 </ion-footer>
-
-
