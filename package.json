@@ -53,7 +53,7 @@
         "ionic-image-loader": "^3.2.0",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
-        "onesignal-cordova-plugin": "^2.1.2",
+        "onesignal-cordova-plugin": "^2.2.0",
         "rxjs": "5.1.1",
         "sw-toolbox": "3.6.0",
         "zone.js": "0.8.10"
@@ -81,6 +81,7 @@
                 "APP_ID": "289767478086559",
                 "APP_NAME": "Cerveja.me"
             },
+            "onesignal-cordova-plugin": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {}
         },
