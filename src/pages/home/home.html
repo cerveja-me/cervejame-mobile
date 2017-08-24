@@ -1,7 +1,3 @@
-<ion-header>
- <h1 class="logo-dark"></h1>
- <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openVoucher()"></button>
-</ion-header>
 
 <ion-content class="bkg-choose center" >
   <div class="table"></div>
@@ -25,6 +21,8 @@
         <figure class="choose__picture">
           <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
         </figure>
+        <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
+        <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
         <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
       </p>
     </div>
@@ -105,12 +103,25 @@
 
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
+
+    <ion-scroll scrollX="true" scrollY="false" style="background: beige;height:66px;">
+
+      <button style="height: 56px;width: 156px;margin: 10px;"> teste </button>
+      <button style="height: 56px;width: 156px;margin: 10px;"> teste </button>
+      <button style="height: 56px;width: 156px;margin: 10px;"> teste </button>
+      <button style="height: 56px;width: 156px;margin: 10px;"> teste </button>
+
+  </ion-scroll>
+
+
   <button ion-button secondary (click)="openSchedule()" class="schedule-on" *ngIf="!closed && !sale" >
     <span class="schedule-on__label">
       <span class="icon-clock"></span>
       <label>Estamos atendendo</label>
     </span>
   </button>
+
+
   <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed"  >
     <span class="schedule-off__label">
       <span class="icon-clock-w"></span>Não é possível fazer pedidos agora.</span>
@@ -137,5 +148,3 @@
       </span>
     </button>
   </ion-footer>
-
-

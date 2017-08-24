@@ -1,4 +1,10 @@
 page-home {
+  ion-scroll[scrollX] {
+  white-space: nowrap;
+  .scroll-item {
+    display: inline-block;
+  }
+}
     @keyframes loading {
         0% { transform: rotate(0deg)}
         100% { transform: rotate(359deg)}
@@ -239,7 +245,7 @@ page-home {
     position: absolute;
     bottom: 13%;
     margin-left: 0;
-    
+
     &.on-slide {
         .swiper-slide.swiper-slide-active {
             margin-left: 25%;
@@ -341,11 +347,11 @@ page-home {
     border-bottom: 2px solid white;
     margin-top: -10px;
     padding: 20px;
-//    
+//
 //    &.location-error {
 //        background: #D5A86C;
 //    }
-//        
+//
 //    &.location-error &__title {
 //        color: white;
 //    }
@@ -614,7 +620,7 @@ page-home {
     top: 50%;
     margin-top: -14px;
     right: 20px;
-    
+
     &.activated {
          background: url(../assets/icon/icon-voucher.svg);
     }
