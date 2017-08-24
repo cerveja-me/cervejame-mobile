@@ -172,6 +172,7 @@ export class HomePage {
         this.scheduleisopen=true;
       })
       modal.onDidDismiss(data => {
+        this.scheduleisopen=false;
         this.device.camPage('home');
       });
     }
