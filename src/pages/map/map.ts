@@ -26,6 +26,8 @@ export class MapPage {
     complement='';
     number='';
     loader;
+    editingNumberOrComple:boolean=false;
+    oldLoc:any={};
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -54,7 +56,13 @@ export class MapPage {
             // this.map=;
             this.map = new google.maps.Map(this.mapElement.nativeElement, mapOpt);
             this.map.addListener('center_changed',()=>{
+              if(this.editingNumberOrComple){
+                if(this.oldLoc[0]!=this.map.getCenter().lat() || this.oldLoc[0]!=this.map.getCenter().lng()){
+                  this.map.setCenter(new google.maps.LatLng(this.oldLoc[0],this.oldLoc[1]));
+                }
+              }else{
                 this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+              }
             });
             this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
             this.loader.dismiss();
@@ -67,6 +75,7 @@ export class MapPage {
     }
 
     updateAddress(_loc){
+        this.oldLoc=_loc;
         this.geoLoc.getAddressFromLocation(_loc)
         .then((address)=>{
             this.address=address;
@@ -100,6 +109,7 @@ export class MapPage {
     }
 
     closeEdit(){
+      this.editingNumberOrComple=false;
         if(this.platform.is('cordova')){
             let activeElement = <HTMLElement>document.activeElement;
             activeElement && activeElement.blur && activeElement.blur();

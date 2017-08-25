@@ -83,6 +83,7 @@
         <resource-file src="GoogleService-Info.plist" />
     </platform>
     <allow-navigation href="http://192.168.0.183:8100" />
+    <allow-navigation href="http://192.168.0.183:8101" />
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
