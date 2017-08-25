@@ -7,12 +7,7 @@ import { DeviceProvider } from '../device/device';
 
 declare var google;
 
-/*
-  Generated class for the GeolocationProvider provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-    */
   @Injectable()
   export class GeolocationProvider {
 
@@ -116,4 +111,3 @@ declare var google;
     }
 
   }
-
