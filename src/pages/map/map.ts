@@ -1,6 +1,8 @@
 import { Component, ViewChild,ElementRef,NgZone } from '@angular/core';
 import { NavController, NavParams,Platform,ModalController,LoadingController } from 'ionic-angular';
 
+import { Keyboard } from '@ionic-native/keyboard';
+
 import { DeviceProvider } from '../../providers/device/device';
 import { GeolocationProvider } from '../../providers/geolocation/geolocation';
 import { OrderProvider } from '../../providers/order/order';
@@ -26,8 +28,9 @@ export class MapPage {
     complement='';
     number='';
     loader;
-    editingNumberOrComple:boolean=false;
+    texting:boolean=false;
     oldLoc:any={};
+    originalMapCenter:any={};
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -37,8 +40,15 @@ export class MapPage {
         public load:LoadingController,
         public geoLoc:GeolocationProvider,
         public device:DeviceProvider,
-        public order:OrderProvider
+        public order:OrderProvider,
+        private keyboard:Keyboard
         ) {
+          keyboard.onKeyboardShow().subscribe(data=>{
+            this.texting=true;
+          })
+          keyboard.onKeyboardHide().subscribe(data=>{
+            this.texting=true;
+          })
     }
 
     ionViewDidLoad() {
@@ -53,16 +63,21 @@ export class MapPage {
         this.loader.present();
         this.geoLoc.getMap()
         .then((mapOpt)=>{
-            // this.map=;
             this.map = new google.maps.Map(this.mapElement.nativeElement, mapOpt);
+            this.originalMapCenter=this.map.getCenter();
             this.map.addListener('center_changed',()=>{
-              if(this.editingNumberOrComple){
-                if(this.oldLoc[0]!=this.map.getCenter().lat() || this.oldLoc[0]!=this.map.getCenter().lng()){
-                  this.map.setCenter(new google.maps.LatLng(this.oldLoc[0],this.oldLoc[1]));
+                if(this.texting && this.showAddress){
+                  this.texting=false;
+                  this.map.setCenter(this.originalMapCenter);
+                }else if(!this.showAddress){
+                  this.originalMapCenter=this.map.getCenter();
+                  this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+                }else{
+                  if(!(this.originalMapCenter.lat()==this.map.getCenter().lat())){
+                    this.originalMapCenter=this.map.getCenter();
+                    this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+                  }
                 }
-              }else{
-                this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
-              }
             });
             this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
             this.loader.dismiss();
@@ -71,11 +86,9 @@ export class MapPage {
             console.log(e);
             this.loader.dismiss();
         });
-
     }
 
     updateAddress(_loc){
-        this.oldLoc=_loc;
         this.geoLoc.getAddressFromLocation(_loc)
         .then((address)=>{
             this.address=address;
@@ -91,7 +104,6 @@ export class MapPage {
     }
 
     addressChange(){
-        //   console.log('address change');
         if(this.address.formated.length >3){
             this.geoLoc.getLocationsWithAddres(this.fulladdress)
             .then((listAddress)=>{
@@ -101,15 +113,22 @@ export class MapPage {
     }
 
     setAddress(address){
+      /*
+      fechar o teclado
+
+      */
         this.closeEdit();
+        this.keyboard.close()
         setTimeout(() => {
             this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
+            this.showAddress=true;
         }, 500);
-        this.showAddress=true;
+
+
+
     }
 
     closeEdit(){
-      this.editingNumberOrComple=false;
         if(this.platform.is('cordova')){
             let activeElement = <HTMLElement>document.activeElement;
             activeElement && activeElement.blur && activeElement.blur();
@@ -129,6 +148,5 @@ export class MapPage {
         })
 
     }
-
 
 }

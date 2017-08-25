@@ -15,11 +15,11 @@
   <div class="map__adress" *ngIf="address && showAddress" >
     <label class="map__adress__input" (click)="openAddressEdit()">{{address.route}}</label>
     <span class="map__adress__icon icon-map"></span>
-    <input class="login__box__input input-number" placeholder="Número" type="tel" [(ngModel)]="address.street_number" (click)="editingNumberOrComple=true" (blur)="closeEdit()">
+    <input class="login__box__input input-number" placeholder="Número" type="tel" (click)="texting=true" [(ngModel)]="address.street_number" (blur)="closeEdit()">
     <span class="map__adress__plus icon-plus-b"></span>
-    <input class="map__adress__input" placeholder="Complemento" type="text" [(ngModel)]="complement">
+    <input class="map__adress__input" placeholder="Complemento" type="text" (click)="texting=true" [(ngModel)]="complement">
   </div>
-  <div #map id="map" (click)="closeEdit();showAddress=true" ></div>
+  <div #map id="map" (click)="closeEdit()" ></div>
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
   <button ion-button secondary class="map__btn" (click)="finishOrder()">ENTREGAR AQUI</button>

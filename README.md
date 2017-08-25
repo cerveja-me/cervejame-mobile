@@ -45,10 +45,11 @@ ionic build --release android
 ### sign the build
 ```
 rm cervejame.apk && jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cervejame.keystore -storepass cervejame platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame
-
-### signed apk
 ```
-/Users/guardezi/Library/Android/sdk/build-tools/23.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame.apk
+### signed apk
+
+```
+/Users/jefersonguardezi/Library/Android/sdk/build-tools/26.0.1/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame.apk
 ```
 
 ###UNIQUE COMMAND
@@ -87,5 +88,3 @@ What is the two-letter country code for this unit?
 Is CN=Jeferson Guardezi, OU=cervejame, O=cervejame, L=São Paulo, ST=São Paulo, C=SP correct?
 [no]:  yes
 ```
-
-
