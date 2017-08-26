@@ -28,7 +28,7 @@ export class HomePage {
   closed:boolean;
   products:any=[];
   @ViewChild(Slides) slides: Slides;
-
+  amount=2;
   loadedcompleted;
   err:string;
   sale;
@@ -58,10 +58,23 @@ export class HomePage {
 
   }
 
+  increaseAmount(){
+      this.amount++;
+      this.zone.run(()=>{});
+  }
+  decreaseAmount(){
+      if(this.amount>1){
+          this.amount--;
+          this.zone.run(()=>{});
+      }
+  }
   loader=this.load.create({
     content: this.device.getRandonLoading()
   })
-
+  slideChanged() {
+     let currentIndex = this.slides.getActiveIndex();
+     console.log('Current index is', currentIndex);
+   }
   ionViewDidLoad() {
     this.voucher.removeVoucher();
     if(this.params.get('justFinished')){
@@ -164,6 +177,7 @@ export class HomePage {
       this.device.camPage('home');
     });
   }
+
   scheduleisopen=false;
   openSchedule(){
     if(!this.scheduleisopen){
