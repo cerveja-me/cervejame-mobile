@@ -111,7 +111,7 @@
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
 
-  <div class="receipt" >
+  <div class="receipt" *ngIf="products[slides.getActiveIndex()]">
     <div class="receipt__padding">
       <button class="btn-minus" (click)="decreaseAmount()"></button>
       <div class="receipt__pricebox">
