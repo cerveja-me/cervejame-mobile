@@ -117,7 +117,8 @@
 
       <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': '' " >
         <h2 class="receipt__amount">{{amount}} Caixas</h2>
-        <span class="receipt__discount" *ngIf="amount>1 && !changingSlide">-{{discount*100 |number:'1.0'}}%</span>
+        <span class="receipt__discount" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{discount*100 |number:'1.0'}}%</span>
+        <span class="receipt__discount" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{discount*100 |number:'1.0'}}%</span>
         <span class="receipt__price">R$ {{(products[slides.getActiveIndex()].price * amount)*(1-discount) |number:'1.2-2'}}</span>
         <div class="free-shipping">
           <span class="icon-shipping"></span>
@@ -127,7 +128,7 @@
       <button class="btn-plus" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' " ></button>
     </div>
 
-    <button ion-button secondary class="btn-primary" (click)="finishRequest()">Escolher</button>
+    <button ion-button secondary class="btn-primary" (click)="finishRequest(selectedBeer)">Escolher</button>
   </div>
 
     <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="sale && sale.id" >
