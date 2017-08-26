@@ -33,8 +33,7 @@
       </p>
     </div>
     <div *ngIf="!prod.product.cold">
-      <p class="choose__pricebox">
-        <span class="choose__pricebox__info1">{{prod.product.details.type}}</span>
+        <!-- <span class="choose__pricebox__info1">{{prod.product.details.type}}</span>
         <span class="choose__pricebox__info2">{{prod.product.details.winery}}</span>
         <span class="choose__pricebox__price">
          <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'1.2-2'}}
@@ -43,13 +42,15 @@
          <small class="choose__pricebox__each--currency">{{prod.product.details.grape}}</small>
        </span>
        <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis ~ 30min</span>
-       <span class="termo-natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
-     </p>
-     <p class="choose__bottom">
-      <figure class="choose__picture">
+       <span class="termo-natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span> -->
+     <p class="product__bottom">
+       <span class="product__labels">
+         <span class="product__natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
+         <span class="product__size"><span class="icon-shipping-white"></span>Português</span>
+       </span>
+      <figure class="product__picture">
         <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
       </figure>
-      <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
     </p>
   </div>
 </ion-slide>
