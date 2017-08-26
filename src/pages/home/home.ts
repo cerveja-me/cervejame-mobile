@@ -266,12 +266,9 @@ export class HomePage {
 
   finishRequest(){
     console.log('selected->',this.selectedBeer);
-      // let beer={
-      //
-      // }
 
-      // this.order.setProduct({amount:this.amount,beer:this.products[this.slides.getActiveIndex()]});
-      // this.navCtrl.push(MapPage);
+      this.order.setProduct(this.selectedBeer);
+      this.navCtrl.push(MapPage);
   }
 
   tryAgain(){
