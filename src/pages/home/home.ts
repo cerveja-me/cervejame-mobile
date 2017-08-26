@@ -16,6 +16,7 @@ import { StatusModalPage } from '../status-modal/status-modal';
 import { FeedbackModalPage } from '../feedback-modal/feedback-modal';
 import { NotificationModalPage } from '../notification-modal/notification-modal';
 import { VoucherModalPage } from '../voucher-modal/voucher-modal';
+import { MapPage } from '../map/map';
 
 
 
@@ -35,6 +36,8 @@ export class HomePage {
   sale;
   taped=false;
   changingSlide=false;
+  selectedBeer:any;
+  updatingAmount=false;
   constructor(
     public navCtrl: NavController,
     public params:NavParams,
@@ -61,19 +64,33 @@ export class HomePage {
   }
 
   increaseAmount(){
+      this.updatingAmount=true;
+
       this.amount++;
       if(this.amount>4){
         this.discount=0.2;
       }else{
         this.discount=(this.amount-1)*0.05;
       }
+      this.selectedBeer.discount=this.discount;
+      this.selectedBeer.amount=this.amount;
       this.zone.run(()=>{});
+      setTimeout(() => {
+          this.updatingAmount=false;
+      },100);
+
   }
 
   decreaseAmount(){
       if(this.amount>1){
           this.amount--;
-          this.discount=(this.amount-1)*0.05;
+          if(this.amount>3){
+            this.discount=0.2;
+          }else{
+            this.discount=(this.amount-1)*0.05;
+          }
+          this.selectedBeer.discount=this.discount;
+          this.selectedBeer.amount=this.amount;
           this.zone.run(()=>{});
       }
   }
@@ -81,12 +98,22 @@ export class HomePage {
   loader=this.load.create({
     content: this.device.getRandonLoading()
   })
+
   slideChanged() {
-    this.changingSlide=false;
-     let currentIndex = this.slides.getActiveIndex();
+     this.changingSlide=false;
+     let current =this.slides.getActiveIndex();
      this.amount=2;
      this.discount=0.05;
      this.zone.run(()=>{});
+     console.log('da -> ',current,this.slides.getPreviousIndex());
+     if(this.products.length===current){
+       this.slides.slidePrev();
+     }
+     this.selectedBeer={
+       beer:this.products[current],
+       discount:this.discount,
+       amount:this.amount
+     }
    }
   ionViewDidLoad() {
     this.voucher.removeVoucher();
@@ -175,6 +202,7 @@ export class HomePage {
       this.zone.run(()=>{});
       // this.slides.slideTo(1);
       this.loader.dismiss();
+      this.slideChanged();
 
     })
     .catch(e=>{
@@ -223,16 +251,29 @@ export class HomePage {
       });
     }
   }
+
   openVoucher(){
     let voucherModal = this.modalCtrl.create(VoucherModalPage);
     voucherModal.present().then(r=>{
       this.statusIsOpen=true;
     });
   }
-  onTaped(){
+
+  onTaped(event){
     this.taped=true;
     this.changingSlide=true;
   }
+
+  finishRequest(){
+    console.log('selected->',this.selectedBeer);
+      // let beer={
+      //
+      // }
+
+      // this.order.setProduct({amount:this.amount,beer:this.products[this.slides.getActiveIndex()]});
+      // this.navCtrl.push(MapPage);
+  }
+
   tryAgain(){
     this.navCtrl.setRoot(HomePage);
   }
