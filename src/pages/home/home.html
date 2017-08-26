@@ -8,7 +8,7 @@
 <ion-content class="bkg-choose center" >
   <div class="table"></div>
 
-  <ion-slides class="choose-slider" (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!products.length >0">
+  <ion-slides class="choose-slider" (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()"  hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold" >
         <!-- <p class="choose__pricebox">
@@ -111,19 +111,20 @@
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
 
-  <div class="receipt" *ngIf="products[slides.getActiveIndex()]">
+  <div class="receipt" *ngIf="products[slides.getActiveIndex()] " >
     <div class="receipt__padding">
-      <button class="btn-minus" (click)="decreaseAmount()"></button>
-      <div class="receipt__pricebox">
+      <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
+
+      <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': '' " >
         <h2 class="receipt__amount">{{amount}} Caixas</h2>
-        <span class="receipt__discount" *ngIf="amount>1">-{{discount*100 |number:'1.0'}}%</span>
+        <span class="receipt__discount" *ngIf="amount>1 && !changingSlide">-{{discount*100 |number:'1.0'}}%</span>
         <span class="receipt__price">R$ {{(products[slides.getActiveIndex()].price * amount)*(1-discount) |number:'1.2-2'}}</span>
         <div class="free-shipping">
           <span class="icon-shipping"></span>
           <label>Grátis ~ 30min</label>
         </div>
       </div>
-      <button class="btn-plus" (click)="increaseAmount()"></button>
+      <button class="btn-plus" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' " ></button>
     </div>
 
     <button ion-button secondary class="btn-primary" (click)="finishRequest()">Escolher</button>

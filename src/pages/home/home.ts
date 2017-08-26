@@ -34,6 +34,7 @@ export class HomePage {
   err:string;
   sale;
   taped=false;
+  changingSlide=false;
   constructor(
     public navCtrl: NavController,
     public params:NavParams,
@@ -68,7 +69,7 @@ export class HomePage {
       }
       this.zone.run(()=>{});
   }
-  
+
   decreaseAmount(){
       if(this.amount>1){
           this.amount--;
@@ -81,6 +82,7 @@ export class HomePage {
     content: this.device.getRandonLoading()
   })
   slideChanged() {
+    this.changingSlide=false;
      let currentIndex = this.slides.getActiveIndex();
      this.amount=2;
      this.discount=0.05;
@@ -122,6 +124,7 @@ export class HomePage {
     this.slides.slidesPerView =2;
     this.slides.initialSlide = 0;
     this.slides.centeredSlides=true;
+    this.slides.pager=true;
   }
 
   verifyLastSale(){
@@ -228,6 +231,7 @@ export class HomePage {
   }
   onTaped(){
     this.taped=true;
+    this.changingSlide=true;
   }
   tryAgain(){
     this.navCtrl.setRoot(HomePage);

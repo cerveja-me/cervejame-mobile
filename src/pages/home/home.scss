@@ -5,6 +5,14 @@ page-home {
     display: inline-block;
   }
 }
+    @keyframes pop-discount {
+      0% { transform: scale(1) rotate(0deg);  }
+      20% { transform: scale(1.2) rotate(-10deg); }
+      50% { transform: scale(1.2) rotate(-10deg); }
+      80% { transform: scale(1.2) rotate(-10deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
     @keyframes loading {
         0% { transform: rotate(0deg)}
         100% { transform: rotate(359deg)}
@@ -115,9 +123,9 @@ page-home {
 
         &__labels {
             position: absolute;
-            top: 30%;
+            top: 38%;
             z-index: 4;
-            right: -25%;
+            right: -20%;
             opacity: 0;
             transition: all 0.3s;
             text-align: left;
@@ -564,6 +572,12 @@ page-home {
       border: 2px solid #583318;
       text-align: center;
       font-size: 18px;
+      transition: opacity 0.2s;
+
+      &.dragging {
+        opacity: 0.2;
+      }
+
     }
 
     &__amount {
@@ -585,6 +599,9 @@ page-home {
       padding: 2px 4px 2px 6px;
       margin-right: 10px;
       position: relative;
+      animation: pop-discount 1s ease 0.5s 1 normal;
+      animation-fill-mode: both;
+      display: inline-block;
 
       &::after {
 
@@ -631,6 +648,11 @@ page-home {
         display: inline-block;
         vertical-align: middle;
         background-color: transparent;
+        transition: opacity 0.2s;
+
+        &.dragging {
+          opacity: 0.2;
+        }
     }
 
     .btn-plus {
@@ -641,6 +663,11 @@ page-home {
         display: inline-block;
         vertical-align: middle;
         background-color: transparent;
+        transition: opacity 0.2s;
+
+        &.dragging {
+          opacity: 0.2;
+        }
     }
 }
 
