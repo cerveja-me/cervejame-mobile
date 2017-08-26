@@ -8,7 +8,7 @@
 <ion-content class="bkg-choose center" >
   <div class="table"></div>
 
-  <ion-slides class="choose-slider"  [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!products.length >0">
+  <ion-slides class="choose-slider" (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold" >
         <!-- <p class="choose__pricebox">
@@ -116,8 +116,8 @@
       <button class="btn-minus" (click)="decreaseAmount()"></button>
       <div class="receipt__pricebox">
         <h2 class="receipt__amount">{{amount}} Caixas</h2>
-        <span class="receipt__discount" *ngIf="amount>1">-{{discount*100}}%</span>
-        <span class="receipt__price">R$ {{products[slides.getActiveIndex()].price * amount |number:'1.2-2'}}</span>
+        <span class="receipt__discount" *ngIf="amount>1">-{{discount*100 |number:'1.0'}}%</span>
+        <span class="receipt__price">R$ {{(products[slides.getActiveIndex()].price * amount)*(1-discount) |number:'1.2-2'}}</span>
         <div class="free-shipping">
           <span class="icon-shipping"></span>
           <label>Grátis ~ 30min</label>
