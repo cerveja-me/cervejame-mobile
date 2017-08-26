@@ -29,6 +29,7 @@ export class HomePage {
   products:any=[];
   @ViewChild(Slides) slides: Slides;
   amount=2;
+  discount=0.05;
   loadedcompleted;
   err:string;
   sale;
