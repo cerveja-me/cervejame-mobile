@@ -7,9 +7,9 @@ page-home {
 }
     @keyframes pop-discount {
       0% { transform: scale(1) rotate(0deg);  }
-      20% { transform: scale(1.2) rotate(-10deg); }
-      50% { transform: scale(1.2) rotate(-10deg); }
-      80% { transform: scale(1.2) rotate(-10deg); }
+      20% { transform: scale(1.4) rotate(-5deg); }
+      50% { transform: scale(1.4) rotate(-5deg); }
+      80% { transform: scale(1.4) rotate(-5deg); }
       100% { transform: scale(1) rotate(0deg); }
     }
 
@@ -619,25 +619,16 @@ page-home {
 
       color: white;
       font-size: 11px;
-      background: #D84040;
-      padding: 2px 4px 2px 6px;
+      padding: 2px 13px 2px 6px;
       margin-right: 10px;
       position: relative;
       animation: pop-discount 1s ease 0.5s 1 normal;
       animation-fill-mode: both;
       display: inline-block;
-
-      &::after {
-
-        content: '';
-        position: absolute;
-        left: 100%;
-        top: 0px;
-        background-image: url('../assets/icon/icon-tag.svg');
-        background-size: cover;
-        width: 8px;
-        height: 18px;
-      }
+      background-image: url('../assets/icon/icon-tag.svg');
+      padding: 2px 13px 2px 6px;
+      margin-right: 2px;
+      width: 47px;
     }
 
     &__price {
