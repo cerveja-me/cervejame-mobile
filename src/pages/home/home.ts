@@ -61,7 +61,10 @@ export class HomePage {
   loader=this.load.create({
     content: this.device.getRandonLoading()
   })
-
+  slideChanged() {
+     let currentIndex = this.slides.getActiveIndex();
+     console.log('Current index is', currentIndex);
+   }
   ionViewDidLoad() {
     this.voucher.removeVoucher();
     if(this.params.get('justFinished')){
