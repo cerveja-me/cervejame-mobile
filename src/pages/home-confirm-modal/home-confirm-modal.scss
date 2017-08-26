@@ -20,7 +20,7 @@ page-home-confirm-modal {
 }
 
 .receipt {
-    background:none;
+  
     &__box {
         background: #FFFFDD;
         position: absolute;
@@ -37,9 +37,6 @@ page-home-confirm-modal {
             background-image: url('../assets/icon/ticket.svg');
             top: -9px;
             left: 0;
-        }
-
-
     }
 
     &__alert {
@@ -69,7 +66,7 @@ page-home-confirm-modal {
         box-sizing: border-box;
         border-top: 2px solid #583318;
         margin: 0 15px;
-        
+
         h2 {
             width: 49%;
             display: inline-block;
@@ -78,9 +75,9 @@ page-home-confirm-modal {
             margin: 0;
         }
     }
-    
-  
-    
+
+
+
     &__voucher {
         width: 49%;
         display: inline-block;
@@ -88,23 +85,23 @@ page-home-confirm-modal {
         padding: 15px;
         box-sizing: border-box;
         text-align: right;
-        
+
         &__btn {
             background: none;
             border: 2px dotted #583318;
             border-radius: 10px;
             padding: 10px;
             width: 100%;
-            
+
             &.active {
                 background: #83DD7F;
                 border: 2px solid #583318;
             }
-            
+
             &.active label {
                 @extend .font-bold;
             }
-            
+
             label {
                 @extend .font-regular;
 
@@ -115,7 +112,7 @@ page-home-confirm-modal {
                 display: inline-block;
             }
         }
-        
+
         &__icon {
             background-image: url('../assets/icon/icon-voucher-single.svg');
             width: 27px;
@@ -222,4 +219,6 @@ page-home-confirm-modal {
 
 .receipt .scroll-content {
     margin-top: 0 !important;
+}
+
 }
