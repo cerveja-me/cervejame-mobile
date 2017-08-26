@@ -82,6 +82,8 @@ export class HomePage {
   }
 
   decreaseAmount(){
+      this.updatingAmount=true;
+
       if(this.amount>1){
           this.amount--;
           if(this.amount>3){
@@ -93,6 +95,9 @@ export class HomePage {
           this.selectedBeer.amount=this.amount;
           this.zone.run(()=>{});
       }
+      setTimeout(() => {
+          this.updatingAmount=false;
+      },100);
   }
 
   loader=this.load.create({
