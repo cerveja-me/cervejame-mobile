@@ -120,9 +120,49 @@ page-home {
             position: absolute;
             top: 30%;
             z-index: 4;
-            right: -25px;
+            right: -25%;
             opacity: 0;
             transition: all 0.3s;
+            text-align: left;
+        }
+
+        &__cold {
+            @extend .font-bold;
+            @include border-radius(10px 10px 10px 0px);
+
+            background: #80BFFF;
+            color: white;
+            text-align: center;
+            display: block;
+            padding: 6px 11px;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        &__size {
+            @extend .font-regular !optional;
+            @include border-radius(0 10px 10px 10px);
+
+            background: #583318;
+            color: white;
+            text-align: center;
+            display: block;
+            padding: 6px 11px;
+            font-size: 11px;
+            display: inline-block;
+        }
+
+        &__natura {
+            @extend .font-bold;
+            @include border-radius(10px 10px 10px 0px);
+
+            background: #FFFFDD;
+            color: #573317;
+            text-align: center;
+            display: block;
+            padding: 4px 11px;
+            font-size: 11px;
+            text-transform: uppercase;
         }
 
         &__picture {
@@ -154,32 +194,7 @@ page-home {
 
 }
 
-.cold-beer {
-    @extend .font-bold !optional;
-    @include border-radius(10px 10px 10px 0px);
 
-    background: #80BFFF;
-    color: white;
-    text-align: center;
-    display: block;
-    padding: 6px 11px;
-    font-size: 11px;
-    text-transform: uppercase;
-
-}
-
-.termo-natura {
-    @extend .font-bold !optional;
-    @include border-radius(50px);
-
-    background: #FFFFDD;
-    color: #573317;
-    text-align: center;
-    display: block;
-    padding: 4px 11px;
-    font-size: 11px;
-    text-transform: uppercase;
-}
 
 .choose-slider {
     height: 75%;
