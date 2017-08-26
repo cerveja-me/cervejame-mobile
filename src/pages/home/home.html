@@ -22,15 +22,12 @@
          </span>
 
        </p> -->
-       <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
        <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
+       <span class="free-shipping"><span class="icon-shipping-white"></span>350ml</span>
        <p class="choose__bottom">
         <figure class="choose__picture">
           <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
         </figure>
-        <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
-        <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
-        <button ion-button secondary class="btn-choose" *ngIf="!closed" (click)="selectBeer(prod)">ESCOLHER</button>
       </p>
     </div>
     <div *ngIf="!prod.product.cold">
