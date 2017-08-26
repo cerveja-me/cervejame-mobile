@@ -24,8 +24,8 @@
        </p> -->
        <p class="product__bottom">
          <span class="product__labels">
-           <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
-           <span class="free-shipping"><span class="icon-shipping-white"></span>350ml</span>
+           <span class="product__cold" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
+           <span class="product__size"><span class="icon-shipping-white"></span>350ml</span>
          </span>
           <figure class="product__picture">
           <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
@@ -42,7 +42,7 @@
        <span class="choose__pricebox__each">
          <small class="choose__pricebox__each--currency">{{prod.product.details.grape}}</small>
        </span>
-       <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
+       <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis ~ 30min</span>
        <span class="termo-natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
      </p>
      <p class="choose__bottom">
@@ -115,11 +115,11 @@
       <button class="btn-minus" (click)="decreaseAmount()"></button>
       <div class="receipt__pricebox">
         <h2 class="receipt__amount">{{amount}} Caixas</h2>
-        <span class="receipt__discount"  *ngIf="amount>1" > -10%</span>
+        <span class="receipt__discount" *ngIf="amount>1">-5%</span>
         <span class="receipt__price">R$ {{products[slides.getActiveIndex()].price * amount |number:'1.2-2'}}</span>
         <div class="free-shipping">
           <span class="icon-shipping"></span>
-          <label>Grátis</label>
+          <label>Grátis ~ 30min</label>
         </div>
       </div>
       <button class="btn-plus" (click)="increaseAmount()"></button>
