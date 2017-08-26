@@ -49,110 +49,80 @@ page-home {
         height: 85%;
     }
 
-    .choose {
-        &__pricebox {
-            @include border-radius(30px);
+    .product {
 
-            border: 2px solid #fff;
-            width: 215px;
-            background: #573317;
-            padding: 15px;
-            display: inline-block;
+
+
+            // &__info1 {
+            //     @extend .font-bold !optional;
+            //
+            //     color: white;
+            //     text-transform: uppercase;
+            //     font-size: 14px;
+            //     animation: dissolve-in 10s linear 1.5s infinite normal;
+            //     animation-fill-mode: both;
+            // }
+
+            // &__info2 {
+            //     @extend .font-bold !optional;
+            //
+            //     color: white;
+            //     text-transform: uppercase;
+            //     font-size: 14px;
+            //     position: absolute;
+            //     top: 18px;
+            //     left: 0;
+            //     width: 100%;
+            //     text-align: center;
+            //
+            //     animation: dissolve-out 10s linear 1.5s infinite reverse;
+            //     animation-fill-mode: both;
+            // }
+
+            // &__price {
+            //     @extend .font-bold !optional;
+            //
+            //     color: white;
+            //     font-size: 38px;
+            //     display: inline-block;
+            //     vertical-align: middle;
+            //     animation: dissolve-in 10s linear 1.5s infinite normal;
+            //     animation-fill-mode: both;
+            //
+            //     &--currency {
+            //         @extend .font-bold !optional;
+            //
+            //         font-size: 24px;
+            //         display: inline-block;
+            //         vertical-align: middle;
+            //         margin-right: 7px;
+            //         margin-bottom: 7px;
+            //         text-transform: uppercase;
+            //     }
+            // }
+
+            // &__each {
+            //     @extend .font-bold !optional;
+            //
+            //     color: white;
+            //     font-size: 38px;
+            //     display: block;
+            //     animation: dissolve-out 10s linear 1.5s infinite reverse;
+            //     animation-fill-mode: both;
+            //     position: absolute;
+            //     top: 37px;
+            //     left: 0;
+            //     width: 100%;
+            //     text-align: center;
+            // }
+
+        &__labels {
             position: absolute;
-            top: 0;
-            left: 50%;
-            margin-left: -112px;
+            top: 30%;
+            z-index: 4;
+            right: -25px;
             opacity: 0;
-            transition: all .5s;
-            z-index: 1;
-
-            &:after {
-                content: '';
-                background-image: url(../assets/icon/trigger-white.svg);
-                background-size: cover;
-                width: 23px;
-                height: 23px;
-
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                margin-left: -6px;
-                margin-top: -10px;
-            }
-
-            &__info1 {
-                @extend .font-bold !optional;
-
-                color: white;
-                text-transform: uppercase;
-                font-size: 14px;
-                animation: dissolve-in 10s linear 1.5s infinite normal;
-                animation-fill-mode: both;
-            }
-
-            &__info2 {
-                @extend .font-bold !optional;
-
-                color: white;
-                text-transform: uppercase;
-                font-size: 14px;
-                position: absolute;
-                top: 18px;
-                left: 0;
-                width: 100%;
-                text-align: center;
-
-                animation: dissolve-out 10s linear 1.5s infinite reverse;
-                animation-fill-mode: both;
-            }
-
-            &__price {
-                @extend .font-bold !optional;
-
-                color: white;
-                font-size: 38px;
-                display: inline-block;
-                vertical-align: middle;
-                animation: dissolve-in 10s linear 1.5s infinite normal;
-                animation-fill-mode: both;
-
-                &--currency {
-                    @extend .font-bold !optional;
-
-                    font-size: 24px;
-                    display: inline-block;
-                    vertical-align: middle;
-                    margin-right: 7px;
-                    margin-bottom: 7px;
-                    text-transform: uppercase;
-                }
-            }
-
-            &__each {
-                @extend .font-bold !optional;
-
-                color: white;
-                font-size: 38px;
-                display: block;
-                animation: dissolve-out 10s linear 1.5s infinite reverse;
-                animation-fill-mode: both;
-                position: absolute;
-                top: 37px;
-                left: 0;
-                width: 100%;
-                text-align: center;
-
-                &--currency {
-                    @extend .font-bold !optional;
-
-                    font-size: 24px;
-                    display: inline-block;
-                    vertical-align: middle;
-                    margin-right: 7px;
-                    margin-bottom: 7px;
-                    text-transform: uppercase;
-                }
-            }
+            transition: all 0.3s;
         }
 
         &__picture {
@@ -182,39 +152,33 @@ page-home {
         }
     }
 
-    .cold-beer {
-        @extend .font-bold !optional;
-        @include border-radius(20px 20px 20px 20px);
+}
 
-        background: #80BFFF;
-        color: white;
-        text-align: center;
-        display: block;
-        position: absolute;
-        bottom: -23px;
-        right: -31px;
-        padding: 4px 11px;
-        font-size: 11px;
-        text-transform: uppercase;
-        z-index: 4;
-    }
+.cold-beer {
+    @extend .font-bold !optional;
+    @include border-radius(10px 10px 10px 0px);
 
-    .termo-natura {
-        @extend .font-bold !optional;
-        @include border-radius(50px);
+    background: #80BFFF;
+    color: white;
+    text-align: center;
+    display: block;
+    padding: 6px 11px;
+    font-size: 11px;
+    text-transform: uppercase;
 
-        background: #FFFFDD;
-        color: #573317;
-        text-align: center;
-        display: block;
-        position: absolute;
-        bottom: -23px;
-        right: -31px;
-        padding: 4px 11px;
-        font-size: 11px;
-        text-transform: uppercase;
-        z-index: 4;
-    }
+}
+
+.termo-natura {
+    @extend .font-bold !optional;
+    @include border-radius(50px);
+
+    background: #FFFFDD;
+    color: #573317;
+    text-align: center;
+    display: block;
+    padding: 4px 11px;
+    font-size: 11px;
+    text-transform: uppercase;
 }
 
 .choose-slider {
@@ -258,12 +222,11 @@ page-home {
     margin-left: auto;
     z-index: 3;
 
-    .choose__pricebox,
-    .btn-choose {
+    .product__labels {
         opacity: 1;
     }
 
-    .choose__picture {
+    .product__picture {
         transform: scale(1);
     }
 }

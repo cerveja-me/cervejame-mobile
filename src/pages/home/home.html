@@ -22,10 +22,12 @@
          </span>
 
        </p> -->
-       <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
-       <span class="free-shipping"><span class="icon-shipping-white"></span>350ml</span>
-       <p class="choose__bottom">
-        <figure class="choose__picture">
+       <p class="product__bottom">
+         <span class="product__labels">
+           <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
+           <span class="free-shipping"><span class="icon-shipping-white"></span>350ml</span>
+         </span>
+          <figure class="product__picture">
           <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
         </figure>
       </p>
