@@ -61,13 +61,23 @@ export class HomePage {
 
   increaseAmount(){
       this.amount++;
+      if(this.amount>4){
+        this.discount=0.2;
+      }else{
+        this.discount=(this.amount-1)*0.05;
+      }
       this.zone.run(()=>{});
   }
   decreaseAmount(){
       if(this.amount>1){
           this.amount--;
+          if(this.amount===1){
+            this.discount=0;
+          }
           this.zone.run(()=>{});
       }
+
+
   }
   loader=this.load.create({
     content: this.device.getRandonLoading()
@@ -75,6 +85,9 @@ export class HomePage {
   slideChanged() {
      let currentIndex = this.slides.getActiveIndex();
      console.log('Current index is', currentIndex);
+     this.amount=2;
+     this.discount=0.05;
+     this.zone.run(()=>{});
    }
   ionViewDidLoad() {
     this.voucher.removeVoucher();
