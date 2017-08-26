@@ -1,6 +1,6 @@
 
 <ion-header>
-   <button class="btn-schedule icon-opened" ion-button secondary *ngIf="products.length >0"></button>
+   <button class="btn-schedule icon-opened" ion-button secondary *ngIf="products.length >0" (click)="openSchedule()"></button>
  <h1 class="logo-dark"></h1>
  <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openVoucher()"></button>
 </ion-header>
@@ -8,7 +8,7 @@
 <ion-content class="bkg-choose center" >
   <div class="table"></div>
 
-  <ion-slides class="choose-slider" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!products.length >0">
+  <ion-slides class="choose-slider"  [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold" >
         <!-- <p class="choose__pricebox">
@@ -111,13 +111,13 @@
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
 
-  <div class="receipt">
+  <div class="receipt" >
     <div class="receipt__padding">
       <button class="btn-minus" (click)="decreaseAmount()"></button>
       <div class="receipt__pricebox">
-        <h2 class="receipt__amount">2 Caixas</h2>
-        <span class="receipt__discount">-5%</span>
-        <span class="receipt__price">R$ 20,00</span>
+        <h2 class="receipt__amount">{{amount}} Caixas</h2>
+        <span class="receipt__discount" *ngIf="amount>1">-5%</span>
+        <span class="receipt__price">R$ {{products[slides.getActiveIndex()].price * amount |number:'1.2-2'}}</span>
         <div class="free-shipping">
           <span class="icon-shipping"></span>
           <label>Grátis ~ 30min</label>
@@ -128,30 +128,6 @@
 
     <button ion-button secondary class="btn-primary" (click)="finishRequest()">Escolher</button>
   </div>
-
-    <!-- <ion-scroll scrollX="true" scrollY="false" style="background: beige;height:66px;">
-
-      <button style="height: 56px;width: 156px;margin: 10px;"> 1 caixa </button>
-      <button style="height: 56px;width: 156px;margin: 10px;"> 2 caixas </button>
-      <button style="height: 56px;width: 156px;margin: 10px;"> 3 caixas </button>
-      <button style="height: 56px;width: 156px;margin: 10px;"> 4 ou mais caixas </button>
-
-  </ion-scroll> -->
-
-<!--
-  <button ion-button secondary (click)="openSchedule()" class="schedule-on" *ngIf="!closed && !sale" >
-    <span class="schedule-on__label">
-      <span class="icon-clock"></span>
-      <label>Estamos atendendo</label>
-    </span>
-  </button>
-
-
-  <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed"  >
-    <span class="schedule-off__label">
-      <span class="icon-clock-w"></span>Não é possível fazer pedidos agora.</span>
-      <span class="schedule-off__hours">Horários</span>
-    </button> -->
 
     <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="sale && sale.id" >
 
