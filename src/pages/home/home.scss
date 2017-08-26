@@ -33,10 +33,6 @@ page-home {
         opacity: 0.8 !important;
     }
 
-    .receipt.content-ios {
-        background: none !important;
-    }
-
     .bkg-choose {
         background-image: url(../assets/img/bkg-choose.jpg);
         background-size: cover;
@@ -186,28 +182,9 @@ page-home {
         }
     }
 
-    .free-shipping {
-        @extend .font-bold !optional;
-        @include border-radius(100px);
-
-        background: #D84040;
-        width: 65px;
-        height: 65px;
-        color: white;
-        text-align: center;
-        display: block;
-        position: absolute;
-        bottom: -9px;
-        right: -35px;
-        padding: 10px;
-        font-size: 11px;
-        text-transform: uppercase;
-        z-index: 4;
-    }
-
     .cold-beer {
         @extend .font-bold !optional;
-        @include border-radius(50px);
+        @include border-radius(20px 20px 20px 20px);
 
         background: #80BFFF;
         color: white;
@@ -377,70 +354,21 @@ page-home {
     }
 }
 
-@keyframes show-up-on {
-    0% { bottom: -50px; }
-    100% { bottom: 0; }
+.button.btn-schedule {
+  background: url(../assets/icon/icon-opened.svg) no-repeat;;
+  width: 29px;
+  height: 32px;
+  border: none;
+  box-shadow: none;
+  position: absolute;
+  top: 50%;
+  margin-top: -9px;
+  left: 20px;
 }
 
 @keyframes show-up-off {
     0% { bottom: -75px; }
     100% { bottom: 0; }
-}
-
-.schedule-on {
-    @extend .font-bold !optional;
-
-    font-size: 12px;
-    border-top: 1px solid white;
-    color: #583318;
-    background: #83DD7F;
-    border-radius: 0;
-    height: 37px;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    position: relative;
-    animation: show-up-on 0.3s ease-out 1s 1 normal;
-    animation-fill-mode: both;
-
-    &__label {
-        width: 65%;
-        position: absolute;
-        left: 6px;
-        white-space: initial;
-        text-align: left;
-        line-height: 1.3em;
-        text-transform: initial;
-        top: 50%;
-        margin-top: -12px;
-
-        label {
-            display: inline-block;
-            margin-top: 2px;
-            vertical-align: middle;
-        }
-    }
-
-    .icon-clock {
-        width: 22px;
-        height: 22px;
-        background-image: url(../assets/icon/icon-clock.svg);
-        display: inline-block;
-        margin-right: 6px;
-        vertical-align: middle;
-    }
-
-    &:after {
-        content: '';
-        width: 22px;
-        height: 22px;
-        background-image: url(../assets/icon/icon-up-brown.svg);
-        display: block;
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        margin-top: -12px;
-    }
 }
 
 .schedule-off {
@@ -624,4 +552,114 @@ page-home {
     &.activated {
          background: url(../assets/icon/icon-voucher.svg);
     }
+}
+
+.receipt {
+    background: #FFFFDD;
+    position: absolute;
+    box-shadow:0 -7px 10px 0 rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    width: 100%;
+    bottom: 0;
+
+    &:before {
+        content: "";
+        width: 100%;
+        height: 20px;
+        position: absolute;
+        background-image: url('../assets/icon/ticket.svg');
+        top: -9px;
+        left: 0;
+    }
+
+    &__padding {
+      padding: 10px 15px;
+    }
+
+    &__pricebox {
+      @include border-radius(20px);
+
+      display: inline-block;
+      vertical-align: middle;
+      width: 170px;
+      margin: 5%;
+      border: 2px solid #583318;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    &__amount {
+      @extend .font-bold;
+
+      color: #583318;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    &__discount {
+      @include border-radius(4px);
+      @extend .font-bold;
+
+      color: white;
+      font-size: 11px;
+      background: #D84040;
+      padding: 2px 4px 2px 6px;
+      margin-right: 5px;
+    }
+
+    &__price {
+        @extend .font-regular;
+
+        color: #583318;
+        font-size: 16px;
+    }
+
+    .free-shipping {
+      border-top: 1px solid #583318;
+      width: 90%;
+      margin: 0 auto;
+      padding: 5px 0;
+
+      label {
+          @extend .font-regular;
+
+          font-size: 11px;
+          color: #583318;
+          text-transform: uppercase;
+      }
+    }
+
+    .btn-minus {
+        background-image: url('../assets/icon/minus.svg');
+        background-size: cover;
+        width: 36px;
+        height: 36px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: transparent;
+    }
+
+    .btn-plus {
+        background-image: url('../assets/icon/plus.svg');
+        background-size: cover;
+        width: 36px;
+        height: 36px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: transparent;
+    }
+}
+
+.btn-primary {
+    @include border-radius(0);
+    @extend .font-bold;
+
+    background: #D84040;
+    border-top: 2px solid #583318;
+    font-size: 24px;
+    padding: 20px;
+    height: auto;
+    width: 100%;
+    margin: 0;
+    text-transform: uppercase;
 }

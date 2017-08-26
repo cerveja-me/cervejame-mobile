@@ -1,5 +1,6 @@
 
 <ion-header>
+   <button class="btn-schedule icon-opened" ion-button secondary *ngIf="products.length >0"></button>
  <h1 class="logo-dark"></h1>
  <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openVoucher()"></button>
 </ion-header>
@@ -10,7 +11,7 @@
   <ion-slides class="choose-slider" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()" hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold" >
-        <p class="choose__pricebox">
+        <!-- <p class="choose__pricebox">
           <span class="choose__pricebox__info1">{{prod.product.description}}</span>
           <span class="choose__pricebox__info2">Por Unidade</span>
           <span class="choose__pricebox__price">
@@ -19,9 +20,10 @@
          <span class="choose__pricebox__each">
            <small class="choose__pricebox__each--currency">R$</small>{{prod.unitvalue |number:'1.2-2'}}
          </span>
-         <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
-         <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
-       </p>
+
+       </p> -->
+       <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis</span>
+       <span class="cold-beer" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
        <p class="choose__bottom">
         <figure class="choose__picture">
           <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
@@ -109,6 +111,24 @@
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
 
+  <div class="receipt">
+    <div class="receipt__padding">
+      <button class="btn-minus" (click)="decreaseAmount()"></button>
+      <div class="receipt__pricebox">
+        <h2 class="receipt__amount">2 Caixas</h2>
+        <span class="receipt__discount">-10%</span>
+        <span class="receipt__price">R$ 20,00</span>
+        <div class="free-shipping">
+          <span class="icon-shipping"></span>
+          <label>Grátis</label>
+        </div>
+      </div>
+      <button class="btn-plus" (click)="increaseAmount()"></button>
+    </div>
+
+    <button ion-button secondary class="btn-primary" (click)="finishRequest()">Escolher</button>
+  </div>
+
     <!-- <ion-scroll scrollX="true" scrollY="false" style="background: beige;height:66px;">
 
       <button style="height: 56px;width: 156px;margin: 10px;"> 1 caixa </button>
@@ -118,7 +138,7 @@
 
   </ion-scroll> -->
 
-
+<!--
   <button ion-button secondary (click)="openSchedule()" class="schedule-on" *ngIf="!closed && !sale" >
     <span class="schedule-on__label">
       <span class="icon-clock"></span>
@@ -131,7 +151,7 @@
     <span class="schedule-off__label">
       <span class="icon-clock-w"></span>Não é possível fazer pedidos agora.</span>
       <span class="schedule-off__hours">Horários</span>
-    </button>
+    </button> -->
 
     <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="sale && sale.id" >
 
