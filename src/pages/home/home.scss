@@ -50,9 +50,6 @@ page-home {
     }
 
     .product {
-
-
-
             // &__info1 {
             //     @extend .font-bold !optional;
             //
@@ -127,7 +124,7 @@ page-home {
         }
 
         &__cold {
-            @extend .font-bold;
+            @extend .font-regular;
             @include border-radius(10px 10px 10px 0px);
 
             background: #80BFFF;
@@ -153,7 +150,7 @@ page-home {
         }
 
         &__natura {
-            @extend .font-bold;
+            @extend .font-regular;
             @include border-radius(10px 10px 10px 0px);
 
             background: #FFFFDD;
