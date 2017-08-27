@@ -1,27 +1,23 @@
 
 <ion-header>
-   <button class="btn-schedule icon-opened" ion-button secondary *ngIf="products.length >0" (click)="openSchedule()"></button>
- <h1 class="logo-dark"></h1>
- <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openVoucher()"></button>
+   <button class="btn-schedule icon-opened" [ngClass]="closed ? 'closed': '' " ion-button secondary *ngIf="products.length >0" (click)="openSchedule()"></button>
+   <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed">
+   <span class="schedule-off__label">
+     <span class="icon-clock-w"></span>Não é possível fazer pedidos agora.</span>
+     <span class="schedule-off__hours">Horários</span>
+   </button>
+   <h1 class="logo-dark"></h1>
+   <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openVoucher()"></button>
 </ion-header>
 
-<ion-content class="bkg-choose center" >
+<ion-content class="bkg-choose center" [ngClass]="closed ? 'closed': '' ">
+
   <div class="table"></div>
 
   <ion-slides class="choose-slider" (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()"  hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold" >
-        <!-- <p class="choose__pricebox">
-          <span class="choose__pricebox__info1">{{prod.product.description}}</span>
-          <span class="choose__pricebox__info2">Por Unidade</span>
-          <span class="choose__pricebox__price">
-           <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'1.2-2'}}
-         </span>
-         <span class="choose__pricebox__each">
-           <small class="choose__pricebox__each--currency">R$</small>{{prod.unitvalue |number:'1.2-2'}}
-         </span>
 
-       </p> -->
        <p class="product__bottom">
          <span class="product__labels">
            <span class="product__cold" *ngIf="prod.product.cold"><span class="icon-cold"></span>Gelada!</span>
@@ -33,16 +29,7 @@
       </p>
     </div>
     <div *ngIf="!prod.product.cold">
-        <!-- <span class="choose__pricebox__info1">{{prod.product.details.type}}</span>
-        <span class="choose__pricebox__info2">{{prod.product.details.winery}}</span>
-        <span class="choose__pricebox__price">
-         <small class="choose__pricebox__price--currency">R$</small>{{prod.price |number:'1.2-2'}}
-       </span>
-       <span class="choose__pricebox__each">
-         <small class="choose__pricebox__each--currency">{{prod.product.details.grape}}</small>
-       </span>
-       <span class="free-shipping"><span class="icon-shipping-white"></span>Grátis ~ 30min</span>
-       <span class="termo-natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span> -->
+
      <p class="product__bottom">
        <span class="product__labels">
          <span class="product__natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
@@ -89,7 +76,6 @@
   </ion-slide>
 </ion-slides>
 
-
 <ion-slides class="choose-slider" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
  <ion-slide>
    <p class="msg-empty location-error">
@@ -106,7 +92,6 @@
     </p>
   </ion-slide>
 </ion-slides>
-
 
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
@@ -142,8 +127,8 @@
       <button class="btn-plus" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' " ></button>
     </div>
 
-    <button ion-button secondary class="btn-primary" (click)="finishRequest(selectedBeer)">Escolher</button>
-  </div>
+    <button ion-button secondary class="btn-primary" (click)="finishRequest(selectedBeer)" *ngIf="!closed">Escolher</button>
+    </div>
 
     <button ion-button secondary (click)="openStatus()" class="order-status-bar" *ngIf="sale && sale.id" >
 
