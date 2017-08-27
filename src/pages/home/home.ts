@@ -89,8 +89,6 @@ export class HomePage {
     this.selectedBeer.price = p;
     this.selectedBeer.unitValue = this.selectedBeer.beer.unitvalue*(1-this.selectedBeer.discount);
 
-
-    console.log('beer->',this.selectedBeer);
     this.zone.run(()=>{});
   }
 
@@ -116,7 +114,6 @@ export class HomePage {
      this.amount=2;
      this.discount=0.05;
      this.zone.run(()=>{});
-     console.log('da -> ',current,this.slides.getPreviousIndex());
      if(this.products.length===current){
        this.slides.slidePrev();
      }
