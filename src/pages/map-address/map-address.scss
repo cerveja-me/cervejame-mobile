@@ -1,5 +1,16 @@
 page-map-address {
   .map-address {
+
+    &__title {
+      @extend .font-regular;
+
+      text-transform: uppercase;
+      font-size: 12px;
+      color: white;
+      text-align: center;
+      margin: 20px 0;
+    }
+
     &__box {
         width: 100%;
         position: relative;
@@ -16,7 +27,19 @@ page-map-address {
         position: absolute;
         left: 15px;
         top: 15px;
-        z-index: 999;
+    }
+
+    &__search {
+      background-image: url(../assets/icon/icon-search.svg);
+      background-size: cover;
+      width: 26px;
+      height: 26px;
+      display: inline-block;
+      vertical-align: middle;
+      position: absolute;
+      top: 17px;
+      left: 15px;
+      z-index: 4;
     }
 
     &__input {
@@ -51,7 +74,7 @@ page-map-address {
         height: 25px;
         background: white;
         padding: 15px;
-        width: 100px;
+        width: 75px;
         border-color: $color-secondary;
         box-shadow: -22px 0 20px 0 white;
         border-width: 0 0 0 1px;
@@ -66,6 +89,7 @@ page-map-address {
         top: 62px;
         width: 100%;
         left: 0;
+        z-index: 5;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -94,9 +118,10 @@ page-map-address {
         @extend .font-regular;
         @include border-radius(10px);
 
+        position: relative;
         width: 100%;
         margin: 10px 0 15px;
-        padding: 15px ;
+        padding: 15px;
         list-style: none;
         border: 2px solid white;
         font-size: 14px;
@@ -104,6 +129,13 @@ page-map-address {
         overflow: hidden;
         text-overflow: ellipsis;
         color: white;
+
+        .icon-map {
+            position: relative;
+            margin-right: 10px;
+            top: 0;
+            left: 0;
+        }
       }
     }
   }

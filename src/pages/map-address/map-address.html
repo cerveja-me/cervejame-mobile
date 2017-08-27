@@ -4,14 +4,17 @@
 </ion-header>
 
 <ion-content class="background-dark" padding>
-  <div class="map-address__box" >
+  <div class="map-address__box">
+    <span class="map-address__search"></span>
     <ion-input #inputaddress class="map-address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()">
     </ion-input>
-      <input class="login__box__input map-address__number" placeholder="Número" type="tel">
+      <input class="login__box__input map-address__number" placeholder="Nº" type="tel">
 
     <ul class="map-address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
       <li class="map-address__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
     </ul>
+
+    <h5 class="map-address__title">Últimos endereços</h5>
 
     <ul class="map-address__saved">
         <li class="map-address__saved__item"><span class="map-address__icon icon-map"></span>Rua Venâncio Aires, 204, Casa 1 ao lado do estádio</li>
