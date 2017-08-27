@@ -1,16 +1,17 @@
 
 
-<ion-content class="checkout">
+<ion-content class="checkout" >
   <div class="modal-overlay"  [ngClass]="closing ? 'on-close': '' " (click)="close('cancel')"></div>
 
   <div class="checkout__box">
 
-    <div class="checkout__order">
+    <div class="checkout__order" *ngIf="product">
       <span class="checkout__picture" *ngIf="product"><img-loader class="figure__pedido__img" [src]="'http://cerveja.me/img/mobile/'+product.product.img"></img-loader></span>
-      <h2 class="receipt__amount">2 Caixas</h2>
-      <span class="receipt__discount">-5%</span>
-      <span class="receipt__price">R$ 150,00</span>
+      <h2 class="receipt__amount">{{product.amount}} {{product.beer.product.cold?'Caixa':'Garrafa'}}{{product.amount>1?'s':''}}</h2>
+      <span class="receipt__discount" *ngIf="product.discount>0">-{{product.discount *100 |number:'1.0-0'}}%</span>
+      <span class="receipt__price">R$ {{product.price |number:'1.2-2'}}</span>
     </div>
+
     <div class="checkout__voucher" *ngIf="product">
       <button class="checkout__voucher__btn" (click)="openVoucherModal()" [ngClass]="coupom?'active':''">
         <label *ngIf="!coupom">+</label>
@@ -22,8 +23,8 @@
     <div class="checkout__total" *ngIf="product">
       <span class="checkout__total__title">Total a pagar</span>
       <span class="checkout__total__pricebox">
-        <span class="checkout__total__oldprice"*ngIf="coupom && product.amount>=coupom.min_amount">R$ {{product.amount * product.beer.price |number:'2.2-2'}}</span>
-        <small class="checkout__total__pricebox--currency" >R$</small>{{product.amount * product.beer.price -(coupom?coupom.value:0) |number:'2.2-2'}}
+        <span class="checkout__total__oldprice"*ngIf="coupom && product.amount>=coupom.min_amount">R$ {{product.price |number:'2.2-2'}}</span>
+        <small class="checkout__total__pricebox--currency" >R$</small>{{ product.price -(coupom?coupom.value:0) |number:'2.2-2'}}
       </span>
     </div>
 

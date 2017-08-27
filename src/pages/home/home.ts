@@ -89,8 +89,6 @@ export class HomePage {
     this.selectedBeer.price = p;
     this.selectedBeer.unitValue = this.selectedBeer.beer.unitvalue*(1-this.selectedBeer.discount);
 
-
-    console.log('beer->',this.selectedBeer);
     this.zone.run(()=>{});
   }
 
