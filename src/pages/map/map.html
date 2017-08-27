@@ -1,5 +1,5 @@
-
 <ion-content>
+
   <div class="address__box" *ngIf="address" [ngClass]="showAddress ? 'hidden': '' ">
     <span class="address__icon icon-map"></span>
     <ion-input #inputaddress class="address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (blur)="closeEdit()">
