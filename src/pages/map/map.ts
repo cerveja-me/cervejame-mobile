@@ -86,6 +86,7 @@ export class MapPage {
       addressModal.onDidDismiss(data=>{
           if(data){
             this.device.camPage("map");
+            this.map.setCenter(new google.maps.LatLng(data.geometry.location.lat,data.geometry.location.lng));
             console.log('novo endereço -> ',data);
           }
 
