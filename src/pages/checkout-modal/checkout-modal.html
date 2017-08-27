@@ -19,8 +19,8 @@
     <div class="receipt__total" *ngIf="product">
       <h2 class="receipt__title">Total a pagar</h2>
       <span class="total__pricebox">
-        <span class="total__oldprice"*ngIf="coupom && product.amount>=coupom.min_amount">R$ {{product.amount * product.price |number:'2.2-2'}}</span>
-        <small class="total__pricebox--currency" >R$</small>{{product.amount * product.price -(coupom?coupom.value:0) |number:'2.2-2'}}
+        <span class="total__oldprice"*ngIf="coupom && product.amount>=coupom.min_amount">R$ {{product.amount * product.beer.price |number:'2.2-2'}}</span>
+        <small class="total__pricebox--currency" >R$</small>{{product.amount * product.beer.price -(coupom?coupom.value:0) |number:'2.2-2'}}
       </span>
     </div>
 
@@ -42,7 +42,7 @@
     <div class="receipt__address" (click)="close()" ><span class="icon-map receipt__address__icon" *ngIf="address"></span>{{address}}<span class="icon-arrow-fw" *ngIf="address"></span></div>
 
 
-    <button ion-button secondary class="receipt__btn" (click)="finishOrder()">CONCLUIR PEDIDO</button>
+    <button ion-button secondary class="btn-primary" (click)="finishOrder()">CONCLUIR PEDIDO</button>
 
   </div>
 
