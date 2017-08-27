@@ -89,7 +89,7 @@ export class MapPage {
                 var centerControl = new this.centerControl(centerControlDiv, this.map,this.geoLoc);
 
                 // centerControlDiv.index = 1;
-                this.map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+                this.map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(centerControlDiv);
           })
           .catch(e=>{
               console.log(e);
@@ -113,7 +113,7 @@ export class MapPage {
 
         // Set CSS for the control interior.
         var controlText = document.createElement('div');
-        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.color = '';
         controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
         controlText.style.fontSize = '16px';
         controlText.style.lineHeight = '38px';
