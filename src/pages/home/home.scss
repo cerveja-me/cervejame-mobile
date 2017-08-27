@@ -182,7 +182,7 @@ page-home {
             z-index: 2;
             transform: scale(0.8);
             transition: all 0.5s;
-            -webkit-filter: blur(0.6px) brightness(0.6); filter: blur(0.6px) brightness(0.6);
+            -webkit-filter: blur(0.6px) brightness(0.8); filter: blur(0.6px) brightness(0.8);
 
             img-loader {
                 background-position: center;
@@ -215,7 +215,7 @@ page-home {
     .swiper-pagination {
       top: 170px;
 
-      @media screen and (max-height: 480px) {
+      @media screen and (max-height: 500px) {
           display: none;
       }
 
@@ -592,16 +592,40 @@ page-home {
       display: inline-block;
       vertical-align: middle;
       width: 56%;
+      height: 108px;
       margin: 0 7%;
       border: 2px solid #583318;
       text-align: center;
       font-size: 18px;
       transition: opacity 0.2s;
+      position: relative;
 
       &.dragging {
         opacity: 0.2;
       }
 
+      &__pack,
+      &__each {
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      &__pack {
+          animation: dissolve-in 8s linear 1.5s infinite normal;
+          animation-fill-mode: both;
+      }
+
+
+
+      &__each {
+          animation: dissolve-out 8s linear 1.5s infinite reverse;
+          animation-fill-mode: both;
+      }
+    }
+
+    &__pricebox__pack .receipt__amount {
+      text-transform: uppercase;
     }
 
     &__amount {
@@ -609,7 +633,6 @@ page-home {
 
       color: #583318;
       margin: 10px 0 2px;
-      text-transform: uppercase;
       font-size: 18px;
     }
 
@@ -634,6 +657,10 @@ page-home {
 
         color: #583318;
         font-size: 16px;
+
+        small {
+          font-size: 13px;
+        }
     }
 
     .free-shipping {
