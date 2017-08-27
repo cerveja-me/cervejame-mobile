@@ -4,7 +4,7 @@ page-tour {
         @include border-radius(50px);
         @extend .font-bold !optional;
 
-        background: #D84040;
+        background: $color-primary;
         border: 2px solid white;
         font-size: 17px;
         padding: 15px 30px;
@@ -59,7 +59,7 @@ page-tour {
             strong {
                 @extend .font-bold !optional;
 
-                color: #D5A86C;
+                color: $color-secondary-light;
             }
         }
     }

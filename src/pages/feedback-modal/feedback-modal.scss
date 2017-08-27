@@ -28,7 +28,7 @@ page-feedback-modal {
 
         position: absolute;
         background: #573317;
-        border: 2px solid #FFFFDD;
+        border: 2px solid $color-background;
         font-size: 17px;
         padding: 15px 30px;
         height: auto;
@@ -60,8 +60,8 @@ page-feedback-modal {
 
                 display: block;
                 background: white;
-                color: #583318;
-                border: 2px solid #583318;
+                color: $color-secondary;
+                border: 2px solid $color-secondary;
                 height: 60px;
                 width: 100%;
                 padding: 18px 15px 18px 15px;

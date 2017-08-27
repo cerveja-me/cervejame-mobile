@@ -45,7 +45,7 @@ voucher-modal {
             @extend .font-bold;
 
             font-size: 14px;
-            color: #583318;
+            color: $color-secondary;
             margin: 0;
             position: relative;
             animation: opacity 0.2s linear 0s 1 normal;
@@ -62,14 +62,14 @@ voucher-modal {
             @extend .font-bold;
 
             font-size: 50px;
-            color: #583318;
+            color: $color-secondary;
             margin: 15px 0 18px;
             position: relative;
             display: block;
             text-align: right;
             letter-spacing: -0.05em;
             padding-bottom: 10px;
-            border-bottom: 2px dashed #583318;
+            border-bottom: 2px dashed $color-secondary;
             
             small, label {
                 opacity: 0.2;
@@ -94,8 +94,8 @@ voucher-modal {
             box-sizing: border-box;
             display: block;
             background: white;
-            color: #583318;
-            border: 2px solid #583318;
+            color: $color-secondary;
+            border: 2px solid $color-secondary;
             height: 60px;
             width: 100%;
             padding: 15px;
