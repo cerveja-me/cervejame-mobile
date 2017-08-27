@@ -3,7 +3,7 @@ page-checkout-modal {
   .checkout {
 
       &__box {
-          background: #FFFFDD;
+          background: $color-background;
           position: absolute;
           box-shadow:0 -7px 10px 0 rgba(0, 0, 0, 0.3);
           z-index: 2;
@@ -35,7 +35,7 @@ page-checkout-modal {
           vertical-align: middle;
           padding: 20px 0;
           box-sizing: border-box;
-          border-top: 2px solid #583318;
+          border-top: 2px solid $color-secondary;
           margin: 0 15px;
 
           h2 {
@@ -56,7 +56,7 @@ page-checkout-modal {
           text-transform: uppercase;
           font-size: 12px;
           text-align: center;
-          color: #583318;
+          color: $color-secondary;
           margin: 0 0 10px 0;
       }
 
@@ -66,14 +66,14 @@ page-checkout-modal {
 
           font-size: 26px;
           text-align: center;
-          color: #583318;
+          color: $color-secondary;
           position: relative;
           text-align: center;
           display: inline-block;
           vertical-align: middle;
           margin: 10px;
           padding-left: 2px;
-          border: 2px solid #583318;
+          border: 2px solid $color-secondary;
           margin: 0 7px 0;
           padding: 3px 0;
           width: 46px;
@@ -84,8 +84,8 @@ page-checkout-modal {
           @include border-radius(0);
           @extend .font-bold;
 
-          background: #D84040;
-          border-top: 2px solid #583318;
+          background: $color-primary;
+          border-top: 2px solid $color-secondary;
           font-size: 24px;
           padding: 20px;
           height: auto;
@@ -115,7 +115,7 @@ page-checkout-modal {
         @extend .font-bold;
 
         font-size: 12px;
-        color: #583318;
+        color: $color-secondary;
         text-align: left;
         width: 56%;
         text-align: left;
@@ -131,7 +131,7 @@ page-checkout-modal {
         text-align: center;
         position: relative;
         font-size: 14px;
-        color: #583318;
+        color: $color-secondary;
         margin: 0;
         padding: 15px 45px 15px;
 
@@ -184,8 +184,8 @@ page-checkout-modal {
         margin-top: -10px;
     }
     .payment {
-        border-top: 1px solid #583318;
-        border-bottom: 1px solid #583318;
+        border-top: 1px solid $color-secondary;
+        border-bottom: 1px solid $color-secondary;
         padding-top: 15px;
         overflow: hidden;
         padding: 15px;
@@ -194,7 +194,7 @@ page-checkout-modal {
         &__option {
             @include border-radius(10px);
 
-            border: 2px solid #583318;
+            border: 2px solid $color-secondary;
             background: none;
             padding: 10px;
             display: inline-block;
@@ -211,7 +211,7 @@ page-checkout-modal {
             &__label {
                 @extend .font-bold;
 
-                color: #583318;
+                color: $color-secondary;
                 text-transform: uppercase;
                 display: block;
                 font-size: 10px;
@@ -219,8 +219,8 @@ page-checkout-modal {
             }
 
             &.active {
-                background: #D5A86C;
-                box-shadow: inset 0px 0px 0px 2px #FFFFDD;
+                background: $color-secondary-light;
+                box-shadow: inset 0px 0px 0px 2px $color-background;
             }
 
             &.inactive {
@@ -234,7 +234,7 @@ page-checkout-modal {
 
                     content: 'EM BREVE';
                     color: white;
-                    background: #583318;
+                    background: $color-secondary;
                     text-align: center;
                     font-size: 10px;
                     position: absolute;
@@ -258,7 +258,7 @@ page-checkout-modal {
 
       &__order {
         padding: 20px 0 20px 15px;
-        width: 65%;
+        width: 67%;
         display: inline-block;
         vertical-align: middle;
 
@@ -266,19 +266,25 @@ page-checkout-modal {
             text-transform: uppercase;
             margin: 2px 0;
         }
+
+        .receipt__price {
+            display: inline-block;
+            margin: -1px 0 0 5px;
+            vertical-align: middle;
+        }
       }
 
       &__picture {
           @include border-radius(10px);
 
-          background: #583318;
+          background: $color-secondary;
           float: left;
           text-align: center;
           width: 50px;
           height: 50px;
           text-align: center;
           overflow: hidden;
-          margin-right: 15px;
+          margin-right: 10px;
           position: relative;
 
           img-loader {
@@ -296,7 +302,7 @@ page-checkout-modal {
       }
 
       &__voucher {
-          width: 35%;
+          width: 33%;
           display: inline-block;
           vertical-align: middle;
           padding-right: 15px;
@@ -305,13 +311,13 @@ page-checkout-modal {
 
           &__btn {
               background: none;
-              border: 2px dotted #583318;
+              border: 2px dotted $color-secondary;
               border-radius: 10px;
               padding: 10px;
               width: 100%;
 
               &.active {
-                  background: #83DD7F;
+                  background: $color-success;
               }
 
               &.active .checkout__voucher__icon {
@@ -323,7 +329,7 @@ page-checkout-modal {
 
                   text-transform: uppercase;
                   font-size: 14px;
-                  color: #583318;
+                  color: $color-secondary;
                   vertical-align: middle;
                   display: inline-block;
               }
@@ -342,14 +348,14 @@ page-checkout-modal {
       &__total {
         padding: 20px 0;
         margin: 0 15px;
-        border-top: 2px solid #583318;
+        border-top: 2px solid $color-secondary;
         font-size: 0;
 
         &__title {
             @extend .font-regular;
             @include box-sizing(border-box);
 
-            color: #583318;
+            color: $color-secondary;
             text-transform: uppercase;
             font-size: 12px;
             width: 40%;
@@ -364,7 +370,7 @@ page-checkout-modal {
             @include box-sizing(border-box);
 
             font-size: 21px;
-            color: #583318;
+            color: $color-secondary;
             display: inline-block;
             width: 60%;
             text-align: right;
@@ -382,7 +388,7 @@ page-checkout-modal {
             @extend .font-regular;
 
             font-size: 16px;
-            color: #583318;
+            color: $color-secondary;
             text-align: right;
             display: block;
             margin-bottom: 0;
