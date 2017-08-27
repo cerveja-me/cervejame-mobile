@@ -115,9 +115,9 @@
     <div class="receipt__padding">
       <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
 
-      <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': '' " >
+      <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': selectedBeer.beer.product.cold?'switch':''" >
         <div class="receipt__pricebox__pack">
-          <h2 class="receipt__amount">{{amount}} Caixas</h2>
+          <h2 class="receipt__amount">{{selectedBeer.amount}} {{selectedBeer.beer.product.cold?'Caixa':'Garrafa'}}{{selectedBeer.amount>1?'s':''}}</h2>
           <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{selectedBeer.discount *100 |number:'1.0-0'}}%</span>
           <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{selectedBeer.discount *100 |number:'1.0-0'}}%</span>
           <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}}</span>
@@ -127,10 +127,10 @@
           </div>
         </div>
         <div class="receipt__pricebox__each">
-          <h2 class="receipt__amount">{{selectedBeer.amount * selectedBeer.beer.product.qtd}} Unidades</h2>
+          <h2 class="receipt__amount" >{{selectedBeer.amount * selectedBeer.beer.product.qtd}} Unidades</h2>
           <span class="receipt__discount" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{discount*100 |number:'1.0'}}%</span>
           <span class="receipt__discount" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{discount*100 |number:'1.0'}}%</span>
-          <span class="receipt__price">
+          <span class="receipt__price" >
             R$ {{selectedBeer.unitValue |number:'1.2-2'}}
             <small>cada</small>
           </span>
