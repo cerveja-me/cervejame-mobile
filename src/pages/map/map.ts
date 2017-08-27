@@ -50,10 +50,6 @@ export class MapPage {
         this.loadMap();
     }
 
-     back(){
-       this.navCtrl.pop({});
-     }
-
     loadMap(){
         this.loader=this.load.create({
             content: this.device.getRandonLoading()
