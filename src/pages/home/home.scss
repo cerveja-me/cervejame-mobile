@@ -612,14 +612,14 @@ page-home {
       }
 
       &__pack {
-          animation: dissolve-out 8s linear 1.5s infinite normal;
+          animation: dissolve-in 8s linear 1.5s infinite normal;
           animation-fill-mode: both;
       }
 
 
 
       &__each {
-          animation: dissolve-in 8s linear 1.5s infinite reverse;
+          animation: dissolve-out 8s linear 1.5s infinite reverse;
           animation-fill-mode: both;
       }
     }
@@ -657,6 +657,10 @@ page-home {
 
         color: #583318;
         font-size: 16px;
+
+        small {
+          font-size: 13px;
+        }
     }
 
     .free-shipping {
