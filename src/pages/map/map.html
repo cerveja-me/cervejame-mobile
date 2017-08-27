@@ -13,7 +13,7 @@
     <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (blur)="closeEdit()">
     </ion-input>
 
-    <input class="map__address__number" placeholder="nº" type="tel">
+    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel">
 
     <span class="map__address__icon icon-pin-min"></span>
 
