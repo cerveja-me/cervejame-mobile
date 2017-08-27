@@ -20,15 +20,8 @@ page-checkout-modal {
               left: 0;
       }
 
-      &__alert {
-          @extend .font-bold !optional;
-
-          font-size: 12px;
-          color: #583318;
-          padding: 10px;
-          background: #FFD296;
-          margin: 0;
-          text-align: center;
+      &__order {
+        padding: 20px 15px;
       }
 
       &__quantidade {

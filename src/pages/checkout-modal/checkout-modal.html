@@ -2,22 +2,25 @@
 
 <ion-content class="receipt">
   <div class="modal-overlay"  [ngClass]="closing ? 'on-close': '' " (click)="close('cancel')"></div>
-  <div class="receipt__box">
 
-    <div class="receipt__quantidade">
-      <span class="figure__pedido" *ngIf="product"><img-loader class="figure__pedido__img" [src]="'http://cerveja.me/img/mobile/'+product.product.img"></img-loader></span>
-      <span class="quantidade-pedido" *ngIf="product">{{product.amount}} {{product.product.cold?'Caixa':'Garrafa'}}{{product.amount>1?'s de':' de'}} {{product.product.name}}</span>
+  <div class="checkout__box">
+
+    <div class="checkout__order">
+      <span class="checkout__picture" *ngIf="product"><img-loader class="figure__pedido__img" [src]="'http://cerveja.me/img/mobile/'+product.product.img"></img-loader></span>
+      <span class="checkout__amount" *ngIf="product">{{product.amount}} {{product.product.cold?'Caixa':'Garrafa'}}{{product.amount>1?'s de':' de'}} {{product.product.name}}</span>
+      <span class="receipt__discount">-5%</span>
+      <span class="receipt__price">R$ 5</span>
     </div>
-    <div class="receipt__voucher" *ngIf="product">
-      <button class="receipt__voucher__btn" (click)="openVoucherModal()" [ngClass]="coupom?'active':''">
+    <div class="checkout__voucher" *ngIf="product">
+      <button class="checkout__voucher__btn" (click)="openVoucherModal()" [ngClass]="coupom?'active':''">
         <label *ngIf="coupom">R$ {{coupom.value | number:'2.2-2'}}</label>
         <label *ngIf="!coupom">+ CUPOM</label>
-        <span class="receipt__voucher__icon"></span>
+        <span class="checkout__voucher__icon"></span>
       </button>
     </div>
 
-    <div class="receipt__total" *ngIf="product">
-      <h2 class="receipt__title">Total a pagar</h2>
+    <div class="checkout__total" *ngIf="product">
+      <h2 class="checkout__title">Total a pagar</h2>
       <span class="total__pricebox">
         <span class="total__oldprice"*ngIf="coupom && product.amount>=coupom.min_amount">R$ {{product.amount * product.beer.price |number:'2.2-2'}}</span>
         <small class="total__pricebox--currency" >R$</small>{{product.amount * product.beer.price -(coupom?coupom.value:0) |number:'2.2-2'}}
