@@ -28,7 +28,7 @@ import { StatusModalPage } from '../pages/status-modal/status-modal';
 import { FeedbackModalPage } from '../pages/feedback-modal/feedback-modal';
 import { NotificationModalPage } from '../pages/notification-modal/notification-modal';
 import { VoucherModalPage } from '../pages/voucher-modal/voucher-modal';
-
+import { MapAddressPage } from '../pages/map-address/map-address';
 
 //providers
 import { DeviceProvider } from '../providers/device/device';
@@ -144,7 +144,8 @@ class GeolocationMock extends Geolocation {
     StatusModalPage,
     FeedbackModalPage,
     NotificationModalPage,
-    VoucherModalPage
+    VoucherModalPage,
+    MapAddressPage
     ],
     imports: [
     HttpModule,
@@ -167,7 +168,8 @@ class GeolocationMock extends Geolocation {
     StatusModalPage,
     FeedbackModalPage,
     NotificationModalPage,
-    VoucherModalPage
+    VoucherModalPage,
+    MapAddressPage
     ],
     providers: [
     OneSignal,
