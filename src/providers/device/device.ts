@@ -36,7 +36,7 @@ declare var UXCam:any;
 
       ) {
       if(this.platform.is('cordova')){
-        UXCam.startWithKey("f7aa8dede567674");
+        UXCam.startWithKey("335139d8e41417d");//admin@cerveja.me
         UXCam.tagUsersName(this.device.uuid);
         this.startOneSignal();
       }
@@ -175,4 +175,3 @@ declare var UXCam:any;
       return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
     }
   }
-
