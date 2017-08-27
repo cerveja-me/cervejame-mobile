@@ -63,52 +63,8 @@ page-map-address {
         }
     }
 
-    &__number {
-        @extend .font-bold;
 
-        border-radius: 0;
-        color: $color-secondary;
-        position: absolute;
-        right: 0;
-        top: 15px;
-        height: 25px;
-        background: white;
-        padding: 15px;
-        width: 75px;
-        border-color: $color-secondary;
-        box-shadow: -22px 0 20px 0 white;
-        border-width: 0 0 0 1px;
-        text-align: center;
-    }
 
-    &__autocomplete {
-        @include border-radius(10px);
-
-        background: white;
-        position: absolute;
-        top: 62px;
-        width: 100%;
-        left: 0;
-        z-index: 5;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
-
-        &__item {
-            @extend .font-regular;
-
-            color: #666;
-            font-size: 14px;
-            padding: 15px;
-            border-bottom: 1px solid #ccc;
-            margin: 0;
-
-            &:last-child {
-                border-bottom: none;
-            }
-        }
-    }
 
     &__saved {
       margin-top: 20px;

@@ -8,7 +8,7 @@
     <span class="map-address__search"></span>
     <ion-input #inputaddress class="map-address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()">
     </ion-input>
-      <input class="login__box__input map-address__number" placeholder="Nº" type="tel">
+      
 
     <ul class="map-address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
       <li class="map-address__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
