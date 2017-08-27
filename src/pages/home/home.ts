@@ -114,7 +114,6 @@ export class HomePage {
      this.amount=2;
      this.discount=0.05;
      this.zone.run(()=>{});
-     console.log('da -> ',current,this.slides.getPreviousIndex());
      if(this.products.length===current){
        this.slides.slidePrev();
      }
