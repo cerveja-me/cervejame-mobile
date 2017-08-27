@@ -1,22 +1,28 @@
-<ion-content>
-  <!-- <button class="btn-back" (click)="navCtrl.pop()">
-    <span class="back-button-icon"></span>
-  </button> -->
+<ion-header class="header-dark">
+    <h1 class="logo-white"></h1>
+    <ion-navbar>
+      <ion-title>  <span class="icon-shipping-white"></span> Grátis ~ 30min</ion-title>
+    </ion-navbar>
 
-  <div class="map__adress" *ngIf="address" >
+</ion-header>
+
+<ion-content>
+
+  <div class="map__address" *ngIf="address" >
     <!-- <label class="map__adress__input" (click)="openAddressEdit()">{{address.route}}</label> -->
-    <ion-input #inputaddress class="address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (blur)="closeEdit()">
+    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (blur)="closeEdit()">
     </ion-input>
 
-    <span class="map__adress__icon icon-map"></span>
-    <span class="address__icon icon-map"></span>
+    <input class="map__address__number" placeholder="nº" type="tel">
+
+    <span class="map__address__icon icon-pin-min"></span>
 
     <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
-      <li class="map__adress__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
+      <li class="map__address__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
     </ul>
 
-    <span class="map__adress__plus icon-plus-b"></span>
-    <input class="map__adress__input" placeholder="Complemento" type="text" [(ngModel)]="complement">
+    <span class="map__address__plus icon-plus-b"></span>
+    <input class="map__address__input" placeholder="Complemento" type="text" [(ngModel)]="complement">
   </div>
 
   <div #map id="map" (click)="closeEdit()" [ngClass]="texting?'keyboardOpen':movingPin?'moving':''"></div>

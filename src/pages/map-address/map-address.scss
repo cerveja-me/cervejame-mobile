@@ -63,23 +63,7 @@ page-map-address {
         }
     }
 
-    &__number {
-        @extend .font-bold;
 
-        border-radius: 0;
-        color: $color-secondary;
-        position: absolute;
-        right: 0;
-        top: 15px;
-        height: 25px;
-        background: white;
-        padding: 15px;
-        width: 75px;
-        border-color: $color-secondary;
-        box-shadow: -22px 0 20px 0 white;
-        border-width: 0 0 0 1px;
-        text-align: center;
-    }
 
     &__autocomplete {
         @include border-radius(10px);
