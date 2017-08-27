@@ -1,26 +1,16 @@
-<!--
-  Generated template for the MapAddressPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>map-address</ion-title>
-  </ion-navbar>
-
+<ion-header class="white">
+    <h1 class="logo-white"></h1>
+    <ion-navbar></ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
+<ion-content class="background-dark" padding>
   <div class="address__box" >
     <span class="address__icon icon-map"></span>
     <ion-input #inputaddress class="address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()">
     </ion-input>
 
-    <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
-      <li class="map__adress__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
+    <ul class="map-address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
+      <li class="map-address__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
     </ul>
   </div>
 
