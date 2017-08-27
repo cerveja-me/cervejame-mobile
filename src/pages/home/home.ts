@@ -87,7 +87,7 @@ export class HomePage {
     p=Math.round(p);
     this.selectedBeer.discount=1-(p/full);
     this.selectedBeer.price = p;
-
+    this.selectedBeer.unitValue = this.selectedBeer.beer.unitvalue*(1-this.selectedBeer.discount);
 
 
     console.log('beer->',this.selectedBeer);
