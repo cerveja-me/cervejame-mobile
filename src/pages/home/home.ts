@@ -67,18 +67,31 @@ export class HomePage {
       this.updatingAmount=true;
 
       this.amount++;
-      if(this.amount>4){
-        this.discount=0.2;
-      }else{
-        this.discount=(this.amount-1)*0.05;
-      }
-      this.selectedBeer.discount=this.discount;
-      this.selectedBeer.amount=this.amount;
-      this.zone.run(()=>{});
+      this.updatePriceAndDiscount();
       setTimeout(() => {
           this.updatingAmount=false;
       },100);
 
+  }
+  updatePriceAndDiscount(){
+    if(this.amount > 4){
+      this.discount=0.2;
+    }else{
+      this.discount=(this.amount-1)*0.05;
+    }
+    this.selectedBeer.discount=this.discount;
+    this.selectedBeer.amount=this.amount;
+    let p = this.selectedBeer.beer.price * this.amount;
+    let full = p;
+    p=p-(p*this.discount);
+    p=Math.round(p);
+    this.selectedBeer.discount=1-(p/full);
+    this.selectedBeer.price = p;
+
+
+
+    console.log('beer->',this.selectedBeer);
+    this.zone.run(()=>{});
   }
 
   decreaseAmount(){
@@ -86,14 +99,7 @@ export class HomePage {
 
       if(this.amount>1){
           this.amount--;
-          if(this.amount>3){
-            this.discount=0.2;
-          }else{
-            this.discount=(this.amount-1)*0.05;
-          }
-          this.selectedBeer.discount=this.discount;
-          this.selectedBeer.amount=this.amount;
-          this.zone.run(()=>{});
+          this.updatePriceAndDiscount();
       }
       setTimeout(() => {
           this.updatingAmount=false;
@@ -119,6 +125,7 @@ export class HomePage {
        discount:this.discount,
        amount:this.amount
      }
+     this.updatePriceAndDiscount();
    }
   ionViewDidLoad() {
     this.voucher.removeVoucher();
@@ -270,8 +277,6 @@ export class HomePage {
   }
 
   finishRequest(){
-    console.log('selected->',this.selectedBeer);
-
       this.order.setProduct(this.selectedBeer);
       this.navCtrl.push(MapPage);
   }
