@@ -8,7 +8,6 @@
 <ion-content>
 
   <div class="map__address" *ngIf="address">
-    <!-- <label class="map__adress__input" (click)="openAddressEdit()">{{address.route}}</label> -->
     <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (blur)="closeEdit()">
     </ion-input>
 
