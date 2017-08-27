@@ -11,7 +11,7 @@ page-schedule-modal {
 
                     &:after {
                         content: '';
-                        background: #83DD7F;
+                        background: $color-success;
                         width: 100%;
                         position: absolute;
                         left: 0;
@@ -29,12 +29,12 @@ page-schedule-modal {
                     }
 
                     .schedule__hour {
-                        color: #583318;
+                        color: $color-secondary;
                     }
                 }
 
                 &.today.closed {
-                    background: #583318;
+                    background: $color-secondary;
                     border: solid white;
                     border-width: 2px 0;
 
@@ -71,10 +71,10 @@ page-schedule-modal {
         &__day {
             @extend .font-bold;
 
-            background: #D5A86C;
+            background: $color-secondary-light;
             border: solid white;
             border-width: 0 2px;
-            color: #583318;
+            color: $color-secondary;
             display: inline-block;
             width: 58px;
             padding: 10px 0;
