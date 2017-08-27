@@ -20,7 +20,6 @@ export class MapPage {
     @ViewChild('map') mapElement: ElementRef;
 
     map: any;
-    showAddress=true;
     address;
     fulladdress;
     addressOptions=[];
@@ -80,11 +79,11 @@ export class MapPage {
                 this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
               });
 
-              this.map.addListener('center_changed',()=>{
-                console.log('center_changed');
-
-                //this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
-              });
+              // this.map.addListener('center_changed',()=>{
+              //   console.log('center_changed');
+              //
+              //   //this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+              // });
               var centerControlDiv = document.createElement('div');
               this.geoLoc.getPosition()
               .then(p=>{
@@ -126,15 +125,12 @@ export class MapPage {
         controlText.innerHTML = '<span class="icon-location"></span>';
         controlUI.appendChild(controlText);
 
-        // Setup the click event listeners: simply set the map to Chicago.
         controlUI.addEventListener('click', function() {
            map.setCenter({lat: geo.latitude, lng: geo.longitude});
+           google.maps.event.trigger(map,'dragend');
         });
 
       }
-
-
-
 
       updateAddress(_loc){
           this.geoLoc.getAddressFromLocation(_loc)
@@ -142,20 +138,11 @@ export class MapPage {
               this.address=address;
               this.fulladdress=this.address['route'];
               this.number=this.address['street_number'];
-              console.log(this.address);
               this.zone.run(()=>{});
           });
       }
 
-      openAddressEdit(){
-          this.showAddress=false;
-          setTimeout(() => {
-              // this.addressInput.setFocus();
-          },150);
-      }
-
       addressChange(){
-          //   console.log('address change');
           if(this.address.formated.length >3){
               this.geoLoc.getLocationsWithAddres(this.fulladdress,this.map.getCenter())
               .then((listAddress)=>{
@@ -165,7 +152,6 @@ export class MapPage {
       }
 
       setAddress(address){
-        console.log('endereco->',address);
         let add = this.geoLoc.convertAddress(address);
         this.fulladdress=add['route'];
         this.number=add['street_number'];
@@ -174,22 +160,23 @@ export class MapPage {
           setTimeout(() => {
               this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
           }, 500);
-          this.showAddress=true;
+
           this.addressOptions=[];
       }
 
       closeEdit(){
-        this.showAddress=true;
+
           if(this.platform.is('cordova')){
               let activeElement = <HTMLElement>document.activeElement;
               activeElement && activeElement.blur && activeElement.blur();
           }
       }
 
-
       finishOrder(){
           this.closeEdit();
           let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
+          console.log('address->',this.address);
+          this.address.street_number=this.number;
           let modal = this.modalCtrl.create(CheckoutModalPage,{"location":loca,"address":this.address,"complement":this.complement});
           modal.present();
           modal.onDidDismiss(data=>{
@@ -197,7 +184,6 @@ export class MapPage {
                   this.device.camPage("map");
               }
 
-          })
-
+          });
       }
     }
