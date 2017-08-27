@@ -215,7 +215,7 @@ page-home {
     .swiper-pagination {
       top: 170px;
 
-      @media screen and (max-height: 480px) {
+      @media screen and (max-height: 500px) {
           display: none;
       }
 
