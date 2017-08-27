@@ -49,6 +49,7 @@ export class CheckoutModalPage {
     this.coupom=this.voucher.getSavedVoucher();
     this.device.camPage('checkout');
     this.product=this.order.getProduct();
+    this.product.product=this.product.beer.product;
     this.fullAddress=this.params.get("address");
     this.addressComplement=this.params.get("complement");
     this.address=this.geoloc.formatAddress(this.fullAddress) +(this.addressComplement?", "+this.addressComplement:'');
