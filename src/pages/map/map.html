@@ -3,22 +3,10 @@
     <span class="back-button-icon"></span>
   </button>
 
-  <div class="address__box" *ngIf="address" [ngClass]="showAddress ? 'hidden': '' ">
-    <span class="address__icon icon-map"></span>
-    <ion-input #inputaddress class="address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (blur)="closeEdit()">
-
-    </ion-input>
-
-    <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
-      <li class="map__adress__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
-    </ul>
-  </div>
-
-
   <div class="map__adress" *ngIf="address && showAddress" >
     <label class="map__adress__input" (click)="openAddressEdit()">{{address.route}}</label>
     <span class="map__adress__icon icon-map"></span>
-    <input class="login__box__input input-number" placeholder="Número" type="tel" (click)="openAddressEdit" [(ngModel)]="address.street_number" (blur)="closeEdit()">
+
     <span class="map__adress__plus icon-plus-b"></span>
     <input class="map__adress__input" placeholder="Complemento" type="text" (click)="texting=true" [(ngModel)]="complement">
   </div>

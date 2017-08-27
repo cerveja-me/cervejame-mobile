@@ -1,9 +1,69 @@
 page-map-address {
   .map-address {
+    &__box {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s;
+
+        &.hidden{
+            display: none;
+            opacity: 0;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        z-index: 999;
+    }
+
+    &__input {
+        @extend .font-regular;
+        @include border-radius(10px);
+
+        box-shadow: none;
+        display: block;
+        background: white;
+        color: $color-secondary;
+        height: 60px;
+        width: 100%;
+        padding: 18px 0 18px 50px;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        input {
+            margin: 0;
+        }
+    }
+
+    &__number {
+        @extend .font-bold;
+
+        border-radius: 0;
+        color: $color-secondary;
+        position: absolute;
+        right: 0;
+        top: 15px;
+        height: 25px;
+        background: white;
+        padding: 15px;
+        width: 100px;
+        border-color: $color-secondary;
+        box-shadow: -22px 0 20px 0 white;
+        border-width: 0 0 0 1px;
+        text-align: center;
+    }
+
     &__autocomplete {
+        @include border-radius(10px);
+
         background: white;
         position: absolute;
-        top: 65px;
+        top: 62px;
         width: 100%;
         left: 0;
         margin: 0;
@@ -24,6 +84,27 @@ page-map-address {
                 border-bottom: none;
             }
         }
+    }
+
+    &__saved {
+      margin-top: 20px;
+      padding: 0;
+
+      &__item {
+        @extend .font-regular;
+        @include border-radius(10px);
+
+        width: 100%;
+        margin: 10px 0 15px;
+        padding: 15px ;
+        list-style: none;
+        border: 2px solid white;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: white;
+      }
     }
   }
 }
