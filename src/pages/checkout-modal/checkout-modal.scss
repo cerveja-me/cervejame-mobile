@@ -9,6 +9,7 @@ page-checkout-modal {
           z-index: 2;
           width: 100%;
           bottom: 0;
+          text-align: left;
 
           &:before {
               content: "";
@@ -18,11 +19,7 @@ page-checkout-modal {
               background-image: url('../assets/icon/ticket.svg');
               top: -9px;
               left: 0;
-      }
-
-      &__order {
-        padding: 20px 15px;
-      }
+          }
 
       &__quantidade {
           width: 49%;
@@ -52,50 +49,6 @@ page-checkout-modal {
 
 
 
-      &__voucher {
-          width: 49%;
-          display: inline-block;
-          vertical-align: middle;
-          padding: 15px;
-          box-sizing: border-box;
-          text-align: right;
-
-          &__btn {
-              background: none;
-              border: 2px dotted #583318;
-              border-radius: 10px;
-              padding: 10px;
-              width: 100%;
-
-              &.active {
-                  background: #83DD7F;
-                  border: 2px solid #583318;
-              }
-
-              &.active label {
-                  @extend .font-bold;
-              }
-
-              label {
-                  @extend .font-regular;
-
-                  text-transform: uppercase;
-                  font-size: 14px;
-                  color: #583318;
-                  vertical-align: middle;
-                  display: inline-block;
-              }
-          }
-
-          &__icon {
-              background-image: url('../assets/icon/icon-voucher-single.svg');
-              width: 27px;
-              height: 14px;
-              display: inline-block;
-              vertical-align: middle;
-              margin-left: 4px;
-          }
-      }
 
       &__title {
           @extend .font-regular;
@@ -105,26 +58,6 @@ page-checkout-modal {
           text-align: center;
           color: #583318;
           margin: 0 0 10px 0;
-      }
-
-      .btn-minus {
-          background-image: url('../assets/icon/minus.svg');
-          background-size: cover;
-          width: 36px;
-          height: 36px;
-          display: inline-block;
-          vertical-align: middle;
-          background-color: transparent;
-      }
-
-      .btn-plus {
-          background-image: url('../assets/icon/plus.svg');
-          background-size: cover;
-          width: 36px;
-          height: 36px;
-          display: inline-block;
-          vertical-align: middle;
-          background-color: transparent;
       }
 
       .quantidade-number {
@@ -146,24 +79,6 @@ page-checkout-modal {
           width: 46px;
       }
 
-      .total__pricebox {
-          @extend .font-bold;
-          @include border-radius(10px);
-
-          font-size: 21px;
-          color: #583318;
-          display: inline-block;
-          width: 49%;
-          text-align: right;
-          vertical-align: middle;
-
-          &--currency {
-              font-size: 16px;
-              display: inline-block;
-              vertical-align: middle;
-              margin-right: 5px;
-          }
-      }
 
       &__btn {
           @include border-radius(0);
@@ -228,26 +143,6 @@ page-checkout-modal {
         }
     }
 
-    .figure__pedido {
-        @include border-radius(10px);
-
-        border: 2px solid #583318;
-        float: left;
-        text-align: center;
-        width: 49px;
-        height: 49px;
-        text-align: center;
-        overflow: hidden;
-
-        &__img {
-            display: block;
-            height: 100%;
-            width: auto;
-            background-size: cover !important;
-            text-align: center;
-            margin: 0 auto;
-        }
-    }
 
     .icon-card {
         background-image: url('../assets/icon/card.svg');
@@ -352,16 +247,146 @@ page-checkout-modal {
             }
         }
     }
-
 }
 
-  .total__oldprice {
-     @extend .font-regular;
 
-    font-size: 16px;
-    color: #583318;
-    text-align: right;
-    display: block;
-    margin-bottom: 0;
-    text-decoration: line-through;
+.checkout {
+
+      &__box {
+        font-size: 0;
+      }
+
+      &__order {
+        padding: 20px 0 20px 15px;
+        width: 65%;
+        display: inline-block;
+        vertical-align: middle;
+
+        .receipt__amount {
+            text-transform: uppercase;
+            margin: 2px 0;
+        }
+      }
+
+      &__picture {
+          @include border-radius(10px);
+
+          background: #583318;
+          float: left;
+          text-align: center;
+          width: 50px;
+          height: 50px;
+          text-align: center;
+          overflow: hidden;
+          margin-right: 15px;
+          position: relative;
+
+          img-loader {
+              display: block;
+              width: 100%;
+              height: auto;
+              background-size: cover !important;
+              position: absolute;
+              top: 0;
+              left: 50%;
+              margin-left: -25px;
+              transform: scale(1.1);
+              margin-top: 5px;
+          }
+      }
+
+      &__voucher {
+          width: 35%;
+          display: inline-block;
+          vertical-align: middle;
+          padding-right: 15px;
+          box-sizing: border-box;
+          text-align: right;
+
+          &__btn {
+              background: none;
+              border: 2px dotted #583318;
+              border-radius: 10px;
+              padding: 10px;
+              width: 100%;
+
+              &.active {
+                  background: #83DD7F;
+              }
+
+              &.active .checkout__voucher__icon {
+                  display: none;
+              }
+
+              label {
+                  @extend .font-regular;
+
+                  text-transform: uppercase;
+                  font-size: 14px;
+                  color: #583318;
+                  vertical-align: middle;
+                  display: inline-block;
+              }
+          }
+
+          &__icon {
+              background-image: url('../assets/icon/icon-voucher-single.svg');
+              width: 27px;
+              height: 14px;
+              display: inline-block;
+              vertical-align: middle;
+              margin-left: 4px;
+          }
+      }
+
+      &__total {
+        padding: 20px 0;
+        margin: 0 15px;
+        border-top: 2px solid #583318;
+        font-size: 0;
+
+        &__title {
+            @extend .font-regular;
+            @include box-sizing(border-box);
+
+            color: #583318;
+            text-transform: uppercase;
+            font-size: 12px;
+            width: 40%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+
+       &__pricebox {
+            @extend .font-bold;
+            @include border-radius(10px);
+            @include box-sizing(border-box);
+
+            font-size: 21px;
+            color: #583318;
+            display: inline-block;
+            width: 60%;
+            text-align: right;
+            vertical-align: middle;
+
+            &--currency {
+                font-size: 16px;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 5px;
+            }
+        }
+
+        &__oldprice {
+            @extend .font-regular;
+
+            font-size: 16px;
+            color: #583318;
+            text-align: right;
+            display: block;
+            margin-bottom: 0;
+            text-decoration: line-through;
+        }
+      }
 }

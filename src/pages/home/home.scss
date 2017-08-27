@@ -616,8 +616,6 @@ page-home {
           animation-fill-mode: both;
       }
 
-
-
       &__each {
           animation: dissolve-out 8s linear 1.5s infinite reverse;
           animation-fill-mode: both;
@@ -643,13 +641,17 @@ page-home {
       color: white;
       font-size: 11px;
       position: relative;
-      animation: pop-discount 1s ease 0.5s 1 normal;
-      animation-fill-mode: both;
+      text-align: center;
       display: inline-block;
       background-image: url('../assets/icon/icon-tag.svg');
       padding: 2px 11px 2px 4px;
       margin-right: 2px;
-      width: 47px;
+      width: 48px;
+
+      &.animated {
+        animation: pop-discount 1s ease 0.5s 1 normal;
+        animation-fill-mode: both;
+      }
     }
 
     &__price {
