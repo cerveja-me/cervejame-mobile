@@ -258,13 +258,19 @@ page-checkout-modal {
 
       &__order {
         padding: 20px 0 20px 15px;
-        width: 65%;
+        width: 67%;
         display: inline-block;
         vertical-align: middle;
 
         .receipt__amount {
             text-transform: uppercase;
             margin: 2px 0;
+        }
+
+        .receipt__price {
+            display: inline-block;
+            margin: -1px 0 0 5px;
+            vertical-align: middle;
         }
       }
 
@@ -278,7 +284,7 @@ page-checkout-modal {
           height: 50px;
           text-align: center;
           overflow: hidden;
-          margin-right: 15px;
+          margin-right: 10px;
           position: relative;
 
           img-loader {
@@ -296,7 +302,7 @@ page-checkout-modal {
       }
 
       &__voucher {
-          width: 35%;
+          width: 33%;
           display: inline-block;
           vertical-align: middle;
           padding-right: 15px;
