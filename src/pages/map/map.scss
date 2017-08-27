@@ -95,8 +95,7 @@ page-map {
             position: absolute;
             top: 15px;
             left: 0;
-            z-index: 2;
-
+            z-index: 3;
 
             &__icon {
                 position: absolute;
@@ -325,5 +324,6 @@ page-map {
   height: 38px;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 10px;
+  margin-right: 20xpx;
+  margin-bottom: 20xpx;
 }
