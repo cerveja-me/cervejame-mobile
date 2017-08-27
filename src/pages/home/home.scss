@@ -604,6 +604,10 @@ page-home {
         opacity: 0.2;
       }
 
+      &__each {
+        opacity: 0;
+      }
+
       &__pack,
       &__each {
         position: absolute;
@@ -611,12 +615,12 @@ page-home {
         width: 100%;
       }
 
-      &__pack {
+      &.switch &__pack {
           animation: dissolve-in 8s linear 1.5s infinite normal;
           animation-fill-mode: both;
       }
 
-      &__each {
+      &.switch &__each {
           animation: dissolve-out 8s linear 1.5s infinite reverse;
           animation-fill-mode: both;
       }
