@@ -32,10 +32,10 @@ fulladdress:String='';
 
   addressChange(){
     if(this.fulladdress.length >3){
-        this.geoLoc.getLocationsWithAddres(this.fulladdress)
-        .then((listAddress)=>{
-            this.addressOptions=listAddress['results'];
-        })
+        // this.geoLoc.getLocationsWithAddres(this.fulladdress)
+        // .then((listAddress)=>{
+        //     this.addressOptions=listAddress['results'];
+        // })
     }
   }
   setAddress(address){

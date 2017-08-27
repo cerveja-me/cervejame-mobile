@@ -10,7 +10,7 @@ declare var google;
 
   @Injectable()
   export class GeolocationProvider {
-
+    location
     constructor(
       public http: Http,
       public device:DeviceProvider,
@@ -75,9 +75,11 @@ declare var google;
       })
     }
 
-    getLocationsWithAddres(address){
-      return new Promise((resolve, reject) => {
+    getLocationsWithAddres(address,location){
+      return new Promise((resolve,reject) => {
         let url =this.device.GOOGLE_GEOCODE.replace('#',address);
+        url = url.replace('LAT',location.lat());
+        url = url.replace('LNG',location.lng());
         this.device.get(url)
         .then((res)=>{
           resolve(res.json());
