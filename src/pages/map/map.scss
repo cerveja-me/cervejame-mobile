@@ -4,10 +4,16 @@ page-map {
     }
 
     .btn-back {
+      @include border-radius(0 10px 10px 0);
+
       position: absolute;
-      top: 70px;
+      top: 30px;
       left: 0;
-      background: $color-primary;
+      background: $color-secondary;
+      z-index: 4;
+      width: 65px;
+      text-align: center;
+      padding: 15px 0;
     }
 
     #map {
