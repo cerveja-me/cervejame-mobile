@@ -83,15 +83,13 @@ export class MapPage {
     openAddressEdit(){
       let addressModal = this.modalCtrl.create(MapAddressPage,{"address":this.address,"complement":this.complement});
       addressModal.present();
-    }
+      addressModal.onDidDismiss(data=>{
+          if(data){
+            this.device.camPage("map");
+            console.log('novo endereço -> ',data);
+          }
 
-    addressChange(){
-        if(this.address.formated.length >3){
-            this.geoLoc.getLocationsWithAddres(this.fulladdress)
-            .then((listAddress)=>{
-                this.addressOptions=listAddress['results'];
-            })
-        }
+      })
     }
 
 
