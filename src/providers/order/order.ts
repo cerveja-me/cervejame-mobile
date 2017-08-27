@@ -52,10 +52,21 @@ import { UserProvider } from '../user/user';
     }
 
     convertProducts(p){
-      p.product.qtd=p.product.description.split(" ", 1)[0];
-      p.unitvalue=parseFloat((p.price/p.product.qtd).toFixed(2));
+
+
+
       if(!p.product.cold){
         p.product.details=JSON.parse(p.product.description);
+      }else{
+        let d = p.product.description.split(" ");
+        if(d.length===4){
+          p.product.size=d[2];
+        }else{
+          p.product.size=d[3];
+        }
+        p.product.qtd=p.product.description.split(" ", 1)[0];
+        p.unitvalue=parseFloat((p.price/p.product.qtd).toFixed(2));
+
       }
       return p;
     }
