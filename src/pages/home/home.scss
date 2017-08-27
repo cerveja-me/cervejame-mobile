@@ -37,7 +37,7 @@ page-home {
     }
 
     ion-backdrop {
-        background: #583318;
+        background: $color-secondary;
         opacity: 0.8 !important;
     }
 
@@ -148,7 +148,7 @@ page-home {
             @extend .font-regular !optional;
             @include border-radius(0 10px 10px 10px);
 
-            background: #583318;
+            background: $color-secondary;
             color: white;
             text-align: center;
             display: block;
@@ -161,7 +161,7 @@ page-home {
             @extend .font-regular;
             @include border-radius(10px 10px 10px 0px);
 
-            background: #FFFFDD;
+            background: $color-background;
             color: #573317;
             text-align: center;
             display: block;
@@ -223,13 +223,13 @@ page-home {
         width: 6px;
         height: 6px;
         opacity: 1;
-        background: #583318;
+        background: $color-secondary;
 
         &-active {
           width: 9px;
           height: 9px;
-          background: #FFFFDD;
-          border: 2px solid #583318;
+          background: $color-background;
+          border: 2px solid $color-secondary;
         }
       }
     }
@@ -241,7 +241,7 @@ page-home {
 
     position: absolute;
     bottom: 0;
-    background: #D84040;
+    background: $color-primary;
     border: 2px solid white;
     font-size: 24px;
     padding: 10px 30px;
@@ -303,14 +303,14 @@ page-home {
     @include border-radius(50px);
     @extend .font-bold !optional;
 
-    background: #D5A86C;
+    background: $color-secondary-light;
     border: 2px solid white;
     font-size: 17px;
     padding: 15px 30px;
     height: auto;
     width: 100%;
     transition: all .5s;
-    color: #583318;
+    color: $color-secondary;
     text-transform: uppercase;
     margin: 15px auto 0;
 }
@@ -326,7 +326,7 @@ page-home {
     text-align: center;
     padding: 0 30px;
     z-index:4;
-    background: #583318;
+    background: $color-secondary;
     margin: 0;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
@@ -334,7 +334,7 @@ page-home {
     padding: 20px;
 //
 //    &.location-error {
-//        background: #D5A86C;
+//        background: $color-secondary-light;
 //    }
 //
 //    &.location-error &__title {
@@ -345,7 +345,7 @@ page-home {
         @extend .font-bold !optional;
 
         font-size: 25px;
-        color: #D5A86C;
+        color: $color-secondary-light;
         margin: 0 0 10px 0;
         display: block;
     }
@@ -385,7 +385,7 @@ page-home {
     font-size: 14px;
     border-top: 1px solid white;
     color: white;
-    background: #583318;
+    background: $color-secondary;
     border-radius: 0;
     width: 100%;
     margin: 0;
@@ -436,8 +436,8 @@ page-home {
 
     font-size: 12px;
     border-top: 1px solid white;
-    color: #583318;
-    background: #FFFFDD;
+    color: $color-secondary;
+    background: $color-background;
     border-radius: 0;
     height: 37px;
     width: 100%;
@@ -564,7 +564,7 @@ page-home {
 }
 
 .receipt {
-    background: #FFFFDD;
+    background: $color-background;
     position: absolute;
     box-shadow:0 -7px 10px 0 rgba(0, 0, 0, 0.3);
     z-index: 2;
@@ -594,7 +594,7 @@ page-home {
       width: 56%;
       height: 108px;
       margin: 0 7%;
-      border: 2px solid #583318;
+      border: 2px solid $color-secondary;
       text-align: center;
       font-size: 18px;
       transition: opacity 0.2s;
@@ -633,7 +633,7 @@ page-home {
     &__amount {
       @extend .font-bold;
 
-      color: #583318;
+      color: $color-secondary;
       margin: 10px 0 2px;
       font-size: 18px;
     }
@@ -661,7 +661,7 @@ page-home {
     &__price {
         @extend .font-regular;
 
-        color: #583318;
+        color: $color-secondary;
         font-size: 16px;
 
         small {
@@ -670,7 +670,7 @@ page-home {
     }
 
     .free-shipping {
-      border-top: 1px solid #583318;
+      border-top: 1px solid $color-secondary;
       width: 90%;
       margin: 10px auto 0;
       padding: 5px 0;
@@ -679,7 +679,7 @@ page-home {
           @extend .font-regular;
 
           font-size: 11px;
-          color: #583318;
+          color: $color-secondary;
           text-transform: uppercase;
           display: inline-block;
           vertical-align: middle;
@@ -721,8 +721,8 @@ page-home {
     @include border-radius(0);
     @extend .font-bold;
 
-    background: #D84040;
-    border-top: 2px solid #583318;
+    background: $color-primary;
+    border-top: 2px solid $color-secondary;
     font-size: 24px;
     padding: 20px;
     height: auto;
