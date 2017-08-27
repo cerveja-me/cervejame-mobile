@@ -58,7 +58,7 @@ page-map {
             z-index: 1;
         }
 
-        &__adress {
+        &__address {
             padding: 0 10px;
             width: 100%;
             position: absolute;
@@ -66,10 +66,11 @@ page-map {
             left: 0;
             z-index: 2;
 
+
             &__icon {
                 position: absolute;
                 left: 25px;
-                top: 15px;
+                top: 18px;
             }
 
             &__plus {
@@ -78,19 +79,18 @@ page-map {
                 BOTTOM: 23px;
             }
 
-            .input-number {
+            &__number {
                 @extend .font-bold;
 
                 border-radius: 0;
                 color: $color-secondary;
                 position: absolute;
-                right: 0;
+                right: 12px;
                 top: 15px;
-                margin-right: 15px;
                 height: 25px;
                 background: white;
                 padding: 15px;
-                width: 100px;
+                width: 75px;
                 border-color: $color-secondary;
                 box-shadow: -22px 0 20px 0 white;
                 border-width: 0 0 0 1px;
@@ -107,10 +107,13 @@ page-map {
                 height: 60px;
                 width: 100%;
                 padding: 18px 15px 18px 50px;
-                box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+
+                .text-input {
+                    margin: 0;
+                }
 
                 &:first-child {
                     border-top-left-radius: 10px;
@@ -126,13 +129,38 @@ page-map {
                     border-bottom-right-radius: 10px;
                     border-top: none;
                 }
-
             }
 
+            &__autocomplete {
+                @include border-radius(10px);
 
+                background: white;
+                position: absolute;
+                top: 62px;
+                width: 100%;
+                left: 0;
+                z-index: 5;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+
+                &__item {
+                    @extend .font-regular;
+
+                    color: #666;
+                    font-size: 14px;
+                    padding: 15px;
+                    border-bottom: 1px solid #ccc;
+                    margin: 0;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
         }
     }
-
 }
 
 .icon-map {
@@ -168,14 +196,13 @@ page-map {
 
     border: 2px solid $color-secondary;
     background: white;
-    width: 100%;
-    margin: 0;
-    margin-top: -6px;
     padding: 0;
     list-style: none;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.4);
     z-index: 999;
-    position: relative;
+    position: absolute;
+    left: 0;
+    margin: -2px 10px 0;
 
     &__item {
         @extend .font-regular;
@@ -230,7 +257,6 @@ page-map {
         height: 60px;
         width: 100%;
         padding: 18px 0 18px 50px;
-        box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -239,4 +265,24 @@ page-map {
             margin: 0;
         }
     }
+}
+
+.icon-shipping-white {
+  background-image: url(../assets/icon/icon-shipping-white.svg);
+  background-size: cover;
+  width: 29px;
+  height: 19px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.icon-pin-min {
+  background-image: url(../assets/icon/icon-pin-min.svg);
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
 }
