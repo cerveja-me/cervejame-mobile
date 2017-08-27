@@ -86,10 +86,14 @@ export class MapPage {
                 //this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
               });
               var centerControlDiv = document.createElement('div');
-                var centerControl = new this.centerControl(centerControlDiv, this.map,this.geoLoc);
+              this.geoLoc.getPosition()
+              .then(p=>{
+                var centerControl = new this.centerControl(centerControlDiv, this.map,p);
 
-                // centerControlDiv.index = 1;
+                  // centerControlDiv.index = 1;
                 this.map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+              })
+
           })
           .catch(e=>{
               console.log(e);
@@ -124,13 +128,7 @@ export class MapPage {
 
         // Setup the click event listeners: simply set the map to Chicago.
         controlUI.addEventListener('click', function() {
-          geo.getCurrentPosition()
-          .then(l=>{
-            console.log('currente ->',l );
-          })
-          var chicago = {lat: 41.85, lng: -87.65};
-
-          map.setCenter(chicago);
+           map.setCenter({lat: geo.latitude, lng: geo.longitude});
         });
 
       }
