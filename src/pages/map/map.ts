@@ -71,12 +71,11 @@ export class MapPage {
 
               this.map.addListener('dragstart',()=>{
                 this.movingPin=true;
-                console.log('drag');
+                this.zone.run(()=>{});
 
                 //this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
               });
               this.map.addListener('dragend',()=>{
-                console.log('dragend');
                 this.movingPin=false;
                 this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
               });
