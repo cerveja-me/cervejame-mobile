@@ -21,8 +21,8 @@ page-map {
         height: 100%;
     }
     #map:after {
-        width: 51px;
-        height: 60px;
+        width: 59px;
+        height: 66px;
         display: block;
         content: ' ';
         position: absolute;
@@ -32,6 +32,11 @@ page-map {
         background-size: contain;
         pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
     }
+
+    #map.moving:after {
+      display: none;
+    }
+
     .map {
 
         &__btn {
