@@ -1,5 +1,4 @@
 <ion-header class="header-dark">
-    <h1 class="logo-white"></h1>
     <ion-navbar>
       <ion-title>  <span class="icon-shipping-white"></span> Grátis ~ 30min</ion-title>
     </ion-navbar>
@@ -8,7 +7,7 @@
 
 <ion-content>
 
-  <div class="map__address" *ngIf="address" >
+  <div class="map__address" *ngIf="address">
     <!-- <label class="map__adress__input" (click)="openAddressEdit()">{{address.route}}</label> -->
     <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (blur)="closeEdit()">
     </ion-input>
