@@ -289,6 +289,19 @@ ion-spinner {
 
     &.header-dark {
       height: 75px;
+
+      .toolbar {
+        background: $color-secondary;
+
+        .toolbar-title {
+            @extend .font-bold;
+
+            color: white;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-top: 9px;
+        }
+      }
     }
 
     &.header-dark:after {
