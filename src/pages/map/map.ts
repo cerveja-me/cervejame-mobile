@@ -30,6 +30,7 @@ export class MapPage {
     texting:boolean=false;
     oldLoc:any={};
     originalMapCenter:any={};
+    movingPin=false;
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -42,7 +43,12 @@ export class MapPage {
         public order:OrderProvider,
         private keyboard:Keyboard
         ) {
-
+          keyboard.onKeyboardShow().subscribe(data=>{
+             this.texting=true;
+           })
+           keyboard.onKeyboardHide().subscribe(data=>{
+             this.texting=false;
+           })
     }
 
     ionViewDidLoad() {
@@ -51,60 +57,105 @@ export class MapPage {
     }
 
     loadMap(){
-        this.loader=this.load.create({
-            content: this.device.getRandonLoading()
-        });
-        this.loader.present();
-        this.geoLoc.getMap()
-        .then((mapOpt)=>{
-            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOpt);
-            this.originalMapCenter=this.map.getCenter();
-            this.map.addListener('center_changed',()=>{
+          this.loader=this.load.create({
+              content: this.device.getRandonLoading()
+          });
+          this.loader.present();
+          this.geoLoc.getMap()
+          .then((mapOpt)=>{
+              // this.map=;
+              this.map = new google.maps.Map(this.mapElement.nativeElement, mapOpt);
 
-                    this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
-                            });
-            this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
-            this.loader.dismiss();
-        })
-        .catch(e=>{
-            console.log(e);
-            this.loader.dismiss();
-        });
-    }
+              this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+              this.loader.dismiss();
 
-    updateAddress(_loc){
-        this.geoLoc.getAddressFromLocation(_loc)
-        .then((address)=>{
-            this.address=address;
-            this.zone.run(()=>{});
-        });
-    }
+              this.map.addListener('dragstart',()=>{
+                this.movingPin=true;
+                console.log('drag');
 
-    openAddressEdit(){
-      let addressModal = this.modalCtrl.create(MapAddressPage,{"address":this.address,"complement":this.complement});
-      addressModal.present();
-      addressModal.onDidDismiss(data=>{
-          if(data){
-            this.device.camPage("map");
-            this.map.setCenter(new google.maps.LatLng(data.geometry.location.lat,data.geometry.location.lng));
-            console.log('novo endereço -> ',data);
+                //this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+              });
+              this.map.addListener('dragend',()=>{
+                console.log('dragend');
+                this.movingPin=false;
+                this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+              });
+
+              this.map.addListener('center_changed',()=>{
+                console.log('center_changed');
+
+                //this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+              });
+          })
+          .catch(e=>{
+              console.log(e);
+              this.loader.dismiss();
+          });
+
+      }
+
+      updateAddress(_loc){
+          this.geoLoc.getAddressFromLocation(_loc)
+          .then((address)=>{
+              this.address=address;
+              this.fulladdress=this.address['route'];
+              this.number=this.address['street_number'];
+              console.log(this.address);
+              this.zone.run(()=>{});
+          });
+      }
+
+      openAddressEdit(){
+          this.showAddress=false;
+          setTimeout(() => {
+              // this.addressInput.setFocus();
+          },150);
+      }
+
+      addressChange(){
+          //   console.log('address change');
+          if(this.address.formated.length >3){
+              this.geoLoc.getLocationsWithAddres(this.fulladdress)
+              .then((listAddress)=>{
+                  this.addressOptions=listAddress['results'];
+              })
           }
+      }
 
-      })
+      setAddress(address){
+        console.log('endereco->',address);
+        let add = this.geoLoc.convertAddress(address);
+        this.fulladdress=add['route'];
+        this.number=add['street_number'];
+        this.closeEdit();
+
+          setTimeout(() => {
+              this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
+          }, 500);
+          this.showAddress=true;
+          this.addressOptions=[];
+      }
+
+      closeEdit(){
+        this.showAddress=true;
+          if(this.platform.is('cordova')){
+              let activeElement = <HTMLElement>document.activeElement;
+              activeElement && activeElement.blur && activeElement.blur();
+          }
+      }
+
+
+      finishOrder(){
+          this.closeEdit();
+          let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
+          let modal = this.modalCtrl.create(CheckoutModalPage,{"location":loca,"address":this.address,"complement":this.complement});
+          modal.present();
+          modal.onDidDismiss(data=>{
+              if(data==='cancel'){
+                  this.device.camPage("map");
+              }
+
+          })
+
+      }
     }
-
-
-    finishOrder(){
-        let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-        let modal = this.modalCtrl.create(CheckoutModalPage,{"location":loca,"address":this.address,"complement":this.complement});
-        modal.present();
-        modal.onDidDismiss(data=>{
-            if(data==='cancel'){
-                this.device.camPage("map");
-            }
-
-        })
-
-    }
-
-}
