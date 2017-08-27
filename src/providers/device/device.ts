@@ -152,7 +152,7 @@ declare var UXCam:any;
     LASTBUYOPEN:string = 'lastbuyOpen/';
     SEND_FEEDBACK:string='sendfeedback/';
     SALE:string = 'sale/';
-    GOOGLE_GEOCODE:string ='https://maps.googleapis.com/maps/api/geocode/json?address=#&rankby=distance&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
+    GOOGLE_GEOCODE:string ='https://maps.googleapis.com/maps/api/geocode/json?address=#&location=LAT,LNG&rankby=distance&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
     GOOGLE_ADDRESS:string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
     FIRSTIME:string = 'ftime';
     PUSH:string='fcm_token';

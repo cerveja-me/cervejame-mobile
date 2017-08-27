@@ -157,7 +157,7 @@ export class MapPage {
       addressChange(){
           //   console.log('address change');
           if(this.address.formated.length >3){
-              this.geoLoc.getLocationsWithAddres(this.fulladdress)
+              this.geoLoc.getLocationsWithAddres(this.fulladdress,this.map.getCenter())
               .then((listAddress)=>{
                   this.addressOptions=listAddress['results'];
               })
