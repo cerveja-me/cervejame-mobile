@@ -117,9 +117,9 @@
 
       <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': '' " >
         <h2 class="receipt__amount">{{amount}} Caixas</h2>
-        <span class="receipt__discount" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{discount*100 |number:'1.0'}}%</span>
-        <span class="receipt__discount" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{discount*100 |number:'1.0'}}%</span>
-        <span class="receipt__price">R$ {{(products[slides.getActiveIndex()].price * amount)*(1-discount) |number:'1.2-2'}}</span>
+        <span class="receipt__discount" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{selectedBeer.discount *100 |number:'1.0-0'}}%</span>
+        <span class="receipt__discount" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{selectedBeer.discount * 100 |number:'1.0-0'}}%</span>
+        <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}}</span>
         <div class="free-shipping">
           <span class="icon-shipping"></span>
           <label>Grátis ~ 30min</label>
