@@ -71,31 +71,21 @@ export class MapPage {
               this.map.addListener('dragstart',()=>{
                 this.movingPin=true;
                 this.zone.run(()=>{});
-
-                //this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
               });
               this.map.addListener('dragend',()=>{
                 this.movingPin=false;
                 this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
               });
 
-              // this.map.addListener('center_changed',()=>{
-              //   console.log('center_changed');
-              //
-              //   //this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
-              // });
               var centerControlDiv = document.createElement('div');
               this.geoLoc.getPosition()
               .then(p=>{
                 var centerControl = new this.centerControl(centerControlDiv, this.map,p);
-
-                  // centerControlDiv.index = 1;
                 this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
               })
 
           })
           .catch(e=>{
-              console.log(e);
               this.loader.dismiss();
           });
 
@@ -175,7 +165,6 @@ export class MapPage {
       finishOrder(){
           this.closeEdit();
           let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-          console.log('address->',this.address);
           this.address.street_number=this.number;
           let modal = this.modalCtrl.create(CheckoutModalPage,{"location":loca,"address":this.address,"complement":this.complement});
           modal.present();
