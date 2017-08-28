@@ -172,7 +172,6 @@ export class HomePage {
     this.slides.slidesPerView =2;
     this.slides.initialSlide = 0;
     this.slides.centeredSlides=true;
-    this.slides.pager=true;
   }
 
   verifyLastSale(){
