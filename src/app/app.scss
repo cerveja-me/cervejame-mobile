@@ -261,17 +261,6 @@ ion-spinner {
     }
 }
 
-.toolbar {
-    min-height: 60px;
-    padding: 0 15px;
-    height: 100%;
-
-    .toolbar-background {
-        background: transparent !important;
-        border: none;
-    }
-}
-
 .header {
     position: relative;
     text-align: center;
@@ -287,11 +276,30 @@ ion-spinner {
         left: 7.5%;
     }
 
+    .toolbar {
+        min-height: 60px;
+        padding: 0 15px;
+        height: 100%;
+
+        .toolbar-background {
+            background: transparent;
+            border: none;
+        }
+    }
+
     &.header-dark {
       height: 75px;
 
       .toolbar {
-        background: $color-secondary;
+
+        .toolbar-background {
+          background: $color-secondary;
+            border-bottom: 2px solid white;
+        }
+
+        .title {
+          padding: 0 40px 1px;
+        }
 
         .toolbar-title {
             @extend .font-bold;
@@ -305,10 +313,7 @@ ion-spinner {
     }
 
     &.header-dark:after {
-        background: white;
-        height: 2px;
-        left: 0;
-        width: 100%;
+        display: none;
     }
 }
 
