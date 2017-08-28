@@ -122,11 +122,11 @@ class OneSignalMock extends OneSignal{
 class GeolocationMock extends Geolocation {
   constructor(){super();}
 
-   getCurrentPosition(){
-      return new Promise((resolve, reject) => {
-          resolve({coords:{Coordinatesaccuracy: 20,latitude:-23.5294,longitude: -46.6799,timestamp: 1495480276346}});
-        })
-    }
+  //  getCurrentPosition(){
+  //     return new Promise((resolve, reject) => {
+  //         resolve({coords:{Coordinatesaccuracy: 20,latitude:-23.5294,longitude: -46.6799,timestamp: 1495480276346}});
+  //       })
+  //   }
 
   }
 
