@@ -120,22 +120,29 @@ export class HomePage {
     content: this.device.getRandonLoading()
   })
 
+  current=0;
   slideChanged() {
-     this.changingSlide=false;
-     let current =this.slides.getActiveIndex();
-     this.amount=2;
-     this.discount=0.05;
-     this.zone.run(()=>{});
-     if(this.products.length===current){
-       this.slides.slidePrev();
-     }
-     this.selectedBeer={
-       beer:this.products[current],
-       discount:this.discount,
-       amount:this.amount
-     }
-     this.updatePriceAndDiscount();
+    let current =this.slides.getActiveIndex();
+    if(this.products.length===current){
+      this.slides.slidePrev();
+    }else{
+      this.current = current;
+      this.changingSlide=false;
+
+      this.amount=2;
+      this.discount=0.05;
+      this.zone.run(()=>{});
+
+      this.selectedBeer={
+        beer:this.products[current],
+        discount:this.discount,
+        amount:this.amount
+      }
+      this.updatePriceAndDiscount();
+    }
+
    }
+
   ionViewDidLoad() {
     this.voucher.removeVoucher();
     if(this.params.get('justFinished')){

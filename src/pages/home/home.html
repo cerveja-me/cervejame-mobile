@@ -96,8 +96,8 @@
 </ion-content>
 <ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" (click)="showTip=false">
 
-  <div class="receipt" *ngIf="products[slides.getActiveIndex()] " >
-    <div class="receipt__padding">
+  <div class="receipt">
+    <div class="receipt__padding"  *ngIf="products[current] ">
       <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
 
       <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': selectedBeer.beer.product.cold?'switch':''" >
