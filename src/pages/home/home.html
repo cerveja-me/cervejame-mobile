@@ -33,7 +33,7 @@
      <p class="product__bottom">
        <span class="product__labels">
          <span class="product__natura" *ngIf="!prod.product.cold"><span class="icon-termo"></span>Natural</span>
-         <span class="product__size">Descrição</span>
+         <span class="product__size">{{prod.product.details.type}}</span>
        </span>
       <figure class="product__picture">
         <img-loader [src]="'http://cerveja.me/img/mobile/'+prod.product.img" useImg></img-loader>
