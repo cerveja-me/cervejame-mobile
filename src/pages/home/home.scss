@@ -73,6 +73,10 @@ page-home {
         width: 100%;
         height: 100%;
         bottom: 200px;
+
+        &.table-bottom {
+          bottom: 0;
+        }
     }
 
     .product {
@@ -162,6 +166,10 @@ page-home {
     position: absolute;
     bottom: 160px;
     margin-left: 0;
+
+    &.slider-empty {
+      bottom: 0;
+    }
 
     &.on-slide {
         .swiper-slide.swiper-slide-active {
