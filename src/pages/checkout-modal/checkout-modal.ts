@@ -69,22 +69,58 @@ export class CheckoutModalPage {
 
   finishOrder(){
     if(this.userp.isUserLogged()){
-      this.user=this.userp.getUser();
-      this.doPrompt()
-      .then((data)=>{
-        if(data && data['phone']!==null){
-          this.user.costumer.phone = data['phone'];
-          this.userp.updateUser(this.user.costumer)
-          .then((un)=>{
-            this.user=un;
-            this.device.oneSignalTag('sale','true');
-            this.completeSale();
-          })
-        }
+      this.verifyVoucherAfterLogin()
+      .then(()=>{
+        this.user=this.userp.getUser();
+        this.doPrompt()
+        .then((data)=>{
+          if(data && data['phone']!==null){
+            this.user.costumer.phone = data['phone'];
+            this.userp.updateUser(this.user.costumer)
+            .then((un)=>{
+              this.user=un;
+              this.device.oneSignalTag('sale','true');
+              this.completeSale();
+            })
+          }
+        })
       })
+      .catch(er=>{
+        let alert = this.alertCtrl.create({
+          title: 'OPA!',
+          subTitle: 'Você já utilizou este cupom uma vez. Continue a compra sem o cupom.',
+          buttons: ['Entendi']
+        });
+        alert.present();
+      })
+
     }else{
       this.login();
     }
+  }
+
+  verifyVoucherAfterLogin(){
+    return new Promise((resolve, reject) => {
+      let v=this.voucher.getSavedVoucher();
+      if(v){
+        this.voucher.getVoucher(v.code)
+        .then(res=>{
+          resolve();
+          console.log('tudo certo com o voucher');
+        })
+        .catch(er=>{
+          console.log('err->',er);
+          this.coupom=null;
+          this.voucher.removeVoucher();
+          reject();
+          // this.error_active=true
+          // this.voucher_active=false;
+        })
+        console.log('vouhcer',v);
+      }else{
+        resolve();
+      }
+      });
   }
 
   openVoucherModal(){
