@@ -81,13 +81,12 @@
                 "APP_ID": "289767478086559",
                 "APP_NAME": "Cerveja.me"
             },
-            "onesignal-cordova-plugin": {},
             "cordova-plugin-splashscreen": {},
-            "cordova-plugin-statusbar": {}
+            "cordova-plugin-statusbar": {},
+            "onesignal-cordova-plugin": {}
         },
         "platforms": [
-            "android",
-            "ios"
+            "android"
         ]
     }
 }
