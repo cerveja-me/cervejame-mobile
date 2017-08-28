@@ -47,7 +47,6 @@ import { DeviceProvider } from '../../providers/device/device';
      if(this.code.length==9){
        this.voucher.getVoucher(this.code)
        .then(res=>{
-         console.log('voucher no modal -> ',res);
          this.vouch=res;
          this.voucher_active=true;
          setTimeout(a=>{
@@ -55,7 +54,6 @@ import { DeviceProvider } from '../../providers/device/device';
          },1500);
        })
        .catch(er=>{
-         console.log('err->',er);
          this.error_active=true
          this.voucher_active=false;
        })

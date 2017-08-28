@@ -106,17 +106,14 @@ export class CheckoutModalPage {
         this.voucher.getVoucher(v.code)
         .then(res=>{
           resolve();
-          console.log('tudo certo com o voucher');
         })
         .catch(er=>{
-          console.log('err->',er);
           this.coupom=null;
           this.voucher.removeVoucher();
           reject();
           // this.error_active=true
           // this.voucher_active=false;
         })
-        console.log('vouhcer',v);
       }else{
         resolve();
       }
@@ -137,7 +134,6 @@ export class CheckoutModalPage {
     modal.present();
     modal.onDidDismiss(data => {
       if(data==='success'){
-        console.log('voucher->',this.coupom);
         if(this.coupom){ //verificar se o cupom que é valido com o login
           this.voucher.getVoucher(this.coupom.code)
           .then(voucher=>{
@@ -159,9 +155,7 @@ export class CheckoutModalPage {
 
   completeSale(){
     let p=this.order.getProduct();
-    console.log('user->',this.user);
     let csa=this.user['costumer'];
-    console.log('modal->',csa);
     let sale={
       address:this.geoloc.formatAddress(this.fullAddress) +(this.addressComplement?", complemento: "+this.addressComplement:''),
       location:this.order.getLocation().id,
@@ -223,7 +217,6 @@ export class CheckoutModalPage {
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel clicked', data);
             resolve(null);
           }
         },

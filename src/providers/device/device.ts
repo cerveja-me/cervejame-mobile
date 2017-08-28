@@ -94,16 +94,13 @@ declare var UXCam:any;
           }
         })
         alert.present();
-        console.log('received-> ',text.payload);
       });
       this.oneSignal.handleNotificationOpened().subscribe((text) => {
         // this.doAlert(text.notification.payload);
-        console.log('Opened-> ',text.notification.payload);
       });
       this.oneSignal.getIds()
       .then(res=>{
         this.createDevice(res.userId);
-        console.log('id->',res.userId,res.pushToken);
       })
       this.oneSignal.endInit();
     }

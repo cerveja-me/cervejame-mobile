@@ -31,7 +31,6 @@ declare var google;
           }else{
             e.message='GEOLOCATION_TIMEOUT';
           }
-          console.log('erro geo->', e);
           reject(e);
         })
       })

@@ -60,7 +60,6 @@ export class LoginModalPage {
         })
         .catch(e=>{
             this.dismiss('success');
-            console.log('erro ao cadastrar pelo facebook');
         });
     }
 
