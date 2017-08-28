@@ -73,6 +73,16 @@ export class HomePage {
       },100);
 
   }
+  showTip=false;
+  getTipStatus(){
+    this.storage.get('hasSeenTip')
+    .then((hasSeenTip) => {
+      if (!hasSeenTip) {
+          this.showTip=true;
+          this.storage.set('hasSeenTip',true);
+      }
+      })
+  }
   updatePriceAndDiscount(){
     if(this.amount > 4){
       this.discount=0.2;
