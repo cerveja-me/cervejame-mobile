@@ -14,7 +14,7 @@
 
   <div class="table"></div>
 
-  <ion-slides class="choose-slider" (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()"  hideWhen="!products.length >0">
+  <ion-slides pager class="choose-slider" (ionSlideDidChange)="slideChanged()" [ngClass]="!taped ? 'on-slide': '' " (ionSlideDrag)="onTaped()"  hideWhen="!products.length >0">
     <ion-slide *ngFor="let prod of products">
       <div *ngIf="prod.product.cold">
 
