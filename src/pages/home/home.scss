@@ -396,7 +396,8 @@ page-home {
     @extend .font-regular !optional;
 
     font-size: 12px;
-    border-top: 1px solid white;
+    border-top: 1px solid $color-secondary;
+    border-bottom: 1px solid $color-secondary;
     color: $color-secondary;
     background: $color-background;
     border-radius: 0;
@@ -405,8 +406,7 @@ page-home {
     text-align: center;
     margin: 0;
     position: relative;
-    animation: show-up-on 0.3s ease-out 1s 1 normal;
-    animation-fill-mode: both;
+    z-index: 2;
 
     .icon-loading {
         background-image: url(../assets/icon/icon-loading.svg);
@@ -443,7 +443,7 @@ page-home {
         line-height: 1.3em;
         text-transform: initial;
         top: 50%;
-        margin-top: -12px;
+        margin-top: -11px;
 
         &.active label {
             @extend .font-bold !optional;
@@ -475,16 +475,6 @@ page-home {
         }
     }
 
-
-    .icon-clock {
-        width: 22px;
-        height: 22px;
-        background-image: url(../assets/icon/icon-clock.svg);
-        display: inline-block;
-        margin-right: 6px;
-        vertical-align: middle;
-    }
-
     &:after {
         content: '';
         width: 22px;
@@ -494,7 +484,8 @@ page-home {
         position: absolute;
         right: 5px;
         top: 50%;
-        margin-top: -12px;
+        margin-top: -11px;
+        transform: rotate(180deg);
     }
 }
 
