@@ -330,3 +330,39 @@ ion-backdrop {
 .button.activated {
     background: #583318;
 }
+
+.tip {
+  position: relative;
+
+  &__balloon {
+      @include border-radius(10px);
+      @extend .font-regular;
+
+      color: white;
+      font-size: 14px;
+      text-align: center;
+      border: 2px solid $color-secondary;
+      background: $color-primary;
+      position: absolute;
+      right: -25%;
+      bottom: 150%;
+      width: 195px;
+      display: inline-block;
+      padding: 15px;
+      line-height: 1.3em;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+
+      &:after {
+          content: '';
+          background-image: url(../assets/icon/trigger-brown.svg);
+          background-size: cover;
+          width: 23px;
+          height: 23px;
+          position: absolute;
+          bottom: -13px;
+          right: 14px;
+          display: block;
+          margin-top: -12px;
+      }
+  }
+}

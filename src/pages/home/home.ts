@@ -53,6 +53,8 @@ export class HomePage {
 
     ) {
 
+    this.getTipStatus();
+
     this.events.subscribe('push:order_update', data=>{
       this.verifyLastSale();
     });

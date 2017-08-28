@@ -1,5 +1,5 @@
 
-<ion-header>
+<ion-header (click)="showTip=false">
    <button class="btn-schedule icon-opened" [ngClass]="closed ? 'closed': '' " ion-button secondary *ngIf="products.length >0" (click)="openSchedule()"></button>
    <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed">
    <span class="schedule-off__label">
@@ -10,7 +10,7 @@
    <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openVoucher()"></button>
 </ion-header>
 
-<ion-content class="bkg-choose center" [ngClass]="closed ? 'closed': '' ">
+<ion-content class="bkg-choose center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">
 
   <div class="table"></div>
 
@@ -94,7 +94,7 @@
 </ion-slides>
 
 </ion-content>
-<ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" >
+<ion-footer *ngIf="products && products.length && loadedcompleted" align-title="left" (click)="showTip=false">
 
   <div class="receipt" *ngIf="products[slides.getActiveIndex()] " >
     <div class="receipt__padding">
@@ -124,7 +124,9 @@
           </div>
         </div>
       </div>
-      <button class="btn-plus" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' " ></button>
+      <button class="btn-plus tip" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' " >
+        <span class="tip__balloon" *ngIf="showTip">Quanto mais você compra, mais desconto você ganha.</span>
+      </button>
     </div>
 
     <button ion-button secondary class="btn-primary" (click)="finishRequest(selectedBeer)" *ngIf="!closed">Escolher</button>
