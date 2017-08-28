@@ -13,12 +13,7 @@ import { Storage } from '@ionic/storage';
 
 declare var UXCam:any;
 
-/*
-  Generated class for the DeviceProvider provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-    */
   @Injectable()
   export class DeviceProvider {
 
@@ -36,7 +31,7 @@ declare var UXCam:any;
 
       ) {
       if(this.platform.is('cordova')){
-        // UXCam.startWithKey("335139d8e41417d");//admin@cerveja.me
+        UXCam.startWithKey("335139d8e41417d");//admin@cerveja.me
         UXCam.tagUsersName(this.device.uuid);
         this.startOneSignal();
       }
