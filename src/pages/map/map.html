@@ -8,10 +8,10 @@
 <ion-content>
 
   <div class="map__address" *ngIf="address">
-    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (ngModelChange)="addressChange()" (blur)="closeEdit()">
+    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''" (ngModelChange)="addressChange()" (blur)="closeEdit()">
     </ion-input>
 
-    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel">
+    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number=''">
 
     <span class="map__address__icon icon-pin-min"></span>
 
