@@ -133,8 +133,9 @@ export class CheckoutModalPage {
       costumer:csa['id'],
       payment:this.payment,
       product:{
+        price:p.price,
         amount:p["amount"],
-        id:p['id']
+        id:p.beer['id']
       },
       discount:null,
       voucher:null
