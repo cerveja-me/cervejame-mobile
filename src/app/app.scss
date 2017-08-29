@@ -330,6 +330,16 @@ ion-backdrop {
     background: #583318;
 }
 
+@keyframes tip-up {
+  0% { opacity: 0; margin-down: -10px;}
+  100% {opacity: 1; margin-down: 0px;}
+}
+
+@keyframes tip-down {
+  0% { opacity: 0; margin-top: -10px;}
+  100% {opacity: 1; margin-top: 0px;}
+}
+
 .tip {
   position: relative;
 
@@ -343,8 +353,6 @@ ion-backdrop {
       border: 2px solid $color-secondary;
       background: $color-primary;
       position: absolute;
-      right: -25%;
-      bottom: 150%;
       width: 195px;
       display: inline-block;
       padding: 10px;
@@ -364,10 +372,18 @@ ion-backdrop {
           margin-top: -12px;
       }
 
+      &.tip-up {
+        right: -25%;
+        bottom: 150%;
+        animation: tip-up 0.3s ease .3s 1 normal;
+        animation-fill-mode: both;
+      }
+
       &.tip-down {
         right: 34px;
         top: 57px;
-        bottom: auto;
+        animation: tip-down 0.3s ease .3s 1 normal;
+        animation-fill-mode: both;
 
         &:after {
             top: -1px;
