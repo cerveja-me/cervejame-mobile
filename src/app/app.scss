@@ -347,7 +347,7 @@ ion-backdrop {
       bottom: 150%;
       width: 195px;
       display: inline-block;
-      padding: 15px;
+      padding: 10px;
       line-height: 1.3em;
       box-shadow: 0 6px 10px rgba(0,0,0,0.2);
 
@@ -362,6 +362,18 @@ ion-backdrop {
           right: 14px;
           display: block;
           margin-top: -12px;
+      }
+
+      &.tip-down {
+        right: 34px;
+        top: 57px;
+        bottom: auto;
+
+        &:after {
+            top: -1px;
+            bottom: auto;
+            transform: rotate(180deg);
+        }
       }
   }
 }
