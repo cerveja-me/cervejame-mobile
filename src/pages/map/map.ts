@@ -144,7 +144,7 @@ editingAddress=false;
 
       setAddress(address){
         let add = this.geoLoc.convertAddress(address);
-        this.address=add;
+        this.address.route=add['route'];
         console.log('address ' ,this.address);
         console.log('address 2' ,address);
         this.fulladdress=add['route'];
@@ -153,12 +153,14 @@ editingAddress=false;
 
           setTimeout(() => {
               this.map.setCenter(new google.maps.LatLng(address.geometry.location.lat,address.geometry.location.lng));
+              this.fulladdress=add['route'];
           }, 500);
-
           this.addressOptions=[];
+
       }
 
       closeEdit(){
+        this.fulladdress=this.address.route;
           if(this.platform.is('cordova')){
               let activeElement = <HTMLElement>document.activeElement;
               activeElement && activeElement.blur && activeElement.blur();

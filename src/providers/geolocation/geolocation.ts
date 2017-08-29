@@ -81,7 +81,6 @@ declare var google;
         url = url.replace('LNG',location.lng());
         this.device.get(url)
         .then((res)=>{
-          console.log('res->', res.json());
           resolve(res.json());
         })
         .catch(reject);
