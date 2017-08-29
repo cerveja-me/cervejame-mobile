@@ -10,7 +10,7 @@
     <span class="map__address__icon icon-pin-min"></span>
 
     <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
-      <li class="map__address__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)"> {{ad.formatted_address}}</li>
+      <li class="map__address__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)"><span class="icon-pin-autocomplete"></span> {{ad.formatted_address}}</li>
     </ul>
 
     <span class="map__address__plus icon-plus-b"></span>
