@@ -2,10 +2,12 @@
 <ion-content>
 
   <div class="map__address" *ngIf="address">
+
     <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true" (ngModelChange)="addressChange()" (blur)="closeEdit(); texting=false">
     </ion-input>
 
     <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number=''">
+    <span class="tip__balloon tip-down">Não esqueça o número</span>
 
     <span class="map__address__icon icon-pin-min"></span>
 
