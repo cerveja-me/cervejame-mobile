@@ -142,7 +142,7 @@ page-home {
             margin: 0;
             z-index: 2;
             transform: scale(0.8);
-            transition: all 0.5s;
+            transition: all 0.3s;
             -webkit-filter: blur(0.6px) brightness(0.8); filter: blur(0.6px) brightness(0.8);
 
             img-loader {
@@ -235,7 +235,6 @@ page-home {
         transform: scale(1);
         bottom: 14%;
         -webkit-filter: contrast(100%); filter: contrast(100%);
-        -webkit-filter: brightness(1); filter: brightness(1);
         -webkit-filter: blur(0); filter: blur(0);
     }
 }
@@ -406,7 +405,7 @@ page-home {
     text-align: center;
     margin: 0;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 
     .icon-loading {
         background-image: url(../assets/icon/icon-loading.svg);
@@ -551,9 +550,11 @@ page-home {
       font-size: 18px;
       transition: opacity 0.2s;
       position: relative;
+      overflow: hidden;
 
       &.dragging {
         opacity: 0.2;
+
       }
 
       &__each {
@@ -603,10 +604,10 @@ page-home {
       background-image: url('../assets/icon/icon-tag.svg');
       padding: 2px 11px 2px 4px;
       margin-right: 2px;
-      width: 48px;
+      width: 47px;
 
       &.animated {
-        animation: pop-discount 1s ease 0.5s 1 normal;
+        animation: pop-discount 1s ease 0.7s 1 normal;
         animation-fill-mode: both;
       }
     }

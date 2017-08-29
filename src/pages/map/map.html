@@ -2,7 +2,7 @@
 <ion-content>
 
   <div class="map__address" *ngIf="address">
-    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''" (ngModelChange)="addressChange()" (blur)="closeEdit()">
+    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true" (ngModelChange)="addressChange()" (blur)="closeEdit(); texting=false">
     </ion-input>
 
     <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number=''">
@@ -10,7 +10,7 @@
     <span class="map__address__icon icon-pin-min"></span>
 
     <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
-      <li class="map__address__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)">{{ad.formatted_address}}</li>
+      <li class="map__address__autocomplete__item"  *ngFor="let ad of addressOptions | slice:0:5;" (click)="setAddress(ad)"> {{ad.formatted_address}}</li>
     </ul>
 
     <span class="map__address__plus icon-plus-b"></span>
@@ -20,6 +20,6 @@
   <div #map id="map" (click)="closeEdit()" [ngClass]="texting?'keyboardOpen':movingPin?'moving':''"></div>
 </ion-content>
 
-<ion-footer align-title="left" class="bar-assertive">
-  <button ion-button secondary class="map__btn" (click)="finishOrder()">ENTREGAR AQUI</button>
+<ion-footer align-title="left" class="bar-assertive" *ngIf="!texting">
+  <button ion-button secondary class="map__btn" (click)="finishOrder()" >ENTREGAR AQUI</button>
 </ion-footer>
