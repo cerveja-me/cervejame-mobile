@@ -19,6 +19,7 @@ declare var google;
 export class MapPage {
     @ViewChild('map') mapElement: ElementRef;
 
+editingAddress=false;
     map: any;
     address;
     fulladdress;
@@ -143,6 +144,9 @@ export class MapPage {
 
       setAddress(address){
         let add = this.geoLoc.convertAddress(address);
+        this.address=add;
+        console.log('address ' ,this.address);
+        console.log('address 2' ,address);
         this.fulladdress=add['route'];
         this.number=add['street_number'];
         this.closeEdit();
@@ -155,14 +159,15 @@ export class MapPage {
       }
 
       closeEdit(){
-
           if(this.platform.is('cordova')){
               let activeElement = <HTMLElement>document.activeElement;
               activeElement && activeElement.blur && activeElement.blur();
           }
+          this.editingAddress=false;
       }
 
       finishOrder(){
+
           this.closeEdit();
           let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
           this.address.street_number=this.number;
@@ -172,7 +177,7 @@ export class MapPage {
               if(data==='cancel'){
                   this.device.camPage("map");
               }
-
           });
+
       }
     }
