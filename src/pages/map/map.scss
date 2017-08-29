@@ -185,11 +185,12 @@ page-map {
 
                     color: $color-secondary;
                     font-size: 14px;
-                    padding: 15px;
+                    padding: 15px 15px 15px 50px;
                     border: solid $color-secondary;
                     border-width: 0 2px 1px;
                     margin: 0;
                     background: #D5A86C;
+                    position: relative;
 
                     &:last-child {
                         border-width: 0 2px 2px;
@@ -247,10 +248,11 @@ page-map {
 
         color: $color-secondary;
         font-size: 14px;
-        padding: 15px;
+        padding: 15px 15px 15px 45px;
         border-bottom: 1px solid $color-secondary;
         margin: 0;
         text-align: left;
+        position: relative;
 
         &:last-of-type {
             border-bottom: none;
@@ -344,4 +346,8 @@ page-map {
   display: inline-block;
   vertical-align: middle;
   margin-right: 10px;
+  position: absolute;
+  top: 50%;
+  margin-top: -13px;
+  left: 13px;
 }
