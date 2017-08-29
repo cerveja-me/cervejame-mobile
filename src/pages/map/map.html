@@ -7,6 +7,7 @@
 
     <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number='';texting=true;" (blur)="texting=false" *ngIf="!editingAddress">
 
+    <span class="tip__balloon tip-down">Não esqueça o número</span>
     <span class="map__address__icon icon-pin-min"></span>
 
     <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length  ">
