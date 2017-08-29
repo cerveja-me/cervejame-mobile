@@ -2,13 +2,12 @@
 <ion-content>
 
   <div class="map__address" *ngIf="address">
-
-    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true" (ngModelChange)="addressChange()" (blur)="closeEdit(); texting=false">
+    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true;editingAddress=true" (ngModelChange)="addressChange()" (blur)="closeEdit(); texting=false">
     </ion-input>
 
-    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number=''">
-    <span class="tip__balloon tip-down">Não esqueça o número</span>
+    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number='';texting=true;" (blur)="texting=false" *ngIf="!editingAddress">
 
+    <span class="tip__balloon tip-down">Não esqueça o número</span>
     <span class="map__address__icon icon-pin-min"></span>
 
     <ul class="address__autocomplete" *ngIf="addressOptions && addressOptions.length ">
@@ -16,12 +15,14 @@
     </ul>
 
     <span class="map__address__plus icon-plus-b"></span>
-    <input class="map__address__input" placeholder="Complemento" type="text" [(ngModel)]="complement">
+    <input class="map__address__input" placeholder="Complemento" type="text" [(ngModel)]="complement" (click)="texting=true" (blur)="texting=false">
   </div>
 
-  <div #map id="map" (click)="closeEdit()" [ngClass]="texting?'keyboardOpen':movingPin?'moving':''"></div>
+  <div #map id="map" (click)="closeEdit(); texting=false" [ngClass]="texting?'keyboardOpen':movingPin?'moving':''"></div>
 </ion-content>
 
 <ion-footer align-title="left" class="bar-assertive" >
-  <button ion-button secondary class="map__btn" (click)="finishOrder()" [ngClass]="texting?'disabled':''">ENTREGAR AQUI</button>
+  <button ion-button secondary class="map__btn" [ngClass]="texting?'disabled':''" *ngIf="texting">ENTREGAR AQUI</button>
+  <button ion-button secondary class="map__btn" (click)="finishOrder()" [ngClass]="texting?'disabled':''" *ngIf="!texting">ENTREGAR AQUI</button>
+
 </ion-footer>
