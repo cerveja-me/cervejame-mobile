@@ -382,12 +382,13 @@ page-home {
 
         color: white;
         position: absolute;
-        width: 25%;
+        width: 100px;
         border: 2px solid white;
         font-size: 12px;
         right: 20px;
         padding: 10px;
         top: 14px;
+        text-transform: none;
     }
 
 }
