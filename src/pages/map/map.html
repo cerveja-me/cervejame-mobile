@@ -20,6 +20,6 @@
   <div #map id="map" (click)="closeEdit()" [ngClass]="texting?'keyboardOpen':movingPin?'moving':''"></div>
 </ion-content>
 
-<ion-footer align-title="left" class="bar-assertive" *ngIf="!texting">
-  <button ion-button secondary class="map__btn" (click)="finishOrder()" >ENTREGAR AQUI</button>
+<ion-footer align-title="left" class="bar-assertive" >
+  <button ion-button secondary class="map__btn" (click)="finishOrder()" [ngClass]="texting?'disabled':''">ENTREGAR AQUI</button>
 </ion-footer>
