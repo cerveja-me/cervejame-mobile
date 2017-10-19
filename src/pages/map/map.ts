@@ -129,6 +129,9 @@ editingAddress=false;
               this.address=address;
               this.fulladdress=this.address['route'];
               this.number=this.address['street_number'];
+              if(this.number.includes('-')){
+                this.number=null;
+              }
               this.zone.run(()=>{});
           });
       }
