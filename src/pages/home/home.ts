@@ -86,8 +86,8 @@ export class HomePage {
       })
   }
   updatePriceAndDiscount(){
-    if(this.amount > 4){
-      this.discount=0.2;
+    if(this.amount > 2){
+      this.discount=0.1;
     }else{
       this.discount=(this.amount-1)*0.05;
     }
@@ -98,6 +98,7 @@ export class HomePage {
     p=p-(p*this.discount);
     p=Math.round(p);
     this.selectedBeer.discount=1-(p/full);
+    this.selectedBeer.finalDiscount=this.selectedBeer.discount*100;
     this.selectedBeer.price = p;
     this.selectedBeer.unitValue = this.selectedBeer.beer.unitvalue*(1-this.selectedBeer.discount);
 
