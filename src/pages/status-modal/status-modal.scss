@@ -35,6 +35,7 @@ page-status-modal {
             margin: 0 15px 0 0;
             text-align: center;
             overflow: hidden;
+            z-index: 2;
 
             &__img {
                 display: block;
@@ -43,6 +44,7 @@ page-status-modal {
                 background-size: cover !important;
                 text-align: center;
                 margin: 0 auto;
+                z-index: 1;
             }
         }
 
