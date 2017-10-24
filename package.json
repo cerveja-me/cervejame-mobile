@@ -1,8 +1,8 @@
 {
     "name": "cervejame-mobile",
     "author": "cerveja.me",
-    "description": "An Ionic project",
-    "version": "0.0.1",
+    "description": "Cervejame ",
+    "version": "2.3",
     "homepage": "http://cerveja.me/",
     "private": true,
     "scripts": {

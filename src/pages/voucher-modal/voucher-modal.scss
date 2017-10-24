@@ -1,5 +1,5 @@
 voucher-modal {
-    
+
     @keyframes bounce {
         0% { margin-left: -163px; }
         25% { margin-left: -147px; }
@@ -7,40 +7,40 @@ voucher-modal {
         75% { margin-left: -147px; }
         100% { margin-left: -155px; }
     }
-    
+
      @keyframes opacity {
         0% { opacity: 0; }
         100% { opacity: 1; }
     }
-    
+
     .voucher {
         background: none;
-        
+
         &__ticket {
             height: 241px;
             width: 309px;
             background: url(../assets/icon/bkg-voucher.svg);
             z-index: 2;
             position: absolute;
-            top: 50%;
+            top: 30%;
             left: 50%;
             margin-top: -107.5px;
             margin-left: -155px;
             padding: 20px;
             transform: scale(0.95);
             transition: all 0.3s;
-            
+
             &.active {
                 background: url(../assets/icon/bkg-voucher-active.svg);
                 transform: scale(1);
             }
-            
+
             &.fail {
                 animation: bounce 0.3s linear 0s 1 normal;
                 animation-fill-mode: both;
             }
         }
-        
+
         &__text {
             @extend .font-bold;
 
@@ -51,13 +51,13 @@ voucher-modal {
             animation: opacity 0.2s linear 0s 1 normal;
             animation-fill-mode: both;
         }
-        
+
         &__ticket.active .voucher__value small,
         &__ticket.active .voucher__value label
         {
             opacity: 1;
         }
-        
+
         &__value {
             @extend .font-bold;
 
@@ -70,23 +70,23 @@ voucher-modal {
             letter-spacing: -0.05em;
             padding-bottom: 10px;
             border-bottom: 2px dashed $color-secondary;
-            
+
             small, label {
                 opacity: 0.2;
             }
-            
+
             small {
                 @extend .font-regular;
-                
+
                 font-size: 24px;
                 top: -17px;
                 display: inline-block;
                 position: relative;
                 letter-spacing: 0em;
-                
+
             }
         }
-        
+
         .text-input {
             @extend .font-regular;
 

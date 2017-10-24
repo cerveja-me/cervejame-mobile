@@ -570,6 +570,8 @@ page-home {
         top: 0;
         width: 100%;
         z-index: 1;
+        border-radius: 30px;
+        overflow: hidden;
       }
 
       &.switch &__pack {
