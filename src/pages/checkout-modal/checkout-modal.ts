@@ -194,7 +194,7 @@ export class CheckoutModalPage {
           message: 'Infezlimente, não estamos mais fazendo entregas, confira nossos horários de atendimento.',
           buttons: [
             {
-              text: 'Horarios',
+              text: 'Horários',
               handler: data => {
                 this.order.getZone()
                 .then(z=>{
