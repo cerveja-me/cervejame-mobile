@@ -31,7 +31,7 @@ declare var UXCam:any;
 
       ) {
       if(this.platform.is('cordova')){
-        UXCam.startWithKey("335139d8e41417d");//admin@cerveja.me
+        UXCam.startWithKey("be70a1dceee9857");//contas@cerveja.me
         UXCam.tagUsersName(this.device.uuid);
         this.startOneSignal();
       }
