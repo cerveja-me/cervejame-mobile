@@ -11,6 +11,7 @@ import { VoucherProvider } from '../../providers/voucher/voucher';
 import { LoginModalPage } from '../login-modal/login-modal';
 import { HomePage } from '../home/home';
 import { VoucherModalPage } from '../voucher-modal/voucher-modal';
+import { ScheduleModalPage } from '../schedule-modal/schedule-modal';
 
 @Component({
   selector: 'page-checkout-modal',
@@ -184,14 +185,37 @@ export class CheckoutModalPage {
       });
     })
     .catch(e =>{
-      console.log('errorrr->>> ',e);
+      //console.log('errorrr->>> ',e);
       let errMsg = (e._body) ? e._body :
    e.status ? `${e.status} - ${e.statusText}` : 'Server error';
       if(errMsg=="TIME_IS_UP"){
         let alert = this.alertCtrl.create({
           title: 'Encerramos por hoje',
           message: 'Infezlimente, não estamos mais fazendo entregas, confira nossos horários de atendimento.',
-          buttons: ['Horários','Ok']
+          buttons: [
+            {
+              text: 'Horarios',
+              handler: data => {
+                this.order.getZone()
+                .then(z=>{
+                  //this.device.oneSignalTag('zone',z['zone']);
+                  var closedtime = JSON.parse(z["schedule"]);
+                  //this.hours =closedtime;
+                  var d=new Date();
+                  var closed=true;
+                  if(d.getHours() > closedtime[d.getDay()].start && d.getHours() < closedtime[d.getDay()].end){
+                    closed = true;
+                  }
+                let modal = this.modalCtrl.create(ScheduleModalPage,{hours:closedtime, closed:closed});
+                modal.present();
+              });
+              }
+            },
+          {
+            text: 'Ok'
+          }
+
+          ]
         });
         alert.present();
       }else{
