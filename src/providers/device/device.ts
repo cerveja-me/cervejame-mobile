@@ -135,7 +135,7 @@ declare var UXCam:any;
 
     API:string='http://api.cerveja.me/';
     // API:string='http://192.168.0.144:1337/';
-    // API:string='http://localhost:1337/';
+    // API:string='http://localhost:80/';
     DEVICE:string = 'v2/device/';
     AUTH:string='auth/login';
     LOCATION:string = 'location/';
