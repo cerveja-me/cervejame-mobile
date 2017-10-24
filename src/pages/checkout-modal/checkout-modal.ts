@@ -184,6 +184,7 @@ export class CheckoutModalPage {
       });
     })
     .catch(e =>{
+      console.log('errorrr->>> ',e);
       let errMsg = (e._body) ? e._body :
    e.status ? `${e.status} - ${e.statusText}` : 'Server error';
       if(errMsg=="TIME_IS_UP"){
