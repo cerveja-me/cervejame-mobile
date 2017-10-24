@@ -184,12 +184,23 @@ export class CheckoutModalPage {
       });
     })
     .catch(e =>{
-      let alert = this.alertCtrl.create({
-        title: 'Erro',
-        message: 'Opa! Tivemos um erro, por favor tente novamente, se o erro persistir entre contato <a href="https://cerveja.me">Cerveja.me</a>.',
-        buttons: ['Ok']
-      });
-      alert.present();
+      let errMsg = (e._body) ? e._body :
+   e.status ? `${e.status} - ${e.statusText}` : 'Server error';
+      if(errMsg=="TIME_IS_UP"){
+        let alert = this.alertCtrl.create({
+          title: 'Encerramos por hoje',
+          message: 'Infezlimente, não estamos mais fazendo entregas, confira nossos horários de atendimento.',
+          buttons: ['Horários','Ok']
+        });
+        alert.present();
+      }else{
+        let alert = this.alertCtrl.create({
+          title: 'Erro',
+          message: 'Opa! Tivemos um erro, por favor tente novamente, se o erro persistir entre contato <a href="http://cerveja.me">Cerveja.me</a>.',
+          buttons: ['Ok']
+        });
+        alert.present();
+      }
     });
 
   }
