@@ -186,7 +186,7 @@ export class CheckoutModalPage {
     .catch(e =>{
       let alert = this.alertCtrl.create({
         title: 'Erro',
-        message: 'Opa! Tivemos um erro, por favor tente novamente, se o erro persistir entre contato <a href="http://cerveja.me">Cerveja.me</a>.',
+        message: 'Opa! Tivemos um erro, por favor tente novamente, se o erro persistir entre contato <a href="https://cerveja.me">Cerveja.me</a>.',
         buttons: ['Ok']
       });
       alert.present();

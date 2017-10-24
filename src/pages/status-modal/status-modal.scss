@@ -36,8 +36,10 @@ page-status-modal {
             text-align: center;
             overflow: hidden;
             z-index: 2;
+            position: relative;
 
             &__img {
+                position: relative;
                 display: block;
                 height: 100%;
                 width: auto;
