@@ -8,7 +8,6 @@ import { GeolocationProvider } from '../../providers/geolocation/geolocation';
 import { OrderProvider } from '../../providers/order/order';
 
 import { CheckoutModalPage } from '../checkout-modal/checkout-modal';
-import { MapAddressPage } from '../map-address/map-address';
 
 declare var google;
 
@@ -81,7 +80,6 @@ editingAddress=false;
               var centerControlDiv = document.createElement('div');
               this.geoLoc.getPosition()
               .then(p=>{
-                var centerControl = new this.centerControl(centerControlDiv, this.map,p);
                 this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
               })
 
