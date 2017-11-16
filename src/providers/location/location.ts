@@ -67,8 +67,7 @@ export class LocationProvider {
       let url =this.device.c.GOOGLE_ADDRESS.replace('#',location[0]+','+location[1]);
       this.http.get(url)
       .subscribe((res)=>{
-        console.log('aqui');
-        let add = res.results;
+        let add = res['results'];
         resolve(this.convertAddress(add[0]))
       })
     })
@@ -76,14 +75,13 @@ export class LocationProvider {
 
   getLocationsWithAddres(address,location){
     return new Promise((resolve,reject) => {
-      let url =this.device.GOOGLE_GEOCODE.replace('#',address);
+      let url =this.device.c.GOOGLE_GEOCODE.replace('#',address);
       url = url.replace('LAT',location.lat());
       url = url.replace('LNG',location.lng());
-      this.device.get(url)
-      .then((res)=>{
-        resolve(res.json());
+      this.http.get(url)
+      .subscribe((res)=>{
+        resolve(res);
       })
-      .catch(reject);
     })
   }
 
@@ -110,20 +108,4 @@ export class LocationProvider {
   formatAddress(address){
     return address.route+", "+address.street_number+", "+address.locality+", "+address.administrative_area_level_1;
   }
-
-
-  // getAddress(){
-  //   return new Promise((resolve, reject) => {
-  //     this.http.post(this.c.API+endpoint, JSON.stringify(data),{
-  //       // headers: h
-  //     })
-  //     .subscribe(res => {
-  //       resolve(res);
-  //     }, (err) => {
-  //       reject(err);
-  //     });
-  //   });
-  // }
-
-
 }
