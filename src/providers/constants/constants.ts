@@ -6,6 +6,7 @@ export class ConstantsProvider {
   public DEVICE:string='device/';
   public LOCATION:string='location/';
   public PROFILE:string='profile/';
+  public SALE:string='sale/';
   public AUTH:string=this.PROFILE+'auth/';
   public REMOTE_ASSETS:string='https://s3-sa-east-1.amazonaws.com/assests.cerveja.me';
   //public REMOTE_ASSETS:string='https://assets.cerveja.me/';

@@ -8,7 +8,8 @@ import { ConstantsProvider } from '../constants/constants';
 
 @Injectable()
 export class OrderProvider {
-  selected={
+  sale={
+    id:'',
     product:{},
     amount:0
   }
@@ -66,12 +67,13 @@ export class OrderProvider {
   }
 
   setProduct(product, amount){
-    this.selected.product = product;
-    this.selected.amount = amount;
+    this.sale.product = product;
+    this.sale.amount = amount;
+    this.createOrder();
   }
 
   getProduct(){
-    return this.selected;
+    return this.sale;
   }
 
   updateLocationAddress(loc,address,number,complement){
@@ -92,8 +94,30 @@ export class OrderProvider {
   getOrder(){
     return {
       location:this.locale,
-      product:this.selected
+      product:this.sale
     }
+  }
+
+  createOrder(){
+    let sale={
+      location:this.locale['id'],
+      payment:'money',
+      product:{
+        price:this.sale.product.price,
+        amount:this.sale.amount,
+        id:this.sale.product.beer.id
+      },
+      discount:null,
+      voucher:null
+    }
+    this.network.post(this.network.c.SALE,sale)
+    .then( data => {
+      this.sale.id=data['id'];
+    })
+  }
+
+  updateOrder(){
+
   }
 
 
