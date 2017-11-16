@@ -2,50 +2,40 @@ import { Component,ViewChild } from '@angular/core';
 import { NavController, NavParams,Slides } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-//pages
-import { HomePage } from '../home/home';
-//providers
 import { DeviceProvider } from '../../providers/device/device';
-import { GeolocationProvider } from '../../providers/geolocation/geolocation';
+import { LocationProvider } from '../../providers/location/location';
 
-/**
- * Generated class for the TourPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { HomePage } from '../home/home';
 
- @Component({
-     selector: 'page-tour',
-     templateUrl: 'tour.html',
- })
- export class TourPage {
-     @ViewChild('slides') slides: Slides;
-     constructor(
-         public navCtrl: NavController,
-         public navParams: NavParams,
-         public storage:Storage,
-         public device:DeviceProvider,
-         public geoloc:GeolocationProvider
+@Component({
+  selector: 'page-tour',
+  templateUrl: 'tour.html',
+})
+export class TourPage {
+  @ViewChild('slides') slides: Slides;
 
-         ) {
+  constructor(
+    private navCtrl: NavController,
+    private storage: Storage,
+    private device: DeviceProvider,
+    private location: LocationProvider
+  ) {
+  }
 
-     }
+  ionViewDidLoad() {
+     this.device.camPage("tour");
+  }
 
-     ionViewDidLoad() {
-         this.device.camPage("tour");
-     }
+  startApp() {
+    this.navCtrl.setRoot(HomePage).then(() => {
+      this.storage.set('hasSeenTutorial', 'true');
+    })
+  }
 
-     startApp() {
-         this.navCtrl.setRoot(HomePage).then(() => {
-             this.storage.set('hasSeenTutorial', 'true');
-         })
-     }
+  onSlideChangeStart(slider: Slides) {
+    if(slider.realIndex==1){
+       this.location.getPosition();
+    }
+  }
 
-     onSlideChangeStart(slider: Slides) {
-         if(slider.realIndex==1){
-             this.geoloc.getPosition();
-         }
-     }
- }
-
+}

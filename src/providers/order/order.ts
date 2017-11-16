@@ -1,139 +1,102 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 
+//providers
+import { LocationProvider } from '../location/location';
+import { NetworkProvider } from '../network/network';
 import { DeviceProvider } from '../device/device';
-import { GeolocationProvider } from '../geolocation/geolocation';
-import { UserProvider } from '../user/user';
-/*
-  Generated class for the OrderProvider provider.
+import { ConstantsProvider } from '../constants/constants';
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-    */
-  @Injectable()
-  export class OrderProvider {
-    product;
-    location;
+@Injectable()
+export class OrderProvider {
+  selected={
+    product:{},
+    amount:0
+  }
+  location;
+  constructor(
+    private location: LocationProvider,
+    private network: NetworkProvider,
+    private device: DeviceProvider,
+    public c:ConstantsProvider
+  ) {
+  }
 
-    constructor(
-      public http: Http,
-      public device:DeviceProvider,
-      public geoloc:GeolocationProvider,
-      public user:UserProvider
-      ) {}
-
-    getZone(){
-      return new Promise((resolve, reject)=> {
-        this.geoloc.getPosition()
-        .then(pos=>{
-          var d=this.device.getDevice();
-          this.device.post(this.device.API+this.device.LOCATION,{"device":d.uuid,"location":pos['latitude']+","+pos['longitude']})
-          .then(res=>{
-
-            if(res['products'] && res['products'].length > 0 ){
-              res['products']=res['products'].map(this.convertProducts);
-              this.location=res;
-              resolve(res);
-            }else{
-              if(res['zone']){
-                reject({message:"NO_ACTIVE_PRODUCTS"});
+  getZone(){
+    return new Promise((resolve, reject)=> {
+      this.location.getPosition()
+      .then( l=>{
+        this.device.getDevice()
+        .then( d =>{
+          const p={
+            id_device: d.id,
+            position_gps: l.latitude+','+l.longitude
+          }
+          this.network.post(this.c.LOCATION,p)
+          .then( locality =>{
+            if( locality.zone ){
+              if( locality.zone.products ){
+                this.location=locality;
+                resolve(locality);
               }else{
-                reject({message:"NO_ZONE_AVAILABLE"});
+                reject("NO_PRODUCTS");
               }
+            }else{
+              reject("NO_ZONE");
             }
           })
-        })
-        .catch(reject);
-      })
-    }
-    getLocation(){
-      return this.location;
-    }
-
-    convertProducts(p){
-
-
-
-      if(!p.product.cold){
-        p.product.details=JSON.parse(p.product.description);
-      }else{
-        let d = p.product.description.split(" ");
-        if(d.length===4){
-          p.product.size=d[2];
-        }else{
-          p.product.size=d[3];
-        }
-        p.product.qtd=p.product.description.split(" ", 1)[0];
-        p.unitvalue=parseFloat((p.price/p.product.qtd).toFixed(2));
-
-      }
-      return p;
-    }
-    getProduct(){
-      return this.product;
-    }
-    setProduct(p){
-      this.product=p;
-    }
-
-    createSale(data){
-      return new Promise((resolve, reject) => {
-        this.device.post(this.device.API+this.device.SALE,data)
-        .then((res)=>{
-          resolve(res);
-        })
-        .catch(reject);
-      })
-    }
-
-    getLastOpenSale(){
-      return new Promise((resolve, reject) => {
-        if(this.user.isUserLogged()){
-
-          let u=this.user.getUser();
-          this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUYOPEN+u['costumer']['id'])
-          .then(s=>{
-            try{
-              resolve(s.json());
-            }catch(e){
-              reject();
-            }
+          .catch( err =>{
+            console.log('network err ->',err);
+            reject(err);
           })
-        }else{
-          reject();
-        }
-      })
-    }
-
-    getSaleForFeedback(){
-      return new Promise((resolve, reject) => {
-        if(this.user.isUserLogged()){
-          let u=this.user.getUser();
-          this.device.get(this.device.API+this.device.COSTUMER+this.device.LASTBUY+u['costumer']['id'])
-          .then(s=>{
-            try{
-              resolve(s.json());
-            }catch(e){
-              reject();
-            }
-          })
-        }else{
-          reject();
-        }
-      })
-    }
-
-    sendFeedback(sale){
-      return new Promise((resolve, reject) => {
-        this.device.post(this.device.API+this.device.SALE+this.device.SEND_FEEDBACK, sale)
-        .then((res)=>{
-          // this._device.setDevice(res.json());
-          resolve(res);
         })
-        .catch(er=>{
-
-        });
+        .catch( err =>{
+          console.log('device error ->',err);
+          reject(err);
+        })
       })
+      .catch( err =>{
+        console.log('location error ->',err);
+        reject(err);
+      })
+    })
+  }
+
+  getLocation(){
+    return this.location;
+  }
+
+  setProduct(product, amount){
+    this.selected.product = product;
+    this.selected.amount = amount;
+  }
+
+  getProduct(){
+    return this.selected;
+  }
+
+  updateLocationAddress(loc,address,number,complement){
+    const up ={
+      position_maps:loc[0]+","+loc[1],
+      street:address,
+      num:number,
+      complement:complement
+    }
+    this.location.number=number;
+    this.location.complement=complement;
+    this.network.put(this.network.c.LOCATION+this.location.id,up)
+    .then(l=>{
+        this.location=l;
+    })
+  }
+
+  getOrder(){
+    return {
+      location:this.location,
+      product:this.selected
     }
   }
+
+
+
+
+}
