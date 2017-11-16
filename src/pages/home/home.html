@@ -1,11 +1,22 @@
 <ion-header (click)="showTip=false">
-  <button class="btn-schedule icon-opened" [ngClass]="closed ? 'closed': '' " ion-button secondary *ngIf="products.length >0" (click)="openSchedule()"></button>
-  <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed">
-    <span class="schedule-off__label">
-      <span class="icon-clock-w"></span>Não é possível fazer pedidos agora.</span>
-      <span class="schedule-off__hours">Horários</span>
+    <button class="btn-beercoin" ion-button secondary *ngIf="products.length >0">
     </button>
-    <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openModalVoucher()"></button>
+    <ion-title>
+      <button class="btn-schedule icon-opened" [ngClass]="closed ? 'closed': '' " ion-button secondary *ngIf="products.length >0" (click)="openSchedule()">
+        <span class="icon-opened"></span>
+        <label>Estamos atendendo</label>
+        <span class="icon-dropdown"></span>
+      </button>
+      <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed">
+        <span class="schedule-off__label">
+          Ver horários
+          <span class="icon-dropdown"></span>
+        </span>
+        </button>
+    </ion-title>
+    <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openModalVoucher()">
+      <span class="icon-voucher"></span>
+    </button>
   </ion-header>
 
   <ion-content class="bkg-choose center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false">

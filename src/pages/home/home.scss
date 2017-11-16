@@ -52,7 +52,7 @@ page-home {
         background-position: center;
 
         &.closed {
-        
+
         }
     }
 
@@ -230,6 +230,8 @@ page-home {
     }
 }
 
+
+
 .icon-cold {
     background-image: url(../assets/icon/cold.svg);
     background-size: cover;
@@ -317,23 +319,63 @@ page-home {
     }
 }
 
-.button.btn-schedule {
-  background: url(../assets/icon/icon-opened.svg) no-repeat;
-  width: 29px;
-  height: 32px;
+.button.btn-beercoin {
+  background: url(../assets/icon/icon-beercoin.svg) no-repeat;
+  width: 33px;
+  height: 36px;
   border: none;
   box-shadow: none;
   position: absolute;
-  top: 50%;
+  bottom: 13px;
   margin-top: -11px;
   left: 20px;
+}
 
-  &.closed {
-    background: url(../assets/icon/icon-closed.svg) no-repeat;
-    width: 29px;
-    height: 29px;
-    margin-top: -8px;
+.header {
+
+  &.header-ios .btn-schedule {
+    bottom: 7px;
   }
+
+  &.header-md .btn-schedule {
+    bottom: 12px;
+  }
+}
+
+.button.btn-schedule {
+    box-shadow: none;
+    text-transform: uppercase;
+    background: none;
+    padding: 0;
+    position: absolute;
+    width: 230px;
+    left: 50%;
+    margin-left: -115px;
+
+    label {
+        @extend .font-regular;
+
+        color: $color-secondary;
+        font-size: 12px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .icon-opened {
+      @include border-radius(50%);
+
+      width: 14px;
+      height: 14px;
+      border: 2px solid $color-secondary;
+      background: $color-success;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    &.closed {
+
+    }
 }
 
 @keyframes show-up-off {
@@ -354,6 +396,7 @@ page-home {
     animation: show-up-off 0.3s ease-out 1s 1 normal;
     animation-fill-mode: both;
     height: 65px;
+
 
     &__label {
         width: 50%;
@@ -492,19 +535,38 @@ page-home {
 }
 
 .btn-voucher {
-    background: url(../assets/icon/icon-voucher.svg);
-    width: 39px;
-    height: 39px;
-    border: none;
-    box-shadow: none;
-    position: absolute;
-    top: 50%;
-    margin-top: -14px;
-    right: 20px;
+      @include border-radius(50%);
+
+      width: 36px;
+      height: 36px;
+      border: 2px dashed $color-secondary;
+      background-color: $color-background;
+      position: absolute;
+      bottom: 13px;
+      right: 20px;
+      padding: 0;
+
+    .icon-voucher {
+      background: url(../assets/icon/icon-voucher.svg);
+      width: 23.5px;
+      height: 23.5px;
+      display: inline-block;
+      background-size: cover;
+    }
 
     &.activated {
          background: url(../assets/icon/icon-voucher.svg);
     }
+}
+
+.icon-dropdown {
+  background: url(../assets/icon/icon-dropdown.svg);
+  width: 10px;
+  height: 6.4px;
+  display: inline-block;
+  background-size: cover;
+  margin-left: 7px;
+  vertical-align: middle;
 }
 
 .receipt {
