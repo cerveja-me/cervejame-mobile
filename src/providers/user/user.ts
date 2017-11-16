@@ -20,10 +20,10 @@ export class UserProvider {
     return new Promise((resolve, reject)=> {
       this.device.getDevice()
       .then( d =>{
-        p.device_id=d.id;
+        p.device_id=d['id'];
         this.network.post(this.network.c.AUTH,p)
         .then( t=>{
-          this.storage.set(this.network.c.AUTH,t.token);
+          this.storage.set(this.network.c.AUTH,t['token']);
           resolve(t);
         })
       })
