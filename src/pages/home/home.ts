@@ -1,6 +1,6 @@
 import { Component,ViewChild,NgZone } from '@angular/core';
 import { NavController,ModalController,Slides } from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 //providers
 import { DeviceProvider } from '../../providers/device/device'
 import { LocationProvider } from '../../providers/location/location';
@@ -26,12 +26,15 @@ export class HomePage {
   showTip=false;
   current=0;
   loadedcompleted;
+  discount=0;
+  updatingAmount;
   constructor(
+    private modalCtrl: ModalController,
     public navCtrl: NavController,
+    private zone:NgZone,
+    private storage:Storage,
     private device:DeviceProvider,
     private order: OrderProvider,
-    private modalCtrl: ModalController,
-    private zone:NgZone,
 
   ) {
 
