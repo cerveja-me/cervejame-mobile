@@ -25,6 +25,7 @@ export class HomePage {
   ASSETS:string=this.order.c.REMOTE_ASSETS;
   showTip=false;
   current=0;
+  loadedcompleted;
   constructor(
     public navCtrl: NavController,
     private device:DeviceProvider,
@@ -42,6 +43,7 @@ export class HomePage {
       this.location=l
       this.products=l['zone']['products'];
       this.slideChanged();
+      this.loadedcompleted=true;
     })
     .catch( e =>{
       /*
