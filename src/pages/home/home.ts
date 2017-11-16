@@ -40,7 +40,7 @@ export class HomePage {
     this.order.getZone()
     .then( (l) => {
       this.location=l
-      this.products=l.zone.products;
+      this.products=l['zone']['products'];
       this.slideChanged();
     })
     .catch( e =>{
