@@ -62,7 +62,7 @@ export class OrderProvider {
   }
 
   getLocation(){
-    return this.location;
+    return this.locale;
   }
 
   setProduct(product, amount){
@@ -81,9 +81,9 @@ export class OrderProvider {
       num:number,
       complement:complement
     }
-    this.location['number']=number;
-    this.location['complement']=complement;
-    this.network.put(this.network.c.LOCATION+this.location['id'],up)
+    this.locale['number']=number;
+    this.locale['complement']=complement;
+    this.network.put(this.network.c.LOCATION+this.locale['id'],up)
     .then(l=>{
         this.locale=l;
     })
@@ -91,7 +91,7 @@ export class OrderProvider {
 
   getOrder(){
     return {
-      location:this.location,
+      location:this.locale,
       product:this.selected
     }
   }
