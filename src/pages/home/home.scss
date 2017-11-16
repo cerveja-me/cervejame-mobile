@@ -1,4 +1,9 @@
 page-home {
+
+  .btn-primary {
+    border-color: white;
+  }
+
   ion-scroll[scrollX] {
   white-space: nowrap;
   .scroll-item {
@@ -517,23 +522,12 @@ page-home {
 }
 
 .receipt {
-    background: $color-background;
     position: absolute;
     box-shadow:0 -7px 10px 0 rgba(0, 0, 0, 0.3);
     z-index: 2;
     width: 100%;
     bottom: 0;
     text-align: center;
-
-    &:before {
-        content: "";
-        width: 100%;
-        height: 20px;
-        position: absolute;
-        background-image: url('../assets/icon/ticket.svg');
-        top: -9px;
-        left: 0;
-    }
 
     &__padding {
       padding: 20px 15px;
@@ -542,22 +536,21 @@ page-home {
     &__pricebox {
       @include border-radius(20px);
 
+      background: $color-background;
       display: inline-block;
       vertical-align: middle;
-      width: 56%;
+      width: 60%;
       height: 108px;
-      margin: 0 7%;
+      margin: 0 5%;
       border: 2px solid $color-secondary;
       text-align: center;
       font-size: 18px;
       transition: opacity 0.2s;
       position: relative;
-      overflow: hidden;
       z-index: 2;
 
       &.dragging {
         opacity: 0.2;
-
       }
 
       &__each {
@@ -571,7 +564,6 @@ page-home {
         width: 100%;
         z-index: 1;
         border-radius: 30px;
-        overflow: hidden;
       }
 
       &.switch &__pack {
@@ -590,7 +582,7 @@ page-home {
     }
 
     &__amount {
-      @extend .font-bold;
+      @extend .font-regular;
 
       color: $color-secondary;
       margin: 10px 0 2px;
@@ -598,19 +590,29 @@ page-home {
     }
 
     &__discount {
-      @include border-radius(4px 0 0 4px);
+      @include border-radius(100%);
+
       @extend .font-bold;
 
       color: white;
-      font-size: 11px;
-      position: relative;
+      background: $color-primary;
+      border: 2px solid $color-secondary;
+      font-size: 12px;
+      position: absolute;
       text-align: center;
       display: inline-block;
-      vertical-align: middle;
-      background-image: url('../assets/icon/icon-tag.svg');
-      padding: 2px 11px 2px 4px;
-      margin-right: 2px;
-      width: 47px;
+      width: 44px;
+      height: 44px;
+      padding: 4px 0;
+      top: -20px;
+      right: -20px;
+
+      small {
+          @extend .font-regular;
+
+          display: block;
+          font-size: 12px;
+      }
 
       &.animated {
         animation: pop-discount 1s ease 0.7s 1 normal;
@@ -619,12 +621,14 @@ page-home {
     }
 
     &__price {
-        @extend .font-regular;
+        @extend .font-bold;
 
         color: $color-secondary;
         font-size: 16px;
 
         small {
+          @extend .font-regular;
+
           font-size: 13px;
         }
     }
