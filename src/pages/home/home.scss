@@ -1,4 +1,9 @@
 page-home {
+
+  .btn-primary {
+    border-color: white;
+  }
+
   ion-scroll[scrollX] {
   white-space: nowrap;
   .scroll-item {
@@ -6,11 +11,11 @@ page-home {
   }
 }
     @keyframes pop-discount {
-      0% { transform: scale(1) rotate(0deg);  }
-      20% { transform: scale(1.4) rotate(-5deg); }
-      50% { transform: scale(1.4) rotate(-5deg); }
-      80% { transform: scale(1.4) rotate(-5deg); }
-      100% { transform: scale(1) rotate(0deg); }
+      0% { transform: scale(0) }
+      20% { transform: scale(1.4)}
+      50% { transform: scale(1) }
+      70% { transform: scale(1.1) }
+      100% { transform: scale(1) }
     }
 
     @keyframes loading {
@@ -47,21 +52,7 @@ page-home {
         background-position: center;
 
         &.closed {
-          .scroll-content {
-              margin-top: 155px !important;
-          }
-
-          .table {
-              bottom: 145px;
-          }
-
-          .choose-slider {
-              bottom: 115px;
-          }
-
-          .swiper-pagination {
-              top: 125px;
-          }
+        
         }
     }
 
@@ -71,8 +62,8 @@ page-home {
         background-position: center;
         position: absolute;
         width: 100%;
-        height: 100%;
-        bottom: 200px;
+        height: 160%;
+        bottom: 66px;
 
         &.table-bottom {
           bottom: 0;
@@ -517,61 +508,34 @@ page-home {
 }
 
 .receipt {
-    background: $color-background;
     position: absolute;
-    box-shadow:0 -7px 10px 0 rgba(0, 0, 0, 0.3);
     z-index: 2;
     width: 100%;
     bottom: 0;
     text-align: center;
 
-    &:before {
-        content: "";
-        width: 100%;
-        height: 20px;
-        position: absolute;
-        background-image: url('../assets/icon/ticket.svg');
-        top: -9px;
-        left: 0;
-    }
-
     &__padding {
-      padding: 20px 15px;
+      padding: 30px 15px;
     }
 
     &__pricebox {
       @include border-radius(20px);
 
+      background: $color-background;
       display: inline-block;
       vertical-align: middle;
-      width: 56%;
-      height: 108px;
-      margin: 0 7%;
+      width: 60%;
+      margin: 0 5%;
       border: 2px solid $color-secondary;
       text-align: center;
       font-size: 18px;
       transition: opacity 0.2s;
       position: relative;
-      overflow: hidden;
       z-index: 2;
+      padding: 10px 0;
 
       &.dragging {
         opacity: 0.2;
-
-      }
-
-      &__each {
-        opacity: 0;
-      }
-
-      &__pack,
-      &__each {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1;
-        border-radius: 30px;
-        overflow: hidden;
       }
 
       &.switch &__pack {
@@ -590,50 +554,76 @@ page-home {
     }
 
     &__amount {
-      @extend .font-bold;
+      @extend .font-regular;
 
       color: $color-secondary;
-      margin: 10px 0 2px;
-      font-size: 18px;
+      margin: 0 0 5px;
+      font-size: 14px;
+      text-transform: uppercase;
     }
 
     &__discount {
-      @include border-radius(4px 0 0 4px);
+      @include border-radius(100%);
       @extend .font-bold;
 
       color: white;
-      font-size: 11px;
-      position: relative;
+      background: $color-primary;
+      border: 2px solid $color-secondary;
+      font-size: 12px;
+      position: absolute;
       text-align: center;
       display: inline-block;
-      vertical-align: middle;
-      background-image: url('../assets/icon/icon-tag.svg');
-      padding: 2px 11px 2px 4px;
-      margin-right: 2px;
-      width: 47px;
+      width: 44px;
+      height: 44px;
+      padding: 5px 0;
+      top: -20px;
+      right: -20px;
+
+      small {
+          @extend .font-regular;
+
+          display: block;
+          font-size: 12px;
+          margin-top: -2px;
+      }
 
       &.animated {
-        animation: pop-discount 1s ease 0.7s 1 normal;
+        animation: pop-discount 0.8s ease 0.3s 1 normal;
         animation-fill-mode: both;
       }
     }
 
     &__price {
-        @extend .font-regular;
+        @extend .font-bold;
 
         color: $color-secondary;
-        font-size: 16px;
+        font-size: 18px;
 
         small {
-          font-size: 13px;
+          @extend .font-regular;
+
+          font-size: 11px;
+          display: inline-block;
+          vertical-align: middle;
         }
     }
 
-    .free-shipping {
+    .shipping {
       border-top: 1px solid $color-secondary;
       width: 90%;
       margin: 10px auto 0;
-      padding: 5px 0;
+      padding: 5px 0 0;
+
+      &.free {
+
+        label {
+            color: $color-primary;
+        }
+
+        .icon-shipping {
+          background-image: url(../assets/icon/icon-shipping-free.svg);
+        }
+      }
 
       label {
           @extend .font-regular;
