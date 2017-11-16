@@ -32,11 +32,9 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusPage } from '../pages/status/status';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 
-
-class AppVersionMock extends AppVersion {
-  constructor(){super();}
-  getVersionNumber(){return new Promise((resolve, reject) => {resolve( '2.0.1');})}
-}
+//mocks
+import { AppVersionMock } from '@ionic-native-mocks/app-version';
+import { DeviceMock } from '@ionic-native-mocks/device';
 
 class DeviceMock extends Device{
   get cordova(): string{ return "7.0.1";}
