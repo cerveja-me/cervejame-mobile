@@ -32,6 +32,27 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusPage } from '../pages/status/status';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 
+
+class AppVersionMock extends AppVersion {
+  constructor(){super();}
+  getVersionNumber(){return new Promise((resolve, reject) => {resolve( '2.0.1');})}
+}
+
+class DeviceMock extends Device{
+  get cordova(): string{ return "7.0.1";}
+  get isVirtual(): boolean { return true;}
+  get manufacturer() : string { return "Desenvolvimento";}
+  get model() : string { return "Browser - Chrome";}
+  get platform() : string { return "Browser";}
+  get serial() : string { return "unknown";}
+  get uuid() : string { return "5e6d88c-83dad11-e7a91992-ebcb67fe33";}
+  get version(): string { return "7.1.1"; }
+}
+
+class SplashScreenMock extends SplashScreen{
+  hide(){}
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -80,31 +101,11 @@ import { ModalRegisterPage } from '../pages/modal-register/modal-register';
     Device,
     AppVersion,
     Geolocation,
-    // {provide: AppVersion, useClass: AppVersionMock},
-    // {provide: SplashScreen, useClass:SplashScreenMock},
-    // {provide: Device, useClass: DeviceMock},
+    {provide: AppVersion, useClass: AppVersionMock},
+    {provide: SplashScreen, useClass:SplashScreenMock},
+    {provide: Device, useClass: DeviceMock},
     // {provide:Geolocation,useCass:GeolocationMock},
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
-
-class AppVersionMock extends AppVersion {
-  constructor(){super();}
-  getVersionNumber(){return new Promise((resolve, reject) => {resolve( '2.0.1');})}
-}
-
-class DeviceMock extends Device{
-  get cordova(): string{ return "7.0.1";}
-  get isVirtual(): boolean { return true;}
-  get manufacturer() : string { return "Desenvolvimento";}
-  get model() : string { return "Browser - Chrome";}
-  get platform() : string { return "Browser";}
-  get serial() : string { return "unknown";}
-  get uuid() : string { return "5e6d88c-83dad11-e7a91992-ebcb67fe33";}
-  get version(): string { return "7.1.1"; }
-}
-
-class SplashScreenMock extends SplashScreen{
-  hide(){}
-}
