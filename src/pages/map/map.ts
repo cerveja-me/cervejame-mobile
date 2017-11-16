@@ -6,7 +6,7 @@ declare var google;
 //providers
 import { OrderProvider } from '../../providers/order/order';
 import { LocationProvider } from '../../providers/location/location';
-
+import { DeviceProvider } from '../../providers/device/device';
 //pages
 import { ModalCheckoutPage } from '../modal-checkout/modal-checkout';
 
@@ -28,7 +28,8 @@ export class MapPage {
   oldLoc:any={};
   originalMapCenter:any={};
   movingPin=false;
-
+  closing;
+editingAddress;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -36,7 +37,8 @@ export class MapPage {
     private platform:Platform,
     private modalCtrl:ModalController,
     private order:OrderProvider,
-    private location:LocationProvider
+    private location:LocationProvider,
+    private device:DeviceProvider
   ) {
   }
 

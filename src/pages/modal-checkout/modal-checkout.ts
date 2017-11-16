@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController,ViewController } from 'ionic-angular';
+import { ModalController,ViewController } from 'ionic-angular';
 
 //providers
 import { OrderProvider } from '../../providers/order/order';
@@ -12,9 +12,8 @@ import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 })
 export class ModalCheckoutPage {
   or;
-
+  closing;
   constructor(
-    private navCtrl: NavController,
     private modalCtrl:ModalController,
     private viewCtrl: ViewController,
     private order:OrderProvider

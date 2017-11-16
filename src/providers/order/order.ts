@@ -12,7 +12,7 @@ export class OrderProvider {
     product:{},
     amount:0
   }
-  location;
+  locale;
   constructor(
     private location: LocationProvider,
     private network: NetworkProvider,
@@ -28,14 +28,14 @@ export class OrderProvider {
         this.device.getDevice()
         .then( d =>{
           const p={
-            id_device: d.id,
-            position_gps: l.latitude+','+l.longitude
+            id_device: d['id'],
+            position_gps: l['latitude']+','+l['longitude']
           }
           this.network.post(this.c.LOCATION,p)
           .then( locality =>{
-            if( locality.zone ){
-              if( locality.zone.products ){
-                this.location=locality;
+            if( locality['zone'] ){
+              if( locality['zone']['products'] ){
+                this.locale=locality;
                 resolve(locality);
               }else{
                 reject("NO_PRODUCTS");
@@ -81,11 +81,11 @@ export class OrderProvider {
       num:number,
       complement:complement
     }
-    this.location.number=number;
-    this.location.complement=complement;
-    this.network.put(this.network.c.LOCATION+this.location.id,up)
+    this.location['number']=number;
+    this.location['complement']=complement;
+    this.network.put(this.network.c.LOCATION+this.location['id'],up)
     .then(l=>{
-        this.location=l;
+        this.locale=l;
     })
   }
 
