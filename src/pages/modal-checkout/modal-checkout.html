@@ -1,6 +1,13 @@
 
 
 <ion-content class="checkout">
+
+  <div class="order" *ngIf="sale">
+    <figure class="order__image">
+      <img-loader class="order__image__img" [src]="'http://cerveja.me/img/mobile/'+sale.prodreg.product.img"></img-loader>
+    </figure>
+    <label class="order__label">{{sale.amount}} {{sale.prodreg.product.cold?'Caixa':'Garrafa'}}{{sale.amount>1?'s de':' de'}} {{sale.prodreg.product.name}}</label>
+  </div>
   <div class="modal-overlay"  [ngClass]="closing ? 'on-close': '' " (click)="close('cancel')"></div>
 
   <div class="checkout__box" *ngIf="or">
@@ -38,6 +45,10 @@
       <button class="payment__option" [ngClass]="payment=='money'?'active':''" (click)="payment='money'">
         <span class="icon-money"></span>
         <label class="payment__option__label">Dinheiro</label>
+      </button>
+      <button class="payment__option">
+        <span class="icon-card"></span>
+        <label class="payment__option__label">Beerconins</label>
       </button>
       <button class="payment__option inactive">
         <span class="icon-card"></span>
