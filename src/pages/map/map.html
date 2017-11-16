@@ -1,11 +1,26 @@
+<!--
+  Generated template for the MapPage page.
 
-<ion-content>
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>map</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+
+<ion-content no-scrool>
 
   <div class="map__address" *ngIf="address">
-    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true;editingAddress=true" (ngModelChange)="addressChange()" (blur)="closeEdit(); texting=false">
+    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true;editingAddress=true" (ngModelChange)="addressChange()" (ionBlur)="closeEdit(); texting=false">
     </ion-input>
 
-    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number='';texting=true;" (blur)="texting=false" *ngIf="!editingAddress">
+    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number='';texting=true;" (ionBlur)="texting=false" *ngIf="!editingAddress">
 
     <span class="tip__balloon tip-down" *ngIf="!texting && !number">Não esqueça o número</span>
     <span class="map__address__icon icon-pin-min"></span>
@@ -15,7 +30,7 @@
     </ul>
 
     <span class="map__address__plus icon-plus-b"></span>
-    <input class="map__address__input" placeholder="Complemento" type="text" [(ngModel)]="complement" (click)="texting=true" (blur)="texting=false">
+    <input class="map__address__input" placeholder="Complemento" type="text" [(ngModel)]="complement" (click)="texting=true" (ionBlur)="texting=false">
   </div>
 
   <div #map id="map" (click)="closeEdit(); texting=false" [ngClass]="texting?'keyboardOpen':movingPin?'moving':''"></div>
