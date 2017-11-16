@@ -269,6 +269,11 @@ ion-spinner {
     text-align: center;
     z-index: 1;
 
+    .title {
+      height: 100%;
+      position: relative;
+    }
+
     &.header-ios {
         height: 90px;
     }
