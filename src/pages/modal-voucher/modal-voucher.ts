@@ -8,7 +8,7 @@ import { ViewController } from 'ionic-angular';
   templateUrl: 'modal-voucher.html',
 })
 export class ModalVoucherPage {
-
+  closing;
   constructor(
     public viewCtrl: ViewController
   ) {
