@@ -52,7 +52,7 @@ page-home {
         background-position: center;
 
         &.closed {
-        
+
         }
     }
 
@@ -317,6 +317,18 @@ page-home {
     }
 }
 
+.button.btn-beercoin {
+  background: url(../assets/icon/icon-beercoin.svg) no-repeat;
+  width: 34.5px;
+  height: 38px;
+  border: none;
+  box-shadow: none;
+  position: absolute;
+  top: 50%;
+  margin-top: -11px;
+  left: 20px;
+}
+
 .button.btn-schedule {
   background: url(../assets/icon/icon-opened.svg) no-repeat;
   width: 29px;
@@ -492,15 +504,25 @@ page-home {
 }
 
 .btn-voucher {
-    background: url(../assets/icon/icon-voucher.svg);
-    width: 39px;
-    height: 39px;
-    border: none;
-    box-shadow: none;
-    position: absolute;
-    top: 50%;
-    margin-top: -14px;
-    right: 20px;
+      @include border-radius(50%);
+
+      width: 39px;
+      height: 39px;
+      border: 2px dashed $color-secondary;
+      background-color: $color-background;
+      position: absolute;
+      top: 50%;
+      margin-top: -14px;
+      right: 20px;
+      padding: 0;
+
+    .icon-voucher {
+      background: url(../assets/icon/icon-voucher.svg);
+      width: 23.5px;
+      height: 23.5px;
+      display: inline-block;
+      background-size: cover;
+    }
 
     &.activated {
          background: url(../assets/icon/icon-voucher.svg);
