@@ -5,7 +5,6 @@
       <span class="icon-clock-w"></span>Não é possível fazer pedidos agora.</span>
       <span class="schedule-off__hours">Horários</span>
     </button>
-    <h1 class="logo-dark"></h1>
     <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openModalVoucher()"></button>
   </ion-header>
 
@@ -50,28 +49,26 @@
         <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
 
         <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': selectedBeer.cold?'switch':''" >
-          <div class="receipt__pricebox__pack">
-            <h2 class="receipt__amount">{{amount}} {{selectedBeer.beer.cold?'Caixa':'Garrafa'}}{{selectedBeer.amount>1?'s':''}}</h2>
-            <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}%</span>
-            <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}%</span>
-            <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}}</span>
-            <div class="free-shipping">
+            <h2 class="receipt__amount">{{amount}} {{selectedBeer.beer.cold?'Caixa':'Garrafa'}}{{selectedBeer.amount>1?'s':''}} com 12</h2>
+            <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}% <small>OFF</small></span>
+            <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}% <small>OFF</small></span>
+            <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}} • <small>R$ 3,20</small></span>
+            <div class="shipping free">
               <span class="icon-shipping"></span>
               <label>Entrega Grátis</label>
             </div>
-          </div>
-          <div class="receipt__pricebox__each">
+          <!-- <div class="receipt__pricebox__each">
             <h2 class="receipt__amount" >{{selectedBeer.amount * selectedBeer.beer.amount}} Unidades</h2>
             <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}%</span>
             <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}%</span>
             <span class="receipt__price" >
               R$ {{selectedBeer.unitValue |number:'1.2-2'}}
             </span>
-            <div class="free-shipping">
+            <div class="shipping">
               <span class="icon-shipping"></span>
-              <label>Entrega Grátis</label>
+              <label>20min - 45min</label>
             </div>
-          </div>
+          </div> -->
         </div>
         <button class="btn-plus tip" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' " >
           <span class="tip__balloon tip-up" *ngIf="showTip">Quanto mais você compra, mais desconto você ganha.</span>
