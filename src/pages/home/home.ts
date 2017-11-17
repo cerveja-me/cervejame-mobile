@@ -9,7 +9,7 @@ import { OrderProvider } from '../../providers/order/order';
 //relatedPages
 import { MapPage } from '../map/map';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
-
+import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -148,6 +148,9 @@ export class HomePage {
     voucherModal.present();
   }
 
-
+  openSchedule(){
+    let scheduleModal = this.modalCtrl.create(ModalSchedulePage);
+    scheduleModal.present();
+  }
 
 }
