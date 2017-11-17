@@ -157,7 +157,7 @@ editingAddress;
   }
 
   closeEdit(){
-    this.fulladdress=this.address.route;
+    this.fulladdress=this.address['route'];
     if(this.platform.is('cordova')){
       let activeElement = <HTMLElement>document.activeElement;
       activeElement && activeElement.blur && activeElement.blur();
