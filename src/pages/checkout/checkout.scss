@@ -3,23 +3,11 @@ page-checkout {
     background: none;
 
     &__box {
-      background: $color-background;
       position: absolute;
-      box-shadow:0 -7px 10px 0 rgba(0, 0, 0, 0.3);
       z-index: 2;
       width: 100%;
       bottom: 0;
       text-align: left;
-
-      &:before {
-        content: "";
-        width: 100%;
-        height: 20px;
-        position: absolute;
-        background-image: url('../assets/icon/ticket.svg');
-        top: -9px;
-        left: 0;
-      }
 
       &__quantidade {
         width: 49%;
@@ -156,8 +144,8 @@ page-checkout {
   .icon-maquina {
     background-image: url('../assets/icon/icon-maquina.svg');
     background-size: cover;
-    width: 64px;
-    height: 18px;
+    width: 35.5px;
+    height: 22px;
     display: inline-block;
     vertical-align: middle;
   }
@@ -165,8 +153,26 @@ page-checkout {
   .icon-money {
     background-image: url('../assets/icon/icon-money.svg');
     background-size: cover;
-    width: 33px;
-    height: 18px;
+    width: 37px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-beercoin {
+    background-image: url('../assets/icon/icon-beercoin.svg');
+    background-size: cover;
+    width: 28px;
+    height: 31px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-beercoin-min {
+    background-image: url('../assets/icon/icon-beercoin-min.svg');
+    background-size: cover;
+    width: 15px;
+    height: 17px;
     display: inline-block;
     vertical-align: middle;
   }
@@ -190,6 +196,30 @@ page-checkout {
     overflow: hidden;
     padding: 15px;
     box-sizing: border-box;
+    font-size: 0;
+    width: 1000%;
+    padding: 25px 15px;
+
+    &__add-beercoin {
+      @include border-radius(100px);
+
+      border: 1px solid $color-secondary;
+      background: $color-background;
+      display: inline-block;
+      padding: 1px 5px 1px 2px;
+      position: absolute;
+      bottom: -11px;
+      left: 0;
+
+      label {
+        @extend .font-bold;
+
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 11px;
+        color: $color-secondary;
+      }
+    }
 
     &__option {
       @include border-radius(10px);
@@ -200,9 +230,11 @@ page-checkout {
       display: inline-block;
       vertical-align: middle;
       text-align: center;
-      width: 31%;
-      margin-right: 3.5%;
+      width: 93px;
+      height: 93px;
+      margin-right: 15px;
       transition: all 0.3s;
+      position: relative;
 
       &:last-child {
         margin-right: 0;
@@ -214,8 +246,15 @@ page-checkout {
         color: $color-secondary;
         text-transform: uppercase;
         display: block;
-        font-size: 10px;
-        margin-top: 10px;
+        font-size: 11px;
+        margin-top: 7px;
+
+        small {
+            @extend .font-regular;
+
+            font-size: 11px;
+            display: block;
+        }
       }
 
       &.active {
@@ -223,9 +262,10 @@ page-checkout {
         box-shadow: inset 0px 0px 0px 2px $color-background;
       }
 
-      &.inactive {
+      &.soon {
         position: relative;
         border-color: rgba(88,51,24,0.4);
+        overflow: hidden;
 
         span, label {opacity: 0.4;}
 
@@ -238,7 +278,7 @@ page-checkout {
           text-align: center;
           font-size: 10px;
           position: absolute;
-          top: 27px;
+          bottom: 0;
           padding: 2px 0;
           width: 70px;
           left: 0;
