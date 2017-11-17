@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicModule,IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule,IonicErrorHandler,Config } from 'ionic-angular';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicImageLoader } from 'ionic-image-loader';
+
+import { ModalScaleUpEnterTransition } from './scale-up-enter.transition';
+import { ModalScaleUpLeaveTransition } from './scale-up-leave.transition';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,6 +35,7 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusPage } from '../pages/status/status';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
+
 
 class AppVersionMock extends AppVersion {
   constructor(){super();}
@@ -110,4 +114,13 @@ class SplashScreenMock extends SplashScreen{
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(public config: Config) {
+      this.setCustomTransitions();
+  }
+
+  private setCustomTransitions() {
+      this.config.setTransition('modal-scale-up-leave', ModalScaleUpLeaveTransition);
+      this.config.setTransition('modal-scale-up-enter', ModalScaleUpEnterTransition);
+  }
+}

@@ -144,12 +144,18 @@ export class HomePage {
   }
 
   openModalVoucher(){
-    let voucherModal = this.modalCtrl.create(ModalVoucherPage);
+    let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
     voucherModal.present();
   }
 
   openSchedule(){
-    let scheduleModal = this.modalCtrl.create(ModalSchedulePage);
+    let scheduleModal = this.modalCtrl.create(ModalSchedulePage)
+    // ,{}, {
+    //   showBackdrop: false,
+    //   enableBackdropDismiss: false,
+    //   enterAnimation: 'modal-scale-up-enter',
+    //   leaveAnimation: 'modal-scale-up-leave'
+    // });
     scheduleModal.present();
   }
 
