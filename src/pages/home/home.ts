@@ -49,6 +49,7 @@ export class HomePage {
       this.loadedcompleted=true;
     })
     .catch( e =>{
+      console.log('erro ->',e);
       /*
       * tratar os erros:
       * - localização Bloqueada
