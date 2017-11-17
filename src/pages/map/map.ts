@@ -8,7 +8,7 @@ import { OrderProvider } from '../../providers/order/order';
 import { LocationProvider } from '../../providers/location/location';
 import { DeviceProvider } from '../../providers/device/device';
 //pages
-import { ModalCheckoutPage } from '../modal-checkout/modal-checkout';
+import { CheckoutPage } from '../checkout/checkout';
 
 @Component({
   selector: 'page-map',
@@ -170,7 +170,7 @@ editingAddress;
       this.closeEdit();
       //let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
       this.address.street_number=this.number;
-      this.navCtrl.push(ModalCheckoutPage);
+      this.navCtrl.push(CheckoutPage);
 
   }
 
