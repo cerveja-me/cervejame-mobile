@@ -13,7 +13,9 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'modal-schedule.html',
 })
 export class ModalSchedulePage {
-
+  hours;
+  closed;
+  day = new Date().getDay();
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
