@@ -46,20 +46,21 @@ export class OrderProvider {
             }
           })
           .catch( err =>{
-            console.log('network err ->',err);
-            reject(err);
+            reject("NETWORK_ERROR");
           })
         })
         .catch( err =>{
-          console.log('device error ->',err);
-          reject(err);
+          reject("DEVICE_ERROR");
         })
       })
       .catch( err =>{
-        console.log('location error ->',err);
-        reject(err);
+        reject("LOCATION_ERROR")
       })
     })
+  }
+
+  getSchedule(){
+
   }
 
   getLocation(){
