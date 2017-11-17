@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the ModalSchedulePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+//providers
+import { OrderProvider } from '../../providers/order/order';
 
 @Component({
   selector: 'page-modal-schedule',
@@ -16,11 +12,18 @@ export class ModalSchedulePage {
   hours;
   closed;
   day = new Date().getDay();
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  /*
+  trazer da api já em formato correto todas as horas de atendimento do aplicatico
+  com data para a semana
+  */
+  constructor(
+  ) {
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ModalSchedulePage');
+
   }
 
 }
