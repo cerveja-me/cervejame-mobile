@@ -8,7 +8,7 @@ import { OrderProvider } from '../../providers/order/order';
 import { LocationProvider } from '../../providers/location/location';
 import { DeviceProvider } from '../../providers/device/device';
 //pages
-import { ModalCheckoutPage } from '../modal-checkout/modal-checkout';
+import { CheckoutPage } from '../checkout/checkout';
 
 @Component({
   selector: 'page-map',
@@ -157,7 +157,7 @@ editingAddress;
   }
 
   closeEdit(){
-    this.fulladdress=this.address.route;
+    this.fulladdress=this.address['route'];
     if(this.platform.is('cordova')){
       let activeElement = <HTMLElement>document.activeElement;
       activeElement && activeElement.blur && activeElement.blur();
@@ -170,13 +170,7 @@ editingAddress;
       this.closeEdit();
       //let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
       this.address.street_number=this.number;
-      let modal = this.modalCtrl.create(ModalCheckoutPage);
-      modal.present();
-      modal.onDidDismiss(data=>{
-          if(data==='cancel'){
-              this.device.camPage("map");
-          }
-      });
+      this.navCtrl.push(CheckoutPage);
 
   }
 
