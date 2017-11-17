@@ -103,9 +103,9 @@ export class OrderProvider {
       location:this.locale['id'],
       payment:'money',
       product:{
-        price:this.sale.product.price,
-        amount:this.sale.amount,
-        id:this.sale.product.beer.id
+        price:this.sale.product['price'],
+        amount:this.sale['amount'],
+        id:this.sale.product.beer['id']
       },
       discount:null,
       voucher:null
@@ -117,7 +117,7 @@ export class OrderProvider {
   }
 
   updateOrder(){
-
+    
   }
 
 
