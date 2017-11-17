@@ -26,16 +26,16 @@ import { HomePage } from '../pages/home/home';
 import { TourPage } from '../pages/tour/tour';
 import { MapPage } from '../pages/map/map';
 import { ModalLoginPage } from '../pages/modal-login/modal-login';
-import { ModalCheckoutPage } from '../pages/modal-checkout/modal-checkout';
+import { CheckoutPage } from '../pages/checkout/checkout';
 import { ModalVoucherPage } from '../pages/modal-voucher/modal-voucher';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusPage } from '../pages/status/status';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
-
+import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
 
 class AppVersionMock extends AppVersion {
   constructor(){super();}
-  getVersionNumber(){return new Promise((resolve, reject) => {resolve( '2.0.1');})}
+  getVersionNumber(){return new Promise((resolve, reject) => {resolve( '3.0.5');})}
 }
 
 class DeviceMock extends Device{
@@ -60,11 +60,12 @@ class SplashScreenMock extends SplashScreen{
     TourPage,
     ModalLoginPage,
     MapPage,
-    ModalCheckoutPage,
+    CheckoutPage,
     ModalVoucherPage,
     FeedbackPage,
     StatusPage,
-    ModalRegisterPage
+    ModalRegisterPage,
+    ModalSchedulePage
 
   ],
   imports: [
@@ -81,11 +82,12 @@ class SplashScreenMock extends SplashScreen{
     TourPage,
     ModalLoginPage,
     MapPage,
-    ModalCheckoutPage,
+    CheckoutPage,
     ModalVoucherPage,
     FeedbackPage,
     StatusPage,
-    ModalRegisterPage
+    ModalRegisterPage,
+    ModalSchedulePage
   ],
   providers: [
     DeviceProvider,
