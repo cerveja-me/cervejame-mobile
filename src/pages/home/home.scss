@@ -334,7 +334,7 @@ page-home {
 .header {
 
   &.header-ios .btn-schedule {
-    bottom: 7px;
+    bottom: 9px;
   }
 
   &.header-md .btn-schedule {
@@ -539,7 +539,7 @@ page-home {
 
       width: 36px;
       height: 36px;
-      border: 2px dashed $color-secondary;
+      border: 1.5px dashed $color-secondary;
       background-color: $color-background;
       position: absolute;
       bottom: 13px;
