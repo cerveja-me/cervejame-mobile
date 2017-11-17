@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController,ViewController } from 'ionic-angular';
+import { NavController,ModalController,ViewController } from 'ionic-angular';
 
 //providers
 import { OrderProvider } from '../../providers/order/order';
@@ -7,6 +7,7 @@ import { OrderProvider } from '../../providers/order/order';
 //relatedPages
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { HomePage } from '../home/home';
+import { StatusPage } from '../status/status';
 
 @Component({
   selector: 'page-checkout',
@@ -17,6 +18,7 @@ export class CheckoutPage {
   closing;
   payment;
   constructor(
+    private navCtrl:NavController,
     private modalCtrl:ModalController,
     private viewCtrl: ViewController,
     private order:OrderProvider
@@ -39,8 +41,10 @@ export class CheckoutPage {
     let modal = this.modalCtrl.create(ModalVoucherPage);
     modal.present();
   }
+
   finishOrder(){
     this.order.completeOrder();
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(StatusPage);
   }
+  
 }
