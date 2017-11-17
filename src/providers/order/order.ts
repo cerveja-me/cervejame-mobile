@@ -105,7 +105,7 @@ export class OrderProvider {
       product:{
         price:this.sale.product['price'],
         amount:this.sale['amount'],
-        id:this.sale.product.beer['id']
+        id:this.sale.product['beer']['id']
       },
       discount:null,
       voucher:null

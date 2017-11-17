@@ -6,13 +6,16 @@ import { OrderProvider } from '../../providers/order/order';
 
 //relatedPages
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
+import { HomePage } from '../home/home';
+
 @Component({
-  selector: 'page-modal-checkout',
-  templateUrl: 'modal-checkout.html',
+  selector: 'page-checkout',
+  templateUrl: 'checkout.html',
 })
-export class ModalCheckoutPage {
+export class CheckoutPage {
   or;
   closing;
+  payment;
   constructor(
     private modalCtrl:ModalController,
     private viewCtrl: ViewController,
@@ -23,7 +26,6 @@ export class ModalCheckoutPage {
   }
 
   ionViewDidLoad() {
-
   }
 
   close(){
@@ -36,5 +38,9 @@ export class ModalCheckoutPage {
   openVoucherModal(){
     let modal = this.modalCtrl.create(ModalVoucherPage);
     modal.present();
+  }
+  finishOrder(){
+    this.order.completeOrder();
+    this.navCtrl.setRoot(HomePage);
   }
 }

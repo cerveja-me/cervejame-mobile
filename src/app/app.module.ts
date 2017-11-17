@@ -26,7 +26,7 @@ import { HomePage } from '../pages/home/home';
 import { TourPage } from '../pages/tour/tour';
 import { MapPage } from '../pages/map/map';
 import { ModalLoginPage } from '../pages/modal-login/modal-login';
-import { ModalCheckoutPage } from '../pages/modal-checkout/modal-checkout';
+import { CheckoutPage } from '../pages/checkout/checkout';
 import { ModalVoucherPage } from '../pages/modal-voucher/modal-voucher';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusPage } from '../pages/status/status';
@@ -59,7 +59,7 @@ class SplashScreenMock extends SplashScreen{
     TourPage,
     ModalLoginPage,
     MapPage,
-    ModalCheckoutPage,
+    CheckoutPage,
     ModalVoucherPage,
     FeedbackPage,
     StatusPage,
@@ -80,7 +80,7 @@ class SplashScreenMock extends SplashScreen{
     TourPage,
     ModalLoginPage,
     MapPage,
-    ModalCheckoutPage,
+    CheckoutPage,
     ModalVoucherPage,
     FeedbackPage,
     StatusPage,
