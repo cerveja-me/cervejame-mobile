@@ -1,0 +1,42 @@
+<ion-header class="header-dark">
+    <ion-navbar><h1 class="logo-white"></h1></ion-navbar>
+</ion-header>
+
+<ion-content class="background-dark">
+
+  <div class="msg transparent" *ngIf="hours">
+    <span class="msg__text white">Entregamos Ã s:</span>
+    <ul class="schedule__list">
+      <li class="schedule__list__item" [ngClass]="day==1?closed?'today closed':'today':''">
+        <span class="schedule__day ">SEG</span>
+        <span class="schedule__hour">{{hours[1].end}}:00 - {{hours[2].start}}:00</span>
+    </li>
+    <li class="schedule__list__item"[ngClass]="day==2?closed?'today closed':'today':''">
+        <span class="schedule__day">TER</span>
+        <span class="schedule__hour">{{hours[2].end}}:00 - {{hours[3].start}}:00</span>
+    </li>
+    <li class="schedule__list__item "[ngClass]="day==3?closed?'today closed':'today':''">
+        <span class="schedule__day">QUA</span>
+        <span class="schedule__hour">{{hours[3].end}}:00 - {{hours[4].start}}:00</span>
+    </li>
+    <li class="schedule__list__item" [ngClass]="day==4?closed?'today closed':'today':''">
+        <span class="schedule__day">QUI</span>
+        <span class="schedule__hour">{{hours[4].end}}:00 - {{hours[5].start}}:00</span>
+    </li>
+    <li class="schedule__list__item" [ngClass]="day==5?closed?'today closed':'today':''">
+        <span class="schedule__day">SEX</span>
+        <span class="schedule__hour">{{hours[5].end}}:00 - {{hours[6].start}}:00</span>
+    </li>
+    <li class="schedule__list__item" [ngClass]="day==6?closed?'today closed':'today':''">
+        <span class="schedule__day">SAB</span>
+        <span class="schedule__hour">{{hours[6].end}}:00 - {{hours[0].start}}:00</span>
+    </li>
+    <li class="schedule__list__item" [ngClass]="day==0?closed?'today closed':'today':''">
+        <span class="schedule__day">DOM</span>
+        <span class="schedule__hour">{{hours[0].end}}:00 - {{hours[1].start}}:00</span>
+    </li>
+</ul>
+<p class="msg-schedule">Os horÃ¡rios podem alterar em feriados.</p>
+</div>
+
+</ion-content>

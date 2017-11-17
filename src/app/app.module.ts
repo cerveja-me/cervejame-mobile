@@ -31,6 +31,7 @@ import { ModalVoucherPage } from '../pages/modal-voucher/modal-voucher';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusPage } from '../pages/status/status';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
+import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
 
 class AppVersionMock extends AppVersion {
   constructor(){super();}
@@ -63,7 +64,8 @@ class SplashScreenMock extends SplashScreen{
     ModalVoucherPage,
     FeedbackPage,
     StatusPage,
-    ModalRegisterPage
+    ModalRegisterPage,
+    ModalSchedulePage
 
   ],
   imports: [
@@ -84,7 +86,8 @@ class SplashScreenMock extends SplashScreen{
     ModalVoucherPage,
     FeedbackPage,
     StatusPage,
-    ModalRegisterPage
+    ModalRegisterPage,
+    ModalSchedulePage
   ],
   providers: [
     DeviceProvider,
