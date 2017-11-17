@@ -116,8 +116,8 @@ export class OrderProvider {
     })
   }
 
-  updateOrder(){
-    
+  completeOrder(){
+    console.log('sale');
   }
 
 
