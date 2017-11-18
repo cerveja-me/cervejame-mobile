@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { NetworkProvider } from '../network/network';
+import { OrderProvider } from '../order/order';
 
 @Injectable()
 export class VoucherProvider {
@@ -8,32 +9,20 @@ export class VoucherProvider {
 
   constructor(
     private network: NetworkProvider,
+    private order: OrderProvider
   ) {
 
   }
 
   getVoucher(voucher:string){
-    console.log('voucher',voucher);
      return new Promise((resolve, reject)=> {
        this.network.get(this.network.c.VOUCHER+voucher)
        .then( (res)=> {
-         console.log('teste->',res);
-         this.applyVoucher(res);
+         this.order.setVoucher(res);
          resolve(res);
        })
        .catch(reject);
      });
-   }
-
-   applyVoucher(v:any){
-     this.voucher=v;
-   }
-
-   getSavedVoucher(){
-     return this.voucher;
-   }
-   removeVoucher(){
-     this.voucher=null;
    }
 
 }
