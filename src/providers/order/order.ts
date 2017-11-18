@@ -60,7 +60,7 @@ export class OrderProvider {
   }
 
   getSchedule(){
-
+    return ;
   }
 
   getLocation(){
@@ -118,7 +118,7 @@ export class OrderProvider {
   }
 
   completeOrder(){
-    console.log('sale');
+
   }
 
 
