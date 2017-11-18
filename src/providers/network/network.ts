@@ -64,6 +64,30 @@ export class NetworkProvider {
     });
   }
 
+  get(endpoint, data){
+    return new Promise((resolve, reject) => {
+      this.storage.get(this.c.AUTH)
+      .then( t =>{
+        let h;
+        if(t){
+          h=new HttpHeaders()
+          .append('Content-Type', 'application/json')
+          .append('Authorization','Bearer '+t);
+        }else{
+            h=new HttpHeaders()
+          .append('Content-Type', 'application/json');
+        }
+        this.http.get(this.c.API+endpoint, {
+          headers: h
+        })
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+      });
+    });
+  }
 
 
 }
