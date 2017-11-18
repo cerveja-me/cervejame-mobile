@@ -1,17 +1,41 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {ViewController } from 'ionic-angular';
+
+//providers
+import { UserProvider } from '../../providers/user/user';
 
 @Component({
   selector: 'page-modal-register',
   templateUrl: 'modal-register.html',
 })
 export class ModalRegisterPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  profile:any={
+    name:'',
+    password:'',
+    login:'',
+    type:1,
+    status:1
+  }
+  constructor(
+    private user:UserProvider,
+    private viewCtrl:ViewController,
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalRegisterPage');
   }
+
+  createUser(){
+    this.user.profileSignUp(this.profile)
+    .then(r=>{
+        this.viewCtrl.dismiss('success');
+    })
+    .catch(e=>{
+      console.log('erro cadastro ->',e);
+    })
+  }
+
+
 
 }

@@ -161,7 +161,6 @@ export class HomePage {
   }
 
   openLogin(){
-    console.log('botao');
     let loginModal = this.modalCtrl.create(ModalLoginPage)
     loginModal.present();
   }
