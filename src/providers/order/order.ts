@@ -14,6 +14,7 @@ export class OrderProvider {
     amount:0
   }
   locale;
+  voucher;
   constructor(
     private location: LocationProvider,
     private network: NetworkProvider,
@@ -77,6 +78,7 @@ export class OrderProvider {
     return this.sale;
   }
 
+
   updateLocationAddress(loc,address,number,complement){
     const up ={
       position_maps:loc[0]+","+loc[1],
@@ -91,6 +93,15 @@ export class OrderProvider {
         this.locale=l;
     })
   }
+  setVoucher(voucher){
+    this.voucher=voucher;
+  }
+  getVoucher(){
+    return this.voucher;
+  }
+  removeVoucher(){
+    this.voucher=null;
+  }
 
   getOrder(){
     return {
@@ -104,12 +115,12 @@ export class OrderProvider {
       location:this.locale['id'],
       payment:'money',
       product:{
-        price:this.sale.product['price'],
+        price:this.sale.product['beer']['price']*this.sale['amount'],
         amount:this.sale['amount'],
         id:this.sale.product['beer']['id']
       },
-      discount:null,
-      voucher:null
+      discount:this.sale.product['beer']['price']*this.sale['amount'] - this.sale.product['price'],
+      voucher:this.voucher?this.voucher['id']:null
     }
     this.network.post(this.network.c.SALE,sale)
     .then( data => {

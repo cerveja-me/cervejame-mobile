@@ -64,7 +64,7 @@ export class NetworkProvider {
     });
   }
 
-  get(endpoint, data){
+  get(endpoint){
     return new Promise((resolve, reject) => {
       this.storage.get(this.c.AUTH)
       .then( t =>{
