@@ -13,6 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Facebook } from '@ionic-native/facebook';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { DeviceProvider } from '../providers/device/device';
 import { LocationProvider } from '../providers/location/location';
@@ -41,6 +43,12 @@ class AppVersionMock extends AppVersion {
   constructor(){super();}
   getVersionNumber(){return new Promise((resolve, reject) => {resolve( '3.0.5');})}
 }
+class KeyboardMock extends Keyboard {
+
+  constructor() {super();}
+  show(){}
+  close(){}
+}
 
 class DeviceMock extends Device{
   get cordova(): string{ return "7.0.1";}
@@ -51,6 +59,59 @@ class DeviceMock extends Device{
   get serial() : string { return "unknown";}
   get uuid() : string { return "5e6d88c-83dad11-e7a91992-ebcb67fe33";}
   get version(): string { return "7.1.1"; }
+}
+
+class FacebookMock extends Facebook{
+  constructor(){super();}
+  login(permissions: string[]) {
+    return new Promise((resolve, reject) => {
+      resolve(
+        {
+          status: "connected",
+          authResponse: {
+            session_key: true,
+            accessToken: "kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn",
+            expiresIn: 5183979,
+            sig: "...",
+            secret: "...",
+            userID: "634565435"
+          }
+        }
+      )
+    })
+  }
+
+  api(requestPath: string, permissions: string[]): Promise<any> {
+
+    if (requestPath == '/me?fields=id,name,email,first_name,last_name,gender') {
+      return new Promise((resolve, reject) => {
+        resolve(
+          {
+            "id": "99999999999999",
+            "name": "Matias Solis de la Torre",
+            "first_name": "Matias",
+            "last_name": "Solis de la Torre",
+            "gender": "male",
+            "email":"matiassolis@gmail.com"
+          }
+        )
+      })
+
+    }
+
+    return new Promise((resolve, reject) => {
+      resolve(
+        {
+          "data": {
+            "is_silhouette": false,
+            "url": "Thumbnail"
+          }
+        }
+      )
+    })
+
+  }
+
 }
 
 class SplashScreenMock extends SplashScreen{
@@ -107,20 +168,22 @@ class SplashScreenMock extends SplashScreen{
     Device,
     AppVersion,
     Geolocation,
-    {provide: AppVersion, useClass: AppVersionMock},
-    {provide: SplashScreen, useClass:SplashScreenMock},
-    {provide: Device, useClass: DeviceMock},
+    { provide: Facebook, useClass: FacebookMock },
+    { provide: AppVersion, useClass: AppVersionMock },
+    { provide: SplashScreen, useClass:SplashScreenMock },
+    { provide: Device, useClass: DeviceMock },
+    { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
     // {provide:Geolocation,useCass:GeolocationMock},
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {
   constructor(public config: Config) {
-      this.setCustomTransitions();
+    this.setCustomTransitions();
   }
 
   private setCustomTransitions() {
-      this.config.setTransition('modal-scale-up-leave', ModalScaleUpLeaveTransition);
-      this.config.setTransition('modal-scale-up-enter', ModalScaleUpEnterTransition);
+    this.config.setTransition('modal-scale-up-leave', ModalScaleUpLeaveTransition);
+    this.config.setTransition('modal-scale-up-enter', ModalScaleUpEnterTransition);
   }
 }

@@ -25,7 +25,7 @@ export class NetworkProvider {
           .append('Content-Type', 'application/json')
           .append('Authorization','Bearer '+t);
         }else{
-            h=new HttpHeaders()
+          h=new HttpHeaders()
           .append('Content-Type', 'application/json');
         }
         this.http.post(this.c.API+endpoint, JSON.stringify(data),{
@@ -39,6 +39,7 @@ export class NetworkProvider {
       });
     });
   }
+
   put(endpoint, data){
     return new Promise((resolve, reject) => {
       this.storage.get(this.c.AUTH)
@@ -49,7 +50,7 @@ export class NetworkProvider {
           .append('Content-Type', 'application/json')
           .append('Authorization','Bearer '+t);
         }else{
-            h=new HttpHeaders()
+          h=new HttpHeaders()
           .append('Content-Type', 'application/json');
         }
         this.http.put(this.c.API+endpoint, JSON.stringify(data),{
@@ -74,7 +75,7 @@ export class NetworkProvider {
           .append('Content-Type', 'application/json')
           .append('Authorization','Bearer '+t);
         }else{
-            h=new HttpHeaders()
+          h=new HttpHeaders()
           .append('Content-Type', 'application/json');
         }
         this.http.get(this.c.API+endpoint, {
@@ -88,6 +89,5 @@ export class NetworkProvider {
       });
     });
   }
-
 
 }

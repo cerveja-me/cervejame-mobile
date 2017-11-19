@@ -10,6 +10,8 @@ import { OrderProvider } from '../../providers/order/order';
 import { MapPage } from '../map/map';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
+import { ModalLoginPage } from '../modal-login/modal-login';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -35,7 +37,6 @@ export class HomePage {
     private storage:Storage,
     private device:DeviceProvider,
     private order: OrderProvider,
-
   ) {
 
   }
@@ -157,6 +158,11 @@ export class HomePage {
     //   leaveAnimation: 'modal-scale-up-leave'
     // });
     scheduleModal.present();
+  }
+
+  openLogin(){
+    let loginModal = this.modalCtrl.create(ModalLoginPage)
+    loginModal.present();
   }
 
 }
