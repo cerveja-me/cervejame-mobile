@@ -46,14 +46,6 @@
       </button>
     </div>
 
-    <div class="checkout__voucher">
-      <button class="checkout__voucher__btn" (click)="openVoucherModal()" [ngClass]="coupom?'active':''">
-        <label *ngIf="!coupom">+</label>
-        <span class="checkout__voucher__icon"></span>
-        <label *ngIf="coupom">-R$ {{coupom.value | number:'2.2-2'}}</label>
-      </button>
-    </div>
-
     <div class="checkout__total" >
       <span class="checkout__total__title">Total a pagar</span>
       <span class="checkout__total__pricebox">
