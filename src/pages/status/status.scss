@@ -5,11 +5,8 @@ page-status {
       }
 
       .order {
-          background: #573317;
-          padding: 20px;
-          margin-bottom: 25px;
-          position: relative;
-
+        margin-bottom: 25px;
+        
           &:after {
               content: '';
               background-image: url(../assets/icon/trigger-brown.svg);
@@ -22,40 +19,6 @@ page-status {
               left: 37px;
               display: block;
               margin-top: -12px;
-          }
-
-          &__image {
-              @include border-radius(10px);
-
-              border: 2px solid $color-background;
-              display: inline-block;
-              vertical-align: middle;
-              width: 58px;
-              height: 58px;
-              margin: 0 15px 0 0;
-              text-align: center;
-              overflow: hidden;
-              z-index: 2;
-              position: relative;
-
-              &__img {
-                  position: relative;
-                  display: block;
-                  height: 100%;
-                  width: auto;
-                  background-size: cover !important;
-                  text-align: center;
-                  margin: 0 auto;
-                  z-index: 1;
-              }
-          }
-
-          &__label {
-              @extend .font-bold;
-
-              color: $color-background;
-              font-size: 14px;
-              text-transform: uppercase;
           }
       }
 
@@ -199,6 +162,4 @@ page-status {
           text-transform: uppercase;
           color: #573317;
       }
-
-
   }
