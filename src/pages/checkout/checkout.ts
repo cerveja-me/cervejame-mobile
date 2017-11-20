@@ -43,8 +43,13 @@ export class CheckoutPage {
   }
 
   finishOrder(){
-    this.order.completeOrder();
-    this.navCtrl.setRoot(StatusPage);
+    this.order.completeOrder()
+    .then(res=>{
+      this.navCtrl.setRoot(StatusPage);
+    })
+    .catch( e =>{
+      console.log('er-> ',e);
+    })
   }
-  
+
 }
