@@ -5,6 +5,7 @@ import { LocationProvider } from '../location/location';
 import { NetworkProvider } from '../network/network';
 import { DeviceProvider } from '../device/device';
 import { ConstantsProvider } from '../constants/constants';
+import { UserProvider } from '../user/user';
 
 @Injectable()
 export class OrderProvider {
@@ -129,7 +130,7 @@ export class OrderProvider {
   }
 
   completeOrder(){
-
+    // if(this.user.)
   }
 
 

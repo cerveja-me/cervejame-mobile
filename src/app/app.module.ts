@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicModule,IonicErrorHandler,Config } from 'ionic-angular';
-import { HttpClientModule, HttpClient} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { ComponentsModule } from '../components/components.module';
 
 import { ModalScaleUpEnterTransition } from './scale-up-enter.transition';
 import { ModalScaleUpLeaveTransition } from './scale-up-leave.transition';
@@ -136,6 +137,7 @@ class SplashScreenMock extends SplashScreen{
   imports: [
     HttpClientModule,
     BrowserModule,
+    ComponentsModule,
     IonicStorageModule.forRoot(),
     IonicImageLoader.forRoot(),
     IonicModule.forRoot(MyApp)
