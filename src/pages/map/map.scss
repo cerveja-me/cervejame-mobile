@@ -3,18 +3,6 @@ page-map {
         overflow-y: hidden;
     }
 
-    .btn-back {
-      @include border-radius(0 10px 10px 0);
-
-      position: absolute;
-      top: 30px;
-      left: 0;
-      background: $color-secondary;
-      z-index: 4;
-      width: 65px;
-      text-align: center;
-      padding: 15px 0;
-    }
 
     #map {
         width: 100%;
@@ -95,10 +83,11 @@ page-map {
         }
 
         &__address {
+
             padding: 0 10px;
             width: 100%;
             position: absolute;
-            top: 30px;
+            top: 15px;
             left: 0;
             z-index: 3;
 
@@ -121,7 +110,7 @@ page-map {
                 color: $color-secondary;
                 position: absolute;
                 right: 12px;
-                top: 13px;
+                top: 11px;
                 height: 25px;
                 background: white;
                 padding: 15px;
@@ -139,9 +128,8 @@ page-map {
                 background: white;
                 color: $color-secondary;
                 border: 2px solid $color-secondary;
-                height: 55px;
                 width: 100%;
-                padding: 18px 15px 18px 50px;
+                padding: 15px 15px 15px 50px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -163,6 +151,7 @@ page-map {
                     border-bottom-left-radius: 10px;
                     border-bottom-right-radius: 10px;
                     border-top: none;
+                    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
                 }
             }
 
@@ -294,9 +283,8 @@ page-map {
         background: white;
         color: $color-secondary;
         border: 2px solid $color-secondary;
-        height: 55px;
         width: 100%;
-        padding: 18px 0 18px 50px;
+        padding: 15px 0 15px 50px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
