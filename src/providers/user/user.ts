@@ -101,6 +101,19 @@ export class UserProvider {
     });
   }
 
+  isAuth(){
+    return new Promise((resolve, reject) => {
+      this.storage.get(this.network.c.AUTH)
+      .then( t=> {
+          if(t){
+            resolve(true)
+          }else{
+            reject()
+          }
 
+      })
+    })
+
+  }
 
 }

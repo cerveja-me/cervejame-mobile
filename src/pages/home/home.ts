@@ -116,22 +116,29 @@ export class HomePage {
   }
 
   updatePriceAndDiscount(){
-    if(this.amount > 2){
-      this.discount=0.1;
-    }else{
-      this.discount=(this.amount-1)*0.05;
-    }
-    this.selectedBeer.discount=this.discount;
-    this.selectedBeer.amount=this.amount;
-    let p = this.selectedBeer.beer.price * this.amount;
-    let full = p;
-    p=p-(p*this.discount);
-    p=Math.round(p);
-    this.selectedBeer.discount=1-(p/full);
-    this.selectedBeer.finalDiscount=this.selectedBeer.discount*100;
-    this.selectedBeer.price = p;
-    this.selectedBeer.unitValue = this.selectedBeer.unitvalue*(1-this.selectedBeer.discount);
+    if(this.selectedBeer.beer.progressive_discount){
+      if(this.amount > 2){
+        this.discount=0.1;
+      }else{
+        this.discount=(this.amount-1)*0.05;
+      }
 
+      this.selectedBeer.discount=this.discount;
+      this.selectedBeer.amount=this.amount;
+      let p = this.selectedBeer.beer.price * this.amount;
+      let full = p;
+      p=p-(p*this.discount);
+      p=Math.round(p);
+      this.selectedBeer.discount=1-(p/full);
+      this.selectedBeer.finalDiscount=this.selectedBeer.discount*100;
+      this.selectedBeer.price = p;
+    }else{
+      let p = this.selectedBeer.beer.price * this.amount;
+      this.selectedBeer.discount=0;
+      this.selectedBeer.finalDiscount=0;
+      this.selectedBeer.price = p;
+    }
+    this.selectedBeer.unitValue = p/(this.selectedBeer.beer.amount*this.amount) ;
     this.zone.run(()=>{});
   }
   onTaped(event){
