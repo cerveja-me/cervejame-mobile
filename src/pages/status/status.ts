@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+
+//providers
+import { OrderProvider } from '../../providers/order/order';
 
 //relatedPages
 import { HomePage } from '../home/home';
@@ -9,15 +12,27 @@ import { HomePage } from '../home/home';
   templateUrl: 'status.html',
 })
 export class StatusPage {
-
+  sales=[];
+  sale:any;
   constructor(
+    private zone:NgZone,
     private navCtrl: NavController,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private order:OrderProvider,
   ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StatusPage');
+    this.order.getOrders()
+    .then(s=>{
+      console.log('s-> ',s);
+      this.sales=s;
+      this.sale=s[0];
+      this.zone.run(()=>{});
+    })
+    .catch( e =>{
+      console.log('ee->',e);
+    })
   }
 
   backHome(){
