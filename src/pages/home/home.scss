@@ -331,6 +331,21 @@ page-home {
   left: 20px;
 }
 
+.btn-user {
+  @include border-radius(100%);
+
+  border: 2px solid $color-secondary;
+  width: 33px;
+  height: 33px;
+  border: none;
+  box-shadow: none;
+  position: absolute;
+  bottom: 18px;
+  margin-top: -11px;
+  left: 20px;
+  background: none;
+}
+
 .header {
 
   &.header-ios .btn-schedule {
