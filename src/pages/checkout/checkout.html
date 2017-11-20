@@ -1,45 +1,44 @@
-
+<ion-header class="header-light">
+    <ion-navbar></ion-navbar>
+    <h1 class="logo-dark"></h1>
+    <button class="btn-voucher" ion-button secondary>
+      <span class="icon-voucher"></span>
+    </button>
+</ion-header>
 
 <ion-content class="background-light">
 
-  <div class="order" *ngIf="sale">
+  <div class="order">
     <figure class="order__image">
-      <img-loader class="order__image__img" [src]="'http://cerveja.me/img/mobile/'+sale.prodreg.product.img"></img-loader>
+      <img-loader class="order__image__img" [src]="'http://cerveja.me/img/mobile/'+or.product.product.beer.img"></img-loader>
     </figure>
-    <label class="order__label">{{sale.amount}} {{sale.prodreg.product.cold?'Caixa':'Garrafa'}}{{sale.amount>1?'s de':' de'}} {{sale.prodreg.product.name}}</label>
+    <span class="order__price">
+      <label class="order__label">{{or.product.amount}} {{or.product.product.beer.cold?'Caixa':'Garrafa'}}{{or.product.amount>1?'s':''}} DE Brahma</label>
+      R$ {{or.product.product.price |number:'1.2-2'}}
+    </span>
   </div>
-
-
-    <div class="checkout__order" >
-      <span class="checkout__picture" >
-        <img-loader class="figure__pedido__img" [src]="'http://cerveja.me/img/mobile/'+or.product.product.beer.img">
-      </img-loader></span>
-      <h2 class="receipt__amount">{{or.product.amount}} {{or.product.product.beer.cold?'Caixa':'Garrafa'}}{{or.product.amount>1?'s':''}}</h2>
-      <!-- <span class="receipt__discount" *ngIf="product.discount>0">-{{product.discount *100 |number:'1.0-0'}}%</span> -->
-      <span class="receipt__price">R$ {{or.product.product.price |number:'1.2-2'}}</span>
-    </div>
 
     <div class="payment">
       <button class="payment__option" [ngClass]="payment=='card'?'active':''" (click)="payment='card'">
         <span class="icon-maquina"></span>
         <label class="payment__option__label">Máquina</label>
-        <span class="payment__add-beercoin">
+        <!-- <span class="payment__add-beercoin">
           <span class="icon-beercoin-min"></span>
           <label>+ 50</label>
-        </span>
+        </span> -->
       </button>
       <button class="payment__option" [ngClass]="payment=='money'?'active':''" (click)="payment='money'">
         <span class="icon-money"></span>
         <label class="payment__option__label">Dinheiro</label>
-        <span class="payment__add-beercoin">
+        <!-- <span class="payment__add-beercoin">
           <span class="icon-beercoin-min"></span>
           <label>+ 50</label>
-        </span>
+        </span> -->
       </button>
-      <button class="payment__option">
+      <!-- <button class="payment__option">
         <span class="icon-beercoin"></span>
         <label class="payment__option__label"><small>1500</small>Beercoins</label>
-      </button>
+      </button> -->
       <button class="payment__option soon">
         <span class="icon-card"></span>
         <label class="payment__option__label">Via app</label>
@@ -54,9 +53,10 @@
       </span>
     </div>
 
-
-
-    <div class="receipt__address" (click)="close()" ><span class="icon-pin-min receipt__address__icon" *ngIf="address"></span>{{address}}<span class="icon-arrow-fw" *ngIf="address"></span></div>
+    <div class="receipt__address">Teste
+      <span class="icon-arrow-fw"></span>
+      <span class="icon-pin-min receipt__address__icon"></span>
+    </div>
 
 </ion-content>
 
