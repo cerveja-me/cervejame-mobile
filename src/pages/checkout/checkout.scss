@@ -112,7 +112,6 @@ page-checkout {
   .receipt__address {
     @extend .font-regular;
 
-    text-align: center;
     position: relative;
     font-size: 16px;
     color: $color-secondary;
@@ -293,25 +292,6 @@ page-checkout {
     font-size: 0;
   }
 
-  &__order {
-    padding: 20px 0 20px 15px;
-    width: 66%;
-    display: inline-block;
-    vertical-align: middle;
-
-    .receipt__amount {
-      text-transform: uppercase;
-      margin: 2px 0;
-    }
-
-    .receipt__price {
-      display: inline-block;
-      margin: -1px 0 0 5px;
-      vertical-align: middle;
-      font-size: 14px;
-    }
-  }
-
   &__picture {
     @include border-radius(10px);
 
@@ -466,7 +446,7 @@ page-checkout {
     }
 
     &__price {
-      @extend .font-bold;
+      @extend .font-regular;
 
       color: $color-background;
       font-size: 22px;
@@ -476,7 +456,7 @@ page-checkout {
     }
 
     &__label {
-        @extend .font-regular;
+        @extend .font-bold;
 
         color: $color-background;
         font-size: 14px;
