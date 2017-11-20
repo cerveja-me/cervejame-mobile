@@ -8,7 +8,7 @@
       <img-loader class="order__image__img" [src]="'http://cerveja.me/img/mobile/'+sale.img"></img-loader>
       <!-- <img src="../../assets/img/"/> -->
     </figure>
-    <label class="order__label">{{sale.amount}} {{sale.prodreg.product.cold?'Caixa':'Garrafa'}}{{sale.amount>1?'s de':' de'}} {{sale.prodreg.product.name}}</label>
+    <label class="order__label">{{sale.amount}} {{sale.cold?'Caixa':'Garrafa'}}{{sale.amount>1?'s de':' de'}} {{sale.name}}</label>
   </div>
   <ul class="order-status" *ngIf="sale">
     <li class="order-status__item" [ngClass]="!sale.aceptedAt?'loading':'active'">
