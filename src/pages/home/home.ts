@@ -132,13 +132,15 @@ export class HomePage {
       this.selectedBeer.discount=1-(p/full);
       this.selectedBeer.finalDiscount=this.selectedBeer.discount*100;
       this.selectedBeer.price = p;
+      this.selectedBeer.unitValue = p/(this.selectedBeer.beer.amount*this.amount) ;
     }else{
       let p = this.selectedBeer.beer.price * this.amount;
       this.selectedBeer.discount=0;
       this.selectedBeer.finalDiscount=0;
       this.selectedBeer.price = p;
+      this.selectedBeer.unitValue = p/(this.selectedBeer.beer.amount*this.amount) ;
+
     }
-    this.selectedBeer.unitValue = p/(this.selectedBeer.beer.amount*this.amount) ;
     this.zone.run(()=>{});
   }
   onTaped(event){
