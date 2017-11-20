@@ -12,7 +12,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'status.html',
 })
 export class StatusPage {
-  sales=[];
+  sales;
   sale:any;
   constructor(
     private zone:NgZone,
@@ -25,7 +25,6 @@ export class StatusPage {
   ionViewDidLoad() {
     this.order.getOrders()
     .then(s=>{
-      console.log('s-> ',s);
       this.sales=s;
       this.sale=s[0];
       this.zone.run(()=>{});
