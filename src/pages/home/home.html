@@ -20,7 +20,7 @@
     </button>
   </ion-header>
 
-  <ion-content class="bkg-choose center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false" >
+  <ion-content no-bounce class="bkg-choose center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false" >
 
     <div class="table" [ngClass]="loadedcompleted && (err==='USER_DENIED_GEOLOCATION' || err==='NO_ZONE_AVAILABLE' || err=='GEOLOCATION_TIMEOUT') ? 'table-bottom': ''"></div>
 
