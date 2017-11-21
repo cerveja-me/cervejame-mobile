@@ -326,8 +326,7 @@ page-home {
   border: none;
   box-shadow: none;
   position: absolute;
-  bottom: 18px;
-  margin-top: -11px;
+  bottom: 15px;
   left: 20px;
   box-shadow: none;
 }
@@ -341,8 +340,7 @@ page-home {
   border: none;
   box-shadow: none;
   position: absolute;
-  bottom: 18px;
-  margin-top: -11px;
+  bottom: 15px;
   left: 20px;
   background: none;
 }
@@ -350,7 +348,7 @@ page-home {
 .header {
 
   &.header-ios .btn-schedule {
-    bottom: 9px;
+    bottom: 3px;
   }
 
   &.header-md .btn-schedule {
@@ -375,13 +373,17 @@ page-home {
         font-size: 12px;
         display: inline-block;
         vertical-align: middle;
+        white-space: nowrap;
+        width: 64%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .icon-opened {
       @include border-radius(50%);
 
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border: 2px solid $color-secondary;
       background: $color-success;
       display: inline-block;
@@ -558,7 +560,7 @@ page-home {
       border: 1.5px dashed $color-secondary;
       background-color: $color-background;
       position: absolute;
-      bottom: 13px;
+      bottom: 10px;
       right: 20px;
       padding: 0;
       box-shadow: none;
