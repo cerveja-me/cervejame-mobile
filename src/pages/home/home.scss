@@ -380,8 +380,8 @@ page-home {
     .icon-opened {
       @include border-radius(50%);
 
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border: 2px solid $color-secondary;
       background: $color-success;
       display: inline-block;
