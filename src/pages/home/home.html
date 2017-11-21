@@ -13,8 +13,8 @@
         </button>
     </ion-title>
     <button class="btn-login" (click)="openLogin()"></button>
-    <button class="btn-user">
-    </button>
+    <!-- <button class="btn-user">
+    </button> -->
     <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openModalVoucher()">
       <span class="icon-voucher"></span>
     </button>
@@ -65,9 +65,14 @@
             <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}% <small>OFF</small></span>
             <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount | number:'1.0-0'}}% <small>OFF</small></span>
             <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}} • <small>R$ {{selectedBeer.unitValue  |number:'1.2-2'}}</small></span>
-            <div class="shipping free">
+
+            <div class="shipping free switch-first" *ngIf="!location.zone.freight_value">
               <span class="icon-shipping"></span>
-              <label>Entrega Grátis</label>
+              <label>Entrega grátis</label>
+            </div>
+            <div [ngClass]="!location.zone.freight_value ? 'shipping switch-second' : 'shipping'">
+              <span class="icon-shipping"></span>
+              <label>25min - 45min</label>
             </div>
           <!-- <div class="receipt__pricebox__each">
             <h2 class="receipt__amount" >{{selectedBeer.amount * selectedBeer.beer.amount}} Unidades</h2>
