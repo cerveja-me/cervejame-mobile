@@ -455,6 +455,18 @@ page-checkout {
       vertical-align: middle;
     }
 
+    &__address {
+      @extend .font-regular;
+
+      color: $color-background;
+      font-size: 12px;
+      display: inline-block;
+      vertical-align: middle;
+      width: 70%;
+      max-height: 50px;
+      overflow: hidden;
+    }
+
     &__label {
         @extend .font-bold;
 
@@ -463,5 +475,19 @@ page-checkout {
         text-transform: uppercase;
         display: block;
         margin-bottom: 2px;
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow:    ellipsis;
     }
+}
+
+.icon-shipping-light {
+    width: 21px;
+    height: 14px;
+    background-image: url(../assets/icon/icon-shipping-light.svg);
+    display: inline-block;
+    margin-right: 5px;
+    background-size: cover;
+    vertical-align: middle;
 }
