@@ -326,8 +326,7 @@ page-home {
   border: none;
   box-shadow: none;
   position: absolute;
-  bottom: 18px;
-  margin-top: -11px;
+  bottom: 15px;
   left: 20px;
   box-shadow: none;
 }
@@ -341,8 +340,7 @@ page-home {
   border: none;
   box-shadow: none;
   position: absolute;
-  bottom: 18px;
-  margin-top: -11px;
+  bottom: 15px;
   left: 20px;
   background: none;
 }
@@ -350,7 +348,7 @@ page-home {
 .header {
 
   &.header-ios .btn-schedule {
-    bottom: 9px;
+    bottom: 3px;
   }
 
   &.header-md .btn-schedule {
@@ -558,7 +556,7 @@ page-home {
       border: 1.5px dashed $color-secondary;
       background-color: $color-background;
       position: absolute;
-      bottom: 13px;
+      bottom: 10px;
       right: 20px;
       padding: 0;
       box-shadow: none;
