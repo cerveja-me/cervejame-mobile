@@ -173,9 +173,9 @@ page-status {
 
                   font-size: 16px;
                   color: $color-secondary;
-                  display: inline-block;
+                  display: block;
                   vertical-align: middle;
-                  margin-top: 4px;
+                  margin-top: 13px;
 
                   small {
                       @extend .font-regular;
@@ -184,6 +184,14 @@ page-status {
                       text-transform: uppercase;
                       display: block;
                       margin-bottom: 2px;
+                  }
+
+                  span {
+                    display: inline-block;
+                    white-space: nowrap;
+                    width: 70%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                   }
               }
 

@@ -475,6 +475,10 @@ page-checkout {
         text-transform: uppercase;
         display: block;
         margin-bottom: 2px;
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow:    ellipsis;
     }
 }
 
