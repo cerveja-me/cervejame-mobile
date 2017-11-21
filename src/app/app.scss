@@ -40,7 +40,6 @@
   height: 33px;
   display: inline-block;
   position: absolute;
-  bottom: 18px;
   left: 50%;
   margin: 0 0 0 -57.5px;
 }
@@ -51,12 +50,11 @@
     background-repeat: no-repeat;
     background-position: center;
     width: 115px;
-    height: 31px;
+    height: 33px;
     display: inline-block;
     position: absolute;
-    top: 50%;
     left: 50%;
-    margin: -15px 0 0 -57.5px;
+    margin: 0 0 0 -57.5px;
 }
 
 .center {
@@ -243,16 +241,14 @@ ion-spinner {
     }
 }
 
-.back-button {
-    display: block;
-    position: absolute;
-    bottom: 18px;
-}
 
 .back-button-text {
     display: none;
 }
 
+.footer:before {
+  display: none;
+}
 
 .header {
     position: relative;
@@ -265,11 +261,33 @@ ion-spinner {
     }
 
     &.header-ios {
-        height: 90px;
+        height: 75px;
+
+        .logo-dark,
+        .logo-white {
+          bottom: 15px;
+        }
+
+        .back-button {
+            display: block;
+            position: absolute;
+            bottom: 15px;
+        }
     }
 
     &.header-md {
-        height: 70px;
+        height: 65px;
+
+        .logo-dark,
+        .logo-white {
+          bottom: 16px;
+        }
+
+        .back-button {
+            display: block;
+            position: absolute;
+            bottom: 17px;
+        }
     }
 
     &:after {
@@ -313,7 +331,6 @@ ion-spinner {
     }
 
     &.header-dark {
-      height: 75px;
 
       .back-button-icon {
           background-image: url(../assets/icon/icon-back.svg);

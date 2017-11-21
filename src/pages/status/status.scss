@@ -82,7 +82,7 @@ page-status {
               }
 
               &.delivery.active:after {
-                  height: 60px;
+                  height: 94px;
               }
           }
 
@@ -196,13 +196,13 @@ page-status {
 
           border-radius: 0;
           background: white;
-          border-top: 2px solid #573317;
+          border-top: 2px solid $color-secondary;
           font-size: 18px;
           padding: 20px;
           height: auto;
           width: 100%;
           margin: 10px 0 0 0;
           text-transform: uppercase;
-          color: #573317;
+          color: $color-secondary;
       }
   }
