@@ -65,9 +65,13 @@
             <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}% <small>OFF</small></span>
             <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount | number:'1.0-0'}}% <small>OFF</small></span>
             <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}} • <small>R$ {{selectedBeer.unitValue  |number:'1.2-2'}}</small></span>
-            <div class="shipping free">
+            <div class="shipping free switch-first">
               <span class="icon-shipping"></span>
               <label>Entrega Grátis</label>
+            </div>
+            <div class="shipping switch-second">
+              <span class="icon-shipping"></span>
+              <label>25min - 45min</label>
             </div>
           <!-- <div class="receipt__pricebox__each">
             <h2 class="receipt__amount" >{{selectedBeer.amount * selectedBeer.beer.amount}} Unidades</h2>

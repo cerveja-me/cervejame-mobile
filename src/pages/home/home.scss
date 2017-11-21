@@ -618,16 +618,6 @@ page-home {
       &.dragging {
         opacity: 0.2;
       }
-
-      &.switch &__pack {
-          animation: dissolve-in 8s linear 1.5s infinite normal;
-          animation-fill-mode: both;
-      }
-
-      &.switch &__each {
-          animation: dissolve-out 8s linear 1.5s infinite reverse;
-          animation-fill-mode: both;
-      }
     }
 
     &__pricebox__pack .receipt__amount {
@@ -692,13 +682,14 @@ page-home {
     .shipping {
       border-top: 1px solid $color-secondary;
       width: 85%;
-      margin: 10px auto 0;
+      margin: 10px 10px 0;
       padding: 5px 0 0;
 
       &.free {
 
         label {
             color: $color-primary;
+            text-transform: uppercase;
         }
 
         .icon-shipping {
@@ -707,13 +698,26 @@ page-home {
       }
 
       label {
-          @extend .font-regular;
+          @extend .font-bold;
 
           font-size: 11px;
           color: $color-secondary;
-          text-transform: uppercase;
+
           display: inline-block;
           vertical-align: middle;
+      }
+
+      &.switch-first {
+          animation: dissolve-in 8s linear 1.5s infinite normal;
+          animation-fill-mode: both;
+          position: absolute;
+          bottom: 10px;
+          left: 0;
+      }
+
+      &.switch-second {
+          animation: dissolve-out 8s linear 1.5s infinite reverse;
+          animation-fill-mode: both;
       }
     }
 
