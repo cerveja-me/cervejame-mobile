@@ -72,7 +72,7 @@ export class HomePage {
       * - liberada mas não fora de area
       * - dentro de area mas sem produtos
       */
-
+            this.loader.dismiss();            //estar sem conexão com a internet
     })
   }
 
