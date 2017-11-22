@@ -31,11 +31,10 @@ export class OrderProvider {
         this.device.getDevice()
         .then( d =>{
           const day = new Date();
-          const data=(day.toJSON().slice(0,day.toJSON().length-1));
           const p={
             id_device: d['id'],
             position_gps: l['latitude']+','+l['longitude'],
-            time:data
+            time:day
           }
           this.network.post(this.c.LOCATION,p)
           .then( locality =>{

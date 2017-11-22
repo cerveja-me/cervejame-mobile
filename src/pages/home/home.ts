@@ -40,6 +40,9 @@ export class HomePage {
   ) {
 
   }
+  verifyTime(){
+  }
+
 
   ionViewDidLoad() {
     this.order.getZone()
@@ -48,6 +51,11 @@ export class HomePage {
       this.products=l['zone']['products'];
       this.slideChanged();
       this.loadedcompleted=true;
+      this.verifyTime();
+      setTimeout(function(){
+        console.log('buscar produtos ');
+      },2000)
+
     })
     .catch( e =>{
       console.log('erro ->',e);
@@ -159,13 +167,7 @@ export class HomePage {
   }
 
   openSchedule(){
-    let scheduleModal = this.modalCtrl.create(ModalSchedulePage)
-    // ,{}, {
-    //   showBackdrop: false,
-    //   enableBackdropDismiss: false,
-    //   enterAnimation: 'modal-scale-up-enter',
-    //   leaveAnimation: 'modal-scale-up-leave'
-    // });
+    let scheduleModal = this.modalCtrl.create(ModalSchedulePage,{hours:this['location']['zone']['schedule']})
     scheduleModal.present();
   }
 
