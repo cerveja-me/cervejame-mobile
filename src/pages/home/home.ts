@@ -1,5 +1,5 @@
 import { Component,ViewChild,NgZone } from '@angular/core';
-import { NavController,ModalController,Slides } from 'ionic-angular';
+import { NavController,ModalController,Slides,LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 //providers
 import { DeviceProvider } from '../../providers/device/device'
@@ -30,6 +30,7 @@ export class HomePage {
   loadedcompleted;
   discount=0;
   updatingAmount;
+  loader;
   constructor(
     private modalCtrl: ModalController,
     public navCtrl: NavController,
@@ -37,25 +38,30 @@ export class HomePage {
     private storage:Storage,
     private device:DeviceProvider,
     private order: OrderProvider,
+    private load:LoadingController,
   ) {
+    this.loader=this.load.create({
+      content: this.device.getRandonLoading()
+    })
+  }
 
-  }
-  verifyTime(){
-  }
+
+
 
 
   ionViewDidLoad() {
+    this.loader.present();
     this.order.getZone()
     .then( (l) => {
       this.location=l
       this.products=l['zone']['products'];
       this.slideChanged();
       this.loadedcompleted=true;
-      this.verifyTime();
+      // this.verifyTime();
       setTimeout(function(){
         console.log('buscar produtos ');
       },2000)
-
+      this.loader.dismiss();
     })
     .catch( e =>{
       console.log('erro ->',e);
