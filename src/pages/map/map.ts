@@ -29,7 +29,7 @@ export class MapPage {
   originalMapCenter:any={};
   movingPin=false;
   closing;
-editingAddress;
+  editingAddress;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -61,18 +61,25 @@ editingAddress;
       this.map.addListener('dragstart',()=>{
         this.movingPin=true;
         this.zone.run(()=>{});
+      },err=>{
+        console.log(err);
       });
       this.map.addListener('dragend',()=>{
         this.movingPin=false;
         this.updateAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()});
+      },err=>{
+        console.log(err);
       });
 
       var centerControlDiv = document.createElement('div');
-      this.location.getPosition()
-      .then(p=>{
-        var centerControl = new this.centerControl(centerControlDiv, this.map,p);
-        this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
-      })
+      // this.location.getPosition()
+      // .then(p=>{
+      //   var centerControl = new this.centerControl(centerControlDiv, this.map,p);
+      //   this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
+      // })
+      // .catch(e=>{
+      //   console.log('oi',e);
+      // })
 
     })
     .catch(e=>{
@@ -168,10 +175,10 @@ editingAddress;
   finishOrder(){
     // if()
     this.order.updateLocationAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()},this.fulladdress,this.number,this.complement);
-      this.closeEdit();
-      //let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
-      this.address.street_number=this.number;
-      this.navCtrl.push(CheckoutPage);
+    this.closeEdit();
+    //let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
+    this.address.street_number=this.number;
+    this.navCtrl.push(CheckoutPage);
 
   }
 
