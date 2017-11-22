@@ -294,10 +294,21 @@ ion-spinner {
         content: '';
         position: absolute;
         height: 1px;
-        background: #583318;
         width: 85%;
         top: 100%;
         left: 7.5%;
+    }
+
+    &.header-home:after {
+      background-color: $color-secondary;
+    }
+
+    &.header-light:after {
+      background-color: $color-secondary;
+    }
+
+    &.header-dark:after {
+      background-color: white;
     }
 
     .toolbar {
@@ -316,6 +327,7 @@ ion-spinner {
     }
 
     &.header-light {
+
       .back-button-icon {
           background-image: url(../assets/icon/icon-back-dark.svg);
           background-size: cover;
@@ -348,8 +360,7 @@ ion-spinner {
       .toolbar {
 
         .toolbar-background {
-          background: $color-secondary;
-            border-bottom: 2px solid white;
+            background: $color-secondary;
         }
 
         .title {
@@ -365,10 +376,6 @@ ion-spinner {
             margin-top: 9px;
         }
       }
-    }
-
-    &.header-dark:after {
-        display: none;
     }
 }
 
@@ -449,4 +456,8 @@ ion-backdrop {
         }
       }
   }
+}
+
+.button.activated .button-inner {
+     transform: scale(0.95);
 }

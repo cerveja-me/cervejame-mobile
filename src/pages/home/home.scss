@@ -574,7 +574,8 @@ page-home {
     }
 
     &.activated {
-         background: url(../assets/icon/icon-voucher.svg);
+      border: 1.5px dashed $color-secondary;
+      background-color: $color-background;
     }
 }
 
