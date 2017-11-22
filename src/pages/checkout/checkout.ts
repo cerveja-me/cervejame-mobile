@@ -6,6 +6,7 @@ import { OrderProvider } from '../../providers/order/order';
 
 //relatedPages
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
+import { ModalLoginPage } from '../modal-login/modal-login';
 import { HomePage } from '../home/home';
 import { StatusPage } from '../status/status';
 
@@ -17,6 +18,7 @@ export class CheckoutPage {
   or;
   closing;
   payment;
+  address='';
   constructor(
     private navCtrl:NavController,
     private modalCtrl:ModalController,
@@ -24,7 +26,10 @@ export class CheckoutPage {
     private order:OrderProvider
   ) {
     this.or=this.order.getOrder();
-    console.log(this.or);
+    this.address = this.or['location']['street']+", "+(this.or['location']['number'] || 's/n');
+    if(this.or['location']['complement']){
+      this.address+=', comp.: '+this.or['location']['complement']
+    }
   }
 
   ionViewDidLoad() {
@@ -48,8 +53,26 @@ export class CheckoutPage {
       this.navCtrl.setRoot(StatusPage);
     })
     .catch( e =>{
+      if(e.status == 403){
+        this.openLogin()
+        .then(login=>{
+          this.finishOrder();
+        })
+      }
+
       console.log('er-> ',e);
     })
+  }
+
+  openLogin(){
+    return new Promise((resolve, reject)=> {
+      let loginModal = this.modalCtrl.create(ModalLoginPage)
+      loginModal.present();
+    })
+  }
+  openModalVoucher(){
+    let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
+    voucherModal.present();
   }
 
 }
