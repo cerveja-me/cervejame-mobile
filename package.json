@@ -31,6 +31,7 @@
     "@ionic-native/geolocation": "^4.4.0",
     "@ionic-native/keyboard": "^4.4.2",
     "@ionic-native/native-storage": "^4.4.0",
+    "@ionic-native/onesignal": "^4.4.2",
     "@ionic-native/splash-screen": "4.3.3",
     "@ionic-native/status-bar": "4.3.3",
     "@ionic/pro": "1.0.14",
@@ -50,6 +51,7 @@
     "ionic-image-loader": "^4.2.1",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
+    "onesignal-cordova-plugin": "^2.2.2",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.18"
@@ -78,7 +80,8 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "289767478086559",
         "APP_NAME": "Cerveja.me"
-      }
+      },
+      "onesignal-cordova-plugin": {}
     },
     "platforms": [
       "android"
