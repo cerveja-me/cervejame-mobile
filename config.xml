@@ -98,4 +98,5 @@
         <variable name="APP_ID" value="289767478086559" />
         <variable name="APP_NAME" value="Cerveja.me" />
     </plugin>
+    <plugin name="onesignal-cordova-plugin" spec="^2.2.2" />
 </widget>

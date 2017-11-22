@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Platform,Events,AlertController,ModalController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
-
+import { OneSignal } from '@ionic-native/onesignal';
 import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
 
@@ -17,14 +17,17 @@ export class DeviceProvider {
     private device:Device,
     private appVersion:AppVersion,
     private net:NetworkProvider,
-    public c:ConstantsProvider
+    public c:ConstantsProvider,
+    private oneSignal:OneSignal,
+    private alertCtrl:AlertController,
+    private events:Events
   ) {
     this.createDevice('empty');
-  }
 
-  camPage(page){
     if(this.platform.is('cordova')){
-      // UXCam.tagScreenName(page);
+      // UXCam.startWithKey("be70a1dceee9857");//contas@cerveja.me
+      // UXCam.tagUsersName(this.device.uuid);
+      this.startOneSignal();
     }
   }
   createDevice(push:string){
@@ -51,6 +54,56 @@ export class DeviceProvider {
         })
       })
     })
+  }
+
+  startOneSignal(){
+    var settings:any={kOSSettingsKeyAutoPrompt:false};
+    this.oneSignal.iOSSettings(settings);
+    this.oneSignal.startInit('5d5587e7-348c-4172-8a19-7e01c49daa2a', '10339294539');
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
+
+    this.oneSignal.handleNotificationReceived().subscribe((text) => {
+      let alert = this.alertCtrl.create({
+        title: text.payload.title,
+        message: text.payload.body,
+        buttons: ['Ok']
+      });
+      alert.onWillDismiss(data=>{
+        if(text.payload.additionalData !==null){
+          this.events.publish(text.payload.additionalData.action, text.payload);
+        }
+      })
+      alert.present();
+    });
+    this.oneSignal.handleNotificationOpened().subscribe((text) => {
+      // this.doAlert(text.notification.payload);
+    });
+    this.oneSignal.getIds()
+    .then(res=>{
+      this.createDevice(res.userId);
+    })
+    this.oneSignal.endInit();
+  }
+  startPush(){
+    if(this.platform.is('cordova')){
+      this.oneSignal.registerForPushNotifications();
+      this.oneSignal.getIds()
+      .then(res=>{
+        this.createDevice(res.userId);
+      })
+    }
+  }
+
+  oneSignalTag(tag:string,zone:string){
+    if(this.platform.is('cordova')){
+      this.oneSignal.sendTag(tag, zone);
+    }
+  }
+
+  camPage(page){
+    if(this.platform.is('cordova')){
+      // UXCam.tagScreenName(page);
+    }
   }
 
   getDevice(){
