@@ -69,7 +69,9 @@ export class LocationProvider {
       .subscribe((res)=>{
         let add = res['results'];
         resolve(this.convertAddress(add[0]))
-      })
+      }, (err) => {
+        reject(err);
+      });
     })
   }
 
@@ -81,7 +83,9 @@ export class LocationProvider {
       this.http.get(url)
       .subscribe((res)=>{
         resolve(res);
-      })
+      }, (err) => {
+        reject(err);
+      });
     })
   }
 

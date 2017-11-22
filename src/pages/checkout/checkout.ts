@@ -17,6 +17,7 @@ export class CheckoutPage {
   or;
   closing;
   payment;
+  address='';
   constructor(
     private navCtrl:NavController,
     private modalCtrl:ModalController,
@@ -24,7 +25,10 @@ export class CheckoutPage {
     private order:OrderProvider
   ) {
     this.or=this.order.getOrder();
-    console.log(this.or);
+    this.address = this.or['location']['street']+", "+this.or['location']['number'];
+    if(this.or['location']['complement']){
+      this.address+=', comp.: '+this.or['location']['complement']
+    }
   }
 
   ionViewDidLoad() {

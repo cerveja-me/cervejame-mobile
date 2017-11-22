@@ -166,6 +166,7 @@ editingAddress;
   }
 
   finishOrder(){
+    // if()
     this.order.updateLocationAddress({0:this.map.getCenter().lat(),1:this.map.getCenter().lng()},this.fulladdress,this.number,this.complement);
       this.closeEdit();
       //let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
