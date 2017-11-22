@@ -30,9 +30,11 @@ export class OrderProvider {
       .then( l=>{
         this.device.getDevice()
         .then( d =>{
+          const day = new Date();
           const p={
             id_device: d['id'],
-            position_gps: l['latitude']+','+l['longitude']
+            position_gps: l['latitude']+','+l['longitude'],
+            time:day
           }
           this.network.post(this.c.LOCATION,p)
           .then( locality =>{
@@ -143,7 +145,8 @@ export class OrderProvider {
         resolve(data);
       })
       .catch( e =>{
-        console.log("e-> ",e)
+        reject(e);
+        // console.log("e-> ",e)
       })
     })
   }
