@@ -145,7 +145,8 @@ export class OrderProvider {
         resolve(data);
       })
       .catch( e =>{
-        console.log("e-> ",e)
+        reject(e);
+        // console.log("e-> ",e)
       })
     })
   }
