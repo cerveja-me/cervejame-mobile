@@ -162,6 +162,18 @@ export class HomePage {
     this.changingSlide=true;
   }
 
+  this.storage.get('hasOpenNotification')
+  .then((hasOpen) => {
+    if(hasOpen){
+      this.device.startPush();
+    }else{
+      let notificationModal = this.modalCtrl.create(NotificationModalPage);
+      notificationModal.present().then(r=>{
+        this.storage.set('hasOpenNotification','true');
+      });
+    }
+  })
+
   selectProduct(p){
     this.order.setProduct(p,this.amount);
     this.navCtrl.push(MapPage);
