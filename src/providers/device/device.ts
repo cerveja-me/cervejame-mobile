@@ -122,6 +122,9 @@ export class DeviceProvider {
     })
 
   }
+  tryAgain(){
+    this.navCtrl.setRoot(HomePage);
+  }
   phrases =[
     "Dinheiro não traz felicidade, mas compra cerveja, que é a mesma coisa.",
     "Não deixe pra amanhã a cerveja que você pode beber hoje.",
@@ -138,4 +141,5 @@ export class DeviceProvider {
   getRandonLoading(){
     return this.phrases[Math.floor(Math.random()*(this.phrases.length-0+1)+0)];
   }
+
 }
