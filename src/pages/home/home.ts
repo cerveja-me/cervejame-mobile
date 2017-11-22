@@ -59,109 +59,110 @@ export class HomePage {
       this.loadedcompleted=true;
       // this.verifyTime();
       setTimeout(function(){
-        console.log('buscar produtos ');
-      },2000)
-      this.loader.dismiss();
-    })
-    .catch( e =>{
-      console.log('erro ->',e);
-      /*
-      * tratar os erros:
-      * - localização Bloqueada
-      * - liberada mas deu setTimeout
-      * - liberada mas não fora de area
-      * - dentro de area mas sem produtos
-      */
-            this.loader.dismiss();            //estar sem conexão com a internet
-    })
-  }
+      console.log('buscar produtos ');
+    },2000)
+    this.loader.dismiss();
+  })
+  .catch( e =>{
+    console.log('erro ->',e);
+    /*
+    * tratar os erros:
+    * - localização Bloqueada
+    * - liberada mas deu setTimeout
+    * - liberada mas não fora de area
+    * - dentro de area mas sem produtos
+    */
+    this.loader.dismiss();            //estar sem conexão com a internet
+  })
+}
 
-  slideChanged() {
-    let current =this.slides.getActiveIndex();
-    if(this.products.length===current){
-      this.slides.slidePrev();
-    }else{
-      this.current = current;
-      this.changingSlide=false;
+slideChanged() {
+  let current =this.slides.getActiveIndex();
+  if(this.products.length===current){
+    this.slides.slidePrev();
+  }else{
+    this.current = current;
+    this.changingSlide=false;
 
-      this.amount=2;
-      this.discount=0.05;
-      this.zone.run(()=>{});
-
-      this.selectedBeer={
-        beer:this.products[current],
-        discount:this.discount,
-        amount:this.amount
-      }
-      this.updatePriceAndDiscount();
-    }
-  }
-
-  increaseAmount(){
-    this.updatingAmount=true;
-
-    this.amount++;
-    this.updatePriceAndDiscount();
-    setTimeout(() => {
-      this.updatingAmount=false;
-    },100);
-  }
-
-  decreaseAmount(){
-    this.updatingAmount=true;
-
-    if(this.amount>1){
-      this.amount--;
-      this.updatePriceAndDiscount();
-    }
-    setTimeout(() => {
-      this.updatingAmount=false;
-    },100);
-  }
-
-  getTipStatus(){
-    this.storage.get('hasSeenTip')
-    .then((hasSeenTip) => {
-      if (!hasSeenTip) {
-        this.showTip=true;
-        this.storage.set('hasSeenTip',true);
-      }
-    })
-  }
-
-  updatePriceAndDiscount(){
-    if(this.selectedBeer.beer.progressive_discount){
-      if(this.amount > 2){
-        this.discount=0.1;
-      }else{
-        this.discount=(this.amount-1)*0.05;
-      }
-
-      this.selectedBeer.discount=this.discount;
-      this.selectedBeer.amount=this.amount;
-      let p = this.selectedBeer.beer.price * this.amount;
-      let full = p;
-      p=p-(p*this.discount);
-      p=Math.round(p);
-      this.selectedBeer.discount=1-(p/full);
-      this.selectedBeer.finalDiscount=this.selectedBeer.discount*100;
-      this.selectedBeer.price = p;
-      this.selectedBeer.unitValue = p/(this.selectedBeer.beer.amount*this.amount) ;
-    }else{
-      let p = this.selectedBeer.beer.price * this.amount;
-      this.selectedBeer.discount=0;
-      this.selectedBeer.finalDiscount=0;
-      this.selectedBeer.price = p;
-      this.selectedBeer.unitValue = p/(this.selectedBeer.beer.amount*this.amount) ;
-
-    }
+    this.amount=2;
+    this.discount=0.05;
     this.zone.run(()=>{});
-  }
-  onTaped(event){
-    this.taped=true;
-    this.changingSlide=true;
-  }
 
+    this.selectedBeer={
+      beer:this.products[current],
+      discount:this.discount,
+      amount:this.amount
+    }
+    this.updatePriceAndDiscount();
+  }
+}
+
+increaseAmount(){
+  this.updatingAmount=true;
+
+  this.amount++;
+  this.updatePriceAndDiscount();
+  setTimeout(() => {
+    this.updatingAmount=false;
+  },100);
+}
+
+decreaseAmount(){
+  this.updatingAmount=true;
+
+  if(this.amount>1){
+    this.amount--;
+    this.updatePriceAndDiscount();
+  }
+  setTimeout(() => {
+    this.updatingAmount=false;
+  },100);
+}
+
+getTipStatus(){
+  this.storage.get('hasSeenTip')
+  .then((hasSeenTip) => {
+    if (!hasSeenTip) {
+      this.showTip=true;
+      this.storage.set('hasSeenTip',true);
+    }
+  })
+}
+
+updatePriceAndDiscount(){
+  if(this.selectedBeer.beer.progressive_discount){
+    if(this.amount > 2){
+      this.discount=0.1;
+    }else{
+      this.discount=(this.amount-1)*0.05;
+    }
+
+    this.selectedBeer.discount=this.discount;
+    this.selectedBeer.amount=this.amount;
+    let p = this.selectedBeer.beer.price * this.amount;
+    let full = p;
+    p=p-(p*this.discount);
+    p=Math.round(p);
+    this.selectedBeer.discount=1-(p/full);
+    this.selectedBeer.finalDiscount=this.selectedBeer.discount*100;
+    this.selectedBeer.price = p;
+    this.selectedBeer.unitValue = p/(this.selectedBeer.beer.amount*this.amount) ;
+  }else{
+    let p = this.selectedBeer.beer.price * this.amount;
+    this.selectedBeer.discount=0;
+    this.selectedBeer.finalDiscount=0;
+    this.selectedBeer.price = p;
+    this.selectedBeer.unitValue = p/(this.selectedBeer.beer.amount*this.amount) ;
+
+  }
+  this.zone.run(()=>{});
+}
+onTaped(event){
+  this.taped=true;
+  this.changingSlide=true;
+}
+
+verifyPush(){
   this.storage.get('hasOpenNotification')
   .then((hasOpen) => {
     if(hasOpen){
@@ -173,25 +174,33 @@ export class HomePage {
       });
     }
   })
+}
 
-  selectProduct(p){
-    this.order.setProduct(p,this.amount);
-    this.navCtrl.push(MapPage);
-  }
+accept(){
+  this.device.startPush();
+  setTimeout(() => {
+    this.viewCtrl.dismiss();
+  },300);
+}
 
-  openModalVoucher(){
-    let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
-    voucherModal.present();
-  }
+selectProduct(p){
+  this.order.setProduct(p,this.amount);
+  this.navCtrl.push(MapPage);
+}
 
-  openSchedule(){
-    let scheduleModal = this.modalCtrl.create(ModalSchedulePage,{hours:this['location']['zone']['schedule']})
-    scheduleModal.present();
-  }
+openModalVoucher(){
+  let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
+  voucherModal.present();
+}
 
-  openLogin(){
-    let loginModal = this.modalCtrl.create(ModalLoginPage)
-    loginModal.present();
-  }
+openSchedule(){
+  let scheduleModal = this.modalCtrl.create(ModalSchedulePage,{hours:this['location']['zone']['schedule']})
+  scheduleModal.present();
+}
+
+openLogin(){
+  let loginModal = this.modalCtrl.create(ModalLoginPage)
+  loginModal.present();
+}
 
 }
