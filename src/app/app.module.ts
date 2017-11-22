@@ -39,7 +39,7 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusPage } from '../pages/status/status';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
-
+import { ModalNotificationPage } from '../pages/modal-notification/modal-notification';
 
 // class AppVersionMock extends AppVersion {
 //   constructor(){super();}
@@ -132,7 +132,8 @@ import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
     FeedbackPage,
     StatusPage,
     ModalRegisterPage,
-    ModalSchedulePage
+    ModalSchedulePage,
+    ModalNotificationPage
   ],
   imports: [
     HttpClientModule,
@@ -154,7 +155,8 @@ import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
     FeedbackPage,
     StatusPage,
     ModalRegisterPage,
-    ModalSchedulePage
+    ModalSchedulePage,
+    ModalNotificationPage
   ],
   providers: [
     DeviceProvider,
