@@ -1,15 +1,13 @@
 <ion-header (click)="showTip=false" class="header-home">
     <ion-title>
-      <button class="btn-schedule icon-opened" [ngClass]="!location.open ? 'closed': '' " ion-button secondary *ngIf="products.length >0" (click)="openSchedule()">
+      <button class="btn-schedule" ion-button secondary *ngIf="products.length >0 && location.open" (click)="openSchedule()">
         <span class="icon-opened"></span>
         <label>Estamos atendendo</label>
         <span class="icon-dropdown"></span>
       </button>
-      <button ion-button (click)="openSchedule()" secondary class="schedule-off" *ngIf="closed">
-        <span class="schedule-off__label">
-          Ver horários
-          <span class="icon-dropdown"></span>
-        </span>
+      <button class="btn-schedule closed" ion-button secondary (click)="openSchedule()" *ngIf="products.length >0 && !location.open">
+        <label>Ver Horários</label>
+        <span class="icon-dropdown"></span>
         </button>
     </ion-title>
     <button class="btn-login" (click)="openLogin()"></button>
@@ -53,7 +51,6 @@
     </ion-slides>
   </ion-content>
 
-
   <ion-footer *ngIf="products && products.length " align-title="left" (click)="showTip=false">
 
     <div class="receipt">
@@ -74,25 +71,17 @@
               <span class="icon-shipping"></span>
               <label>25min - 45min</label>
             </div>
-          <!-- <div class="receipt__pricebox__each">
-            <h2 class="receipt__amount" >{{selectedBeer.amount * selectedBeer.beer.amount}} Unidades</h2>
-            <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}%</span>
-            <span class="receipt__discount animated" *ngIf="amount>1 && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}%</span>
-            <span class="receipt__price" >
-              R$ {{selectedBeer.unitValue |number:'1.2-2'}}
-            </span>
-            <div class="shipping">
-              <span class="icon-shipping"></span>
-              <label>20min - 45min</label>
-            </div>
-          </div> -->
         </div>
         <button class="btn-plus tip" (click)="increaseAmount()" [ngClass]="changingSlide ? 'dragging': '' " >
-          <span class="tip__balloon tip-up" *ngIf="showTip">Quanto mais você compra, mais desconto você ganha.</span>
+          <!-- <span class="tip__balloon tip-up" *ngIf="showTip">Quanto mais você compra, mais desconto você ganha.</span> -->
         </button>
       </div>
 
-      <button ion-button secondary class="btn-primary" (click)="selectProduct(selectedBeer)" *ngIf="!closed">Escolher</button>
+      <div class="message" *ngIf="!location.open">
+        <label class="message__text">Não estamos entregando agora.</label>
+      </div>
+
+      <button ion-button secondary class="btn-primary" (click)="selectProduct(selectedBeer)" *ngIf="location.open">Escolher</button>
       </div>
 
     </ion-footer>
