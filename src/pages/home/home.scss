@@ -379,6 +379,10 @@ page-home {
         text-overflow: ellipsis;
     }
 
+    &.closed label {
+      width: 50%;
+    }
+
     .icon-opened {
       @include border-radius(50%);
 
@@ -389,10 +393,6 @@ page-home {
       display: inline-block;
       vertical-align: middle;
       margin-right: 6px;
-    }
-
-    &.closed {
-
     }
 }
 
@@ -647,7 +647,7 @@ page-home {
       display: inline-block;
       width: 44px;
       height: 44px;
-      padding: 5px 0;
+      padding: 7px 0;
       top: -20px;
       right: -20px;
 
