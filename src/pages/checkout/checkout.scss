@@ -369,6 +369,23 @@ page-checkout {
     border-top: 1px solid $color-secondary;
     font-size: 0;
 
+    &__shipping {
+      margin-bottom: 10px;
+    }
+
+    &__shipping.free &__title {
+      @extend .font-bold;
+
+      color: $color-primary;
+    }
+
+    &__shipping.free &__price {
+      @extend .font-bold;
+
+      color: $color-primary;
+      text-decoration: line-through;
+    }
+
     &__title {
       @extend .font-regular;
       box-sizing: border-box;
@@ -401,7 +418,7 @@ page-checkout {
       }
     }
 
-    &__oldprice {
+    &__price {
       @extend .font-regular;
 
       font-size: 16px;
@@ -409,7 +426,10 @@ page-checkout {
       text-align: right;
       display: block;
       margin-bottom: 0;
-      text-decoration: line-through;
+
+      &.discount {
+        text-decoration: line-through;
+      }
     }
   }
 }
