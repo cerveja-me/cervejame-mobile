@@ -93,7 +93,7 @@ export class OrderProvider {
     this.locale['complement']=complement;
     this.network.put(this.network.c.LOCATION+this.locale['id'],up)
     .then(l=>{
-        this.locale=l;
+      this.locale=l;
     })
   }
   setVoucher(voucher){
@@ -129,11 +129,14 @@ export class OrderProvider {
     })
   }
 
-  completeOrder(){
+  completeOrder(pay){
     return new Promise((resolve, reject)=> {
-      let sale={
+      if(!pay){
+        reject({code:2000,message:"Selecione um meio de Pagamento"});
+      }
+      let sale = {
         id_location:this.locale['id'],
-        payment:'1',
+        payment:pay,
         product: this.sale.product['beer']['id'],
         price:this.sale.product['beer']['price']*this.sale['amount'],
         amount:this.sale['amount'],

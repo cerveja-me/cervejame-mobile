@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController,ViewController } from 'ionic-angular';
+import { NavController,ModalController,ViewController,AlertController } from 'ionic-angular';
 
 //providers
 import { OrderProvider } from '../../providers/order/order';
@@ -23,7 +23,8 @@ export class CheckoutPage {
     private navCtrl:NavController,
     private modalCtrl:ModalController,
     private viewCtrl: ViewController,
-    private order:OrderProvider
+    private order:OrderProvider,
+    private alertCtrl:AlertController
   ) {
     this.or=this.order.getOrder();
     this.address = this.or['location']['street']+", "+(this.or['location']['number'] || 's/n');
@@ -48,7 +49,7 @@ export class CheckoutPage {
   }
 
   finishOrder(){
-    this.order.completeOrder()
+    this.order.completeOrder(this.payment)
     .then(res=>{
       this.navCtrl.setRoot(StatusPage);
     })
@@ -58,6 +59,13 @@ export class CheckoutPage {
         .then(login=>{
           this.finishOrder();
         })
+      }else if(e.code==2000){
+        let alert = this.alertCtrl.create({
+          title: 'Erro',
+          message: e.message,
+          buttons: ['Ok']
+        });
+        alert.present();
       }
 
       console.log('er-> ',e);
