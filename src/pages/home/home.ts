@@ -11,6 +11,7 @@ import { MapPage } from '../map/map';
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalLoginPage } from '../modal-login/modal-login';
+import { ModalNotificationPage } from '../modal-notification/modal-notification';
 
 @Component({
   selector: 'page-home',
@@ -43,6 +44,7 @@ export class HomePage {
     this.loader=this.load.create({
       content: this.device.getRandonLoading()
     })
+    this.verifyPush();
   }
 
 
@@ -168,19 +170,12 @@ verifyPush(){
     if(hasOpen){
       this.device.startPush();
     }else{
-      let notificationModal = this.modalCtrl.create(NotificationModalPage);
+      let notificationModal = this.modalCtrl.create(ModalNotificationPage);
       notificationModal.present().then(r=>{
         this.storage.set('hasOpenNotification','true');
       });
     }
   })
-}
-
-accept(){
-  this.device.startPush();
-  setTimeout(() => {
-    this.viewCtrl.dismiss();
-  },300);
 }
 
 selectProduct(p){
@@ -201,6 +196,9 @@ openSchedule(){
 openLogin(){
   let loginModal = this.modalCtrl.create(ModalLoginPage)
   loginModal.present();
+}
+tryAgain(){
+  this.navCtrl.setRoot(HomePage);
 }
 
 }
