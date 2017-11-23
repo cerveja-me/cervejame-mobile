@@ -5,7 +5,7 @@
 <ion-content class="background-dark">
 
   <div class="msg transparent" *ngIf="hours">
-    <span class="msg__text white">Entregamos Ã s:</span>
+    <span class="msg__text white">Entregamos às:</span>
     <ul class="schedule__list">
       <li  *ngFor="let h of hours" class="schedule__list__item" [ngClass]="h.active?'today':h.day?'today closed':''">
         <span class="schedule__day ">{{h.leg}}</span>
@@ -13,7 +13,7 @@
     </li>
 
 </ul>
-<p class="msg-schedule">Os horÃ¡rios podem alterar em feriados.</p>
+<p class="msg-schedule">Os horários podem alterar em feriados.</p>
 </div>
 
 </ion-content>
