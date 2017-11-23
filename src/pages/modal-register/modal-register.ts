@@ -12,7 +12,9 @@ export class ModalRegisterPage {
   profile:any={
     name:'',
     password:'',
+    photo:'',
     login:'',
+    phone:'',
     type:1,
     status:1
   }
@@ -27,6 +29,7 @@ export class ModalRegisterPage {
   }
 
   createUser(){
+    this.profile['email']=this.profile['login'];
     this.user.profileSignUp(this.profile)
     .then(r=>{
         this.viewCtrl.dismiss('success');

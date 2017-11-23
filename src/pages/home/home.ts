@@ -31,6 +31,7 @@ export class HomePage {
   showTip=false;
   current=0;
   loadedcompleted;
+  err;
   discount=0;
   updatingAmount;
   loader;
@@ -65,7 +66,7 @@ export class HomePage {
     this.loader.dismiss();
   })
   .catch( e =>{
-
+    this.err=e;
     console.log('erro ->',e);
     /*
     * tratar os erros:
