@@ -78,6 +78,8 @@ export class UserProvider {
           facebook_id:fu['id'],
           facebook_token:fu['auth']['accessToken'],
           login:fu['id'],
+          photo:'',
+          phone:'',
           type:2,
           status:1
         }

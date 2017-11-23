@@ -72,11 +72,11 @@ class FacebookMock extends Facebook{
           status: "connected",
           authResponse: {
             session_key: true,
-            accessToken: "kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn",
+            accessToken: "aoijaoisjdo",
             expiresIn: 5183979,
             sig: "...",
             secret: "...",
-            userID: "634565435"
+            userID: "100110"
           }
         }
       )
@@ -89,9 +89,9 @@ class FacebookMock extends Facebook{
       return new Promise((resolve, reject) => {
         resolve(
           {
-            "id": "99999999999999",
-            "name": "Matias Solis de la Torre",
-            "first_name": "Matias",
+            "id": "191919191",
+            "name": "Jeferson Solis de la Torre",
+            "first_name": "Jeferson",
             "last_name": "Solis de la Torre",
             "gender": "male",
             "email":"matiassolis@gmail.com"
