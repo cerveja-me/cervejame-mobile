@@ -1,6 +1,7 @@
 import { Component,ViewChild,NgZone } from '@angular/core';
 import { NavController,ModalController,Slides,LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { LOCALE_ID } from '@angular/core';
 //providers
 import { DeviceProvider } from '../../providers/device/device'
 import { LocationProvider } from '../../providers/location/location';
@@ -12,6 +13,7 @@ import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
+
 
 @Component({
   selector: 'page-home',
@@ -48,9 +50,6 @@ export class HomePage {
   }
 
 
-
-
-
   ionViewDidLoad() {
     this.loader.present();
     this.order.getZone()
@@ -66,6 +65,7 @@ export class HomePage {
     this.loader.dismiss();
   })
   .catch( e =>{
+
     console.log('erro ->',e);
     /*
     * tratar os erros:

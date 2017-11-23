@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicModule,IonicErrorHandler,Config } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
@@ -41,84 +41,88 @@ import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
 import { ModalNotificationPage } from '../pages/modal-notification/modal-notification';
 
-// class AppVersionMock extends AppVersion {
-//   constructor(){super();}
-//   getVersionNumber(){return new Promise((resolve, reject) => {resolve( '3.0.5');})}
-// }
-// class KeyboardMock extends Keyboard {
-//
-//   constructor() {super();}
-//   show(){}
-//   close(){}
-// }
-//
-// class DeviceMock extends Device{
-//   get cordova(): string{ return "7.0.1";}
-//   get isVirtual(): boolean { return true;}
-//   get manufacturer() : string { return "Desenvolvimento";}
-//   get model() : string { return "Browser - Chrome";}
-//   get platform() : string { return "Browser";}
-//   get serial() : string { return "unknown";}
-//   get uuid() : string { return "5e6d88c-83dad11-e7a91992-ebcb67fe33";}
-//   get version(): string { return "7.1.1"; }
-// }
-//
-// class FacebookMock extends Facebook{
-//   constructor(){super();}
-//   login(permissions: string[]) {
-//     return new Promise((resolve, reject) => {
-//       resolve(
-//         {
-//           status: "connected",
-//           authResponse: {
-//             session_key: true,
-//             accessToken: "kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn",
-//             expiresIn: 5183979,
-//             sig: "...",
-//             secret: "...",
-//             userID: "634565435"
-//           }
-//         }
-//       )
-//     })
-//   }
-//
-//   api(requestPath: string, permissions: string[]): Promise<any> {
-//
-//     if (requestPath == '/me?fields=id,name,email,first_name,last_name,gender') {
-//       return new Promise((resolve, reject) => {
-//         resolve(
-//           {
-//             "id": "99999999999999",
-//             "name": "Matias Solis de la Torre",
-//             "first_name": "Matias",
-//             "last_name": "Solis de la Torre",
-//             "gender": "male",
-//             "email":"matiassolis@gmail.com"
-//           }
-//         )
-//       })
-//
-//     }
-//
-//     return new Promise((resolve, reject) => {
-//       resolve(
-//         {
-//           "data": {
-//             "is_silhouette": false,
-//             "url": "Thumbnail"
-//           }
-//         }
-//       )
-//     })
-//
-//   }
-//
-// }
-//
-// class SplashScreenMock extends SplashScreen{
-//   hide(){}
-// }
+class AppVersionMock extends AppVersion {
+  constructor(){super();}
+  getVersionNumber(){return new Promise((resolve, reject) => {resolve( '3.0.5');})}
+}
+class KeyboardMock extends Keyboard {
+
+  constructor() {super();}
+  show(){}
+  close(){}
+}
+
+class DeviceMock extends Device{
+  get cordova(): string{ return "7.0.1";}
+  get isVirtual(): boolean { return true;}
+  get manufacturer() : string { return "Desenvolvimento";}
+  get model() : string { return "Browser - Chrome";}
+  get platform() : string { return "Browser";}
+  get serial() : string { return "unknown";}
+  get uuid() : string { return "5e6d88c-83dad11-e7a91992-ebcb67fe33";}
+  get version(): string { return "7.1.1"; }
+}
+
+class FacebookMock extends Facebook{
+  constructor(){super();}
+  login(permissions: string[]) {
+    return new Promise((resolve, reject) => {
+      resolve(
+        {
+          status: "connected",
+          authResponse: {
+            session_key: true,
+            accessToken: "kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn",
+            expiresIn: 5183979,
+            sig: "...",
+            secret: "...",
+            userID: "634565435"
+          }
+        }
+      )
+    })
+  }
+
+  api(requestPath: string, permissions: string[]): Promise<any> {
+
+    if (requestPath == '/me?fields=id,name,email,first_name,last_name,gender') {
+      return new Promise((resolve, reject) => {
+        resolve(
+          {
+            "id": "99999999999999",
+            "name": "Matias Solis de la Torre",
+            "first_name": "Matias",
+            "last_name": "Solis de la Torre",
+            "gender": "male",
+            "email":"matiassolis@gmail.com"
+          }
+        )
+      })
+
+    }
+
+    return new Promise((resolve, reject) => {
+      resolve(
+        {
+          "data": {
+            "is_silhouette": false,
+            "url": "Thumbnail"
+          }
+        }
+      )
+    })
+
+  }
+
+}
+
+class SplashScreenMock extends SplashScreen{
+  hide(){}
+}
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
+
 
 @NgModule({
   declarations: [
@@ -173,12 +177,13 @@ import { ModalNotificationPage } from '../pages/modal-notification/modal-notific
     AppVersion,
     Geolocation,
     OneSignal,
-    // { provide: Facebook, useClass: FacebookMock },
-    // { provide: AppVersion, useClass: AppVersionMock },
-    // { provide: SplashScreen, useClass:SplashScreenMock },
-    // { provide: Device, useClass: DeviceMock },
-    // { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
+    { provide: Facebook, useClass: FacebookMock },
+    { provide: AppVersion, useClass: AppVersionMock },
+    { provide: SplashScreen, useClass:SplashScreenMock },
+    { provide: Device, useClass: DeviceMock },
+    { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
     // {provide:Geolocation,useCass:GeolocationMock},
+    { provide: LOCALE_ID, useValue: 'pt-PT' },
     { provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
