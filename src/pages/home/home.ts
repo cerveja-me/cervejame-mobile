@@ -13,7 +13,7 @@ import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
-
+import { StatusPage } from '../status/status';
 
 @Component({
   selector: 'page-home',
@@ -77,6 +77,10 @@ export class HomePage {
     */
     this.loader.dismiss();            //estar sem conexão com a internet
   })
+}
+
+openStatus(){
+  this.navCtrl.push(StatusPage);
 }
 
 slideChanged() {

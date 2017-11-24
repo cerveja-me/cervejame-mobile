@@ -9,21 +9,22 @@
       <!-- <img src="../../assets/img/"/> -->
     </figure>
     <span class="order__address">
-      <label class="order__label">{{sale.amount}} {{sale.cold?'Caixa':'Garrafa'}}{{sale.amount>1?'s de':' de'}} {{sale.name}}</label>
-      Rua Venâncio Aires
+      <label class="order__label">{{sale.amount}} {{sale.cold?'Caixa':'Garrafa'}}{{sale.amount>1?'s de':' de'}} {{sale.product}}</label>
+      {{sale.address}}{{sale.complement}}
+
     </span>
     <label class="order__label"></label>
   </div>
   <ul class="order-status" *ngIf="sale">
-    <li class="order-status__item item-first" [ngClass]="!sale.aceptedAt?'loading':'active'">
+    <li class="order-status__item item-first" [ngClass]="actions && actions.accepted?'active':'loading'">
       <span class="order-status__icon"></span>
       <label class="order-status__label">
         {{!sale.aceptedAt?'Aguardando confirmação':'Pedido confirmado'}}
       </label>
     </li>
-    <li class="order-status__item item-second delivery active">
+    <li class="order-status__item item-second delivery" [ngClass]="actions && actions.onWay?'active':actions && actions.accepted?'loading':''" >
       <span class="order-status__icon"></span>
-      <label class="order-status__label"> {{!sale.onWayAt?'Sair para entrega':'Saiu para entrega'}}
+      <label class="order-status__label"> {{!actions && actions.onWay?'Sair para entrega':'Saiu para entrega'}}
       </label>
       <span class="order-status__delivery">
         <span class="order-status__time">
@@ -31,15 +32,15 @@
           25min - 45min
         </span>
         <figure class="order-status__delivery__image">
-          <img-loader [src]="'http://cerveja.me/img/mobile/driver/glauber.jpg'"></img-loader>
+          <img-loader [src]="'http://cerveja.me/img/mobile/driver/'+actions.onWay.photo"></img-loader>
         </figure>
         <label class="order-status__delivery__label">
           <small>Entregador</small>
-          <span>Glauber</span>
+          <span>{{actions.onWay.name}}</span>
           </label>
         </span>
       </li>
-      <li class="order-status__item item-third" [ngClass]="!sale.finishedAt?'':'active'">
+      <li class="order-status__item item-third" [ngClass]="actions && actions.finishedAt?'active':actions && actions.onWay?'loading':''">
         <span class="order-status__icon"></span>
         <label class="order-status__label">Cerveja entregue</label>
       </li>
