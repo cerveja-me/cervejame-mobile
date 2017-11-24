@@ -59,7 +59,7 @@ class DeviceMock extends Device{
   get model() : string { return "Browser - Chrome";}
   get platform() : string { return "Browser";}
   get serial() : string { return "unknown";}
-  get uuid() : string { return "5e6d88c-83dad11-e7a91992-ebcb67fe33";}
+  get uuid() : string { return "1231231-83dad11-e7a91992-ebcb67fe33";}
   get version(): string { return "7.1.1"; }
 }
 

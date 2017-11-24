@@ -14,6 +14,11 @@ import { HomePage } from '../home/home';
 export class StatusPage {
   sales;
   sale:any;
+  actions:any={
+    accepted:null,
+    onWay:null,
+    finishedAt:null
+  }
   constructor(
     private zone:NgZone,
     private navCtrl: NavController,
@@ -27,7 +32,29 @@ export class StatusPage {
     .then(s=>{
       this.sales=s;
       this.sale=s[0];
-      this.zone.run(()=>{});
+      if(this.sale.complement){
+        this.sale.complement=' compl.:'+this.sale.complement;
+      }
+      if(this.sale.actions){
+        for(let i=0; i<this.sale.actions.length; i++){
+          switch(this.sale.actions[i].action){
+            case 1:
+              this.actions.accepted=this.sale.actions[i];
+              this.zone.run(()=>{});
+              break;
+            case 2:
+              this.actions.onWay=this.sale.actions[i];
+              this.zone.run(()=>{});
+              break;
+            case 3:
+              this.actions.finishedAt=this.sale.actions[i];
+              this.zone.run(()=>{});
+              break;
+          }
+
+        }
+
+      }
     })
     .catch( e =>{
       console.log('ee->',e);
