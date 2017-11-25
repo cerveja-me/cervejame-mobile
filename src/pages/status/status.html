@@ -10,8 +10,7 @@
     </figure>
     <span class="order__address">
       <label class="order__label">{{sale.amount}} {{sale.cold?'Caixa':'Garrafa'}}{{sale.amount>1?'s de':' de'}} {{sale.product}}</label>
-      {{sale.address}}{{sale.complement}}
-
+      <label class="order__label">R$ {{sale.payment_value |number:'1.2-2'}}</label>
     </span>
     <label class="order__label"></label>
   </div>
