@@ -14,6 +14,7 @@ import { ModalSchedulePage } from '../modal-schedule/modal-schedule';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
 import { StatusPage } from '../status/status';
+import { FeedbackPage } from '../feedback/feedback';
 
 @Component({
   selector: 'page-home',
@@ -35,6 +36,13 @@ export class HomePage {
   discount=0;
   updatingAmount;
   loader;
+  actions:any={
+    accepted:null,
+    onWay:null,
+    finishedAt:null,
+    review:null
+  }
+  openSale:any;
   constructor(
     private modalCtrl: ModalController,
     public navCtrl: NavController,
@@ -48,6 +56,7 @@ export class HomePage {
       content: this.device.getRandonLoading()
     })
     this.verifyPush();
+    this.verifyOpenSale();
   }
 
 
@@ -77,10 +86,6 @@ export class HomePage {
     */
     this.loader.dismiss();            //estar sem conexão com a internet
   })
-}
-
-openStatus(){
-  this.navCtrl.push(StatusPage);
 }
 
 slideChanged() {
@@ -182,6 +187,38 @@ verifyPush(){
     }
   })
 }
+verifyOpenSale(){
+  this.order.getOrders()
+  .then(s=>{
+    this.openSale=s[0];
+    let sale=s[0];
+    if(sale.actions){
+      for(let i=0; i<sale.actions.length; i++){
+        switch(sale.actions[i].action){
+          case 1:
+            this.actions.accepted=sale.actions[i];
+            this.zone.run(()=>{});
+            break;
+          case 2:
+            this.actions.onWay=sale.actions[i];
+            this.zone.run(()=>{});
+            break;
+          case 3:
+            this.actions.finishedAt=sale.actions[i];
+            this.zone.run(()=>{});
+            break;
+          case 4:
+            this.actions.review=sale.actions[i];
+            this.zone.run(()=>{});
+            break;
+        }
+      }
+    }
+  })
+  .catch( e =>{
+    console.log('ee->',e);
+  })
+}
 
 selectProduct(p){
   this.order.setProduct(p,this.amount);
@@ -204,6 +241,16 @@ openLogin(){
 }
 tryAgain(){
   this.navCtrl.setRoot(HomePage);
+}
+openStatus(){
+  if(this.actions.finishedAt && this.actions.onWay){
+    this.openFeedback();
+  }else{
+    this.navCtrl.push(StatusPage);
+  }
+}
+openFeedback(){
+  this.navCtrl.push(FeedbackPage,{sale:this.openSale});
 }
 
 }

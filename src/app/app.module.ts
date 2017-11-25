@@ -89,12 +89,12 @@ class FacebookMock extends Facebook{
       return new Promise((resolve, reject) => {
         resolve(
           {
-            "id": "191919191",
-            "name": "Jeferson Solis de la Torre",
-            "first_name": "Jeferson",
-            "last_name": "Solis de la Torre",
-            "gender": "male",
-            "email":"matiassolis@gmail.com"
+            id: "191919191",
+            name: "Jeferson Solis de la Torre",
+            first_name: "Jeferson",
+            last_name: "Solis de la Torre",
+            gender: "male",
+            email:"matiassolis@gmail.com"
           }
         )
       })
@@ -104,9 +104,9 @@ class FacebookMock extends Facebook{
     return new Promise((resolve, reject) => {
       resolve(
         {
-          "data": {
-            "is_silhouette": false,
-            "url": "Thumbnail"
+          data: {
+            is_silhouette: false,
+            url: "Thumbnail"
           }
         }
       )

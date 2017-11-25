@@ -163,6 +163,24 @@ export class OrderProvider {
     })
   }
 
+  rateOrder(r){
+    return new Promise((resolve, reject)=> {
+      let rate ={
+        id_sale:r.id_sale,
+        who:2,
+        rate:r.rate,
+        comment:r.comment
+      };
+      this.network.post(this.network.c.RATE,rate)
+      .then(res =>{
+        resolve(res);
+      })
+      .catch(e=>{
+        console.log('eero ->',e)
+      })
+    })
+  }
+
 
 
 

@@ -19,24 +19,29 @@
   </ion-header>
 
   <ion-content no-bounce class="bkg-choose center" [ngClass]="closed ? 'closed': '' " (click)="showTip=false" >
-    <button ion-button secondary (click)="openStatus()" class="order-status-bar"  >
+    <button ion-button secondary (click)="openStatus()" class="order-status-bar"  *ngIf="this.openSale">
 
-      <span class="order-status-bar__label">
+      <span class="order-status-bar__label" *ngIf="!actions.accepted && !actions.finishedAt && !actions.onWay">
         <span class="icon-loading"></span>
         <label>Aguardando confirmação</label>
       </span>
-  <!--
-    <span class="order-status-bar__label active" >
+
+    <span class="order-status-bar__label active" *ngIf="!actions.onWay && actions.accepted">
         <span class="icon-check"></span>
-        <label>Perdido confirmado</label>
-      </span> -->
-<!--
-      <span class="order-status-bar__label delivery active">
+        <label>Pedido confirmado</label>
+      </span>
+
+      <span class="order-status-bar__label delivery active" *ngIf="actions.onWay && !actions.finishedAt">
         <figure class="order-status-bar__image">
-          <img-loader [src]="'http://cerveja.me/img/mobile/driver/glauber.jpg'"></img-loader>
+          <img-loader [src]="'http://cerveja.me/img/mobile/driver/'+actions.onWay.photo"></img-loader>
         </figure>
-        <label> Glauber saiu para entrega</label>
-      </span> -->
+        <label> {{actions.onWay.name}} saiu para entrega</label>
+      </span>
+
+      <span class="order-status-bar__label active" *ngIf="actions.finishedAt && actions.onWay">
+          <span class="icon-check"></span>
+          <label>Avalie a Entrega</label>
+        </span>
     </button>
 
     <div class="table" [ngClass]="loadedcompleted && (err==='USER_DENIED_GEOLOCATION' || err==='NO_ZONE_AVAILABLE' || err=='GEOLOCATION_TIMEOUT') ? 'table-bottom': ''"></div>
