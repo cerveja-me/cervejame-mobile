@@ -11,6 +11,7 @@ export class ConstantsProvider {
   public SALE:string='sale/';
   public VOUCHER:string='voucher/';
   public AUTH:string=this.PROFILE+'auth/';
+  public RATE:string='rate/';
   public REMOTE_ASSETS:string='https://s3-sa-east-1.amazonaws.com/assests.cerveja.me';
   //public REMOTE_ASSETS:string='https://assets.cerveja.me/';
   GOOGLE_GEOCODE:string ='https://maps.googleapis.com/maps/api/geocode/json?address=#&location=LAT,LNG&rankby=distance&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
