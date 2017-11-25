@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,NgZone } from '@angular/core';
 import { NavController,ModalController,ViewController,AlertController } from 'ionic-angular';
 
 //providers
@@ -19,21 +19,31 @@ export class CheckoutPage {
   closing;
   payment;
   address='';
+  voucher;
   constructor(
     private navCtrl:NavController,
     private modalCtrl:ModalController,
     private viewCtrl: ViewController,
     private order:OrderProvider,
-    private alertCtrl:AlertController
+    private alertCtrl:AlertController,
+    private zone:NgZone
   ) {
+  }
+
+  ionViewDidLoad() {
     this.or=this.order.getOrder();
+
     this.address = this.or['location']['street']+", "+(this.or['location']['number'] || 's/n');
     if(this.or['location']['complement']){
       this.address+=', comp.: '+this.or['location']['complement']
     }
+    this.getVoucher();
+
   }
 
-  ionViewDidLoad() {
+  getVoucher(){
+    this.voucher = this.order.getVoucher();
+    this.zone.run(()=>{});
   }
 
   close(){
@@ -77,6 +87,9 @@ export class CheckoutPage {
   }
   openModalVoucher(){
     let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
+    voucherModal.onDidDismiss(()=>{
+      this.getVoucher();
+    })
     voucherModal.present();
   }
 

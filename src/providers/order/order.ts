@@ -121,7 +121,8 @@ export class OrderProvider {
       price:this.sale.product['beer']['price']*this.sale['amount'],
       amount:this.sale['amount'],
       amount_discount:this.sale.product['beer']['price']*this.sale['amount'] - this.sale.product['price'],
-      voucher:this.voucher?this.voucher :null
+      voucher:this.voucher?this.voucher :null,
+      freight_value:this.locale['zone']['free_shipping']?0:this.locale['zone']['freight_value']
     }
     this.network.post(this.network.c.SALE,sale)
     .then( data => {
@@ -141,7 +142,9 @@ export class OrderProvider {
         price:this.sale.product['beer']['price']*this.sale['amount'],
         amount:this.sale['amount'],
         amount_discount:this.sale.product['beer']['price']*this.sale['amount'] - this.sale.product['price'],
-        voucher:this.voucher?this.voucher :null
+        voucher:this.voucher?this.voucher :null,
+        freight_value:this.locale['zone']['free_shipping']?0:this.locale['zone']['freight_value']
+
       }
       this.network.put(this.network.c.SALE+this.sale.id,sale)
       .then( data => {

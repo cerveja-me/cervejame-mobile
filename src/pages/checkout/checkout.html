@@ -6,7 +6,7 @@
     </button>
 </ion-header>
 
-<ion-content class="background-light">
+<ion-content class="background-light" *ngIf="or">
 
   <div class="order">
     <figure class="order__image">
@@ -46,17 +46,24 @@
     </div>
 
     <div class="checkout__total" >
-      <div [ngClass]="or.product.product.freight_value ? 'checkout__total__shipping free' : 'checkout__total__shipping'">
-          <span class="checkout__total__title" *ngIf="!or.product.product.freight_value">Entrega</span>
-          <span class="checkout__total__title" *ngIf="or.product.product.freight_value">Entrega grátis</span>
+      <div [ngClass]="or.location.zone.free_shipping ? 'checkout__total__shipping free' : 'checkout__total__shipping '">
+          <span class="checkout__total__title" *ngIf="!or.location.zone.free_shipping">Entrega</span>
+          <span class="checkout__total__title" *ngIf="or.location.zone.free_shipping">Entrega grátis</span>
           <span class="checkout__total__pricebox">
-              <span class="checkout__total__price">R$ 5,00</span>
+              <span class="checkout__total__price" >R$ {{or.location.zone.freight_value |number:'1.2-2'}}</span>
           </span>
       </div>
+      <div class="checkout__total__shipping"  *ngIf="voucher">
+          <span class="checkout__total__title" >Cupom </span>
+          <span class="checkout__total__pricebox">
+              <span class="checkout__total__price">R$ -{{voucher.value |number:'1.2-2'}}</span>
+          </span>
+      </div>
+
       <span class="checkout__total__title">Total a pagar</span>
       <span class="checkout__total__pricebox">
-        <span class="checkout__total__price old"*ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{or.product.product.price |number:'2.2-2'}}</span>
-        <small class="checkout__total__pricebox--currency" >R$</small>{{or.product.product.price -(coupom?coupom.value:0) |number:'2.2-2'}}
+        <span class="checkout__total__price old"*ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{or.product.product.price |number:'1.2-2'}}</span>
+        <small class="checkout__total__pricebox--currency" >R$</small>{{or.product.product.price -(voucher?voucher.value:0)+(!or.location.zone.free_shipping?or.location.zone.freight_value:0) |number:'1.2-2'}}
       </span>
     </div>
 
