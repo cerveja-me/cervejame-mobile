@@ -6,7 +6,7 @@
 </ion-header>
 
 
-<ion-content no-scrool>
+<ion-content  no-bounce>
 
   <div class="map__address" *ngIf="address">
     <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true;editingAddress=true" (ngModelChange)="addressChange()" (ionBlur)="closeEdit(); texting=false">

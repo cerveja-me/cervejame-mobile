@@ -37,10 +37,7 @@ export class CheckoutPage {
   }
 
   close(){
-    this.closing=true;
-    setTimeout(() => {
-      this.viewCtrl.dismiss();
-    },300);
+    this.navCtrl.pop();
   }
 
   openVoucherModal(){
