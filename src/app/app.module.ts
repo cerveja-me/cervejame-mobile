@@ -23,7 +23,6 @@ import { LocationProvider } from '../providers/location/location';
 import { OrderProvider } from '../providers/order/order';
 import { UserProvider } from '../providers/user/user';
 import { VoucherProvider } from '../providers/voucher/voucher';
-import { HttpProvider } from '../providers/http/http';
 import { NetworkProvider } from '../providers/network/network';
 import { ConstantsProvider } from '../providers/constants/constants';
 
@@ -168,7 +167,6 @@ registerLocaleData(ptBr)
     OrderProvider,
     UserProvider,
     VoucherProvider,
-    HttpProvider,
     NetworkProvider,
     ConstantsProvider,
     StatusBar,
