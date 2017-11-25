@@ -58,7 +58,7 @@ export class OrderProvider {
         })
       })
       .catch( err =>{
-        reject("LOCATION_ERROR")
+        reject(err.message)
       })
     })
   }
