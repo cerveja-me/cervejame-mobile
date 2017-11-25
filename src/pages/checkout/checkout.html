@@ -13,7 +13,7 @@
       <img-loader class="order__image__img" [src]="'http://cerveja.me/img/mobile/'+or.product.product.beer.img"></img-loader>
     </figure>
     <span class="order__price">
-      <label class="order__label">{{or.product.amount}} {{or.product.product.beer.cold?'Caixa':'Garrafa'}}{{or.product.amount>1?'s':''}} DE Brahma</label>
+      <label class="order__label">{{or.product.amount}} {{or.product.product.beer.cold?'Caixa':'Garrafa'}}{{or.product.amount>1?'s':''}} DE {{or.product.product.beer.name}}</label>
       R$ {{or.product.product.price |number:'1.2-2'}}
     </span>
   </div>
