@@ -84,6 +84,7 @@ export class HomePage {
     * - liberada mas não fora de area
     * - dentro de area mas sem produtos
     */
+    this.loadedcompleted=true;
     this.loader.dismiss();            //estar sem conexão com a internet
   })
 }
@@ -190,27 +191,30 @@ verifyPush(){
 verifyOpenSale(){
   this.order.getOrders()
   .then(s=>{
+
     this.openSale=s[0];
-    let sale=s[0];
-    if(sale.actions){
-      for(let i=0; i<sale.actions.length; i++){
-        switch(sale.actions[i].action){
-          case 1:
+    if(this.openSale){
+      let sale=s[0];
+      if(sale.actions){
+        for(let i=0; i<sale.actions.length; i++){
+          switch(sale.actions[i].action){
+            case 1:
             this.actions.accepted=sale.actions[i];
             this.zone.run(()=>{});
             break;
-          case 2:
+            case 2:
             this.actions.onWay=sale.actions[i];
             this.zone.run(()=>{});
             break;
-          case 3:
+            case 3:
             this.actions.finishedAt=sale.actions[i];
             this.zone.run(()=>{});
             break;
-          case 4:
+            case 4:
             this.actions.review=sale.actions[i];
             this.zone.run(()=>{});
             break;
+          }
         }
       }
     }
