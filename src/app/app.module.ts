@@ -96,31 +96,31 @@ registerLocaleData(ptBr)
 //   }
 //
 // }
-// class AppVersionMock extends AppVersion {
-// constructor(){super();}
-// getVersionNumber(){return new Promise((resolve, reject) => {resolve( '3.0.5');})}
-// }
-// class KeyboardMock extends Keyboard {
-//
-//   constructor() {super();}
-//   show(){}
-//   close(){}
-// }
-//
-// class DeviceMock extends Device{
-//   get cordova(): string{ return "7.0.1";}
-//   get isVirtual(): boolean { return true;}
-//   get manufacturer() : string { return "Desenvolvimento";}
-//   get model() : string { return "Browser - Chrome";}
-//   get platform() : string { return "Browser";}
-//   get serial() : string { return "unknown";}
-//   get uuid() : string { return "1231231-83dad11-e7a91992-ebcb67fe33";}
-//   get version(): string { return "7.1.1"; }
-// }
-//
-// class SplashScreenMock extends SplashScreen{
-//   hide(){}
-// }
+class AppVersionMock extends AppVersion {
+constructor(){super();}
+getVersionNumber(){return new Promise((resolve, reject) => {resolve( '3.0.5');})}
+}
+class KeyboardMock extends Keyboard {
+
+  constructor() {super();}
+  show(){}
+  close(){}
+}
+
+class DeviceMock extends Device{
+  get cordova(): string{ return "7.0.1";}
+  get isVirtual(): boolean { return true;}
+  get manufacturer() : string { return "Desenvolvimento";}
+  get model() : string { return "Browser - Chrome";}
+  get platform() : string { return "Browser";}
+  get serial() : string { return "unknown";}
+  get uuid() : string { return "1231231-83dad11-e7a91992-ebcb67fe33";}
+  get version(): string { return "7.1.1"; }
+}
+
+class SplashScreenMock extends SplashScreen{
+  hide(){}
+}
 
 
 @NgModule({
@@ -176,10 +176,10 @@ registerLocaleData(ptBr)
     Geolocation,
     OneSignal,
     // { provide: Facebook, useClass: FacebookMock },
-    // { provide: AppVersion, useClass: AppVersionMock },
-    // { provide: SplashScreen, useClass:SplashScreenMock },
-    // { provide: Device, useClass: DeviceMock },
-    // { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
+    { provide: AppVersion, useClass: AppVersionMock },
+    { provide: SplashScreen, useClass:SplashScreenMock },
+    { provide: Device, useClass: DeviceMock },
+    { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
     // {provide:Geolocation,useCass:GeolocationMock},
     { provide: LOCALE_ID, useValue: 'pt-PT' },
     { provide: ErrorHandler, useClass: IonicErrorHandler}
