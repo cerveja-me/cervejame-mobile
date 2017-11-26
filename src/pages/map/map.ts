@@ -127,7 +127,7 @@ export class MapPage {
       this.address=address;
       this.fulladdress=this.address['route'];
       this.number=this.address['street_number'];
-      if(this.number.includes('-')){
+      if(this.number && this.number.includes('-')){
         this.number=null;
       }
       this.zone.run(()=>{});
