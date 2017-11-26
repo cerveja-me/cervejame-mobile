@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConstantsProvider {
   // public API:string='https://ec2-54-233-116-230.sa-east-1.compute.amazonaws.com:9001/api/';
-  // public API:string='https://192.168.2.5:9001/api/';
+  // public API:string='https://192.168.0.10:9001/api/';
   public API:string='https://127.0.0.1:9001/api/';
   public DEVICE:string='device/';
   public LOCATION:string='location/';

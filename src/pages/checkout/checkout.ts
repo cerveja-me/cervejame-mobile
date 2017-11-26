@@ -73,6 +73,15 @@ export class CheckoutPage {
           buttons: ['Ok']
         });
         alert.present();
+      }else{
+        let alert = this.alertCtrl.create({
+          title: 'Vooucher',
+          message: e.message,
+          buttons: ['Ok']
+        });
+        alert.present();
+        this.order.removeVoucher();
+        this.getVoucher();
       }
 
       console.log('er-> ',e);

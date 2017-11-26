@@ -151,8 +151,7 @@ export class OrderProvider {
         resolve(data);
       })
       .catch( e =>{
-        reject(e);
-        // console.log("e-> ",e)
+        reject(e.error);
       })
     })
   }
@@ -183,8 +182,5 @@ export class OrderProvider {
       })
     })
   }
-
-
-
 
 }
