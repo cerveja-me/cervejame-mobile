@@ -76,7 +76,7 @@ export class CheckoutPage {
       }else{
         let alert = this.alertCtrl.create({
           title: 'Vooucher',
-          message: e.message,
+          message: e.error.message,
           buttons: ['Ok']
         });
         alert.present();
