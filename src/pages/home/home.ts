@@ -247,7 +247,7 @@ tryAgain(){
   this.navCtrl.setRoot(HomePage);
 }
 openStatus(){
-  if(this.actions.finishedAt && this.actions.onWay){
+  if(this.actions.review){
     this.openFeedback();
   }else{
     this.navCtrl.push(StatusPage);
