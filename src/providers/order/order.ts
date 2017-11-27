@@ -151,7 +151,7 @@ export class OrderProvider {
         resolve(data);
       })
       .catch( e =>{
-        reject(e.error);
+        reject(e);
       })
     })
   }
@@ -162,6 +162,7 @@ export class OrderProvider {
       .then(orders =>{
         resolve(orders);
       })
+      .catch( reject)
     })
   }
 
