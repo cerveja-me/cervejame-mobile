@@ -3,7 +3,7 @@ import { NavController,ModalController,ViewController,AlertController } from 'io
 
 //providers
 import { OrderProvider } from '../../providers/order/order';
-
+import { UserProvider } from '../../providers/user/user';
 //relatedPages
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { ModalLoginPage } from '../modal-login/modal-login';
@@ -26,7 +26,8 @@ export class CheckoutPage {
     private viewCtrl: ViewController,
     private order:OrderProvider,
     private alertCtrl:AlertController,
-    private zone:NgZone
+    private zone:NgZone,
+    private user:UserProvider
   ) {
   }
 
@@ -56,50 +57,114 @@ export class CheckoutPage {
   }
 
   finishOrder(){
-    this.order.completeOrder(this.payment)
-    .then(res=>{
-      this.navCtrl.setRoot(StatusPage);
-    })
-    .catch( e =>{
-      if(e.status == 403){
-        this.openLogin()
-        .then(login=>{
+    this.user.isAuth()
+    .then(()=>{
+      this.doPrompt()
+      .then(data =>{
+        this.order.completeOrder(this.payment)
+        .then(res=>{
+          this.navCtrl.setRoot(StatusPage);
+        })
+        .catch( e =>{
+          if(e.status == 403){
+            this.openLogin()
+            .then(login=>{
+              this.finishOrder();
+            })
+          }else if(e.code==2000){
+            let alert = this.alertCtrl.create({
+              title: 'Erro',
+              message: e.message,
+              buttons: ['Ok']
+            });
+            alert.present();
+          }else{
+            let alert = this.alertCtrl.create({
+              title: 'Vooucher',
+              message: e.error.message,
+              buttons: ['Ok']
+            });
+            alert.present();
+            this.order.removeVoucher();
+            this.getVoucher();
+          }
+
+          console.log('er-> ',e);
+        })
+      })
+      .catch(m=>{
+        let alert = this.alertCtrl.create({
+          title: 'Telefone',
+          message: m,
+          buttons: ['Ok']
+        });
+        alert.onDidDismiss(()=>{
           this.finishOrder();
         })
-      }else if(e.code==2000){
-        let alert = this.alertCtrl.create({
-          title: 'Erro',
-          message: e.message,
-          buttons: ['Ok']
-        });
         alert.present();
-      }else{
-        let alert = this.alertCtrl.create({
-          title: 'Vooucher',
-          message: e.error.message,
-          buttons: ['Ok']
-        });
-        alert.present();
-        this.order.removeVoucher();
-        this.getVoucher();
-      }
-
-      console.log('er-> ',e);
+      })
+    })
+    .catch(e=>{
+      this.openLogin();
     })
   }
 
   openLogin(){
     return new Promise((resolve, reject)=> {
       let loginModal = this.modalCtrl.create(ModalLoginPage)
+      loginModal.onDidDismiss((data)=>{
+        if(data==='success'){
+          this.finishOrder();
+        }
+      })
       loginModal.present();
     })
   }
+
   openModalVoucher(){
     let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
     voucherModal.onDidDismiss(()=>{
-      this.getVoucher();
-    })
-    voucherModal.present();
-  }
+    this.getVoucher();
+  })
+  voucherModal.present();
+}
 
+doPrompt() {
+  return new Promise((resolve, reject) => {
+    let prompt = this.alertCtrl.create({
+      title: 'Complemento',
+      message: "Para melhorar sua entrega, passa aí seu compĺemento e telefone.",
+      inputs: [
+        {
+          name: 'complement',
+          placeholder: 'Complemento do endereço',
+          value:this.or['location']['complement']
+        },
+        {
+          name: 'phone',
+          placeholder: 'Seu Telefone',
+          value:this.phone,
+          type:'tel'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Continuar',
+          handler: data => {
+            if(data.phone){
+              this.user.costumerUpdate(data.phone)
+              .then(resolve)
+            }else{
+              reject("o preenchimento do telefone é obrigatorio");
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
+  });
+}
 }
