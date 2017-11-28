@@ -107,15 +107,30 @@ export class UserProvider {
     return new Promise((resolve, reject) => {
       this.storage.get(this.network.c.AUTH)
       .then( t=> {
-          if(t){
-            resolve(true)
-          }else{
-            reject()
-          }
+        if(t){
+          resolve(true)
+        }else{
+          reject()
+        }
 
       })
     })
 
+  }
+  costumerUpdate(phone){
+    return new Promise((resolve, reject)=> {
+
+      const u={
+        phone:phone
+      }
+      this.network.post(this.network.c.USER,u)
+      .then( data => {
+        resolve(data);
+      })
+      .catch( e =>{
+        reject(e);
+      })
+    })
   }
 
 }

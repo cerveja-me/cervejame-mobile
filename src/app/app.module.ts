@@ -18,6 +18,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 // import { GeolocationMock } from './geolocation/geolocation.mock';
 
 import { Facebook } from '@ionic-native/facebook';
+import { FacebookMock } from './mocks/facebook/facebook.mock';
 import { Keyboard } from '@ionic-native/keyboard';
 import { OneSignal } from '@ionic-native/onesignal';
 
@@ -47,27 +48,27 @@ import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 registerLocaleData(ptBr)
 
-// class KeyboardMock extends Keyboard {
-//
-//   constructor() {super();}
-//   show(){}
-//   close(){}
-// }
-//
-// class DeviceMock extends Device{
-//   get cordova(): string{ return "7.0.1";}
-//   get isVirtual(): boolean { return true;}
-//   get manufacturer() : string { return "Desenvolvimento";}
-//   get model() : string { return "Browser - Chrome";}
-//   get platform() : string { return "Browser";}
-//   get serial() : string { return "unknown";}
-//   get uuid() : string { return "1231231-83dad11-e7a91992-ebcb67fe33";}
-//   get version(): string { return "7.1.1"; }
-// }
-//
-// class SplashScreenMock extends SplashScreen{
-//   hide(){}
-// }
+class KeyboardMock extends Keyboard {
+
+  constructor() {super();}
+  show(){}
+  close(){}
+}
+
+class DeviceMock extends Device{
+  get cordova(): string{ return "7.0.1";}
+  get isVirtual(): boolean { return true;}
+  get manufacturer() : string { return "Desenvolvimento";}
+  get model() : string { return "Browser - Chrome";}
+  get platform() : string { return "Browser";}
+  get serial() : string { return "unknown";}
+  get uuid() : string { return "1231231-83dad11-e7a91992-ebcb67fe33";}
+  get version(): string { return "7.1.1"; }
+}
+
+class SplashScreenMock extends SplashScreen{
+  hide(){}
+}
 
 
 @NgModule({
@@ -124,10 +125,10 @@ registerLocaleData(ptBr)
     OneSignal,
     Facebook,
     // {provide:Geolocation, useCass:GeolocationMock},
-    // { provide: Facebook, useClass: FacebookMock },
-    // { provide: AppVersion, useClass: AppVersionMock },
-    // { provide: SplashScreen, useClass:SplashScreenMock },
-    // { provide: Device, useClass: DeviceMock },
+    { provide: Facebook, useClass: FacebookMock },
+    { provide: AppVersion, useClass: AppVersionMock },
+    { provide: SplashScreen, useClass:SplashScreenMock },
+    { provide: Device, useClass: DeviceMock },
     // { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: 'pt-PT' },
