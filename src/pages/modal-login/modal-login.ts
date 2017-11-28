@@ -58,6 +58,7 @@ export class ModalLoginPage {
             this.viewCtrl.dismiss('success');
         })
         .catch(e=>{
+          console.log('error face-> ',e);
             // this.dismiss('success');
         });
     }
