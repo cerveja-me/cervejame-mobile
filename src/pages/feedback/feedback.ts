@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { OrderProvider } from '../../providers/order/order';
 
+import { HomePage } from '../home/home';
+
 @Component({
   selector: 'page-feedback',
   templateUrl: 'feedback.html',
@@ -26,7 +28,7 @@ export class FeedbackPage {
         rate:this.rate
       })
       .then(r=>{
-        this.navCtrl.pop();
+        this.navCtrl.setRoot(HomePage);
       })
     }
   }

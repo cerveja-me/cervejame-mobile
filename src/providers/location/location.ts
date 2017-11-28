@@ -24,13 +24,14 @@ export class LocationProvider {
         resolve(pos.coords)
       })
       .catch(err=>{
-        let e={message:''};
-        if(err.code==1){
-          e.message='USER_DENIED_GEOLOCATION';
-        }else{
-          e.message='GEOLOCATION_TIMEOUT';
-        }
-        reject(e);
+        resolve({latitude:-33.790608, longitude:21.044487})
+        // let e={message:''};
+        // if(err.code==1){
+        //   e.message='USER_DENIED_GEOLOCATION';
+        // }else{
+        //   e.message='GEOLOCATION_TIMEOUT';
+        // }
+        // reject(e);
       })
     })
   }

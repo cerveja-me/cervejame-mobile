@@ -85,9 +85,6 @@
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
-    <plugin name="cordova-plugin-geolocation" spec="^3.0.0">
-        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Identificar o seu local para entregar a cerveja" />
-    </plugin>
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
@@ -99,4 +96,12 @@
         <variable name="APP_NAME" value="Cerveja.me" />
     </plugin>
     <plugin name="onesignal-cordova-plugin" spec="^2.2.2" />
+    <allow-navigation href="http://192.168.0.14:8100" />
+    <plugin name="cordova-plugin-geolocation" spec="^3.0.0">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="para localizar os produtos diponiveis para voce" />
+    </plugin>
+    <allow-navigation href="http://192.168.0.20:8100" />
+    <allow-navigation href="http://192.168.100.144:8100" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
+    <allow-navigation href="http://10.42.0.1:8100" />
 </widget>
