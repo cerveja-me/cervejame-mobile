@@ -15,12 +15,12 @@ import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
 import { AppVersionMock } from './mocks/appversion/app-version.mock';
 import { Geolocation } from '@ionic-native/geolocation';
-// import { GeolocationMock } from './geolocation/geolocation.mock';
-
-import { Facebook } from '@ionic-native/facebook';
-import { FacebookMock } from './mocks/facebook/facebook.mock';
-import { Keyboard } from '@ionic-native/keyboard';
 import { OneSignal } from '@ionic-native/onesignal';
+import { Facebook } from '@ionic-native/facebook';
+import { Keyboard } from '@ionic-native/keyboard';
+
+// import { GeolocationMock } from './geolocation/geolocation.mock';
+// import { FacebookMock } from './mocks/facebook/facebook.mock';
 
 import { DeviceProvider } from '../providers/device/device';
 import { LocationProvider } from '../providers/location/location';
@@ -125,10 +125,10 @@ class SplashScreenMock extends SplashScreen{
     OneSignal,
     Facebook,
     // {provide:Geolocation, useCass:GeolocationMock},
-    { provide: Facebook, useClass: FacebookMock },
-    { provide: AppVersion, useClass: AppVersionMock },
-    { provide: SplashScreen, useClass:SplashScreenMock },
-    { provide: Device, useClass: DeviceMock },
+    // { provide: Facebook, useClass: FacebookMock },
+    // { provide: AppVersion, useClass: AppVersionMock },
+    // { provide: SplashScreen, useClass:SplashScreenMock },
+    // { provide: Device, useClass: DeviceMock },
     // { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: 'pt-PT' },

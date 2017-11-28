@@ -46,7 +46,7 @@ export class OrderProvider {
                 reject("NO_PRODUCTS");
               }
             }else{
-              reject("NO_ZONE");
+              reject("NO_ZONE_AVAILABLE");
             }
           })
           .catch( err =>{

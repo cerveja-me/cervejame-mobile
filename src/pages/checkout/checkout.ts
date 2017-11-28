@@ -143,7 +143,6 @@ doPrompt() {
         {
           name: 'phone',
           placeholder: 'Seu Telefone',
-          value:this.phone,
           type:'tel'
         }
       ],
