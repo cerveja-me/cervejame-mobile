@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
+import { Firebase } from '@ionic-native/firebase';
 
 import { HomePage } from '../pages/home/home';
 import { TourPage } from '../pages/tour/tour';
@@ -21,6 +22,7 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
+    public firebase:Firebase,
     private storage:Storage) {
       this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
@@ -39,6 +41,9 @@ export class MyApp {
     initializeApp() {
 
       this.platform.ready().then(() => {
+        this.firebase.getToken()
+        .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
+        .catch(error => console.error('Error getting token', error));
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
 

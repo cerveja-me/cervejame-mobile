@@ -18,6 +18,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { OneSignal } from '@ionic-native/onesignal';
 import { Facebook } from '@ionic-native/facebook';
 import { Keyboard } from '@ionic-native/keyboard';
+import { Firebase } from '@ionic-native/firebase';
 
 // import { GeolocationMock } from './geolocation/geolocation.mock';
 // import { FacebookMock } from './mocks/facebook/facebook.mock';
@@ -124,6 +125,7 @@ class SplashScreenMock extends SplashScreen{
     Geolocation,
     OneSignal,
     Facebook,
+    Firebase,
     // {provide:Geolocation, useCass:GeolocationMock},
     // { provide: Facebook, useClass: FacebookMock },
     // { provide: AppVersion, useClass: AppVersionMock },
