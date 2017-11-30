@@ -23,6 +23,7 @@ export class ModalLoginPage {
   }
 
   ionViewDidLoad() {
+      this.user.device.camPage("login");
     // this.user.profileLogin(this.u);
     // console.log('ionViewDidLoad ModalLoginPage');
   }

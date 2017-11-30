@@ -25,11 +25,12 @@ export class DeviceProvider {
     this.createDevice('empty');
 
     if(this.platform.is('cordova')){
-      // UXCam.startWithKey("be70a1dceee9857");//contas@cerveja.me
-      // UXCam.tagUsersName(this.device.uuid);
+      UXCam.startWithKey("1ebb58d58ddf43e");//umux@cerveja.me
+      UXCam.tagUsersName(this.device.uuid);
       this.startOneSignal();
     }
   }
+
   createDevice(push:string){
     return new Promise((resolve, reject)=> {
       var d = {
@@ -102,7 +103,7 @@ export class DeviceProvider {
 
   camPage(page){
     if(this.platform.is('cordova')){
-      // UXCam.tagScreenName(page);
+      UXCam.tagScreenName(page);
     }
   }
 

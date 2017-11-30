@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 
 import { VoucherProvider } from  '../../providers/voucher/voucher';
+import { DeviceProvider } from  '../../providers/device/device';
 
 @Component({
   selector: 'page-modal-voucher',
@@ -15,8 +16,10 @@ export class ModalVoucherPage {
   closing=false;
   constructor(
     public viewCtrl: ViewController,
-    public voucher: VoucherProvider
+    public voucher: VoucherProvider,
+    private device:DeviceProvider
   ) {
+    this.device.camPage("voucher");
   }
 
   dismiss() {

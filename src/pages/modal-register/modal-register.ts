@@ -25,7 +25,7 @@ export class ModalRegisterPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ModalRegisterPage');
+    this.user.device.camPage("register");
   }
 
   createUser(){

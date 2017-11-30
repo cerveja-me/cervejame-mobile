@@ -17,6 +17,8 @@ export class ModalNotificationPage {
   }
 
   ionViewDidLoad() {
+    this.device.camPage("notification");
+
   }
 
   accept(){

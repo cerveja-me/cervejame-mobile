@@ -43,6 +43,7 @@ export class MapPage {
   }
 
   ionViewDidLoad() {
+    this.order.device.camPage("map");
     this.loadMap();
   }
 

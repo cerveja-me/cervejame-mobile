@@ -28,6 +28,7 @@ export class StatusPage {
   }
 
   ionViewDidLoad() {
+    this.order.device.camPage("status");
     this.order.getOrders()
     .then(s=>{
       this.sales=s;
