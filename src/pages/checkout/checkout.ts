@@ -32,6 +32,7 @@ export class CheckoutPage {
   }
 
   ionViewDidLoad() {
+    this.order.device.camPage("checkout");
     this.or=this.order.getOrder();
 
     this.address = this.or['location']['street']+", "+(this.or['location']['number'] || 's/n');

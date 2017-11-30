@@ -23,7 +23,7 @@ export class TourPage {
   }
 
   ionViewDidLoad() {
-     this.device.camPage("tour");
+    this.device.camPage("tour");
   }
 
   startApp() {
@@ -34,7 +34,7 @@ export class TourPage {
 
   onSlideChangeStart(slider: Slides) {
     if(slider.realIndex==1){
-       this.location.getPosition();
+      this.location.getPosition();
     }
   }
 

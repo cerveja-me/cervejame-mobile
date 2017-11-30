@@ -61,6 +61,7 @@ export class HomePage {
 
 
   ionViewDidLoad() {
+    this.device.camPage("home");
     this.loader.present();
     this.order.getZone()
     .then( (l) => {

@@ -15,13 +15,16 @@ export class ModalSchedulePage {
   time= this.day.getTime();
   weekday=this.day.getDay();
   constructor(
-    private navParams:NavParams
+    private navParams:NavParams,
+    private order:OrderProvider
   ) {
   }
 
 
   ionViewDidLoad() {
-    this.hours=   this.navParams.get('hours');
+    this.order.device.camPage("schedule");
+
+    this.hours=this.navParams.get('hours');
   }
 
 }

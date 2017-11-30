@@ -19,7 +19,7 @@ export class OrderProvider {
   constructor(
     private location: LocationProvider,
     private network: NetworkProvider,
-    private device: DeviceProvider,
+    public device: DeviceProvider,
     public c:ConstantsProvider
   ) {
   }

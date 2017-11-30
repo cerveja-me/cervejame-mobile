@@ -11,7 +11,7 @@ export class UserProvider {
 
   constructor(
     private network:NetworkProvider,
-    private device:DeviceProvider,
+    public device:DeviceProvider,
     private storage:Storage,
     private fb: Facebook,
   ){
