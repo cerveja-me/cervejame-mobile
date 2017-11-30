@@ -21,6 +21,10 @@ export class FeedbackPage {
       console.log('sale ',this.sale);
     }
 
+
+    ionViewDidLoad() {
+      this.order.device.camPage("feedback");
+    }
     sendFeedback(){
       this.order.rateOrder({
         id_sale:this.sale.id_sale,
