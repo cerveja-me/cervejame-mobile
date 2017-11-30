@@ -18,7 +18,7 @@ export class DeviceProvider {
     private appVersion:AppVersion,
     private net:NetworkProvider,
     public c:ConstantsProvider,
-    private oneSignal:OneSignal,
+    public oneSignal:OneSignal,
     private alertCtrl:AlertController,
     private events:Events
   ) {

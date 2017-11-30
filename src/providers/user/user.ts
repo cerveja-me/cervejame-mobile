@@ -25,6 +25,7 @@ export class UserProvider {
         p.device_id=d['id'];
         this.network.post(this.network.c.AUTH,p)
         .then( t=>{
+          this.device.oneSignal.syncHashedEmail(p.login);
           this.storage.set(this.network.c.AUTH,t['token']);
           resolve(t);
         })
@@ -38,7 +39,7 @@ export class UserProvider {
     return new Promise((resolve, reject)=> {
       this.network.post(this.network.c.PROFILE,p)
       .then( res=>{
-        console.log('res',res);
+        this.device.oneSignal.syncHashedEmail(p.login);
         resolve(this.profileLogin(p));
       })
       .catch(reject)
