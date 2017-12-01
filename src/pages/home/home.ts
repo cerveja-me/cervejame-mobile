@@ -2,7 +2,7 @@ import { Component,ViewChild,NgZone } from '@angular/core';
 import { NavController,ModalController,Slides,LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { LOCALE_ID } from '@angular/core';
-import { Firebase } from '@ionic-native/firebase';
+// import { Firebase } from '@ionic-native/firebase';
 
 //providers
 import { DeviceProvider } from '../../providers/device/device'
@@ -52,8 +52,8 @@ export class HomePage {
     private storage:Storage,
     private device:DeviceProvider,
     private order: OrderProvider,
-    private load:LoadingController,
-    private firebase:Firebase
+    private load:LoadingController
+    // private firebase:Firebase
   ) {
     this.loader=this.load.create({
       content: this.device.getRandonLoading()
@@ -68,7 +68,7 @@ export class HomePage {
     this.loader.present();
     this.order.getZone()
     .then( (l) => {
-      this.firebase.logEvent('page_enter', l);
+      // this.firebase.logEvent('page_enter', l);
       this.location=l
       this.products=l['zone']['products'];
       this.slideChanged();
@@ -80,7 +80,7 @@ export class HomePage {
     this.loader.dismiss();
   })
   .catch( e =>{
-    this.firebase.logError(e);
+    // this.firebase.logError(e);
     this.err=e;
     console.log('erro ->',e);
     /*
@@ -106,7 +106,7 @@ slideChanged() {
     this.amount=2;
     this.discount=0.05;
     this.zone.run(()=>{});
-    this.firebase.logEvent('slide_change', this.products[current]);
+    // this.firebase.logEvent('slide_change', this.products[current]);
     this.selectedBeer={
       beer:this.products[current],
       discount:this.discount,
@@ -118,7 +118,7 @@ slideChanged() {
 
 increaseAmount(){
   this.updatingAmount=true;
-  this.firebase.logEvent('increaseAmount',this.selectedBeer)
+  // this.firebase.logEvent('increaseAmount',this.selectedBeer)
   this.amount++;
   this.updatePriceAndDiscount();
   setTimeout(() => {
@@ -127,7 +127,7 @@ increaseAmount(){
 }
 
 decreaseAmount(){
-  this.firebase.logEvent('decreaseAmount',this.selectedBeer)
+  // this.firebase.logEvent('decreaseAmount',this.selectedBeer)
 
   this.updatingAmount=true;
 
@@ -228,7 +228,7 @@ verifyOpenSale(){
     }
   })
   .catch( e =>{
-    this.firebase.logError(e);
+    // this.firebase.logError(e);
     console.log('ee->',e);
   })
 }
