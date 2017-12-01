@@ -95,7 +95,6 @@
     </plugin>
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
-    <plugin name="cordova-plugin-firebase" spec="^0.1.24" />
     <plugin name="cordova-plugin-geolocation" spec="^3.0.0">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="para localizar os produtos diponiveis para voce" />
     </plugin>
