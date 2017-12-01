@@ -40,7 +40,7 @@
 
       <span class="order-status-bar__label active" *ngIf="actions.review">
           <span class="icon-check"></span>
-          <label>Avalie a Entrega</label>
+          <label>Pedido entregue - Avalie</label>
         </span>
     </button>
 
@@ -126,14 +126,14 @@
 <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NETWORK_ERROR'">
   <ion-slide>
     <p class="msg-empty location-error">
- 
+
       <span class="msg-empty__title">Internet?</span>
- 
+
       Tivemos algum problema com a conexão.<button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
- 
+
       <p class="choose__bottom">
        <figure class="choose__picture" style="bottom: 5%;">
- 
+
          <img style="margin-top: 45%" src="assets/img/empty.png">
        </figure>
      </p>
