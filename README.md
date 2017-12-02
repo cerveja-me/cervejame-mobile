@@ -44,12 +44,12 @@ ionic build --release android
 
 ### sign the build
 ```
-rm cervejame.apk && jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cervejame.keystore -storepass cervejame platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame
+ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cervejame.keystore -storepass cervejame platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame
 ```
 ### signed apk
 
 ```
-/Users/jefersonguardezi/Library/Android/sdk/build-tools/26.0.1/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame.apk
+rm cervejame.apk && zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk cervejame.apk
 ```
 
 ###UNIQUE COMMAND
