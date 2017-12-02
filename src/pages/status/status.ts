@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 
 //providers
 import { OrderProvider } from '../../providers/order/order';
@@ -24,11 +24,18 @@ export class StatusPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private order:OrderProvider,
+    private events:Events
   ) {
+    this.events.subscribe('push:order_update', data=>{
+      this.verifyOpenSale();
+    });
   }
 
   ionViewDidLoad() {
     this.order.device.camPage("status");
+    this.verifyOpenSale();
+  }
+  verifyOpenSale(){
     this.order.getOrders()
     .then(s=>{
       this.sales=s;
