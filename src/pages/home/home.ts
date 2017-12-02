@@ -1,5 +1,5 @@
 import { Component,ViewChild,NgZone } from '@angular/core';
-import { NavController,ModalController,Slides,LoadingController } from 'ionic-angular';
+import { NavController,ModalController,Slides,LoadingController,Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { LOCALE_ID } from '@angular/core';
 // import { Firebase } from '@ionic-native/firebase';
@@ -52,7 +52,8 @@ export class HomePage {
     private storage:Storage,
     private device:DeviceProvider,
     private order: OrderProvider,
-    private load:LoadingController
+    private load:LoadingController,
+    private events:Events
     // private firebase:Firebase
   ) {
     this.loader=this.load.create({
@@ -60,6 +61,10 @@ export class HomePage {
     })
     this.verifyPush();
     this.verifyOpenSale();
+    this.events.subscribe('push:order_update', data=>{
+      console.log('abriu o evento buscar');
+      this.verifyOpenSale();
+    });
   }
 
 

@@ -57,27 +57,34 @@ export class DeviceProvider {
     })
   }
 
+  createAlertPush(title,body){
+    let alert = this.alertCtrl.create({
+      title: title,
+      message: body,
+      buttons: ['Ok']
+    });
+
+    alert.present();
+  }
+
   startOneSignal(){
     var settings:any={kOSSettingsKeyAutoPrompt:false};
     this.oneSignal.iOSSettings(settings);
     this.oneSignal.startInit('5d5587e7-348c-4172-8a19-7e01c49daa2a', '10339294539');
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
 
-    this.oneSignal.handleNotificationReceived().subscribe((text) => {
-      let alert = this.alertCtrl.create({
-        title: text.payload.title,
-        message: text.payload.body,
-        buttons: ['Ok']
-      });
-      alert.onWillDismiss(data=>{
-        if(text.payload.additionalData !==null){
-          this.events.publish(text.payload.additionalData.action, text.payload);
-        }
-      })
-      alert.present();
+    this.oneSignal.handleNotificationReceived()
+    .subscribe((text) => {
+      if(text.payload['additionalData']){
+        this.events.publish(text.payload['additionalData']['action'],'update');
+      }
+      this.createAlertPush(text.payload['title'],text.payload['body'])
     });
-    this.oneSignal.handleNotificationOpened().subscribe((text) => {
-      // this.doAlert(text.notification.payload);
+    this.oneSignal.handleNotificationOpened()
+    .subscribe((text) => {
+      if(text.notification.payload['additionalData']){
+        this.events.publish(text.notification.payload['additionalData']['action'],'update');
+      }
     });
     this.oneSignal.getIds()
     .then(res=>{
