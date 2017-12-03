@@ -1,4 +1,5 @@
 <ion-header (click)="showTip=false" class="header-home">
+
     <ion-title>
       <button class="btn-schedule" ion-button secondary *ngIf="products.length >0 && location.zone.open" (click)="openSchedule()">
         <span class="icon-opened"></span>
@@ -10,9 +11,9 @@
         <span class="icon-dropdown"></span>
         </button>
     </ion-title>
-    <!-- <button class="btn-login" (click)="openLogin()"></button> -->
-    <!-- <button class="btn-user">
-    </button> -->
+    <!-- <button class="btn-login" (click)="openCard()"></button> -->
+     <button class="btn-user" (click)="openCard()">
+    </button>
     <button class="btn-voucher" ion-button secondary *ngIf="products.length >0" (click)="openModalVoucher()">
       <span class="icon-voucher"></span>
     </button>

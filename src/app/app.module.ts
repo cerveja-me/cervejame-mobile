@@ -44,9 +44,11 @@ import { StatusPage } from '../pages/status/status';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
 import { ModalNotificationPage } from '../pages/modal-notification/modal-notification';
+import { CardPage } from '../pages/card/card';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { PaymentProvider } from '../providers/payment/payment';
 registerLocaleData(ptBr)
 
 class KeyboardMock extends Keyboard {
@@ -63,8 +65,8 @@ class DeviceMock extends Device{
   get model() : string { return "Browser - Chrome";}
   get platform() : string { return "Browser";}
   get serial() : string { return "unknown";}
-  get uuid() : string { return "1231231-83dad11-e7a91992-ebcb67fe33";}
-  get version(): string { return "7.1.1"; }
+  get uuid() : string { return "a2d31d4-83dad11-e7a91992-ebcb67fe33";}
+  get version(): string { return "7.3.1"; }
 }
 
 class SplashScreenMock extends SplashScreen{
@@ -85,7 +87,8 @@ class SplashScreenMock extends SplashScreen{
     StatusPage,
     ModalRegisterPage,
     ModalSchedulePage,
-    ModalNotificationPage
+    ModalNotificationPage,
+    CardPage
   ],
   imports: [
     HttpClientModule,
@@ -108,7 +111,8 @@ class SplashScreenMock extends SplashScreen{
     StatusPage,
     ModalRegisterPage,
     ModalSchedulePage,
-    ModalNotificationPage
+    ModalNotificationPage,
+    CardPage
   ],
   providers: [
     DeviceProvider,
@@ -128,13 +132,14 @@ class SplashScreenMock extends SplashScreen{
     // Firebase,
     // {provide:Geolocation, useCass:GeolocationMock},
     // { provide: Facebook, useClass: FacebookMock },
-    // { provide: AppVersion, useClass: AppVersionMock },
-    // { provide: SplashScreen, useClass:SplashScreenMock },
-    // { provide: Device, useClass: DeviceMock },
-    // { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
+    { provide: AppVersion, useClass: AppVersionMock },
+    { provide: SplashScreen, useClass:SplashScreenMock },
+    { provide: Device, useClass: DeviceMock },
+    { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: 'pt-PT' },
-    { provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler},
+    PaymentProvider
   ]
 })
 export class AppModule {

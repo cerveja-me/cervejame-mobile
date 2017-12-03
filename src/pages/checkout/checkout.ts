@@ -9,6 +9,9 @@ import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { HomePage } from '../home/home';
 import { StatusPage } from '../status/status';
+import { CardPage } from '../card/card';
+
+
 
 @Component({
   selector: 'page-checkout',
@@ -107,6 +110,23 @@ export class CheckoutPage {
     })
     .catch(e=>{
       this.openLogin();
+    })
+  }
+
+  openCard(){
+    this.user.isAuth()
+    .then(u=>{
+      let cardModal = this.modalCtrl.create(CardPage);
+      cardModal.present();
+    })
+    .catch(()=>{
+      let loginModal = this.modalCtrl.create(ModalLoginPage)
+      loginModal.onDidDismiss((data)=>{
+        if(data==='success'){
+          this.openCard();
+        }
+      })
+      loginModal.present();
     })
   }
 
