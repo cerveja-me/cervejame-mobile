@@ -17,7 +17,7 @@ import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
 import { StatusPage } from '../status/status';
 import { FeedbackPage } from '../feedback/feedback';
-
+import { CardPage } from '../card/card';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -56,48 +56,47 @@ export class HomePage {
     private events:Events
     // private firebase:Firebase
   ) {
-    this.loader=this.load.create({
-      content: this.device.getRandonLoading()
-    })
-    this.verifyPush();
+  this.loader=this.load.create({
+    content: this.device.getRandonLoading()
+  })
+  this.verifyPush();
+  this.verifyOpenSale();
+  this.events.subscribe('push:order_update', data=>{
     this.verifyOpenSale();
-    this.events.subscribe('push:order_update', data=>{
-      console.log('abriu o evento buscar');
-      this.verifyOpenSale();
-    });
-  }
+  });
+}
 
 
-  ionViewDidLoad() {
-    this.device.camPage("home");
-    this.loader.present();
-    this.order.getZone()
-    .then( (l) => {
-      // this.firebase.logEvent('page_enter', l);
-      this.location=l
-      this.products=l['zone']['products'];
-      this.slideChanged();
-      this.loadedcompleted=true;
-      // this.verifyTime();
-      setTimeout(function(){
-      console.log('buscar produtos ');
-    },2000)
-    this.loader.dismiss();
-  })
-  .catch( e =>{
-    // this.firebase.logError(e);
-    this.err=e;
-    console.log('erro ->',e);
-    /*
-    * tratar os erros:
-    * - localização Bloqueada
-    * - liberada mas deu setTimeout
-    * - liberada mas não fora de area
-    * - dentro de area mas sem produtos
-    */
+ionViewDidLoad() {
+  this.device.camPage("home");
+  this.loader.present();
+  this.order.getZone()
+  .then( (l) => {
+    // this.firebase.logEvent('page_enter', l);
+    this.location=l
+    this.products=l['zone']['products'];
+    this.slideChanged();
     this.loadedcompleted=true;
-    this.loader.dismiss();            //estar sem conexão com a internet
-  })
+    // this.verifyTime();
+    setTimeout(function(){
+    console.log('buscar produtos ');
+  },2000)
+  this.loader.dismiss();
+})
+.catch( e =>{
+  // this.firebase.logError(e);
+  this.err=e;
+  console.log('erro ->',e);
+  /*
+  * tratar os erros:
+  * - localização Bloqueada
+  * - liberada mas deu setTimeout
+  * - liberada mas não fora de area
+  * - dentro de area mas sem produtos
+  */
+  this.loadedcompleted=true;
+  this.loader.dismiss();            //estar sem conexão com a internet
+})
 }
 
 slideChanged() {
@@ -113,12 +112,12 @@ slideChanged() {
     this.zone.run(()=>{});
     // this.firebase.logEvent('slide_change', this.products[current]);
     this.selectedBeer={
-      beer:this.products[current],
-      discount:this.discount,
-      amount:this.amount
-    }
-    this.updatePriceAndDiscount();
+    beer:this.products[current],
+    discount:this.discount,
+    amount:this.amount
   }
+  this.updatePriceAndDiscount();
+}
 }
 
 increaseAmount(){
@@ -269,6 +268,11 @@ openStatus(){
 }
 openFeedback(){
   this.navCtrl.push(FeedbackPage,{sale:this.openSale});
+}
+openCard(){
+  console.log('aui')
+  let cardModal = this.modalCtrl.create(CardPage);
+  cardModal.present();
 }
 
 }
