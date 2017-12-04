@@ -62,7 +62,7 @@ export class CheckoutPage {
     .then(()=>{
       this.user.getCostumerData()
       .then( c =>{
-        this.doPrompt(c.phone)
+        this.doPrompt(c['phone'])
         .then(data =>{
           this.order.completeOrder(this.payment)
           .then(res=>{
@@ -107,10 +107,11 @@ export class CheckoutPage {
           alert.present();
         })
       })
-      .catch(e=>{
-        this.openLogin();
-      })
     })
+    .catch(e=>{
+      this.openLogin();
+    })
+
   }
 
   openLogin(){
