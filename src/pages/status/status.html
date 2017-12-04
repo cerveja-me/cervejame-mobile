@@ -18,7 +18,7 @@
     <li class="order-status__item item-first" [ngClass]="actions && actions.accepted?'active':'loading'">
       <span class="order-status__icon"></span>
       <label class="order-status__label">
-        {{!sale.accepted?'Aguardando confirmação':'Pedido confirmado'}}
+        {{actions && actions.accepted?'Pedido confirmado':'Aguardando confirmação'}}
       </label>
     </li>
     <li class="order-status__item item-second delivery" [ngClass]="actions && actions.onWay?'active':actions && actions.accepted?'loading':''" >
