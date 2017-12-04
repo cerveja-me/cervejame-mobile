@@ -8,17 +8,30 @@
     <div>
       <div class="login__box">
          <span class="icon-user login__box__icon"></span>
-         <input name="nome" class="login__box__input" placeholder="Seu Nome" required="true" type="text" [(ngModel)]="name"/>
+         <input name="name" class="login__box__input" placeholder="nome Cartão" required="true" type="text" [(ngModel)]="card.cardholderName"/>
      </div>
      <div class="login__box">
-         <span class="icon-email login__box__icon"></span>
-         <input name="login" class="login__box__input" placeholder="E-mail" required="true" type="email" [(ngModel)]="login"/>
+         <span class="ios-card login__box__icon"></span>
+         <input name="number" class="login__box__input" placeholder="numero cartão" required="true" type="tel" [(ngModel)]="card.cardNumber"/>
      </div>
      <div class="login__box">
          <span class="icon-pass login__box__icon"></span>
-         <input name="senha" class="login__box__input" placeholder="Senha" required="true" type="password" [(ngModel)]="password"/>
+         <input name="month" class="login__box__input" placeholder="Mes" required="true" type="tel" [(ngModel)]="card.cardExpirationMonth"/>
      </div>
-     <input type="button" class="btn-submit"  value="Criar conta" (click)="createUser()" />
+     <div class="login__box">
+         <span class="icon-pass login__box__icon"></span>
+         <input name="year" class="login__box__input" placeholder="Ano" required="true" type="tel" [(ngModel)]="card.cardExpirationYear"/>
+     </div>
+     <div class="login__box">
+       <span class="icon-pass login__box__icon"></span>
+       <input name="securityCode" class="login__box__input" placeholder="Codigo de segurança" required="true" type="tel" [(ngModel)]="card.securityCode"/>
+     </div>
+     <div class="login__box">
+       <span class="icon-pass login__box__icon"></span>
+       <input name="year" class="login__box__input" placeholder="CPF" required="true" type="tel" [(ngModel)]="card.cpf"/>
+     </div>
+
+     <input type="button" class="btn-submit"  value="Cadastrar Cartão" (click)="createCard()" />
  </div>
 </div>
 </ion-content>
