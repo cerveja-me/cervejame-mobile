@@ -134,4 +134,25 @@ export class UserProvider {
     })
   }
 
+  getCostumerData(){
+    return new Promise((resolve, reject)=> {
+      this.storage.get(this.network.c.USER)
+      .then( c =>{
+        if( c ){
+          resolve(c);
+        }else{
+          this.network.get(this.network.c.USER)
+          .then( co =>{
+            this.storage.set(this.network.c.USER,co);
+            resolve(co);
+          })
+          .catch( e =>{
+            reject(e);
+          })
+        }
+        console.log('costumer local->',c);
+      })
+    })
+  }
+
 }

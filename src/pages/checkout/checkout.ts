@@ -60,53 +60,56 @@ export class CheckoutPage {
   finishOrder(){
     this.user.isAuth()
     .then(()=>{
-      this.doPrompt()
-      .then(data =>{
-        this.order.completeOrder(this.payment)
-        .then(res=>{
-          this.navCtrl.setRoot(StatusPage);
-        })
-        .catch( e =>{
-          if(e.status == 403){
-            this.openLogin()
-            .then(login=>{
-              this.finishOrder();
-            })
-          }else if(e.code==2000){
-            let alert = this.alertCtrl.create({
-              title: 'Erro',
-              message: e.message,
-              buttons: ['Ok']
-            });
-            alert.present();
-          }else{
-            let alert = this.alertCtrl.create({
-              title: 'Vooucher',
-              message: e.error.message,
-              buttons: ['Ok']
-            });
-            alert.present();
-            this.order.removeVoucher();
-            this.getVoucher();
-          }
+      this.user.getCostumerData()
+      .then( c =>{
+        this.doPrompt(c.phone)
+        .then(data =>{
+          this.order.completeOrder(this.payment)
+          .then(res=>{
+            this.navCtrl.setRoot(StatusPage);
+          })
+          .catch( e =>{
+            if(e.status == 403){
+              this.openLogin()
+              .then(login=>{
+                this.finishOrder();
+              })
+            }else if(e.code==2000){
+              let alert = this.alertCtrl.create({
+                title: 'Erro',
+                message: e.message,
+                buttons: ['Ok']
+              });
+              alert.present();
+            }else{
+              let alert = this.alertCtrl.create({
+                title: 'Vooucher',
+                message: e.error.message,
+                buttons: ['Ok']
+              });
+              alert.present();
+              this.order.removeVoucher();
+              this.getVoucher();
+            }
 
-          console.log('er-> ',e);
+            console.log('er-> ',e);
+          })
+        })
+        .catch(m=>{
+          let alert = this.alertCtrl.create({
+            title: 'Telefone',
+            message: m,
+            buttons: ['Ok']
+          });
+          alert.onDidDismiss(()=>{
+            this.finishOrder();
+          })
+          alert.present();
         })
       })
-      .catch(m=>{
-        let alert = this.alertCtrl.create({
-          title: 'Telefone',
-          message: m,
-          buttons: ['Ok']
-        });
-        alert.onDidDismiss(()=>{
-          this.finishOrder();
-        })
-        alert.present();
+      .catch(e=>{
+        this.openLogin();
       })
-    })
-    .catch(e=>{
-      this.openLogin();
     })
   }
 
@@ -130,7 +133,7 @@ export class CheckoutPage {
   voucherModal.present();
 }
 
-doPrompt() {
+doPrompt(phone) {
   return new Promise((resolve, reject) => {
     let prompt = this.alertCtrl.create({
       title: 'Complemento',
@@ -144,7 +147,8 @@ doPrompt() {
         {
           name: 'phone',
           placeholder: 'Seu Telefone',
-          type:'tel'
+          type:'tel',
+          value:phone
         }
       ],
       buttons: [
@@ -158,7 +162,7 @@ doPrompt() {
               this.user.costumerUpdate(data.phone)
               .then(resolve)
             }else{
-              reject("o preenchimento do telefone é obrigatorio");
+              reject("Precisamos do seu telefone para que sua experiência de atendimento seja muito melhor. ");
             }
           }
         }
