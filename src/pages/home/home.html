@@ -149,7 +149,7 @@
         <button class="btn-minus" (click)="decreaseAmount()" [ngClass]="changingSlide || amount==1 ? 'dragging': '' "></button>
 
         <div class="receipt__pricebox" [ngClass]="changingSlide ? 'dragging': selectedBeer.cold?'switch':''" >
-            <h2 class="receipt__amount">{{amount}} {{selectedBeer.beer.cold?'Caixa':'Garrafa'}}{{selectedBeer.amount>1?'s':''}} com 12</h2>
+            <h2 class="receipt__amount">{{amount}} {{selectedBeer.beer.cold?'Caixa':'Garrafa'}}{{selectedBeer.amount>1?'s':''}} com {{selectedBeer.beer.amount}}</h2>
             <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && !updatingAmount">-{{selectedBeer.finalDiscount |number:'1.0-0'}}% <small>OFF</small></span>
             <span class="receipt__discount animated" *ngIf="amount>1 && selectedBeer.beer.progressive_discount && !changingSlide && updatingAmount">-{{selectedBeer.finalDiscount | number:'1.0-0'}}% <small>OFF</small></span>
             <span class="receipt__price">R$ {{selectedBeer.price |number:'1.2-2'}} • <small>R$ {{selectedBeer.unitValue  |number:'1.2-2'}}</small></span>
