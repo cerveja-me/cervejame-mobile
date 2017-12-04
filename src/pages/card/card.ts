@@ -7,6 +7,15 @@ import { PaymentProvider } from '../../providers/payment/payment';
   templateUrl: 'card.html',
 })
 export class CardPage {
+  card:any={
+    cardNumber:"",
+    securityCode:"",
+    cardExpirationMonth:"",
+    cardExpirationYear:"",
+    cardholderName:"",
+    docType:"CPF",
+    docNumber:""
+  };
   URL_BASE='https://api.mercadopago.com';
   CUSTOMERS='/v1/customers/';
   constructor(
@@ -24,5 +33,8 @@ export class CardPage {
 
   }
 
+  createCard(){
+    console.log('cartão->',this.card)
+  }
 
 }
