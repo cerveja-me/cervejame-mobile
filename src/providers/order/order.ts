@@ -149,6 +149,7 @@ export class OrderProvider {
       this.network.put(this.network.c.SALE+this.sale.id,sale)
       .then( data => {
         resolve(data);
+        this.removeVoucher();
       })
       .catch( e =>{
         reject(e);
