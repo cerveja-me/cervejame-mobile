@@ -83,8 +83,8 @@ export class CheckoutPage {
               alert.present();
             }else{
               let alert = this.alertCtrl.create({
-                title: 'Vooucher',
-                message: e.error.message,
+                title:'Cupom já utilizado ou inválido',
+                message: 'Este cupom é válido para ser usado apenas uma vez ou está fora do período promocional.',
                 buttons: ['Ok']
               });
               alert.present();
