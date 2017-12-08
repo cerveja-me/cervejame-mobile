@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ConstantsProvider {
- public API:string='http://ec2-54-207-94-27.sa-east-1.compute.amazonaws.com/api/'
-  // public API:string='https://ec2-54-233-116-230.sa-east-1.compute.amazonaws.com:9001/api/';
+//  public API:string='http://localhost:1337/ec2-54-207-94-27.sa-east-1.compute.amazonaws.com/api/';
+ public API:string='http://ec2-54-207-94-27.sa-east-1.compute.amazonaws.com/api/';
   // public API:string='http://10.42.0.1:9001/api/';
-  // public API:string='https://127.0.0.1:9001/api/';
+  // public API:string='http://127.0.0.1:9001/api/';
   public DEVICE:string='device/';
   public LOCATION:string='location/';
   public PROFILE:string='profile/';
