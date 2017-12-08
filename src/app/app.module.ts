@@ -57,14 +57,14 @@ class KeyboardMock extends Keyboard {
 }
 
 class DeviceMock extends Device{
-  get cordova(): string{ return "7.0.1";}
+  get cordova(): string{ return "7.1.1";}
   get isVirtual(): boolean { return true;}
-  get manufacturer() : string { return "Desenvolvimento";}
-  get model() : string { return "Browser - Chrome";}
-  get platform() : string { return "Browser";}
-  get serial() : string { return "unknown";}
-  get uuid() : string { return "1231231-83dad11-e7a91992-ebcb67fe33";}
-  get version(): string { return "7.1.1"; }
+  get manufacturer() : string { return "Deassdenvolvimento";}
+  get model() : string { return "Browser - Chrasdome";}
+  get platform() : string { return "Browsasder";}
+  get serial() : string { return "unknoasdwn";}
+  get uuid() : string { return "1231231-8asd3dad11-e7a91992-ebcb67fe33";}
+  get version(): string { return "7.1asd.1"; }
 }
 
 class SplashScreenMock extends SplashScreen{
