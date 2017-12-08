@@ -27,9 +27,9 @@ export class LocationProvider {
         // resolve({latitude:-33.790608, longitude:21.044487})
         let e={message:''};
         if(err.code==1){
-          e.message='USER_DENIED_GEOLOCATION';
+          e='USER_DENIED_GEOLOCATION';
         }else{
-          e.message='GEOLOCATION_TIMEOUT';
+          e='GEOLOCATION_TIMEOUT';
         }
         reject(e);
       })

@@ -58,7 +58,7 @@ export class OrderProvider {
         })
       })
       .catch( err =>{
-        reject("NETWORK_ERROR");
+        reject(err);
       })
     })
   }
