@@ -72,7 +72,7 @@
             "cordova-plugin-device": {},
             "cordova-plugin-app-version": {},
             "cordova-plugin-geolocation": {
-                "GEOLOCATION_USAGE_DESCRIPTION": "para localizar os produtos diponiveis para voce"
+                "GEOLOCATION_USAGE_DESCRIPTION": "Usamos a sua localização para identificar a sua região e mostrar os produtos disponiveis"
             },
             "cordova-plugin-file": {},
             "cordova-plugin-file-transfer": {},
