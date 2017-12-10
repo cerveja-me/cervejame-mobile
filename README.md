@@ -88,3 +88,10 @@ What is the two-letter country code for this unit?
 Is CN=Jeferson Guardezi, OU=cervejame, O=cervejame, L=São Paulo, ST=São Paulo, C=SP correct?
 [no]:  yes
 ```
+
+###
+install geolocation
+
+```
+ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USAGE_DESCRIPTION="Usamos a sua localização para identificar a sua região e mostrar os produtos disponiveis"
+```
