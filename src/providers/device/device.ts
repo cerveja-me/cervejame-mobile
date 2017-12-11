@@ -6,6 +6,8 @@ import { AppVersion } from '@ionic-native/app-version';
 import { OneSignal } from '@ionic-native/onesignal';
 import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
+import { Storage } from '@ionic/storage';
+import { UUID } from 'angular2-uuid';
 
 declare var UXCam:any;
 
@@ -20,7 +22,9 @@ export class DeviceProvider {
     public c:ConstantsProvider,
     public oneSignal:OneSignal,
     private alertCtrl:AlertController,
-    private events:Events
+    private events:Events,
+    private storage: Storage
+    
   ) {
     this.createDevice('empty');
 
@@ -40,18 +44,29 @@ export class DeviceProvider {
         app_name: 1,
         app_os: this.device.platform,
         phone_model: this.device.platform,
-        device_uuid: this.device.uuid
+        device_uuid: this.device.uuid,
+        install_uuid: ''
       }
 
-      this.appVersion.getVersionNumber().then(v=>{
-        d.app_version=v;
-        this.net.post(this.c.DEVICE,d)
-        .then(r=>{
-          this.dev=r;
-          resolve(this.dev);
-        })
-        .catch(e=>{
-          reject(e);
+      this.storage.get('install_uuid')
+      .then(install_uuid=>{
+        if(install_uuid){
+          d.install_uuid=install_uuid;
+        }else{
+          let uuid = UUID.UUID();
+          d.install_uuid = uuid;
+          this.storage.set('install_uuid',uuid);
+        }
+        this.appVersion.getVersionNumber().then(v=>{
+          d.app_version=v;
+          this.net.post(this.c.DEVICE,d)
+          .then(r=>{
+            this.dev=r;
+            resolve(this.dev);
+          })
+          .catch(e=>{
+            reject(e);
+          })
         })
       })
     })
