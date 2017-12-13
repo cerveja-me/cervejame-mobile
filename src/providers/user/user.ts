@@ -111,9 +111,8 @@ export class UserProvider {
         if(t){
           resolve(true)
         }else{
-          reject()
+          reject(false)
         }
-
       })
     })
 
