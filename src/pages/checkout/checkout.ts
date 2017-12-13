@@ -4,6 +4,7 @@ import { NavController,ModalController,ViewController,AlertController } from 'io
 //providers
 import { OrderProvider } from '../../providers/order/order';
 import { UserProvider } from '../../providers/user/user';
+import { DeviceProvider } from '../../providers/device/device';
 //relatedPages
 import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { ModalLoginPage } from '../modal-login/modal-login';
@@ -27,7 +28,8 @@ export class CheckoutPage {
     private order:OrderProvider,
     private alertCtrl:AlertController,
     private zone:NgZone,
-    private user:UserProvider
+    private user:UserProvider,
+    private device: DeviceProvider
   ) {
   }
 
@@ -54,10 +56,13 @@ export class CheckoutPage {
 
   openVoucherModal(){
     let modal = this.modalCtrl.create(ModalVoucherPage);
-    modal.present();
+    modal.present().then(r=>{
+      this.device.camPage("checkout");        
+    })
   }
 
   finishOrder(){
+    this.device.registerEvent('finish_order', this.or);
     this.user.isAuth()
     .then(()=>{
       this.user.getCostumerData()
@@ -118,6 +123,7 @@ export class CheckoutPage {
     return new Promise((resolve, reject)=> {
       let loginModal = this.modalCtrl.create(ModalLoginPage)
       loginModal.onDidDismiss((data)=>{
+      this.device.camPage("checkout");                
         if(data==='success'){
           this.finishOrder();
         }

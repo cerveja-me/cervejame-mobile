@@ -8,6 +8,8 @@ import { NetworkProvider } from '../network/network';
 import { ConstantsProvider } from '../constants/constants';
 import { Storage } from '@ionic/storage';
 import { UUID } from 'angular2-uuid';
+import { Firebase } from '@ionic-native/firebase';
+
 
 declare var UXCam:any;
 
@@ -22,14 +24,15 @@ export class DeviceProvider {
     public c:ConstantsProvider,
     public oneSignal:OneSignal,
     private alertCtrl:AlertController,
+    private firebase:Firebase,
     private events:Events,
     private storage: Storage
-    
+
   ) {
     this.createDevice('empty');
 
     if(this.platform.is('cordova')){
-      UXCam.startWithKey("1ebb58d58ddf43e");//umux@cerveja.me
+      UXCam.startWithKey(this.c.UXCAM_KEY);
       UXCam.tagUsersName(this.device.uuid);
       this.startOneSignal();
     }
@@ -126,7 +129,18 @@ export class DeviceProvider {
   camPage(page){
     if(this.platform.is('cordova')){
       UXCam.tagScreenName(page);
+      this.firebase.setScreenName(page);
     }
+  }
+
+  logError(e){
+    this.firebase.logError(e);
+  }
+
+  registerEvent(event:string,data:any){
+    if(this.platform.is('cordova')){
+      this.firebase.logEvent(event,data);
+    }    
   }
 
   getDevice(){

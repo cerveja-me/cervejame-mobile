@@ -28,6 +28,7 @@
     "@ionic-native/facebook": "^4.4.2",
     "@ionic-native/file": "^4.4.0",
     "@ionic-native/file-transfer": "^4.4.0",
+    "@ionic-native/firebase": "^4.5.2",
     "@ionic-native/geolocation": "^4.4.2",
     "@ionic-native/keyboard": "^4.4.2",
     "@ionic-native/native-storage": "^4.4.0",
@@ -43,6 +44,7 @@
     "cordova-plugin-facebook4": "^1.9.1",
     "cordova-plugin-file": "^5.0.0",
     "cordova-plugin-file-transfer": "^1.7.0",
+    "cordova-plugin-firebase": "^0.1.25",
     "cordova-plugin-geolocation": "^3.0.0",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-nativestorage": "^2.2.2",
@@ -87,7 +89,8 @@
       },
       "onesignal-cordova-plugin": {},
       "cordova-plugin-statusbar": {},
-      "cordova-uxcam": {}
+      "cordova-uxcam": {},
+      "cordova-plugin-firebase": {}
     },
     "platforms": [
       "android"
