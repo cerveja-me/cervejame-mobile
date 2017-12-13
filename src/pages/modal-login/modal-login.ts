@@ -34,6 +34,7 @@ export class ModalLoginPage {
       this.viewCtrl.dismiss('success');
     })
     .catch( e =>{
+      this.user.device.logError(e);      
       console.log('erro -> ', e);
     })
   }
@@ -45,7 +46,7 @@ export class ModalLoginPage {
       if(data==='success'){
         this.viewCtrl.dismiss('success');
       }else{
-        // this.device.camPage('login');
+        this.user.device.camPage("login");
       }
     });
   }
@@ -60,6 +61,7 @@ export class ModalLoginPage {
         })
         .catch(e=>{
           console.log('error face-> ',e);
+          this.user.device.logError(e);
             // this.dismiss('success');
         });
     }

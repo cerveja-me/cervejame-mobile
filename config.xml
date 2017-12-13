@@ -106,5 +106,10 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-uxcam" spec="^2.3.6" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+<<<<<<< HEAD
     <plugin name="onesignal-cordova-plugin" spec="^2.2.4" />
+=======
+    <plugin name="onesignal-cordova-plugin" spec="^2.2.2" />
+    <plugin name="cordova-plugin-firebase" spec="^0.1.25" />
+>>>>>>> firebase
 </widget>
