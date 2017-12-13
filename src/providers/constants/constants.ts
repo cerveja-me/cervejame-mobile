@@ -16,6 +16,7 @@ export class ConstantsProvider {
   public USER:string='costumer/';
   public REMOTE_ASSETS:string='https://s3-sa-east-1.amazonaws.com/assests.cerveja.me';
   //public REMOTE_ASSETS:string='https://assets.cerveja.me/';
+  UXCAM_KEY:string='cbeaac56662c00d';
   GOOGLE_GEOCODE:string ='https://maps.googleapis.com/maps/api/geocode/json?address=#&location=LAT,LNG&rankby=distance&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
   GOOGLE_ADDRESS:string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
 }

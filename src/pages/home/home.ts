@@ -87,14 +87,6 @@ export class HomePage {
   .catch( e =>{
     // this.firebase.logError(e);
     this.err=e;
-    console.log('erro ->',e);
-    /*
-    * tratar os erros:
-    * - localização Bloqueada
-    * - liberada mas deu setTimeout
-    * - liberada mas não fora de area
-    * - dentro de area mas sem produtos
-    */
     this.loadedcompleted=true;
     this.loader.dismiss();            //estar sem conexão com a internet
   })
@@ -107,11 +99,10 @@ slideChanged() {
   }else{
     this.current = current;
     this.changingSlide=false;
-
     this.amount=2;
     this.discount=0.05;
     this.zone.run(()=>{});
-    // this.firebase.logEvent('slide_change', this.products[current]);
+    this.device.registerEvent('slide_change', this.products[current]);
     this.selectedBeer={
       beer:this.products[current],
       discount:this.discount,
@@ -123,7 +114,7 @@ slideChanged() {
 
 increaseAmount(){
   this.updatingAmount=true;
-  // this.firebase.logEvent('increaseAmount',this.selectedBeer)
+  this.device.registerEvent('increaseAmount',this.selectedBeer)
   this.amount++;
   this.updatePriceAndDiscount();
   setTimeout(() => {
@@ -132,7 +123,7 @@ increaseAmount(){
 }
 
 decreaseAmount(){
-  // this.firebase.logEvent('decreaseAmount',this.selectedBeer)
+  this.device.registerEvent('decreaseAmount',this.selectedBeer)
 
   this.updatingAmount=true;
 
@@ -196,6 +187,7 @@ verifyPush(){
     }else{
       let notificationModal = this.modalCtrl.create(ModalNotificationPage);
       notificationModal.present().then(r=>{
+        this.device.camPage("home");        
         this.storage.set('hasOpenNotification','true');
       });
     }
@@ -233,7 +225,7 @@ verifyOpenSale(){
     }
   })
   .catch( e =>{
-    // this.firebase.logError(e);
+    this.device.logError(e);
     console.log('ee->',e);
   })
 }
@@ -245,12 +237,16 @@ selectProduct(p){
 
 openModalVoucher(){
   let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
-  voucherModal.present();
+  voucherModal.present().then(r=>{
+    this.device.camPage("home");        
+  })
 }
 
 openSchedule(){
   let scheduleModal = this.modalCtrl.create(ModalSchedulePage,{hours:this['location']['zone']['schedule']})
-  scheduleModal.present();
+  scheduleModal.present().then(r=>{
+    this.device.camPage("home");        
+  })
 }
 
 openLogin(){
@@ -259,6 +255,7 @@ openLogin(){
 }
 tryAgain(){
   this.navCtrl.setRoot(HomePage);
+  this.device.registerEvent('try_again',{})
 }
 openStatus(){
   if(this.actions.review){
