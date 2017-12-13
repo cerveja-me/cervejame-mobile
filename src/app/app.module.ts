@@ -126,6 +126,7 @@ class SplashScreenMock extends SplashScreen{
     OneSignal,
     Facebook,
     Firebase,
+    Keyboard,
     // {provide:Geolocation, useCass:GeolocationMock},
     // { provide: Facebook, useClass: FacebookMock },
     // { provide: AppVersion, useClass: AppVersionMock },
