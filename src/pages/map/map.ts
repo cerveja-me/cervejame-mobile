@@ -76,6 +76,7 @@ export class MapPage {
         this.map.addListener('dragend', () => {
           this.movingPin = false;
           this.updateAddress({ 0: this.map.getCenter().lat(), 1: this.map.getCenter().lng() });
+          this.device.registerEvent('moved_pin',{});
         }, err => {
           console.log(err);
         });
@@ -128,6 +129,9 @@ export class MapPage {
       google.maps.event.trigger(map, 'dragend');
     });
 
+  }
+  registerChanges(ev){
+    this.device.registerEvent(ev,{});
   }
 
   updateAddress(_loc) {
@@ -188,7 +192,7 @@ export class MapPage {
     //let loca={0:this.map.getCenter().lat(),1:this.map.getCenter().lng()}
     this.address.street_number = this.number;
     this.navCtrl.push(CheckoutPage);
-
+    this.device.registerEvent('finish_order',{});    
   }
 
 }

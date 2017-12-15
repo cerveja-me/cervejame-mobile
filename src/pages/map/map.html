@@ -9,10 +9,10 @@
 <ion-content  no-bounce>
 
   <div class="map__address" *ngIf="address">
-    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true;editingAddress=true" (ngModelChange)="addressChange()" (ionBlur)="closeEdit(); texting=false">
+    <ion-input #inputaddress class="map__address__input" [(ngModel)]="fulladdress" (click)="fulladdress=''; texting=true;editingAddress=true" (ngModelChange)="addressChange()" (ionBlur)="closeEdit(); texting=false"  (click)="registerChanges('address')">
     </ion-input>
 
-    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number='';texting=true;" (ionBlur)="texting=false" *ngIf="!editingAddress">
+    <input class="map__address__number" placeholder="nº" [(ngModel)]="number" type="tel" (click)="number='';texting=true;" (ionBlur)="texting=false" *ngIf="!editingAddress" (click)="registerChanges('number')">
 
     <span class="tip__balloon tip-down" *ngIf="!texting && !number">Não esqueça o número</span>
     <span class="map__address__icon icon-pin-min"></span>
@@ -22,7 +22,7 @@
     </ul>
 
     <span class="map__address__plus icon-plus-b"></span>
-    <input class="map__address__input" placeholder="Complemento" type="text" [(ngModel)]="complement" (click)="texting=true" (ionBlur)="texting=false">
+    <input class="map__address__input" placeholder="Complemento" type="text" [(ngModel)]="complement" (click)="texting=true;registerChanges('complement')" (ionBlur)="texting=false">
   </div>
 
   <div #map id="map" (click)="closeEdit(); texting=false" [ngClass]="texting?'keyboardOpen':movingPin?'moving':''"></div>
