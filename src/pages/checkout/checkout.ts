@@ -62,15 +62,17 @@ export class CheckoutPage {
   }
 
   finishOrder(){
-    this.device.registerEvent('finish_order', this.or);
+    this.device.registerEvent('order_complete', this.or);        
     this.user.isAuth()
     .then(()=>{
       this.user.getCostumerData()
       .then( c =>{
+        this.device.registerEvent('open_phone', this.or);                
         this.doPrompt(c['phone'])
         .then(data =>{
           this.order.completeOrder(this.payment)
-          .then(res=>{
+          .then(res=>{            
+            this.device.registerEvent('order_completed', this.or);
             this.navCtrl.setRoot(StatusPage);
           })
           .catch( e =>{
@@ -95,6 +97,7 @@ export class CheckoutPage {
               alert.present();
               this.order.removeVoucher();
               this.getVoucher();
+              this.device.registerEvent('voucher_removed', this.or);                      
             }
 
             console.log('er-> ',e);

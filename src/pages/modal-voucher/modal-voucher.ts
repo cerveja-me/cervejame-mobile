@@ -34,6 +34,7 @@ export class ModalVoucherPage {
      if(this.code.length==9){
        this.voucher.getVoucher(this.code)
        .then(res=>{
+        this.device.registerEvent('voucher_active', res);                
          this.vouch=res;
          this.voucher_active=true;
          setTimeout(a=>{
@@ -41,7 +42,8 @@ export class ModalVoucherPage {
          },1500);
        })
        .catch(er=>{
-         this.error_active=true
+        this.device.registerEvent('voucher_error', er);                        
+        this.error_active=true
          this.voucher_active=false;
        })
      }else{

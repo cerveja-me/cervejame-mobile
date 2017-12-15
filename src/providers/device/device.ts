@@ -115,6 +115,12 @@ export class DeviceProvider {
       this.oneSignal.registerForPushNotifications();
       this.oneSignal.getIds()
       .then(res=>{
+        this.firebase.getToken()
+        .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
+        .catch(error => console.error('Error getting token', error));
+        this.firebase.onTokenRefresh()
+        .subscribe((token: string) => console.log(`Got a new token ${token}`));
+      
         this.createDevice(res.userId);
       })
     }

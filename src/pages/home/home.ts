@@ -102,7 +102,7 @@ slideChanged() {
     this.amount=2;
     this.discount=0.05;
     this.zone.run(()=>{});
-    this.device.registerEvent('slide_change', this.products[current]);
+    this.device.registerEvent('slide_change', {"product":this.products[current]});
     this.selectedBeer={
       beer:this.products[current],
       discount:this.discount,
@@ -114,8 +114,9 @@ slideChanged() {
 
 increaseAmount(){
   this.updatingAmount=true;
-  this.device.registerEvent('increaseAmount',this.selectedBeer)
+  // this.device.registerEvent('increaseAmount',this.selectedBeer.beer)
   this.amount++;
+  this.device.registerEvent('increase_amount',{"product":this.selectedBeer.beer,"amount":this.selectedBeer.amount})
   this.updatePriceAndDiscount();
   setTimeout(() => {
     this.updatingAmount=false;
@@ -123,10 +124,9 @@ increaseAmount(){
 }
 
 decreaseAmount(){
-  this.device.registerEvent('decreaseAmount',this.selectedBeer)
-
   this.updatingAmount=true;
-
+  this.device.registerEvent('decrease_amount',{"product":this.selectedBeer.beer,"amount":this.selectedBeer.amount})
+  
   if(this.amount>1){
     this.amount--;
     this.updatePriceAndDiscount();
@@ -232,7 +232,9 @@ verifyOpenSale(){
 
 selectProduct(p){
   this.order.setProduct(p,this.amount);
+  this.device.registerEvent('decreate_amount',{"product":this.selectedBeer.beer,"amount":this.selectedBeer.amount})
   this.navCtrl.push(MapPage);
+  
 }
 
 openModalVoucher(){
@@ -251,6 +253,7 @@ openSchedule(){
 
 openLogin(){
   let loginModal = this.modalCtrl.create(ModalLoginPage)
+  this.device.registerEvent('select_beer',{"product":this.selectedBeer.beer,"amount":this.selectedBeer.amount})  
   loginModal.present();
 }
 tryAgain(){
