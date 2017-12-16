@@ -163,7 +163,10 @@ doPrompt(phone) {
       ],
       buttons: [
         {
-          text: 'Cancel'
+          text: 'Cancelar',
+          handler: data => {
+            this.device.registerEvent('order_canceled', this.or);            
+          }
         },
         {
           text: 'Continuar',
