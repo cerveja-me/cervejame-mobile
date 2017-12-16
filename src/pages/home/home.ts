@@ -232,7 +232,7 @@ verifyOpenSale(){
 
 selectProduct(p){
   this.order.setProduct(p,this.amount);
-  this.device.registerEvent('decreate_amount',{"product":this.selectedBeer.beer,"amount":this.selectedBeer.amount})
+  this.device.registerEvent('select_beer',{"product":this.selectedBeer.beer,"amount":this.selectedBeer.amount})  
   this.navCtrl.push(MapPage);
   
 }
@@ -251,11 +251,10 @@ openSchedule(){
   })
 }
 
-openLogin(){
-  let loginModal = this.modalCtrl.create(ModalLoginPage)
-  this.device.registerEvent('select_beer',{"product":this.selectedBeer.beer,"amount":this.selectedBeer.amount})  
-  loginModal.present();
-}
+// openLogin(){
+//   let loginModal = this.modalCtrl.create(ModalLoginPage)
+//   loginModal.present();
+// }
 tryAgain(){
   this.navCtrl.setRoot(HomePage);
   this.device.registerEvent('try_again',{})
@@ -266,6 +265,7 @@ openStatus(){
   }else{
     this.navCtrl.push(StatusPage);
   }
+  this.device.registerEvent('open_status',{});
 }
 openFeedback(){
   this.navCtrl.push(FeedbackPage,{sale:this.openSale});
