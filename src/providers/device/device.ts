@@ -9,6 +9,7 @@ import { ConstantsProvider } from '../constants/constants';
 import { Storage } from '@ionic/storage';
 import { UUID } from 'angular2-uuid';
 import { Firebase } from '@ionic-native/firebase';
+import { FirebaseDynamicLinks } from '@ionic-native/firebase-dynamic-links';
 
 
 declare var UXCam:any;
@@ -26,7 +27,8 @@ export class DeviceProvider {
     private alertCtrl:AlertController,
     private firebase:Firebase,
     private events:Events,
-    private storage: Storage
+    private storage: Storage,
+    private fbdlink:FirebaseDynamicLinks
 
   ) {
     this.createDevice('empty');
@@ -36,6 +38,9 @@ export class DeviceProvider {
       UXCam.tagUsersName(this.device.uuid);
       this.startOneSignal();
     }
+    fbdlink.onDynamicLink()
+    .then((res: any) => console.log(res)) //Handle the logic here after opening the app with the Dynamic link
+    .catch((error:any) => console.log(error));
   }
 
   createDevice(push:string){
