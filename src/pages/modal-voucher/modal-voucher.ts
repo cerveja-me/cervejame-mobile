@@ -31,10 +31,11 @@ export class ModalVoucherPage {
 
   changecod(){
      this.error_active=false;
+     console.log('this code ->', this.code.replace('#','$'));
      if(this.code.length==9){
-       this.voucher.getVoucher(this.code)
+       this.voucher.getVoucher(this.code.replace('#','$'))
        .then(res=>{
-        this.device.registerEvent('voucher_active', res);                
+        this.device.registerEvent('voucher_active', res);
          this.vouch=res;
          this.voucher_active=true;
          setTimeout(a=>{
@@ -42,7 +43,7 @@ export class ModalVoucherPage {
          },1500);
        })
        .catch(er=>{
-        this.device.registerEvent('voucher_error', er);                        
+        this.device.registerEvent('voucher_error', er);
         this.error_active=true
          this.voucher_active=false;
        })
