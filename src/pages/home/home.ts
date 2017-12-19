@@ -238,6 +238,7 @@ selectProduct(p){
 }
 
 openModalVoucher(){
+  this.device.registerEvent('open_voucher',{});
   let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
   voucherModal.present().then(r=>{
     this.device.camPage("home");        
@@ -245,6 +246,7 @@ openModalVoucher(){
 }
 
 openSchedule(){
+  this.device.registerEvent('open_schedule',{});
   let scheduleModal = this.modalCtrl.create(ModalSchedulePage,{hours:this['location']['zone']['schedule']})
   scheduleModal.present().then(r=>{
     this.device.camPage("home");        
@@ -268,6 +270,7 @@ openStatus(){
   this.device.registerEvent('open_status',{});
 }
 openFeedback(){
+  this.device.registerEvent('open_feedback',{});
   this.navCtrl.push(FeedbackPage,{sale:this.openSale});
 }
 

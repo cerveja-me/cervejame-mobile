@@ -108,4 +108,22 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Usamos a sua localização para identificar a sua região e mostrar os produtos disponiveis" />
     </plugin>
     <plugin name="cordova-plugin-firebase" spec="^0.1.25" />
+    <plugin name="ionic-plugin-deeplinks" spec="^1.0.15">
+        <variable name="URL_SCHEME" value="cervejameapp" />
+        <variable name="DEEPLINK_SCHEME" value="https" />
+        <variable name="DEEPLINK_HOST" value="cerveja.me" />
+        <variable name="ANDROID_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_2_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_3_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_4_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_5_PATH_PREFIX" value="/" />
+        <variable name="DEEPLINK_2_SCHEME" value=" " />
+        <variable name="DEEPLINK_2_HOST" value=" " />
+        <variable name="DEEPLINK_3_SCHEME" value=" " />
+        <variable name="DEEPLINK_3_HOST" value=" " />
+        <variable name="DEEPLINK_4_SCHEME" value=" " />
+        <variable name="DEEPLINK_4_HOST" value=" " />
+        <variable name="DEEPLINK_5_SCHEME" value=" " />
+        <variable name="DEEPLINK_5_HOST" value=" " />
+    </plugin>
 </widget>

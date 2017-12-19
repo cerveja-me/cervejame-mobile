@@ -62,7 +62,7 @@ export class CheckoutPage {
   }
 
   finishOrder(){
-    this.device.registerEvent('order_complete', this.or);        
+    this.device.registerEvent('finish_order', this.or);        
     this.user.isAuth()
     .then(()=>{
       this.user.getCostumerData()
