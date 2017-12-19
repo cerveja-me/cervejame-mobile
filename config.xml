@@ -86,6 +86,12 @@
     <allow-navigation href="http://192.168.100.144:8100" />
     <allow-navigation href="http://10.42.0.1:8100" />
     <allow-navigation href="http://10.42.0.1:8101" />
+    <branch-config>
+        <branch-key value="key_live_gprQLjG1YO78MZnhYuqyicelFFmdcVnh" />
+        <uri-scheme value="cervejameapp" />
+        <link-domain value="cerveja.app.link" />
+        <ios-team-release value="HRDWK8LZ4B" />
+    </branch-config>
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
@@ -125,5 +131,11 @@
         <variable name="DEEPLINK_4_HOST" value=" " />
         <variable name="DEEPLINK_5_SCHEME" value=" " />
         <variable name="DEEPLINK_5_HOST" value=" " />
+    </plugin>
+    <plugin name="branch-cordova-sdk" spec="^2.5.0" />
+    <plugin name="cordova-plugin-firebase-dynamiclinks" spec="^0.11.0">
+        <variable name="APP_PATH" value="/" />
+        <variable name="APP_DOMAIN" value="cervemeapp" />
+        <variable name="REVERSED_CLIENT_ID" value="HRDWK8LZ4B.com.cerveja.me.app" />
     </plugin>
 </widget>

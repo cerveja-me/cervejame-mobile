@@ -3,6 +3,8 @@ import { NavController,ModalController,Slides,LoadingController,Events } from 'i
 import { Storage } from '@ionic/storage';
 import { LOCALE_ID } from '@angular/core';
 // import { Firebase } from '@ionic-native/firebase';
+import { Deeplinks } from '@ionic-native/deeplinks';
+
 
 //providers
 import { DeviceProvider } from '../../providers/device/device'
@@ -53,7 +55,8 @@ export class HomePage {
     private device:DeviceProvider,
     private order: OrderProvider,
     private load:LoadingController,
-    private events:Events
+    private events:Events,
+    private deep: Deeplinks
     // private firebase:Firebase
   ) {
     this.loader=this.load.create({
@@ -89,6 +92,15 @@ export class HomePage {
     this.err=e;
     this.loadedcompleted=true;
     this.loader.dismiss();            //estar sem conexão com a internet
+  })
+  this.deep.routeWithNavController(this.navCtrl, {
+    '/cupom/:voucher': ModalVoucherPage,
+    '/feedback':FeedbackPage 
+  }).subscribe((match) => {
+    console.log('Successfully matched route', match);
+  }, (nomatch) => {
+    // nomatch.$link - the full link data
+    console.error('Got a deeplink that didn\'t match', nomatch);
   })
 }
 

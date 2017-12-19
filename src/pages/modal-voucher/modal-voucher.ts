@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
 
 import { VoucherProvider } from  '../../providers/voucher/voucher';
 import { DeviceProvider } from  '../../providers/device/device';
@@ -17,11 +17,17 @@ export class ModalVoucherPage {
   constructor(
     public viewCtrl: ViewController,
     public voucher: VoucherProvider,
-    private device:DeviceProvider
+    private device:DeviceProvider,
+    private navParams:NavParams
   ) {
-    this.device.camPage("voucher");
+    
   }
-
+  
+  ionViewDidLoad() {
+    console.log('voucher->',this.device.camPage("voucher"));
+    this.code=this.navParams.get('voucher');
+  }
+    
   dismiss() {
     this.closing=true;
     setTimeout(() => {
