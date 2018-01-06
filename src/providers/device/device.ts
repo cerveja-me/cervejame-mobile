@@ -63,6 +63,7 @@ export class DeviceProvider {
         }else{
           let uuid = UUID.UUID();
           d.install_uuid = uuid;
+          this.firebase.setUserId(this.device.uuid)
           this.storage.set('install_uuid',uuid);
         }
         this.appVersion.getVersionNumber().then(v=>{
@@ -134,6 +135,7 @@ export class DeviceProvider {
   oneSignalTag(tag:string,zone:string){
     if(this.platform.is('cordova')){
       this.oneSignal.sendTag(tag, zone);
+      this.firebase.setUserProperty(tag,zone);
     }
   }
 
