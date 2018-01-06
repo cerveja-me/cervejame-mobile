@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ViewController,ModalController } from 'ionic-angular';
+import { NavController, NavParams,ViewController,ModalController, AlertController } from 'ionic-angular';
 
 //providers
 import { UserProvider } from '../../providers/user/user';
@@ -19,13 +19,12 @@ export class ModalLoginPage {
     private user:UserProvider,
     private viewCtrl:ViewController,
     private modalCtrl:ModalController,
+    private alertCtrl:AlertController
   ) {
   }
 
   ionViewDidLoad() {
       this.user.device.camPage("login");
-    // this.user.profileLogin(this.u);
-    // console.log('ionViewDidLoad ModalLoginPage');
   }
 
   doLoginForm(){
@@ -34,12 +33,37 @@ export class ModalLoginPage {
       this.viewCtrl.dismiss('success');
     })
     .catch( e =>{
-      this.user.device.logError(e);      
+      let prompt = this.alertCtrl.create({
+        title: 'Dados Inválidos!',
+        message: 'Parece que você errou sua senha, cuidado quando for utilizar o aplicativo enquanto estiver alcoolizado.',
+        buttons:[
+          {
+            text:'Tentar de novo',
+          handler: data => {
+            this.user.device.registerEvent('login_error_try_again',this.profile);
+          }
+        },
+          {text:'Cadastrar-se',
+          handler: data => {
+            this.openModalRegister();
+            this.user.device.registerEvent('login_error_register',this.profile);
+          }
+        },
+          {text:'Entrar com Facebook',
+          handler: data => {
+            this.doFacebookRegister();
+            this.user.device.registerEvent('login_error_Facebook_login',this.profile);
+          }
+        }
+        ]
+      }).present();
+      this.user.device.registerEvent('login_error',this.profile);
       console.log('erro -> ', e);
     })
   }
 
   openModalRegister(){
+    this.user.device.registerEvent('register',this.profile);
     let modal = this.modalCtrl.create(ModalRegisterPage);
     modal.present();
     modal.onDidDismiss(data => {
