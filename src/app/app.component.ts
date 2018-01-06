@@ -41,11 +41,6 @@ export class MyApp {
     initializeApp() {
 
       this.platform.ready().then(() => {
-        // this.firebase.getToken()
-        // .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
-        // .catch(error => console.error('Error getting token', error));
-        // Okay, so the platform is ready and our plugins are available.
-        // Here you can do any higher level native things you might need.
 
         this.statusBar.styleDefault();
         setTimeout(() => {
@@ -54,9 +49,4 @@ export class MyApp {
       });
     }
 
-    // openPage(page) {
-    //   // Reset the content nav to have just this page
-    //   // we wouldn't want the back button to show in this scenario
-    //   this.nav.setRoot(page.component);
-    // }
   }
