@@ -3,7 +3,7 @@
     <name>Cerveja.me</name>
     <description>O melhor aplicativo para pedir sua cerveja</description>
     <author email="social@cerveja.me" href="https://cerveja.me/">Cerveja.me Team</author>
-    <content original-src="index.html" src="http://192.168.15.13:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
