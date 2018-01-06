@@ -60,19 +60,39 @@ export class CheckoutPage {
       this.device.camPage("checkout");        
     })
   }
+  converttofirebase(or){
+    let p = or['product']['product']['price'];
+    let am = or['product']['product']['amount'];
+    let sh=or['location']['zone']['free_shipping'];
+    let fv=or['location']['zone']['freight_value'];
+    let v = sh?p*am:(p+fv);
+    let d = or['product']['product']['finalDiscount'];
+    let a = {
+      zone:or['location']['zone']['name'],
+      freight_value:fv,
+      free_shipping:sh,
+      product:or['product']['product']['beer']['name']+'-'+this.or['product']['product']['beer']['description'],
+      price:p,
+      discount:d,
+      amount:am,
+      payment_value:v//or['location']['zone']['free_shipping']?this.or['product']['product']['beer']['price']:this.or['product']['product']['beer']['price']+this.or['location']['zone']['freight_value']
+    };
+    console.log(a);
+    return a;
+  }
 
   finishOrder(){
-    this.device.registerEvent('finish_order', this.or);        
+    this.device.registerEvent('finish_order', this.converttofirebase(this.or));        
     this.user.isAuth()
     .then(()=>{
       this.user.getCostumerData()
       .then( c =>{
-        this.device.registerEvent('open_phone', this.or);                
+        this.device.registerEvent('open_phone',this.converttofirebase(this.or));                
         this.doPrompt(c['phone'])
         .then(data =>{
           this.order.completeOrder(this.payment)
           .then(res=>{            
-            this.device.registerEvent('order_completed', this.or);
+            this.device.registerEvent('order_completed', this.converttofirebase(this.or));
             this.navCtrl.setRoot(StatusPage);
             this.user.updateCostumerData();
           })
