@@ -152,7 +152,10 @@ export class DeviceProvider {
 
   registerEvent(event:string,data:any){
     if(this.platform.is('cordova')){
-      this.firebase.logEvent(event,data);
+      if(!data){
+        data={data:''}
+      }
+      this.firebase.logEvent(''+event,data);
     }    
   }
 
