@@ -128,6 +128,7 @@ export class OrderProvider {
     .then( data => {
       this.sale.id=data['id'];
       this.device.oneSignalTag('order','created');
+      this.device.oneSignalTag('order_id',data['id']);
     })
     .catch(e=>{
       console.log('er->',e);

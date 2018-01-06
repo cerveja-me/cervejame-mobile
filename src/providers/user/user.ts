@@ -125,6 +125,7 @@ export class UserProvider {
       }
       this.network.post(this.network.c.USER,u)
       .then( data => {
+        this.updateCostumerData();
         resolve(data);
       })
       .catch( e =>{
@@ -140,12 +141,14 @@ export class UserProvider {
         if( c ){
           resolve(c);
           this.device.oneSignalTag('name',c.name)
+          this.device.oneSignalTag('sales',c['sales'])
         }else{
           this.network.get(this.network.c.USER)
           .then( co =>{
             this.storage.set(this.network.c.USER,co);
             resolve(co);
             this.device.oneSignalTag('name',co['name'])
+            this.device.oneSignalTag('sales',co['sales'])
           })
           .catch( e =>{
             reject(e);
@@ -153,6 +156,19 @@ export class UserProvider {
         }
       })
     })
+  }
+
+  updateCostumerData(){
+    this.network.get(this.network.c.USER)
+          .then( co =>{
+            this.storage.set(this.network.c.USER,co);
+            this.device.oneSignalTag('name',co['name'])
+            this.device.oneSignalTag('sales',co['sales'])
+          })
+          .catch( e =>{
+            console.log(e);
+          })
+
   }
 
 }

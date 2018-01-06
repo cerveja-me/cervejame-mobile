@@ -86,7 +86,7 @@ export class DeviceProvider {
       message: body,
       buttons: ['Ok']
     });
-
+    this.registerEvent('notification_clicked', {'title':title,'body':body});
     alert.present();
   }
 
@@ -106,8 +106,9 @@ export class DeviceProvider {
     this.oneSignal.handleNotificationOpened()
     .subscribe((text) => {
       if(text.notification.payload['additionalData']){
-        this.events.publish(text.notification.payload['additionalData']['action'],'update');
+        this.events.publish(text.notification.payload['additionalData']['action'],'update'); 
       }
+      this.registerEvent('notification_opened', text.notification);
     });
     this.oneSignal.getIds()
     .then(res=>{

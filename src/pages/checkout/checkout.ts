@@ -74,6 +74,7 @@ export class CheckoutPage {
           .then(res=>{            
             this.device.registerEvent('order_completed', this.or);
             this.navCtrl.setRoot(StatusPage);
+            this.user.updateCostumerData();
           })
           .catch( e =>{
             if(e.status == 403){
