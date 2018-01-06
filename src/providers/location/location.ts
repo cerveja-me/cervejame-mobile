@@ -24,7 +24,7 @@ export class LocationProvider {
         resolve(pos.coords)
       })
       .catch(err=>{
-        resolve({latitude:-23.529338, longitude:-46.679942})
+        // resolve({latitude:-23.529338, longitude:-46.679942})
         let e:string='';
         if(err.code==1){
           e='USER_DENIED_GEOLOCATION';

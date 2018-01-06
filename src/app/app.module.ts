@@ -8,6 +8,7 @@ import { ComponentsModule } from '../components/components.module';
 
 import { ModalScaleUpEnterTransition } from './scale-up-enter.transition';
 import { ModalScaleUpLeaveTransition } from './scale-up-leave.transition';
+import { MyErrorHandler} from './errorhandler';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -139,7 +140,7 @@ class SplashScreenMock extends SplashScreen{
     // { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: 'pt-PT' },
-    { provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: MyErrorHandler}
   ]
 })
 export class AppModule {
