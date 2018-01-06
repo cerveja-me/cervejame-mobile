@@ -120,7 +120,7 @@ export class HomePage {
       this.amount = 2;
       this.discount = 0.05;
       this.zone.run(() => { });
-      this.device.registerEvent('slide_change', { "product": this.products[current] });
+      this.device.registerEvent('slide_change', this.products[current]);
       this.selectedBeer = {
         beer: this.products[current],
         discount: this.discount,
@@ -134,7 +134,7 @@ export class HomePage {
     this.updatingAmount = true;
     // this.device.registerEvent('increaseAmount',this.selectedBeer.beer)
     this.amount++;
-    this.device.registerEvent('increase_amount', { "product": this.selectedBeer.beer, "amount": this.selectedBeer.amount })
+    this.device.registerEvent('increase_amount', this.selectedBeer.beer)
     this.updatePriceAndDiscount();
     setTimeout(() => {
       this.updatingAmount = false;
@@ -143,7 +143,7 @@ export class HomePage {
 
   decreaseAmount() {
     this.updatingAmount = true;
-    this.device.registerEvent('decrease_amount', { "product": this.selectedBeer.beer, "amount": this.selectedBeer.amount })
+    this.device.registerEvent('decrease_amount', this.selectedBeer.beer)
 
     if (this.amount > 1) {
       this.amount--;
@@ -250,7 +250,7 @@ export class HomePage {
 
   selectProduct(p) {
     this.order.setProduct(p, this.amount);
-    this.device.registerEvent('select_beer', { "product": this.selectedBeer.beer, "amount": this.selectedBeer.amount })
+    this.device.registerEvent('select_beer', this.selectedBeer.beer)
     this.navCtrl.push(MapPage);
 
   }
