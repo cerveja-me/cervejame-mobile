@@ -71,12 +71,9 @@ export class NetworkProvider {
       .then( t =>{
         let h;
         if(t){
+          console.log(t)
           h=new HttpHeaders()
-          .append('Content-Type', 'application/json')
           .append('Authorization','Bearer '+t);
-        }else{
-          h=new HttpHeaders()
-          .append('Content-Type', 'application/json');
         }
         this.http.get(this.c.API+endpoint, {
           headers: h

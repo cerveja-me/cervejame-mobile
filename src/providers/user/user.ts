@@ -41,6 +41,7 @@ export class UserProvider {
       .then( res=>{
         this.device.oneSignal.syncHashedEmail(p.login);
         resolve(this.profileLogin(p));
+        this.device.oneSignalTag('name',p.name)
       })
       .catch(reject)
     })
@@ -119,8 +120,7 @@ export class UserProvider {
   }
   costumerUpdate(phone){
     return new Promise((resolve, reject)=> {
-
-      const u={
+      let u={
         phone:phone
       }
       this.network.post(this.network.c.USER,u)
@@ -139,17 +139,18 @@ export class UserProvider {
       .then( c =>{
         if( c ){
           resolve(c);
+          this.device.oneSignalTag('name',c.name)
         }else{
           this.network.get(this.network.c.USER)
           .then( co =>{
             this.storage.set(this.network.c.USER,co);
             resolve(co);
+            this.device.oneSignalTag('name',co['name'])
           })
           .catch( e =>{
             reject(e);
           })
         }
-        console.log('costumer local->',c);
       })
     })
   }

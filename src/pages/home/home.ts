@@ -90,6 +90,7 @@ export class HomePage {
         this.loader.dismiss();
         this.device.registerEvent('entered_zone', { zone_name: l['zone']['name'] });
         this.device.oneSignalTag('zone',l['zone']['name']);
+        
       })
       .catch(e => {
         // this.firebase.logError(e);

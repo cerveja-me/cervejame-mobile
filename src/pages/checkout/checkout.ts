@@ -42,7 +42,7 @@ export class CheckoutPage {
       this.address+=', comp.: '+this.or['location']['complement']
     }
     this.getVoucher();
-
+    this.device.oneSignalTag('order','checkout');
   }
 
   getVoucher(){
