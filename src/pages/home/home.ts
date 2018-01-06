@@ -86,7 +86,6 @@ export class HomePage {
           console.log('buscar produtos ');
         }, 2000);
 
-
         this.loader.dismiss();
         this.device.registerEvent('entered_zone', { zone_name: l['zone']['name'] });
         this.device.oneSignalTag('zone',l['zone']['name']);
