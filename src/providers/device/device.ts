@@ -32,7 +32,6 @@ export class DeviceProvider {
 
   ) {
     this.createDevice('empty');
-    this.getRemoteConfig();
     if(this.platform.is('cordova')){
       UXCam.startWithKey(this.c.UXCAM_KEY);
       UXCam.tagUsersName(this.device.uuid);
@@ -148,22 +147,6 @@ export class DeviceProvider {
 
   logError(e){
     this.firebase.logError(e);
-  }
-  getRemoteConfig(){
-    this.firebase.fetch(60)
-    .then(data=>{
-      console.log('remote config-> ',data);
-      this.firebase.activateFetched()
-      .then(data1=>{
-        console.log('data1->',data1);
-        this.firebase.getValue('amount','cerveja-me')
-        .then(data2=>{
-          console.log('data2->',data2);
-        })
-      })
-      
-      
-    })
   }
 
   registerEvent(event:string,data:any){

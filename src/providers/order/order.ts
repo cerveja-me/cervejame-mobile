@@ -127,6 +127,10 @@ export class OrderProvider {
     this.network.post(this.network.c.SALE,sale)
     .then( data => {
       this.sale.id=data['id'];
+      this.device.oneSignalTag('order','created');
+    })
+    .catch(e=>{
+      console.log('er->',e);
     })
   }
 
@@ -150,8 +154,10 @@ export class OrderProvider {
       .then( data => {
         resolve(data);
         this.removeVoucher();
+        this.device.oneSignalTag('order','completed');
       })
       .catch( e =>{
+        console.log('er->',e);
         reject(e);
       })
     })
