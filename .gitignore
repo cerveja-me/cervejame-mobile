@@ -36,6 +36,7 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 *.tmp.*
+build.json
 
 src/pages/feedback/feedback.js
 src/pages/feedback/feedback.js.map
