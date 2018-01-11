@@ -4,21 +4,26 @@ import { Firebase } from '@ionic-native/firebase';
 
 export class MyErrorHandler extends ErrorHandler {
  
-    // firebase;
+    firebase;
  constructor() { 
    // The true paramter tells Angular to rethrow exceptions, so operations like 'bootstrap' will result in an error
    // when an error happens. If we do not rethrow, bootstrap will always succeed.
    super();
-//    this.firebase =  Firebase
+   this.firebase = new  Firebase()
  }
  
   handleError(error) {
-    // new Firebase().logError(error);
+    console.log('ERROOOOOOSSS NAO TRATADOS',error.message);
+    let e = {
+      message:error.message
+    }
+    this.firebase.logError(e);
 
-      console.log('ERROOOOOOSSS NAO TRATADOS');
+    
    // send the error to the server
    
    // delegate to the default handler
    super.handleError(error); 
+
   }
 }
