@@ -13,17 +13,18 @@ export class MyErrorHandler extends ErrorHandler {
  }
  
   handleError(error) {
+    
+   // delegate to the default handler
+   super.handleError(error); 
     console.log('ERROOOOOOSSS NAO TRATADOS',error.message);
     let e = {
       message:error.message
     }
-    this.firebase.logError(e);
+    // this.firebase.logError(e);
 
     
    // send the error to the server
    
-   // delegate to the default handler
-   super.handleError(error); 
 
   }
 }

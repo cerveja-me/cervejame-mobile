@@ -3,7 +3,7 @@
     <name>Cerveja.me</name>
     <description>O melhor aplicativo para pedir sua cerveja</description>
     <author email="social@cerveja.me" href="https://cerveja.me/">Cerveja.me Team</author>
-    <content original-src="index.html" src="http://192.168.15.10:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -94,7 +94,6 @@
     </branch-config>
     <allow-navigation href="http://192.168.15.13:8100" />
     <allow-navigation href="http://192.168.15.10:8100" />
-    <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
@@ -140,4 +139,5 @@
         <variable name="APP_DOMAIN" value="cervemeapp" />
         <variable name="REVERSED_CLIENT_ID" value="HRDWK8LZ4B.com.cerveja.me.app" />
     </plugin>
+    <engine name="android" spec="~6.3.0" />
 </widget>
