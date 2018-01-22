@@ -19,6 +19,7 @@ import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
 import { StatusPage } from '../status/status';
 import { FeedbackPage } from '../feedback/feedback';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-home',
@@ -109,7 +110,7 @@ export class HomePage {
       console.error('Got a deeplink that didn\'t match', nomatch);
     })
   }
-
+  
   slideChanged() {
     let current = this.slides.getActiveIndex();
     if (this.products.length === current) {
@@ -290,6 +291,11 @@ export class HomePage {
   openFeedback() {
     this.device.registerEvent('open_feedback', {});
     this.navCtrl.push(FeedbackPage, { sale: this.openSale });
+  }
+
+  openProfile() {
+    this.device.registerEvent('open_feedback', {});
+    this.navCtrl.push(ProfilePage, { sale: this.openSale });
   }
 
 }

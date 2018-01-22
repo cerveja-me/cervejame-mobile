@@ -140,4 +140,7 @@
         <variable name="REVERSED_CLIENT_ID" value="HRDWK8LZ4B.com.cerveja.me.app" />
     </plugin>
     <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.1" />
+    <allow-navigation href="http://192.168.15.12:8101" />
+    <allow-navigation href="http://192.168.15.12:8100" />
 </widget>

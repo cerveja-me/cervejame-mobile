@@ -22,6 +22,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { Firebase } from '@ionic-native/firebase';
 import { FirebaseDynamicLinks } from '@ionic-native/firebase-dynamic-links';
 import { Deeplinks } from '@ionic-native/deeplinks';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 // import { GeolocationMock } from './geolocation/geolocation.mock';
 // import { FacebookMock } from './mocks/facebook/facebook.mock';
@@ -47,6 +48,7 @@ import { StatusPage } from '../pages/status/status';
 import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
 import { ModalNotificationPage } from '../pages/modal-notification/modal-notification';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
@@ -88,7 +90,8 @@ class SplashScreenMock extends SplashScreen{
     StatusPage,
     ModalRegisterPage,
     ModalSchedulePage,
-    ModalNotificationPage
+    ModalNotificationPage,
+    ProfilePage
   ],
   imports: [
     HttpClientModule,
@@ -111,7 +114,8 @@ class SplashScreenMock extends SplashScreen{
     StatusPage,
     ModalRegisterPage,
     ModalSchedulePage,
-    ModalNotificationPage
+    ModalNotificationPage,
+    ProfilePage
   ],
   providers: [
     DeviceProvider,
@@ -132,12 +136,13 @@ class SplashScreenMock extends SplashScreen{
     Keyboard,
     Deeplinks,
     FirebaseDynamicLinks,
+    SocialSharing,
     // {provide:Geolocation, useCass:GeolocationMock},
     // { provide: Facebook, useClass: FacebookMock },
-    // { provide: AppVersion, useClass: AppVersionMock },
+    { provide: AppVersion, useClass: AppVersionMock },
     // { provide: SplashScreen, useClass:SplashScreenMock },
-    // { provide: Device, useClass: DeviceMock },
-    // { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
+    { provide: Device, useClass: DeviceMock },
+    { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: 'pt-PT' },
     { provide: ErrorHandler, useClass: MyErrorHandler}

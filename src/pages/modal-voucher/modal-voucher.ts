@@ -24,7 +24,7 @@ export class ModalVoucherPage {
   }
   
   ionViewDidLoad() {
-    console.log('voucher->',this.device.camPage("voucher"));
+    this.device.camPage("voucher");
     this.code=this.navParams.get('voucher');
   }
     
@@ -37,7 +37,6 @@ export class ModalVoucherPage {
 
   changecod(){
      this.error_active=false;
-     console.log('this code ->', this.code.replace('#','$'));
      if(this.code.length==9){
        this.voucher.getVoucher(this.code.replace('#','$'))
        .then(res=>{
