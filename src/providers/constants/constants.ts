@@ -19,4 +19,5 @@ export class ConstantsProvider {
   UXCAM_KEY:string='170c2a7fdadbaea';//tresux@cerveja.me
   GOOGLE_GEOCODE:string ='https://maps.googleapis.com/maps/api/geocode/json?address=#&location=LAT,LNG&rankby=distance&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
   GOOGLE_ADDRESS:string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
+  SHARE_MESSAGE:'Compartlhando com vc, use meu cupom e ganhe R$ 10';
 }

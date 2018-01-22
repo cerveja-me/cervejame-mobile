@@ -15,7 +15,7 @@ export class MyErrorHandler extends ErrorHandler {
   handleError(error) {
     
    // delegate to the default handler
-   super.handleError(error); 
+  //  super.handleError(error); 
     console.log('ERROOOOOOSSS NAO TRATADOS',error.message);
     let e = {
       message:error.message
