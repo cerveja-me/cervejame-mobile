@@ -32,6 +32,7 @@
     "@ionic-native/firebase": "^4.5.2",
     "@ionic-native/firebase-dynamic-links": "^4.5.2",
     "@ionic-native/geolocation": "^4.4.2",
+    "@ionic-native/in-app-browser": "^4.5.3",
     "@ionic-native/keyboard": "^4.4.2",
     "@ionic-native/native-storage": "^4.4.0",
     "@ionic-native/onesignal": "^4.4.2",
@@ -52,6 +53,7 @@
     "cordova-plugin-firebase": "^0.1.25",
     "cordova-plugin-firebase-dynamiclinks": "^0.11.0",
     "cordova-plugin-geolocation": "^3.0.0",
+    "cordova-plugin-inappbrowser": "^2.0.1",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-nativestorage": "^2.2.2",
     "cordova-plugin-splashscreen": "^4.1.0",
@@ -125,7 +127,8 @@
         "APP_DOMAIN": "cervemeapp",
         "REVERSED_CLIENT_ID": "HRDWK8LZ4B.com.cerveja.me.app"
       },
-      "cordova-plugin-x-socialsharing": {}
+      "cordova-plugin-x-socialsharing": {},
+      "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
       "android",

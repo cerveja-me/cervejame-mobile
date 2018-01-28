@@ -59,17 +59,17 @@
               <span class="checkout__total__price">R$ -{{voucher.value |number:'1.2-2'}}</span>
           </span>
       </div>
-      <div class="checkout__total__shipping"  >
+      <div class="checkout__total__shipping" *ngIf="friend_ref && friend_ref.available_value >0" >
         <span class="checkout__total__title" >DA GALERA </span>
         <span class="checkout__total__pricebox">
-            <span class="checkout__total__price">R$ -{{30 |number:'1.2-2'}}</span>
+            <span class="checkout__total__price">R$ -{{friend_ref.available_value |number:'1.2-2'}}</span>
         </span>
     </div>
 
       <span class="checkout__total__title">Total a pagar</span>
       <span class="checkout__total__pricebox">
         <span class="checkout__total__price old"*ngIf="coupom && or.product.amount>=coupom.min_amount">R$ {{or.product.product.price |number:'1.2-2'}}</span>
-        <small class="checkout__total__pricebox--currency" >R$</small>{{or.product.product.price-30 -(voucher?voucher.value:0)+(!or.location.zone.free_shipping?or.location.zone.freight_value:0) |number:'1.2-2'}}
+        <small class="checkout__total__pricebox--currency" >R$</small>{{or.product.product.price-(friend_ref.available_value?friend_ref.available_value:0) -(voucher?voucher.value:0)+(!or.location.zone.free_shipping?or.location.zone.freight_value:0)>0?or.product.product.price-(friend_ref.available_value?friend_ref.available_value:0) -(voucher?voucher.value:0)+(!or.location.zone.free_shipping?or.location.zone.freight_value:0):0 |number:'1.2-2'}}
       </span>
     </div>
 

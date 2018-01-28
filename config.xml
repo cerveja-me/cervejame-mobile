@@ -143,4 +143,5 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.1" />
     <allow-navigation href="http://192.168.15.12:8101" />
     <allow-navigation href="http://192.168.15.12:8100" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.1" />
 </widget>
