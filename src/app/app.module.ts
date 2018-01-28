@@ -23,6 +23,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { FirebaseDynamicLinks } from '@ionic-native/firebase-dynamic-links';
 import { Deeplinks } from '@ionic-native/deeplinks';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 // import { GeolocationMock } from './geolocation/geolocation.mock';
 // import { FacebookMock } from './mocks/facebook/facebook.mock';
@@ -137,6 +138,7 @@ class SplashScreenMock extends SplashScreen{
     Deeplinks,
     FirebaseDynamicLinks,
     SocialSharing,
+    InAppBrowser,
     // {provide:Geolocation, useCass:GeolocationMock},
     // { provide: Facebook, useClass: FacebookMock },
     { provide: AppVersion, useClass: AppVersionMock },

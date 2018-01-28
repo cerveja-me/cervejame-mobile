@@ -1,5 +1,5 @@
-import { Component,NgZone } from '@angular/core';
-import { NavController,ModalController,ViewController,AlertController } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import { NavController, ModalController, ViewController, AlertController } from 'ionic-angular';
 
 //providers
 import { OrderProvider } from '../../providers/order/order';
@@ -19,136 +19,153 @@ export class CheckoutPage {
   or;
   closing;
   payment;
-  address='';
+  address = '';
   voucher;
+  friend_ref: any = {
+    available_value: 0
+  };
   constructor(
-    private navCtrl:NavController,
-    private modalCtrl:ModalController,
+    private navCtrl: NavController,
+    private modalCtrl: ModalController,
     private viewCtrl: ViewController,
-    private order:OrderProvider,
-    private alertCtrl:AlertController,
-    private zone:NgZone,
-    private user:UserProvider,
+    private order: OrderProvider,
+    private alertCtrl: AlertController,
+    private zone: NgZone,
+    private user: UserProvider,
     private device: DeviceProvider
   ) {
   }
 
   ionViewDidLoad() {
+    this.getCostumerData();
     this.order.device.camPage("checkout");
-    this.or=this.order.getOrder();
+    this.or = this.order.getOrder();
 
-    this.address = this.or['location']['street']+", "+(this.or['location']['number'] || 's/n');
-    if(this.or['location']['complement']){
-      this.address+=', comp.: '+this.or['location']['complement']
+    this.address = this.or['location']['street'] + ", " + (this.or['location']['number'] || 's/n');
+    if (this.or['location']['complement']) {
+      this.address += ', comp.: ' + this.or['location']['complement']
     }
     this.getVoucher();
-    this.device.oneSignalTag('order','checkout');
+    this.device.oneSignalTag('order', 'checkout');
+
   }
 
-  getVoucher(){
+  getVoucher() {
     this.voucher = this.order.getVoucher();
-    this.zone.run(()=>{});
+    this.zone.run(() => { });
   }
 
-  close(){
+  close() {
     this.navCtrl.pop();
   }
 
-  openVoucherModal(){
+  openVoucherModal() {
     let modal = this.modalCtrl.create(ModalVoucherPage);
-    modal.present().then(r=>{
-      this.device.camPage("checkout");        
+    modal.present().then(r => {
+      this.device.camPage("checkout");
     })
   }
-  converttofirebase(or){
+  converttofirebase(or) {
     let p = or['product']['product']['price'];
     let am = or['product']['product']['amount'];
-    let sh=or['location']['zone']['free_shipping'];
-    let fv=or['location']['zone']['freight_value'];
-    let v = sh?p*am:(p+fv);
+    let sh = or['location']['zone']['free_shipping'];
+    let fv = or['location']['zone']['freight_value'];
+    let v = sh ? p * am : (p + fv);
     let d = or['product']['product']['finalDiscount'];
     let a = {
-      zone:or['location']['zone']['name'],
-      freight_value:fv,
-      free_shipping:sh,
-      product:or['product']['product']['beer']['name']+'-'+this.or['product']['product']['beer']['description'],
-      price:p,
-      discount:d,
-      amount:am,
-      payment_value:v//or['location']['zone']['free_shipping']?this.or['product']['product']['beer']['price']:this.or['product']['product']['beer']['price']+this.or['location']['zone']['freight_value']
+      zone: or['location']['zone']['name'],
+      freight_value: fv,
+      free_shipping: sh,
+      product: or['product']['product']['beer']['name'] + '-' + this.or['product']['product']['beer']['description'],
+      price: p,
+      discount: d,
+      amount: am,
+      payment_value: v//or['location']['zone']['free_shipping']?this.or['product']['product']['beer']['price']:this.or['product']['product']['beer']['price']+this.or['location']['zone']['freight_value']
     };
     console.log(a);
     return a;
   }
 
-  finishOrder(){
-    this.device.registerEvent('finish_order', this.converttofirebase(this.or));        
+  finishOrder() {
+    this.device.registerEvent('finish_order', this.converttofirebase(this.or));
     this.user.isAuth()
-    .then(()=>{
-      this.user.getCostumerData()
-      .then( c =>{
-        this.device.registerEvent('open_phone',this.converttofirebase(this.or));                
-        this.doPrompt(c['phone'])
-        .then(data =>{
-          this.order.completeOrder(this.payment)
-          .then(res=>{            
-            this.device.registerEvent('order_completed', this.converttofirebase(this.or));
-            this.navCtrl.setRoot(StatusPage);
-            this.user.updateCostumerData();
-          })
-          .catch( e =>{
-            if(e.status == 403){
-              this.openLogin()
-              .then(login=>{
-                this.finishOrder();
-              })
-            }else if(e.code==2000){
-              let alert = this.alertCtrl.create({
-                title: 'Erro',
-                message: e.message,
-                buttons: ['Ok']
-              });
-              alert.present();
-            }else{
-              let alert = this.alertCtrl.create({
-                title:'Cupom já utilizado ou inválido',
-                message: 'Este cupom é válido para ser usado apenas uma vez ou está fora do período promocional.',
-                buttons: ['Ok']
-              });
-              alert.present();
-              this.order.removeVoucher();
-              this.getVoucher();
-              this.device.registerEvent('voucher_removed', this.or);                      
-            }
+      .then(() => {
+        this.user.getCostumerData()
+          .then(c => {
+            this.device.registerEvent('open_phone', this.converttofirebase(this.or));
+            this.doPrompt(c['phone'])
+              .then(data => {
+                this.order.completeOrder(this.payment, this.friend_ref['available_value'])
+                  .then(res => {
+                    this.device.registerEvent('order_completed', this.converttofirebase(this.or));
+                    this.navCtrl.setRoot(StatusPage);
+                    this.user.updateCostumerData();
+                  })
+                  .catch(e => {
+                    if (e.status == 403) {
+                      this.openLogin()
+                        .then(login => {
+                          this.finishOrder();
+                        })
+                    } else if (e.code == 2000) {
+                      let alert = this.alertCtrl.create({
+                        title: 'Erro',
+                        message: e.message,
+                        buttons: ['Ok']
+                      });
+                      alert.present();
+                    } else {
+                      let alert = this.alertCtrl.create({
+                        title: 'Cupom já utilizado ou inválido',
+                        message: 'Este cupom é válido para ser usado apenas uma vez ou está fora do período promocional.',
+                        buttons: ['Ok']
+                      });
+                      alert.present();
+                      this.order.removeVoucher();
+                      this.getVoucher();
+                      this.device.registerEvent('voucher_removed', this.or);
+                    }
 
-            console.log('er-> ',e);
+                    console.log('er-> ', e);
+                  })
+              })
+              .catch(m => {
+                let alert = this.alertCtrl.create({
+                  title: 'Telefone',
+                  message: m,
+                  buttons: ['Ok']
+                });
+                alert.onDidDismiss(() => {
+                  this.finishOrder();
+                })
+                alert.present();
+              })
           })
-        })
-        .catch(m=>{
-          let alert = this.alertCtrl.create({
-            title: 'Telefone',
-            message: m,
-            buttons: ['Ok']
-          });
-          alert.onDidDismiss(()=>{
-            this.finishOrder();
-          })
-          alert.present();
-        })
       })
-    })
-    .catch(e=>{
-      this.openLogin();
-    })
+      .catch(e => {
+        this.openLogin();
+      })
 
   }
 
-  openLogin(){
-    return new Promise((resolve, reject)=> {
+  getCostumerData() {
+    this.user.getCostumerData(false)
+      .then(c => {
+        this.friend_ref = c;
+      })
+      .catch(e => {
+        this.friend_ref[
+          'available_value'] = 0
+
+      })
+  }
+
+  openLogin() {
+    return new Promise((resolve, reject) => {
       let loginModal = this.modalCtrl.create(ModalLoginPage)
-      loginModal.onDidDismiss((data)=>{
-      this.device.camPage("checkout");                
-        if(data==='success'){
+      loginModal.onDidDismiss((data) => {
+        this.device.camPage("checkout");
+        if (data === 'success') {
           this.finishOrder();
         }
       })
@@ -156,53 +173,53 @@ export class CheckoutPage {
     })
   }
 
-  openModalVoucher(){
-    let voucherModal = this.modalCtrl.create(ModalVoucherPage);//,{}, {});
-    voucherModal.onDidDismiss(()=>{
-    this.getVoucher();
-  })
-  voucherModal.present();
-}
+  openModalVoucher() {
+    let voucherModal = this.modalCtrl.create(ModalVoucherPage);
+    voucherModal.onDidDismiss(() => {
+      this.getVoucher();
+    })
+    voucherModal.present();
+  }
 
-doPrompt(phone) {
-  return new Promise((resolve, reject) => {
-    let prompt = this.alertCtrl.create({
-      title: 'Complemento',
-      message: "Para melhorar sua entrega, passa aí seu compĺemento e telefone.",
-      inputs: [
-        {
-          name: 'complement',
-          placeholder: 'Complemento do endereço',
-          value:this.or['location']['complement']
-        },
-        {
-          name: 'phone',
-          placeholder: 'Seu Telefone',
-          type:'tel',
-          value:phone
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: data => {
-            this.device.registerEvent('order_canceled', this.or);            
+  doPrompt(phone) {
+    return new Promise((resolve, reject) => {
+      let prompt = this.alertCtrl.create({
+        title: 'Complemento',
+        message: "Para melhorar sua entrega, passa aí seu compĺemento e telefone.",
+        inputs: [
+          {
+            name: 'complement',
+            placeholder: 'Complemento do endereço',
+            value: this.or['location']['complement']
+          },
+          {
+            name: 'phone',
+            placeholder: 'Seu Telefone',
+            type: 'tel',
+            value: phone
           }
-        },
-        {
-          text: 'Continuar',
-          handler: data => {
-            if(data.phone){
-              this.user.costumerUpdate(data.phone)
-              .then(resolve)
-            }else{
-              reject("Precisamos do seu telefone para que sua experiência de atendimento seja muito melhor. ");
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            handler: data => {
+              this.device.registerEvent('order_canceled', this.or);
+            }
+          },
+          {
+            text: 'Continuar',
+            handler: data => {
+              if (data.phone) {
+                this.user.costumerUpdate(data.phone)
+                  .then(resolve)
+              } else {
+                reject("Precisamos do seu telefone para que sua experiência de atendimento seja muito melhor. ");
+              }
             }
           }
-        }
-      ]
+        ]
+      });
+      prompt.present();
     });
-    prompt.present();
-  });
-}
+  }
 }

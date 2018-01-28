@@ -20,7 +20,8 @@ export class OrderProvider {
     private location: LocationProvider,
     private network: NetworkProvider,
     public device: DeviceProvider,
-    public c:ConstantsProvider
+    public c:ConstantsProvider,
+    private user: UserProvider
   ) {
   }
 
@@ -135,7 +136,7 @@ export class OrderProvider {
     })
   }
 
-  completeOrder(pay){
+  completeOrder(pay,referral_discount){
     return new Promise((resolve, reject)=> {
       if(!pay){
         reject({code:2000,message:"Selecione um meio de Pagamento"});
@@ -148,8 +149,8 @@ export class OrderProvider {
         amount:this.sale['amount'],
         amount_discount:this.sale.product['beer']['price']*this.sale['amount'] - this.sale.product['price'],
         voucher:this.voucher?this.voucher :null,
-        freight_value:this.locale['zone']['free_shipping']?0:this.locale['zone']['freight_value']
-
+        freight_value:this.locale['zone']['free_shipping']?0:this.locale['zone']['freight_value'],
+        referral_discount:referral_discount>0?referral_discount:0
       }
       this.network.put(this.network.c.SALE+this.sale.id,sale)
       .then( data => {
@@ -166,11 +167,15 @@ export class OrderProvider {
 
   getOrders(){
     return new Promise((resolve, reject)=> {
-      this.network.get(this.network.c.SALE)
-      .then(orders =>{
-        resolve(orders);
+      this.user.isAuth()
+      .then(u => {
+        this.network.get(this.network.c.SALE)
+        .then(orders =>{
+          resolve(orders);
+        })
+        .catch( reject)
       })
-      .catch( reject)
+
     })
   }
 
