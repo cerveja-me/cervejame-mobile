@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
-import { IonicApp, IonicModule,IonicErrorHandler,Config } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, Config } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicImageLoader } from 'ionic-image-loader';
@@ -8,7 +8,7 @@ import { ComponentsModule } from '../components/components.module';
 
 import { ModalScaleUpEnterTransition } from './scale-up-enter.transition';
 import { ModalScaleUpLeaveTransition } from './scale-up-leave.transition';
-import { MyErrorHandler} from './errorhandler';
+import { MyErrorHandler } from './errorhandler';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,6 +50,8 @@ import { ModalRegisterPage } from '../pages/modal-register/modal-register';
 import { ModalSchedulePage } from '../pages/modal-schedule/modal-schedule';
 import { ModalNotificationPage } from '../pages/modal-notification/modal-notification';
 import { ProfilePage } from '../pages/profile/profile';
+import { ProfileReferralsPage } from '../pages/profile-referrals/profile-referrals';
+import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
@@ -57,24 +59,24 @@ registerLocaleData(ptBr)
 
 class KeyboardMock extends Keyboard {
 
-  constructor() {super();}
-  show(){}
-  close(){}
+  constructor() { super(); }
+  show() { }
+  close() { }
 }
 
-class DeviceMock extends Device{
-  get cordova(): string{ return "7.1.1";}
-  get isVirtual(): boolean { return true;}
-  get manufacturer() : string { return "Deassdenvolvimento";}
-  get model() : string { return "Browser - Chrasdome";}
-  get platform() : string { return "Browsasder";}
-  get serial() : string { return "unknoasdwn";}
-  get uuid() : string { return "1231231-8asd3dad11-e7a91992-ebcb67fe33";}
+class DeviceMock extends Device {
+  get cordova(): string { return "7.1.1"; }
+  get isVirtual(): boolean { return true; }
+  get manufacturer(): string { return "Deassdenvolvimento"; }
+  get model(): string { return "Browser - Chrasdome"; }
+  get platform(): string { return "Browsasder"; }
+  get serial(): string { return "unknoasdwn"; }
+  get uuid(): string { return "1231231-8asd3dad11-e7a91992-ebcb67fe33"; }
   get version(): string { return "7.1asd.1"; }
 }
 
-class SplashScreenMock extends SplashScreen{
-  hide(){}
+class SplashScreenMock extends SplashScreen {
+  hide() { }
 }
 
 
@@ -92,7 +94,9 @@ class SplashScreenMock extends SplashScreen{
     ModalRegisterPage,
     ModalSchedulePage,
     ModalNotificationPage,
-    ProfilePage
+    ProfilePage,
+    ProfileReferralsPage,
+    ProfileTermsPage
   ],
   imports: [
     HttpClientModule,
@@ -116,7 +120,9 @@ class SplashScreenMock extends SplashScreen{
     ModalRegisterPage,
     ModalSchedulePage,
     ModalNotificationPage,
-    ProfilePage
+    ProfilePage,
+    ProfileReferralsPage,
+    ProfileTermsPage
   ],
   providers: [
     DeviceProvider,
@@ -144,10 +150,10 @@ class SplashScreenMock extends SplashScreen{
     { provide: AppVersion, useClass: AppVersionMock },
     // { provide: SplashScreen, useClass:SplashScreenMock },
     { provide: Device, useClass: DeviceMock },
-    { provide: Keyboard,useClass:KeyboardMock },//coment before build to mobile
+    { provide: Keyboard, useClass: KeyboardMock },//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: 'pt-PT' },
-    { provide: ErrorHandler, useClass: MyErrorHandler}
+    { provide: ErrorHandler, useClass: MyErrorHandler }
   ]
 })
 export class AppModule {

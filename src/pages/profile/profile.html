@@ -10,30 +10,25 @@
 </ion-header>
 
 <ion-content class="background-light">
-  <div class="profile__balance" *ngIf="user_data && user_data.available_value > 0">
+  <div class="profile__balance" *ngIf="user_data && user_data.available_value > 0" (click)="openReferrals()">
     <h2>Você ganhou da galera</h2>
     <p class="profile__balance__value"><span class="icon-galera-w"></span>
       R$ {{user_data.available_value |number:'1.2-2'}}
     </p>
     <small>O valor será descontado na sua próxima compra.</small>
+    <p><small>Meus indicados ></small></p>
   </div>
 
   <div class="profile__voucher">
-      <span class="profile__voucher__background"></span>
+      <span (click)="openTerms()" class="profile__voucher__background"></span>
       <h1>Para cada amigo que usar o seu cupom, você ganhará <strong>R$ 10,00</strong>.</h1>
-      <h3>termos de uso ></h3>
+      <h5 style="font-size: 1.3rem;" (click)="openTerms()">termos de uso ></h5>
 
-      <ion-input class="profile__voucher__input"  placeholder="Personalize" maxlength=9 [(ngModel)]="code" ></ion-input>
+      <h1 class="profile__voucher__input" >{{code}}</h1>
       <h2>Compartilhe com seus amigos</h2>
       <button (click)="shareViaWhatsApp()" class="btn-share"><span class="btn-share__whats"></span></button>
       <button (click)="shareViaFacebook()" class="btn-share"><span class="btn-share__facebook"></span></button>
       <button (click)="shareVia()" class="btn-share"><span class="btn-share__other"></span></button>
   </div>
 
-  <h2>ver regras de uso ></h2>
-
-
-
-
-  <h1>Meus indicados > </h1>
 </ion-content>
