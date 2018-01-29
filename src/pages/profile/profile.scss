@@ -59,10 +59,9 @@ page-profile {
 
         font-size: 22px;
         color: $color-secondary;
-        margin: 0;
         position: relative;
         z-index: 2;
-        padding: 0 20px;
+        padding: 20px;
 
         strong {
           @extend .font-bold;
