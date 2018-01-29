@@ -4,12 +4,14 @@ import { Storage } from '@ionic/storage';
 import { LOCALE_ID } from '@angular/core';
 // import { Firebase } from '@ionic-native/firebase';
 import { Deeplinks } from '@ionic-native/deeplinks';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 //providers
-import { DeviceProvider } from '../../providers/device/device'
+import { DeviceProvider } from '../../providers/device/device';
 import { LocationProvider } from '../../providers/location/location';
 import { OrderProvider } from '../../providers/order/order';
+import { UserProvider } from '../../providers/user/user';
 
 //relatedPages
 import { MapPage } from '../map/map';
@@ -19,6 +21,7 @@ import { ModalLoginPage } from '../modal-login/modal-login';
 import { ModalNotificationPage } from '../modal-notification/modal-notification';
 import { StatusPage } from '../status/status';
 import { FeedbackPage } from '../feedback/feedback';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-home',
@@ -56,8 +59,9 @@ export class HomePage {
     private order: OrderProvider,
     private load: LoadingController,
     private events: Events,
-    private deep: Deeplinks
-    // private firebase:Firebase
+    private deep: Deeplinks,
+    private inApp: InAppBrowser,
+    private user: UserProvider
   ) {
     this.loader = this.load.create({
       content: this.device.getRandonLoading()
@@ -88,8 +92,8 @@ export class HomePage {
 
         this.loader.dismiss();
         this.device.registerEvent('entered_zone', { zone_name: l['zone']['name'] });
-        this.device.oneSignalTag('zone',l['zone']['name']);
-        
+        this.device.oneSignalTag('zone', l['zone']['name']);
+
       })
       .catch(e => {
         // this.firebase.logError(e);
@@ -271,10 +275,7 @@ export class HomePage {
     })
   }
 
-  // openLogin(){
-  //   let loginModal = this.modalCtrl.create(ModalLoginPage)
-  //   loginModal.present();
-  // }
+
   tryAgain() {
     this.navCtrl.setRoot(HomePage);
     this.device.registerEvent('try_again', {})
@@ -292,4 +293,30 @@ export class HomePage {
     this.navCtrl.push(FeedbackPage, { sale: this.openSale });
   }
 
+  openProfile() {
+    this.user.isAuth()
+      .then(u => {
+        this.device.registerEvent('open_profile_voucher', {});
+        this.navCtrl.push(ProfilePage);
+      })
+      .catch(e => {
+        this.openLogin();
+      })
+    
+  }
+
+  openPartner() {
+    this.inApp.create('https://cvja.me/2y10JuH')
+  }
+
+  openLogin() {
+    let loginModal = this.modalCtrl.create(ModalLoginPage)
+      loginModal.onDidDismiss((data)=>{
+      this.device.camPage("home");                
+        if(data==='success'){
+          this.openProfile();
+        }
+      })
+      loginModal.present();
+  }
 }
