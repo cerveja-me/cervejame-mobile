@@ -25,7 +25,7 @@
       <ion-input class="profile__voucher__input"  placeholder="Personalize" maxlength=9 [(ngModel)]="code" ></ion-input>
       <h2>Compartilhe com seus amigos</h2>
       <button (click)="shareViaWhatsApp()" class="btn-share"><span class="btn-share__whats"></span></button>
-      <button class="btn-share"><span class="btn-share__facebook"></span></button>
+      <button (click)="shareViaFacebook()" class="btn-share"><span class="btn-share__facebook"></span></button>
       <button (click)="shareVia()" class="btn-share"><span class="btn-share__other"></span></button>
   </div>
 

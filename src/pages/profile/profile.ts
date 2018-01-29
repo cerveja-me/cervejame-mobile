@@ -35,15 +35,15 @@ export class ProfilePage {
 
 
   shareVia(){
-    this.socialSharing.share("use meu cupom de desconto", "cupom desconto",null, "cvja.me/ganhe10")
-  }
-  
-  shareViaWhatsApp(){
-    
+    this.socialSharing.share(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas suas compras pelo app: https://kw46h.app.goo.gl/cerve`);
   }
 
-  shareViaSMS(){
-    this.socialSharing.shareViaSMS("use meu cupom de desconto"+this.code+"cvja.me/ganhe10","")
+  shareViaWhatsApp(){
+    this.socialSharing.shareViaWhatsApp(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas suas compras pelo app: https://kw46h.app.goo.gl/cerve`);
+  }
+
+  shareViaFacebook(){
+    this.socialSharing.shareViaFacebook(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas suas compras pelo app: https://kw46h.app.goo.gl/cerve`,'https://kw46h.app.goo.gl/cerve');
   }
 
 }
