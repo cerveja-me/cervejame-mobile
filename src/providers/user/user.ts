@@ -134,17 +134,18 @@ export class UserProvider {
     })
   }
 
-  getCostumerData(){
+  getCostumerData(fromcache){
     return new Promise((resolve, reject)=> {
       this.storage.get(this.network.c.USER)
       .then( c =>{
-        if( c ){
+        if( c && c['code'] && c['time'] && fromcache){
           resolve(c);
           this.device.oneSignalTag('name',c.name)
           this.device.oneSignalTag('sales',c['sales'])
         }else{
           this.network.get(this.network.c.USER)
           .then( co =>{
+            co['time']=new Date();
             this.storage.set(this.network.c.USER,co);
             resolve(co);
             this.device.oneSignalTag('name',co['name'])
