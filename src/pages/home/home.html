@@ -1,6 +1,6 @@
 <ion-header (click)="showTip=false" class="header-home">
   <ion-title>
-    <button class="btn-schedule" ion-button secondary *ngIf="products.length >0 && location.zone.open" (click)="openSchedule()">
+    <button class="btn-schedule" ion-button secondary *ngIf="products.length > 0 && location.zone.open" (click)="openSchedule()">
       <span class="icon-opened"></span>
       <label>Estamos atendendo</label>
       <span class="icon-dropdown"></span>
@@ -113,7 +113,23 @@
         </p>
     </ion-slide>
   </ion-slides>
+  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted ">
+    <ion-slide>
+      <p class="msg-empty location-error">
 
+        <span class="msg-empty__title">ACABOU TUDO :(?</span>
+
+        Nosso estoque acabou, estamo trabalhando para gelar a cerveja o quanto antes para você
+        <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
+
+        <p class="choose__bottom">
+          <figure class="choose__picture" style="bottom: 5%;">
+
+            <img style="margin-top: 45%" src="assets/imgs/empty.png">
+          </figure>
+        </p>
+    </ion-slide>
+  </ion-slides>
   <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='USER_DENIED_GEOLOCATION'">
     <ion-slide>
       <p class="msg-empty location-error">
