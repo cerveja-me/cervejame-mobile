@@ -90,7 +90,7 @@ export class CheckoutPage {
     this.device.registerEvent('finish_order', this.converttofirebase(this.or));
     this.user.isAuth()
       .then(() => {
-        this.user.getCostumerData()
+        this.user.getCostumerData(false)
           .then(c => {
             this.device.registerEvent('open_phone', this.converttofirebase(this.or));
             this.doPrompt(c['phone'])
