@@ -4,6 +4,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { ConstantsProvider } from '../../providers/constants/constants';
 import { UserProvider } from '../../providers/user/user';
+
+import { ProfileReferralsPage } from '../profile-referrals/profile-referrals';
+
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
