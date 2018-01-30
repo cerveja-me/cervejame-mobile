@@ -8,11 +8,12 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProfileReferralsPage {
 
+  user_data;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfileReferralsPage');
+    this.user_data=this.navParams.get('profile'); 
   }
-
+  
 }

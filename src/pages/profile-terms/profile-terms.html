@@ -1,28 +1,33 @@
 <ion-header class="header-light">
-    <ion-navbar></ion-navbar>
-    <h1 class="logo-dark"></h1>
+  <ion-navbar></ion-navbar>
+  <h1 class="logo-dark"></h1>
 </ion-header>
 
 <ion-content class="background-light">
-  <!-- <div class="profile__balance" *ngIf="user_data && user_data.available_value > 0" (click)="openReferrals()">
-    <h2>Você ganhou da galera</h2>
-    <p class="profile__balance__value"><span class="icon-galera-w"></span>
-      R$ {{user_data.available_value |number:'1.2-2'}}
+  <div class="details">
+    <h1>Cerveja de graça</h1>
+    <h2>Detalhes de atividades:</h2>
+    <p> - Imediantamente efetivos, quando voce compartilha seu cupom de desconto com amig@s, el@s ganham o cupom de desconto
+      para fazer sua primeira compra de cerveja. Depois da primeira compra, você recebe R$ 10 de desconto na sua proxima
+      compra</p>
+    <h2>Explicação das atividades:</h2>
+    <p>
+      -Todo o saldo de desconto acumulado é aplicado na próxima compra. Não sendo permitido a utilização de outros cupons de desconto
+      em paralelo ao saldo de indicação
     </p>
-    <small>O valor será descontado na sua próxima compra.</small>
-    <p><small>Meus indicados ></small></p>
+    <p>
+      -Usuarios com a mesma conta, numero de celular, conta de facebook, numero de conta de pagamento, dispositivo ou cartão do
+      banco são considerados a mesma pessoa (Isso se aplica a você e a seus amigos e somente a primeira compra finalizada
+      é considerada para fins de desconto
+    </p>
+    <p>
+      -Se for descoberto algum comportamento proibido, os descontos não serão concedidos, saldos associados podem ser recuperados,
+      a conta pode ser encerrada e penalidades legais podem ser aplicadas. Se for descoberto algum comportamento proibido,
+      os descontos não serão concedidos, saldos
+    </p>
+    <p>
+      Em caso de dúvidas ou ajuda sobre estas atividades. Por favor entre em contato com o serviço ao consumidor pelo e-mail suporte@cerveja.me 
+    </p>
   </div>
-
-  <div class="profile__voucher">
-      <span (click)="openTerms()" class="profile__voucher__background"></span>
-      <h1>Para cada amigo que usar o seu cupom, você ganhará <strong>R$ 10,00</strong>.</h1>
-      <h5 style="font-size: 1.3rem;" (click)="openTerms()">termos de uso ></h5>
-
-      <h1 class="profile__voucher__input" >{{code}}</h1>
-      <h2>Compartilhe com seus amigos</h2>
-      <button (click)="shareViaWhatsApp()" class="btn-share"><span class="btn-share__whats"></span></button>
-      <button (click)="shareViaFacebook()" class="btn-share"><span class="btn-share__facebook"></span></button>
-      <button (click)="shareVia()" class="btn-share"><span class="btn-share__other"></span></button>
-  </div> -->
 
 </ion-content>
