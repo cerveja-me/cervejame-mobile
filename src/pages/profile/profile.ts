@@ -58,7 +58,7 @@ export class ProfilePage {
     })
   }
   openReferrals() {
-    let modal = this.modalCtrl.create(ProfileReferralsPage);
+    let modal = this.modalCtrl.create(ProfileReferralsPage,{profile:this.user_data});
     modal.present().then(r => {
       this.device.camPage("profile");
     })
