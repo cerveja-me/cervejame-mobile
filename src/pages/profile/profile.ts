@@ -41,15 +41,15 @@ export class ProfilePage {
 
 
   shareVia() {
-    this.socialSharing.share(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: https://kw46h.app.goo.gl/cerve`);
+    this.socialSharing.share(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: http://bit.ly/appamigo`);
   }
 
   shareViaWhatsApp() {
-    this.socialSharing.shareViaWhatsApp(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: https://kw46h.app.goo.gl/cerve`);
+    this.socialSharing.shareViaWhatsApp(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: http://bit.ly/appamigo`);
   }
 
   shareViaFacebook() {
-    this.socialSharing.shareViaFacebook(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: https://kw46h.app.goo.gl/cerve`, 'https://kw46h.app.goo.gl/cerve');
+    this.socialSharing.shareViaFacebook(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: http://bit.ly/appamigo`, 'http://bit.ly/appamigo');
   }
   openTerms() {
     let modal = this.modalCtrl.create(ProfileTermsPage);
