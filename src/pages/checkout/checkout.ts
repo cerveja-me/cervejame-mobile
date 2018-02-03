@@ -53,6 +53,7 @@ export class CheckoutPage {
   getVoucher() {
     this.voucher = this.order.getVoucher();
     this.zone.run(() => { });
+    this.validateVoucherAndFriendRef();
   }
 
   close() {
@@ -63,6 +64,7 @@ export class CheckoutPage {
     let modal = this.modalCtrl.create(ModalVoucherPage);
     modal.present().then(r => {
       this.device.camPage("checkout");
+      this.validateVoucherAndFriendRef(); 
     })
   }
   converttofirebase(or) {
@@ -87,6 +89,13 @@ export class CheckoutPage {
   }
 
   finishOrder() {
+    if(this.payment){
+      
+    }else{
+      this.finishOrderVoucher();
+    }
+  }
+  finishOrderVoucher(){
     this.device.registerEvent('finish_order', this.converttofirebase(this.or));
     this.user.isAuth()
       .then(() => {
@@ -147,16 +156,28 @@ export class CheckoutPage {
       })
 
   }
+  validateVoucherAndFriendRef(){
+    console.log('verificando uso de cupom');
+    if(this.friend_ref['available_value'] > 0 && this.voucher){
+      let alert = this.alertCtrl.create({
+        title: 'Opa!!!!',
+        message: 'Não é permitido usar um cupom de desconto e ao mesmo tempo o desconto "Da Galera", estamos removendo o cupom!',
+        buttons: ['Ok']
+      });
+      alert.present();
+      this.order.removeVoucher();
+      this.getVoucher();
+    } 
+  }
 
   getCostumerData() {
     this.user.getCostumerData(false)
       .then(c => {
         this.friend_ref = c;
+        this.validateVoucherAndFriendRef();
       })
       .catch(e => {
-        this.friend_ref[
-          'available_value'] = 0
-
+        this.friend_ref['available_value'] = 0;
       })
   }
 
