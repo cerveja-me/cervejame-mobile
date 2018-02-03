@@ -1,5 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
+import 'rxjs/add/observable/interval';
+import { Observable } from 'rxjs/Observable';
 
 //providers
 import { OrderProvider } from '../../providers/order/order';
@@ -19,6 +21,7 @@ export class StatusPage {
     onWay:null,
     finishedAt:null
   }
+  sub;
   constructor(
     private zone:NgZone,
     private navCtrl: NavController,
@@ -29,6 +32,10 @@ export class StatusPage {
     this.events.subscribe('push:order_update', data=>{
       this.verifyOpenSale();
     });
+    this.sub = Observable.interval(10000)
+    .subscribe((val) => { 
+      this.verifyOpenSale();  
+     });
   }
 
   ionViewDidLoad() {
@@ -54,7 +61,7 @@ export class StatusPage {
               this.actions.onWay=this.sale.actions[i];
               this.zone.run(()=>{});
               break;
-            case 3:
+            case 4:
               this.actions.finishedAt=this.sale.actions[i];
               this.zone.run(()=>{});
               break;
