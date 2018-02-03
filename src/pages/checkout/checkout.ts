@@ -87,12 +87,40 @@ export class CheckoutPage {
     console.log(a);
     return a;
   }
+  setPayment(method){
+    this.payment=method;
+    this.user.device.registerEvent('select_payment',{payment:method==1?'cartao':'dinheiro'});
+  }
 
   finishOrder() {
     if(this.payment){
+      if(this.validateVoucherAndFriendRef()){
+        this.finishOrderVoucher();
+      }
       
     }else{
-      this.finishOrderVoucher();
+      let prompt = this.alertCtrl.create({
+        title: 'Como quer Pagar?',
+        message: 'Selecione um meio de pagamento!',
+        buttons:[
+          {
+            text:'Cartão',
+          handler: data => {
+            this.user.device.registerEvent('modal_select_payment',{payment:'cartao'});
+            this.payment=2;
+            this.finishOrder();
+          }
+        },
+          {text:'Dinheiro',
+          handler: data => {
+            this.user.device.registerEvent('modal_select_payment',{payment:'dinheiro'});
+            this.payment=1;
+            this.finishOrder();
+          }
+        }
+        ]
+      }).present();
+      
     }
   }
   finishOrderVoucher(){
@@ -157,7 +185,6 @@ export class CheckoutPage {
 
   }
   validateVoucherAndFriendRef(){
-    console.log('verificando uso de cupom');
     if(this.friend_ref['available_value'] > 0 && this.voucher){
       let alert = this.alertCtrl.create({
         title: 'Opa!!!!',
@@ -167,7 +194,10 @@ export class CheckoutPage {
       alert.present();
       this.order.removeVoucher();
       this.getVoucher();
-    } 
+      return false; 
+    } else{
+      return true;
+    }
   }
 
   getCostumerData() {
@@ -215,7 +245,7 @@ export class CheckoutPage {
           },
           {
             name: 'phone',
-            placeholder: 'Seu Telefone',
+            placeholder: 'Seu Telefone ex. :(11)99123-1234',
             type: 'tel',
             value: phone
           }
