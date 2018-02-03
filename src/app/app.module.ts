@@ -147,10 +147,10 @@ class SplashScreenMock extends SplashScreen {
     InAppBrowser,
     // {provide:Geolocation, useCass:GeolocationMock},
     // { provide: Facebook, useClass: FacebookMock },
-    { provide: AppVersion, useClass: AppVersionMock },
+    // { provide: AppVersion, useClass: AppVersionMock },
     // { provide: SplashScreen, useClass:SplashScreenMock },
-    { provide: Device, useClass: DeviceMock },
-    { provide: Keyboard, useClass: KeyboardMock },//coment before build to mobile
+    // { provide: Device, useClass: DeviceMock },
+    // { provide: Keyboard, useClass: KeyboardMock },//coment before build to mobile
 
     { provide: LOCALE_ID, useValue: 'pt-PT' },
     { provide: ErrorHandler, useClass: MyErrorHandler }
