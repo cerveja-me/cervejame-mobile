@@ -16,7 +16,7 @@ export class ConstantsProvider {
   public USER: string = 'costumer/';
   public REMOTE_ASSETS: string = 'https://s3-sa-east-1.amazonaws.com/assests.cerveja.me';
   //public REMOTE_ASSETS:string='https://assets.cerveja.me/';
-  UXCAM_KEY: string = '170c2a7fdadbaea';//tresux@cerveja.me
+  UXCAM_KEY: string = 'da2a5f570b813c1';//quatroux@cerveja.me
   GOOGLE_GEOCODE: string = 'https://maps.googleapis.com/maps/api/geocode/json?address=#&location=LAT,LNG&rankby=distance&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
   GOOGLE_ADDRESS: string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=#&key=AIzaSyCviMvRgOLra4U-obeRi33K0Cur5WlGTQg';
   SHARE_MESSAGE:string= 'Compartlhando com vc, use meu cupom e ganhe R$ 10';
