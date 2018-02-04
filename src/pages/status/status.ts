@@ -80,6 +80,4 @@ export class StatusPage {
     this.navCtrl.setRoot(HomePage);
   }
 
-
-
 }
