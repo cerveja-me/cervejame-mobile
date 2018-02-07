@@ -42,17 +42,17 @@ export class ProfilePage {
 
 
   shareVia() {
-    this.socialSharing.share(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: http://cvja.me/2nAR2vE`);
+    this.socialSharing.share(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto na sua primeira compra pelo app: http://cvja.me/2nAR2vE`);
     this.device.registerEvent('friend_referral_share',{code:this.code});
   }
 
   shareViaWhatsApp() {
-    this.socialSharing.shareViaWhatsApp(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: http://cvja.me/2nAR2vE`);
+    this.socialSharing.shareViaWhatsApp(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto na sua primeira compra pelo app: http://cvja.me/2nAR2vE`);
     this.device.registerEvent('friend_referral_share_whats_app',{code:this.code});
   }
 
   shareViaFacebook() {
-    this.socialSharing.shareViaFacebook(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto nas sua primeira compras pelo app: http://cvja.me/2nAR2vE`, 'http://cvja.me/2nAR2vE');
+    this.socialSharing.shareViaFacebook(`use meu cupom de desconto: ${this.code} e ganhe R$ 10 de desconto na sua primeira compra pelo app: http://cvja.me/2nAR2vE`, 'http://cvja.me/2nAR2vE');
     this.device.registerEvent('friend_referral_share_facebook',{code:this.code});
   }
 
