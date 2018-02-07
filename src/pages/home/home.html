@@ -113,14 +113,14 @@
         </p>
     </ion-slide>
   </ion-slides>
-  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && !products.length > 0">
+  <ion-slides class="choose-slider slider-empty" *ngIf="loadedcompleted && err==='NO_PRODUCTS'">
     <ion-slide>
       <p class="msg-empty location-error">
 
         <span class="msg-empty__title">ACABOU TUDO :(</span>
 
-        Nosso estoque acabou, estamo trabalhando para gelar a cerveja o quanto antes para você
-        <button class="btn-white" (click)="tryAgain()">Tentar novamente</button>
+        Nosso estoque acabou, estamos trabalhando para gelar a cerveja o quanto antes para você
+        <button class="btn-white" (click)="tryAgain()">Verificar novamente</button>
 
         <p class="choose__bottom">
           <figure class="choose__picture" style="bottom: 5%;">
