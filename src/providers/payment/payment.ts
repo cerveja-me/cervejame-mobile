@@ -6,8 +6,8 @@ declare var Mercadopago:any;
 
 @Injectable()
 export class PaymentProvider {
-  const pk="TEST-d7461746-9617-4490-95be-2e36541843ed";
-  const at="TEST-4713963692464683-080116-7e44bf05719877c61ac5fce5ee74b2a9__LB_LC__-264729305";
+  pk="TEST-d7461746-9617-4490-95be-2e36541843ed";
+  at="TEST-4713963692464683-080116-7e44bf05719877c61ac5fce5ee74b2a9__LB_LC__-264729305";
   constructor(
     public http: HttpClient,
     private user:UserProvider
@@ -18,9 +18,9 @@ export class PaymentProvider {
   mpuser:any;
 
   findOrCreateMPCostumer(){
-    this.user.getCostumerData()
+    this.user.getCostumerData(true)
     .then( d =>{
-      this.searchMPUser(d.email)
+      this.searchMPUser(d['email'])
       .then(mpuser => {
         console.log(mpuser);
         this.mpuser=mpuser;
@@ -75,7 +75,7 @@ export class PaymentProvider {
       let url = this.CUSTOMER+'search?email='+email+'&'+this.TOKEN;
       this.get(url)
       .then(res=>{
-        if(res.length){
+        if(res){
           resolve(res[0]);
         }else{
           reject("NOT_FOUND");
@@ -104,9 +104,9 @@ export class PaymentProvider {
     })
   }
 
-  const API_BASE:string = "https://api.mercadopago.com/v1/";
-  const CUSTOMER:string = "customers/";
-  const TOKEN:string = "access_token="+this.at;
+  API_BASE:string = "https://api.mercadopago.com/v1/";
+   CUSTOMER:string = "customers/";
+   TOKEN:string = "access_token="+this.at;
 
   post(endpoint, data){
     return new Promise((resolve, reject) => {
@@ -142,7 +142,7 @@ export class PaymentProvider {
     return new Promise((resolve, reject) => {
       this.http.get(this.API_BASE+endpoint)
       .subscribe(res => {
-        resolve(res.results);
+        resolve(res);
       }, (err) => {
         reject(err);
       });
