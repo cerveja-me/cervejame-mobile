@@ -55,6 +55,7 @@ import { ProfileTermsPage } from '../pages/profile-terms/profile-terms';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { PaymentProvider } from '../providers/payment/payment';
 registerLocaleData(ptBr)
 
 class KeyboardMock extends Keyboard {

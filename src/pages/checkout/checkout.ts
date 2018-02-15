@@ -10,6 +10,9 @@ import { ModalVoucherPage } from '../modal-voucher/modal-voucher';
 import { ModalLoginPage } from '../modal-login/modal-login';
 import { HomePage } from '../home/home';
 import { StatusPage } from '../status/status';
+import { CardPage } from '../card/card';
+
+
 
 @Component({
   selector: 'page-checkout',
