@@ -95,3 +95,5 @@ install geolocation
 ```
 ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USAGE_DESCRIPTION="Usamos a sua localização para identificar a sua região e mostrar os produtos disponiveis"
 ```
+
+fix
