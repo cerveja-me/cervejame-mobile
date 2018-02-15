@@ -1,0 +1,37 @@
+<ion-header class="header-dark">
+      <ion-navbar><h1 class="logo-white"></h1></ion-navbar>
+</ion-header>
+
+<ion-content class="background-dark">
+
+  <div class="msg register">
+    <div>
+      <div class="login__box">
+         <span class="icon-user login__box__icon"></span>
+         <input name="name" class="login__box__input" placeholder="nome Cartão" required="true" type="text" [(ngModel)]="card.cardholderName"/>
+     </div>
+     <div class="login__box">
+         <span class="ios-card login__box__icon"></span>
+         <input name="number" class="login__box__input" placeholder="numero cartão" required="true" type="tel" [(ngModel)]="card.cardNumber"/>
+     </div>
+     <div class="login__box">
+         <span class="icon-pass login__box__icon"></span>
+         <input name="month" class="login__box__input" placeholder="Mes" required="true" type="tel" [(ngModel)]="card.cardExpirationMonth"/>
+     </div>
+     <div class="login__box">
+         <span class="icon-pass login__box__icon"></span>
+         <input name="year" class="login__box__input" placeholder="Ano" required="true" type="tel" [(ngModel)]="card.cardExpirationYear"/>
+     </div>
+     <div class="login__box">
+       <span class="icon-pass login__box__icon"></span>
+       <input name="securityCode" class="login__box__input" placeholder="Codigo de segurança" required="true" type="tel" [(ngModel)]="card.securityCode"/>
+     </div>
+     <div class="login__box">
+       <span class="icon-pass login__box__icon"></span>
+       <input name="year" class="login__box__input" placeholder="CPF" required="true" type="tel" [(ngModel)]="card.cpf"/>
+     </div>
+
+     <input type="button" class="btn-submit"  value="Cadastrar Cartão" (click)="createCard()" />
+ </div>
+</div>
+</ion-content>

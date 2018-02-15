@@ -39,7 +39,7 @@
         <span class="icon-beercoin"></span>
         <label class="payment__option__label"><small>1500</small>Beercoins</label>
       </button> -->
-      <button class="payment__option soon">
+      <button class="payment__option" [ngClass]="payment=='3'?'active':''" (click)="openCard()">
         <span class="icon-card"></span>
         <label class="payment__option__label">Via app</label>
       </button>

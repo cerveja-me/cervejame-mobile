@@ -67,8 +67,6 @@ export class UserProvider {
     })
   }
 
-
-
   facebookRegister(){
     return new Promise((resolve, reject) => {
       this.facebookData()
@@ -116,8 +114,8 @@ export class UserProvider {
         }
       })
     })
-
   }
+
   costumerUpdate(phone){
     return new Promise((resolve, reject)=> {
       let u={
