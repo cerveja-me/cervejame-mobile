@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cerveja.me</string>
+    <string name="title_activity_main">Cerveja.me</string>
+    <string name="package_name">com.cerveja.me</string>
+    <string name="fileprovider_authority">com.cerveja.me.fileprovider</string>
+    <string name="custom_url_scheme">com.cerveja.me</string>
+</resources>

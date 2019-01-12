@@ -1,0 +1,11 @@
+{
+  "appId": "com.cerveja.me",
+  "appName": "Cerveja.me",
+  "bundledWebRuntime": false,
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
